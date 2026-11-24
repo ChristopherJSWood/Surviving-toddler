@@ -29,12 +29,32 @@ Also in play:
 
 ## Run it on a Mac (Xcode 26)
 
+One command checks your tools, runs the engine tests, builds the app and launches it in the iOS Simulator:
+
 ```sh
-brew install xcodegen          # one time
-xcodegen generate              # creates BedtimeOrBust.xcodeproj from project.yml
-open BedtimeOrBust.xcodeproj   # pick an iPhone simulator, press ⌘R
-swift test --package-path Core # engine + conformance tests, no simulator needed
+brew install xcodegen      # one time (Homebrew: https://brew.sh)
+tools/mac-build.sh         # or: tools/mac-build.sh --no-launch
 ```
+
+Each step stops with the command that fixes it. The full output is in `build/mac-build.log`.
+
+| If it stops at | Run |
+|---|---|
+| xcode-select points to CommandLineTools | `sudo xcode-select -s /Applications/Xcode.app/Contents/Developer` |
+| License not accepted | `sudo xcodebuild -license accept` |
+| First launch / missing components | `xcodebuild -runFirstLaunch` |
+| No iOS Simulator runtime | `xcodebuild -downloadPlatform iOS` (several GB) |
+| App build | the error lines it prints are Swift compile errors: fix them, or paste them to whoever is helping |
+
+To work in Xcode instead: `xcodegen generate`, `open BedtimeOrBust.xcodeproj`, pick an iPhone simulator, press ⌘R. `BedtimeOrBust.xcodeproj` is generated and git-ignored: change `project.yml`, not the project.
+
+**On your own iPhone (optional, free Apple ID):**
+1. In Xcode, open target BedtimeOrBust, then Signing & Capabilities.
+2. Pick your Personal Team and change the bundle identifier from `com.example.bedtimeorbust` to something unique.
+3. On the phone, turn on Settings > Privacy & Security > Developer Mode.
+4. Connect the phone, select it as the destination, and press ⌘R.
+
+Two catches: `xcodegen generate` resets the team, so set it again after regenerating; and free-team installs stop launching after a few days until you run them from Xcode again.
 
 ## Project layout
 
@@ -51,8 +71,10 @@ tools/                Node scripts (Node 18+, no npm install)
   build-content.mjs   merges content/ into content.json (--validate, --check)
   validate.mjs        content linter
   simulate.mjs        week simulator with balance targets (--check)
+  policies.mjs        scripted players shared by simulate.mjs and golden.mjs
   golden.mjs          records traces the Swift tests replay
   build-prototype.mjs builds the browser playtest page
+  mac-build.sh        Mac: check tools, test, build, launch in the Simulator
 prototype/            single-file browser build
 docs/RULES.md         the rules, including the order of random draws
 docs/CONTENT_GUIDE.md how to write cards
@@ -69,6 +91,6 @@ node tools/golden.mjs                     # refresh the Swift conformance fixtur
 node tools/build-prototype.mjs            # refresh the browser build
 ```
 
-CI runs all of these, then the Swift tests and an iOS Simulator build on a GitHub macOS runner.
+CI runs all of these, then the Swift tests on Linux. An iOS Simulator build on a GitHub macOS runner is configured but non-blocking: those runners haven't started for this account.
 
-**Two engines, one set of rules.** The rules exist in Swift (for the app) and JavaScript (for the simulator and browser build). Both use the same random number generator (mulberry32) and the same draw order (docs/RULES.md). `golden.mjs` records 30 full seeded weeks from the JavaScript engine, and `ConformanceTests.swift` replays them, failing on the first difference.
+**Two engines, one set of rules.** The rules exist in Swift (for the app) and JavaScript (for the simulator and browser build). Both use the same random number generator (mulberry32) and the same draw order (docs/RULES.md). `golden.mjs` records full seeded weeks from the JavaScript engine: 30 with a fixed index policy, plus weeks from the simulator's scripted players, picked until every card and every ending appears and the snap path is exercised. `ConformanceTests.swift` replays every step: the card, which choices are visible and unlocked, the outcome, any snap, the clock and all seven meters. It fails on the first difference, and it checks the coverage itself. The app can't use `@testable`, so CI also type-checks `App/GameStore.swift` against the engine's public API on Linux.

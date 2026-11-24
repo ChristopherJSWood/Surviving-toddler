@@ -14,8 +14,8 @@ jobs:
     name: Content lint, balance, golden traces, prototype (Node)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
           node-version: "22"
       - name: content.json matches content/ sources
@@ -38,23 +38,31 @@ jobs:
     container: swift:6.1
     timeout-minutes: 20
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Toolchain
         run: swift --version
       - name: Engine unit and conformance tests
         run: swift test --package-path Core
+      - name: App logic compiles against the public API
+        # The tests use @testable import, which can see internal symbols; the
+        # app can't. GameStore.swift needs no UI framework, so type-check it
+        # here against the built module exactly as the app imports it.
+        run: |
+          BIN="$(swift build --package-path Core --show-bin-path)"
+          swiftc -typecheck -I "$BIN/Modules" -I "$BIN" App/GameStore.swift
+          echo "App/GameStore.swift type-checks against BedtimeCore's public API"
 
   ios:
     name: Swift tests and iOS build (Xcode)
-    # In November 2026 every macOS job for this account (macos-26 and macos-15)
-    # was cancelled after 15 minutes in the queue without ever starting
-    # (GitHub: "Due to capacity constraints..."). Non-blocking until that
-    # clears; build the app locally in Xcode 26 meanwhile.
+    # In November 2026 every macOS job for this account (macos-26 and macos-15,
+    # three runs) was cancelled after 15 minutes in the queue without ever
+    # starting (GitHub: "Due to capacity constraints..."). Non-blocking until
+    # that clears; build the app on a Mac with tools/mac-build.sh meanwhile.
     runs-on: macos-15
     continue-on-error: true
     timeout-minutes: 30
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Toolchain
         run: |
           xcodebuild -version

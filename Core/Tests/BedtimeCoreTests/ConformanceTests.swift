@@ -3,7 +3,8 @@ import XCTest
 
 /// Replays week traces recorded from the JavaScript reference engine
 /// (tools/golden.mjs). Passing proves the Swift engine implements the same
-/// rules, RNG draw order and content semantics, step for step.
+/// rules, RNG draw order and content semantics, step for step, and the test
+/// itself checks that the traces reach every card and every ending.
 final class ConformanceTests: XCTestCase {
     struct Golden: Decodable {
         struct RNGSamples: Decodable {
@@ -25,6 +26,8 @@ final class ConformanceTests: XCTestCase {
         struct Step: Decodable {
             let e: String
             let n: Int
+            /// Bitmask of the unlocked visible choices.
+            let u: Int
             let c: Int
             let o: Int
             let s: Int
@@ -54,12 +57,13 @@ final class ConformanceTests: XCTestCase {
         }
 
         struct Trace: Decodable {
+            let policy: String
             let seed: UInt32
             let steps: [Step]
             let finalState: Snapshot
 
             enum CodingKeys: String, CodingKey {
-                case seed, steps
+                case policy, seed, steps
                 case finalState = "final"
             }
         }
@@ -67,6 +71,7 @@ final class ConformanceTests: XCTestCase {
         let meters: [String]
         let rng: RNGSamples
         let clockFormat: [ClockCase]
+        let minSnaps: Int
         let traces: [Trace]
     }
 
@@ -99,41 +104,65 @@ final class ConformanceTests: XCTestCase {
     func testGoldenWeeksReplayIdentically() throws {
         let content = try GameContent.bundled()
         let golden = try loadGolden()
-        XCTAssertGreaterThanOrEqual(golden.traces.count, 10)
+        XCTAssertGreaterThanOrEqual(golden.traces.count, 30)
+
+        var cardsSeen = Set<String>()
+        var endingsSeen = Set<String>()
+        var snaps = 0
         for trace in golden.traces {
-            try replay(trace, content: content)
+            let replayed = try replay(trace, content: content)
+            cardsSeen.formUnion(replayed.cards)
+            if let ending = replayed.ending { endingsSeen.insert(ending) }
+            snaps += replayed.snaps
         }
+
+        // Coverage is checked here, not trusted from the fixture: a truncated or
+        // stale golden.json fails this test even if every step it holds matches.
+        let allCards = Set(content.events.map(\.id))
+        XCTAssertEqual(allCards.subtracting(cardsSeen).sorted(), [], "cards no trace reaches")
+        XCTAssertEqual(Set(content.endings.keys).subtracting(endingsSeen).sorted(), [], "endings no trace reaches")
+        XCTAssertGreaterThanOrEqual(snaps, golden.minSnaps, "snap outcomes replayed")
     }
 
-    private func replay(_ trace: Golden.Trace, content: GameContent) throws {
+    private func replay(_ trace: Golden.Trace, content: GameContent) throws -> (cards: Set<String>, ending: String?, snaps: Int) {
         var engine = GameEngine(content: content, seed: trace.seed)
+        var cards = Set<String>()
+        var snaps = 0
         for (i, expected) in trace.steps.enumerated() {
-            let here = "seed \(trace.seed) step \(i)"
+            let here = "\(trace.policy) seed \(trace.seed) step \(i)"
             guard let event = engine.currentEvent else {
-                return XCTFail("\(here): Swift engine ended early")
+                XCTFail("\(here): Swift engine ended early")
+                return (cards, nil, snaps)
             }
             guard event.id == expected.e else {
-                return XCTFail("\(here): event \(event.id), reference \(expected.e)")
+                XCTFail("\(here): event \(event.id), reference \(expected.e)")
+                return (cards, nil, snaps)
             }
+            cards.insert(event.id)
             let visible = engine.visibleChoices()
             XCTAssertEqual(visible.count, expected.n, "\(here): visible choices")
-            let unlocked = visible.indices.filter { !engine.isLocked(visible[$0]) }
-            let pick = unlocked[(Int(trace.seed) + engine.state.step * 31) % unlocked.count]
-            XCTAssertEqual(pick, expected.c, "\(here): policy pick")
+            let mask = visible.indices.reduce(0) { engine.isLocked(visible[$1]) ? $0 : $0 | (1 << $1) }
+            XCTAssertEqual(mask, expected.u, "\(here): unlocked choices")
+            guard visible.indices.contains(expected.c), !engine.isLocked(visible[expected.c]) else {
+                XCTFail("\(here): reference pick \(expected.c) is not an unlocked visible choice")
+                return (cards, nil, snaps)
+            }
 
-            let result = try engine.choose(pick)
+            let result = try engine.choose(expected.c)
+            if result.snapped { snaps += 1 }
             XCTAssertEqual(result.outcomeIndex, expected.o, "\(here): outcome")
             XCTAssertEqual(result.snapped ? 1 : 0, expected.s, "\(here): snap")
             XCTAssertEqual(engine.state.day, expected.d, "\(here): day")
             XCTAssertEqual(engine.state.phase == .night ? 1 : 0, expected.p, "\(here): phase")
             XCTAssertEqual(engine.state.clock, expected.t, "\(here): clock")
             guard engine.state.meters.values == expected.m else {
-                return XCTFail("\(here): meters \(engine.state.meters.values), reference \(expected.m)")
+                XCTFail("\(here): meters \(engine.state.meters.values), reference \(expected.m)")
+                return (cards, nil, snaps)
             }
         }
 
         let snap = trace.finalState
-        let here = "seed \(trace.seed) final"
+        let here = "\(trace.policy) seed \(trace.seed) final"
         XCTAssertTrue(engine.isOver, "\(here): reference ended, Swift did not")
         XCTAssertEqual(engine.state.endingID, snap.endingId, here)
         XCTAssertEqual(engine.state.day, snap.day, here)
@@ -149,5 +178,6 @@ final class ConformanceTests: XCTestCase {
         for meter in Meter.allCases {
             XCTAssertEqual(engine.state.meters[meter], snap.meters[meter.rawValue], "\(here): \(meter)")
         }
+        return (cards, engine.state.endingID, snaps)
     }
 }
