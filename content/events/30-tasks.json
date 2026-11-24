@@ -1,0 +1,62 @@
+[
+  {
+    "id": "w_rsvp_now",
+    "title": "Theo's Party: Yes / No / Maybe",
+    "text": "The invite for Theo's party has been open in a browser tab since last week. Saturday, 10 AM, a trampoline place with a cartoon kangaroo on the sign. The buttons say Yes, No and Maybe.",
+    "window": [420, 1100],
+    "task": "rsvp",
+    "weight": 3,
+    "choices": [
+      { "label": "RSVP yes. Right now.", "duration": 3, "outcomes": [ { "text": "\"Yes! See you there! 🎉\" One click. You feel like an adult who handles things, at least until Saturday at 10.", "effects": { "energy": -2, "rep": 2 }, "completeTask": "rsvp" } ] },
+      { "label": "Ask your partner to handle it", "duration": 2, "tags": ["tagteam"], "outcomes": [
+        { "when": { "min": { "rel": 55 } }, "text": "\"Done. Also bought the gift. It's a kazoo.\" A kazoo. For someone else's child. Your partner is a quiet genius.", "effects": { "rel": 2 }, "completeTask": "rsvp", "ledger": { "errands": "partner" } },
+        { "when": { "max": { "rel": 54 } }, "text": "\"Which Theo?\" There's only one Theo. The tab stays open, glowing at you.", "effects": { "rel": -2 } } ] },
+      { "label": "Later. Maybe is still an option.", "duration": 1, "outcomes": [ { "text": "Maybe is always an option. Maybe is how adults say \"I haven't checked with my toddler's nap.\"", "effects": {} } ] }
+    ]
+  },
+  {
+    "id": "w_form_now",
+    "title": "The Form on the Fridge",
+    "text": "The daycare field-trip form is on the fridge, under a magnet, under a drawing of either you or a potato. It needs a signature, an emergency contact and \"any additional notes.\"",
+    "window": [420, 1100],
+    "task": "form",
+    "weight": 3,
+    "choices": [
+      { "label": "Sign it now", "duration": 5, "outcomes": [ { "text": "Signature, phone number, and under \"additional notes\" you write \"bites when bored\" and then cross it out. Into the backpack. Done.", "effects": { "energy": -3 }, "completeTask": "form" } ] },
+      { "label": "Text your partner to sign it at drop-off", "duration": 2, "tags": ["tagteam"], "outcomes": [
+        { "when": { "min": { "rel": 55 } }, "text": "A photo arrives: the form, signed, being handed to a teacher. Your partner has never looked more attractive.", "effects": { "rel": 2 }, "completeTask": "form", "ledger": { "errands": "partner" } },
+        { "when": { "max": { "rel": 54 } }, "text": "\"What form?\" The one on the fridge. The one with the potato. It stays on the fridge.", "effects": { "rel": -2 } } ] },
+      { "label": "Later. It's a form. Forms keep.", "duration": 1, "outcomes": [ { "text": "Forms keep. Pumpkin patches, it turns out, do not.", "effects": {} } ] }
+    ]
+  },
+  {
+    "id": "w_pediatrician_now",
+    "title": "Press 9 for More Options",
+    "text": "The rash is still there. The pediatrician's phone tree has nine options, none of which is \"rash,\" and hold music that is a pan flute cover of a song you used to love.",
+    "window": [480, 1020],
+    "task": "pediatrician",
+    "weight": 3,
+    "choices": [
+      { "label": "Call. Survive the phone tree.", "duration": 20, "outcomes": [ { "text": "Option 4, then 2, then a nurse named Pat who says, kindly, \"send a photo, it sounds like eczema.\" Fragrance-free cream twice a day. You could cry.", "effects": { "energy": -5, "mood": 2 }, "completeTask": "pediatrician" } ] },
+      { "label": "Ask your partner to call on their break", "duration": 2, "tags": ["tagteam"], "outcomes": [
+        { "when": { "min": { "rel": 55 } }, "text": "They call from a stairwell at work. \"Eczema. Cream twice a day. Nurse Pat says hi.\" You don't know a Nurse Pat. You love Nurse Pat.", "effects": { "rel": 2 }, "completeTask": "pediatrician", "ledger": { "errands": "partner" } },
+        { "when": { "max": { "rel": 54 } }, "text": "\"Can't, back-to-backs all day.\" The rash and the phone tree are both still yours.", "effects": { "rel": -2 } } ] },
+      { "label": "Later. It's probably fine.", "duration": 1, "outcomes": [ { "text": "It's probably fine. You look at it every eleven minutes for the rest of the day, just to check that it's fine.", "effects": {} } ] }
+    ]
+  },
+  {
+    "id": "w_library_now",
+    "title": "The Books by the Door",
+    "text": "The library books are stacked by the door, where they've been since Monday, becoming furniture. The library closes at 6. One of them is about a bear who is also tired.",
+    "window": [540, 1020],
+    "task": "library",
+    "weight": 3,
+    "choices": [
+      { "label": "Return them now. Make it an outing.", "duration": 30, "minEnergy": 15, "tags": ["present"], "outcomes": [ { "text": "The drop slot eats the books one at a time while your toddler waves goodbye to each. They pick out three new ones. The cycle continues.", "effects": { "energy": -5, "mood": 4 }, "completeTask": "library" } ] },
+      { "label": "Ask your partner to drop them on the way home", "duration": 2, "tags": ["tagteam"], "outcomes": [
+        { "when": { "min": { "rel": 55 } }, "text": "They take the bag without a sigh. That evening: \"Returned. The librarian says the bear book is very popular.\"", "effects": { "rel": 2 }, "completeTask": "library", "ledger": { "errands": "partner" } },
+        { "when": { "max": { "rel": 54 } }, "text": "They forget the bag by the door. The books remain furniture. The bear remains tired.", "effects": { "rel": -2 } } ] },
+      { "label": "Later. They're not going anywhere.", "duration": 1, "outcomes": [ { "text": "That's exactly the problem, but you don't think about it that way.", "effects": {} } ] }
+    ]
+  }
+]

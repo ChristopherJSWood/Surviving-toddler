@@ -1,3 +1,4 @@
+import BedtimeCore
 import SwiftUI
 
 struct RootView: View {
@@ -8,7 +9,7 @@ struct RootView: View {
             Color(uiColor: .systemGroupedBackground).ignoresSafeArea()
             if let error = store.loadError {
                 ContentUnavailableView(
-                    "The day could not start",
+                    "The week could not start",
                     systemImage: "exclamationmark.triangle",
                     description: Text(error)
                 )
@@ -16,15 +17,18 @@ struct RootView: View {
                 switch store.screen {
                 case .title:
                     TitleView()
-                case .dayIntro:
-                    DayIntroView()
+                case .morning:
+                    MorningView()
                 case .event, .outcome:
                     PlayView()
+                case .lifeline:
+                    LifelineView()
                 case .ending:
                     EndView()
                 }
             }
         }
         .animation(.snappy, value: store.screen)
+        .preferredColorScheme(store.engine?.state.phase == .night && store.screen != .ending ? .dark : nil)
     }
 }

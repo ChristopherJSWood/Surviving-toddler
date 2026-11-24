@@ -1,53 +1,63 @@
 import Foundation
 
-/// The five gauges the game tracks. Every value is an integer clamped to 0...100.
+/// The seven gauges the game tracks. Every value is an integer clamped to 0...100.
 ///
 /// The declaration order is significant: it matches `METERS` in
 /// `tools/engine.mjs`, and golden traces store meters in this order.
 public enum Meter: String, CaseIterable, Codable, Sendable {
-    case sanity, mood, home, rep, sleepy
+    case energy, rel, mood, sleepy, debt, home, rep
 
-    /// The meters that decide the end-of-day grade. Sleepiness only gates bedtime.
-    public static let quality: [Meter] = [.sanity, .mood, .home, .rep]
+    /// The meters shown as bars in the HUD groups.
+    public static let parent: [Meter] = [.energy, .rel]
+    public static let toddler: [Meter] = [.mood, .sleepy, .debt]
+    public static let household: [Meter] = [.home, .rep]
 }
 
 /// A full set of meter values. Writes go through the subscript, which clamps,
 /// so no code path can push a meter outside 0...100.
 public struct Meters: Codable, Equatable, Sendable {
-    public private(set) var sanity: Int
+    public private(set) var energy: Int
+    public private(set) var rel: Int
     public private(set) var mood: Int
+    public private(set) var sleepy: Int
+    public private(set) var debt: Int
     public private(set) var home: Int
     public private(set) var rep: Int
-    public private(set) var sleepy: Int
 
     public static let range = 0...100
 
-    public init(sanity: Int, mood: Int, home: Int, rep: Int, sleepy: Int) {
-        self.sanity = Self.clamp(sanity)
+    public init(energy: Int, rel: Int, mood: Int, sleepy: Int, debt: Int, home: Int, rep: Int) {
+        self.energy = Self.clamp(energy)
+        self.rel = Self.clamp(rel)
         self.mood = Self.clamp(mood)
+        self.sleepy = Self.clamp(sleepy)
+        self.debt = Self.clamp(debt)
         self.home = Self.clamp(home)
         self.rep = Self.clamp(rep)
-        self.sleepy = Self.clamp(sleepy)
     }
 
     public subscript(meter: Meter) -> Int {
         get {
             switch meter {
-            case .sanity: return sanity
+            case .energy: return energy
+            case .rel: return rel
             case .mood: return mood
+            case .sleepy: return sleepy
+            case .debt: return debt
             case .home: return home
             case .rep: return rep
-            case .sleepy: return sleepy
             }
         }
         set {
             let value = Self.clamp(newValue)
             switch meter {
-            case .sanity: sanity = value
+            case .energy: energy = value
+            case .rel: rel = value
             case .mood: mood = value
+            case .sleepy: sleepy = value
+            case .debt: debt = value
             case .home: home = value
             case .rep: rep = value
-            case .sleepy: sleepy = value
             }
         }
     }

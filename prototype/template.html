@@ -5,7 +5,8 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Fredoka:wght@500;600;700&family=VT323&display=swap">
 <style>
 /* Layout: one phone-width column. A microwave-clock HUD sits over a fridge-note
-   event card; choices are chunky toy blocks; the day ends on a till receipt. */
+   card; choices are chunky toy blocks; nights go dark; the week ends on a
+   performance review printed like a till receipt. */
 :root {
   --bg: #e8ecf1;
   --paper: #ffffff;
@@ -20,16 +21,27 @@
   --lcd-bg: #23262e;
   --lcd-fg: #7fe3c6;
   --magnet: #d93f45;
-  --sanity: #c93a72;
-  --mood: #d9770f;
-  --home: #178f82;
-  --rep: #7151cf;
+  --energy: #d36b0c;
+  --rel: #c93a72;
+  --mood: #b38a00;
   --sleepy: #4253c9;
+  --debt: #6b4fd6;
+  --home: #178f82;
+  --rep: #2f8a6a;
   --good: #1b7f46;
   --bad: #c2353a;
+  --warn: #9a6200;
   --good-bg: #dff3e7;
   --bad-bg: #fbe3e3;
+  --warn-bg: #fdf0d2;
   --neutral-bg: #e3e6fb;
+  --love: #c93a72;
+  --love-bg: #fbe3ee;
+  --night-bg: #0d1020;
+  --night-paper: #171b33;
+  --night-ink: #d9def5;
+  --night-muted: #8a91b5;
+  --night-line: #2a3052;
   --font-display: "Fredoka", "Trebuchet MS", system-ui, sans-serif;
   --font-body: "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-lcd: "VT323", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
@@ -43,18 +55,20 @@
   :root:not([data-theme="light"]) {
     --bg: #12151c; --paper: #1c212b; --ink: #edf0f5; --muted: #a2abbd; --line: #313846;
     --block: #f3cb47; --block-ink: #1c2130; --block-edge: #05070a;
-    --accent: #ff6d71; --accent-ink: #1d0b0c; --lcd-bg: #0a0c10; --lcd-fg: #7fe3c6; --magnet: #ff6d71;
-    --sanity: #ff7cab; --mood: #ffaa50; --home: #43cdbb; --rep: #a98fff; --sleepy: #8d99ff;
-    --good: #5ccf8e; --bad: #ff7b7f; --good-bg: #183324; --bad-bg: #3a1c1e; --neutral-bg: #202546;
+    --accent: #ff6d71; --accent-ink: #1d0b0c; --lcd-bg: #0a0c10; --magnet: #ff6d71;
+    --energy: #ffa94d; --rel: #ff7cab; --mood: #f1d04b; --sleepy: #8d99ff; --debt: #ae9bff; --home: #43cdbb; --rep: #5fd3a6;
+    --good: #5ccf8e; --bad: #ff7b7f; --warn: #f5c25c; --good-bg: #183324; --bad-bg: #3a1c1e; --warn-bg: #3a2c10; --neutral-bg: #202546;
+    --love: #ff7cab; --love-bg: #3a1a2a;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
   --bg: #12151c; --paper: #1c212b; --ink: #edf0f5; --muted: #a2abbd; --line: #313846;
   --block: #f3cb47; --block-ink: #1c2130; --block-edge: #05070a;
-  --accent: #ff6d71; --accent-ink: #1d0b0c; --lcd-bg: #0a0c10; --lcd-fg: #7fe3c6; --magnet: #ff6d71;
-  --sanity: #ff7cab; --mood: #ffaa50; --home: #43cdbb; --rep: #a98fff; --sleepy: #8d99ff;
-  --good: #5ccf8e; --bad: #ff7b7f; --good-bg: #183324; --bad-bg: #3a1c1e; --neutral-bg: #202546;
+  --accent: #ff6d71; --accent-ink: #1d0b0c; --lcd-bg: #0a0c10; --magnet: #ff6d71;
+  --energy: #ffa94d; --rel: #ff7cab; --mood: #f1d04b; --sleepy: #8d99ff; --debt: #ae9bff; --home: #43cdbb; --rep: #5fd3a6;
+  --good: #5ccf8e; --bad: #ff7b7f; --warn: #f5c25c; --good-bg: #183324; --bad-bg: #3a1c1e; --warn-bg: #3a2c10; --neutral-bg: #202546;
+  --love: #ff7cab; --love-bg: #3a1a2a;
   color-scheme: dark;
 }
 
@@ -66,103 +80,80 @@ body {
   padding-left: max(16px, env(safe-area-inset-left, 0px));
   padding-right: max(16px, env(safe-area-inset-right, 0px));
   padding-block: 16px 40px;
+  transition: background-color 400ms ease;
 }
+/* Night: the whole screen goes dark regardless of theme. */
+body.night { --bg: var(--night-bg); --paper: var(--night-paper); --ink: var(--night-ink); --muted: var(--night-muted); --line: var(--night-line); color-scheme: dark; }
 main { max-width: 34rem; margin: 0 auto; display: grid; gap: 16px; }
 h1, h2, h3 { font-family: var(--font-display); font-weight: 600; line-height: 1.15; margin: 0; text-wrap: balance; }
 p { margin: 0; }
 button { font: inherit; color: inherit; }
 :focus-visible { outline: 3px solid var(--sleepy); outline-offset: 3px; border-radius: 6px; }
-
 .eyebrow { font: 700 var(--step--1)/1.2 var(--font-body); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
 .muted { color: var(--muted); }
 .small { font-size: var(--step--1); }
 
-/* Microwave clock */
-.lcd {
-  font-family: var(--font-lcd);
-  background: var(--lcd-bg);
-  color: var(--lcd-fg);
-  border-radius: 8px;
-  padding: 2px 12px 0;
-  font-size: 2rem;
-  line-height: 1.1;
-  letter-spacing: 0.04em;
-  font-variant-numeric: tabular-nums;
-  text-shadow: 0 0 8px color-mix(in srgb, var(--lcd-fg) 45%, transparent);
-  white-space: nowrap;
-}
+.lcd { font-family: var(--font-lcd); background: var(--lcd-bg); color: var(--lcd-fg); border-radius: 8px; padding: 2px 12px 0; font-size: 2rem; line-height: 1.1; letter-spacing: 0.04em; font-variant-numeric: tabular-nums; text-shadow: 0 0 8px color-mix(in srgb, var(--lcd-fg) 45%, transparent); white-space: nowrap; }
+.lcd small { font-size: 0.6em; }
 .lcd .colon { animation: blink 1.2s steps(1) infinite; }
 @keyframes blink { 50% { opacity: 0.25; } }
 
 /* HUD */
-.hud { display: grid; gap: 12px; }
-.hud-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
-.pill { font: 600 var(--step--1)/1 var(--font-body); padding: 7px 12px; border-radius: 999px; background: var(--paper); border: 1px solid var(--line); }
-.day-track { display: grid; gap: 4px; }
-.day-track .bar { height: 8px; }
-.day-track .ends { display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--muted); font-variant-numeric: tabular-nums; }
-.meters { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 14px; }
-.meter { display: grid; gap: 4px; min-width: 0; }
-.meter.wide { grid-column: 1 / -1; }
-.meter-head { display: flex; align-items: baseline; gap: 6px; font-size: var(--step--1); font-weight: 700; }
+.hud { display: grid; gap: 10px; }
+.hud-top { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.dayname { font: 600 var(--step-1)/1 var(--font-display); }
+.pill { font: 600 0.8rem/1 var(--font-body); padding: 7px 10px; border-radius: 999px; background: var(--paper); border: 1px solid var(--line); }
+.hud-top .spacer { flex: 1; }
+.groups { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.group { background: var(--paper); border-radius: 12px; padding: 10px; display: grid; gap: 8px; align-content: start; min-width: 0; }
+.group .eyebrow { font-size: 0.7rem; }
+.meter { display: grid; gap: 3px; min-width: 0; }
+.meter-head { display: flex; align-items: baseline; gap: 6px; font-size: 0.8rem; font-weight: 700; }
 .meter-head .name { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .meter-head .val { margin-left: auto; font-variant-numeric: tabular-nums; color: var(--muted); }
 .meter.danger .val { color: var(--bad); }
-.swatch { width: 10px; height: 10px; border-radius: 3px; flex: none; transform: translateY(1px); }
-.bar { position: relative; height: 10px; border-radius: 999px; background: color-mix(in srgb, var(--ink) 10%, transparent); overflow: hidden; }
+.bar { position: relative; height: 8px; border-radius: 999px; background: color-mix(in srgb, var(--ink) 10%, transparent); overflow: hidden; }
+.bar.thin { height: 5px; }
 .bar .fill { position: absolute; inset: 0 auto 0 0; border-radius: inherit; transition: width 400ms ease; }
 .meter.danger .fill { background: var(--bad) !important; }
-.bar .zone { position: absolute; top: 0; bottom: 0; background: repeating-linear-gradient(135deg, color-mix(in srgb, var(--bad) 35%, transparent) 0 4px, transparent 4px 8px); }
-.bar .tick { position: absolute; top: -2px; bottom: -2px; width: 2px; background: var(--ink); opacity: 0.7; }
-.sleep-note { font-size: 0.8rem; color: var(--muted); }
+.bar .tick { position: absolute; top: -2px; bottom: -2px; width: 2px; background: var(--ink); opacity: 0.75; }
+.ticker { display: flex; flex-wrap: wrap; gap: 6px; }
+.ticker span { font: 700 0.75rem/1 var(--font-body); padding: 6px 9px; border-radius: 99px; background: var(--warn-bg); color: var(--warn); }
+details.list { background: var(--paper); border-radius: 12px; padding: 10px 12px; border: 1px solid var(--line); }
+details.list summary { cursor: pointer; font-weight: 700; font-size: 0.9rem; }
+details.list .rows { display: grid; gap: 6px; margin-top: 8px; font-size: 0.9rem; }
+details.list .row { display: flex; justify-content: space-between; gap: 10px; }
+details.list .row span:first-child { min-width: 0; }
+.done { text-decoration: line-through; color: var(--muted); }
+.expired { text-decoration: line-through; color: var(--bad); }
 
 /* Fridge note */
-.note {
-  position: relative;
-  background: var(--paper);
-  border-radius: 6px 6px 18px 6px;
-  padding: 26px 22px 22px;
-  box-shadow: 0 1px 0 var(--line), 0 10px 24px -14px color-mix(in srgb, var(--ink) 40%, transparent);
-  display: grid;
-  gap: 12px;
-  min-width: 0;
-}
-.note::before {
-  content: "";
-  position: absolute;
-  top: -9px; left: 50%;
-  width: 22px; height: 22px; margin-left: -11px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, color-mix(in srgb, var(--magnet) 55%, white), var(--magnet) 60%);
-  box-shadow: 0 2px 3px color-mix(in srgb, var(--ink) 35%, transparent);
-}
+.note { position: relative; background: var(--paper); border-radius: 6px 6px 18px 6px; padding: 26px 22px 22px; box-shadow: 0 1px 0 var(--line), 0 10px 24px -14px color-mix(in srgb, var(--ink) 40%, transparent); display: grid; gap: 12px; min-width: 0; border: 2px solid transparent; }
+.note::before { content: ""; position: absolute; top: -9px; left: 50%; width: 22px; height: 22px; margin-left: -11px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, color-mix(in srgb, var(--magnet) 55%, white), var(--magnet) 60%); box-shadow: 0 2px 3px color-mix(in srgb, var(--ink) 35%, transparent); }
 .note h2 { font-size: var(--step-2); }
 .note .text { font-size: var(--step-1); line-height: 1.5; }
+.note.k-red { border-color: var(--bad); }
+.note.k-warn { border-color: var(--warn); border-style: dashed; }
+.note.k-love { border-color: var(--love); }
+.note.k-night { border-color: var(--night-line); }
+.tag-line { font: 700 0.75rem/1 var(--font-body); letter-spacing: 0.1em; text-transform: uppercase; }
+.tag-line.red { color: var(--bad); }
+.tag-line.warn { color: var(--warn); }
+.tag-line.love { color: var(--love); }
+.tag-line.night { color: var(--sleepy); }
 
-/* Toy-block buttons */
+/* Toy blocks */
 .choices { display: grid; gap: 14px; }
-.block {
-  display: flex; align-items: flex-start; gap: 12px;
-  width: 100%;
-  text-align: left;
-  background: var(--block);
-  color: var(--block-ink);
-  border: 2px solid var(--block-edge);
-  border-radius: 12px;
-  padding: 14px 16px;
-  box-shadow: 0 5px 0 var(--block-edge);
-  cursor: pointer;
-  transition: transform 90ms ease, box-shadow 90ms ease;
-  font-weight: 700;
-  line-height: 1.35;
-}
+.block { display: flex; align-items: flex-start; gap: 12px; width: 100%; text-align: left; background: var(--block); color: var(--block-ink); border: 2px solid var(--block-edge); border-radius: 12px; padding: 14px 16px; box-shadow: 0 5px 0 var(--block-edge); cursor: pointer; transition: transform 90ms ease, box-shadow 90ms ease; font-weight: 700; line-height: 1.35; }
 .block:hover { transform: translateY(-1px); box-shadow: 0 6px 0 var(--block-edge); }
 .block:active { transform: translateY(5px); box-shadow: 0 0 0 var(--block-edge); }
 .block .key { flex: none; width: 1.7em; height: 1.7em; border-radius: 6px; display: grid; place-items: center; font: 700 0.85rem/1 var(--font-display); background: color-mix(in srgb, var(--block-ink) 12%, transparent); }
 .block .label { flex: 1; min-width: 0; }
 .block .mins { flex: none; font: 600 0.8rem/1.6 var(--font-body); opacity: 0.75; white-space: nowrap; }
+.block.locked, .block.locked:hover, .block.locked:active { background: transparent; color: var(--muted); border: 2px dashed var(--line); box-shadow: none; transform: none; cursor: not-allowed; }
+.block.locked .key { background: color-mix(in srgb, var(--muted) 12%, transparent); }
+.block.locked .mins { opacity: 1; color: var(--bad); }
 .block.primary { background: var(--accent); color: var(--accent-ink); justify-content: center; text-align: center; font-family: var(--font-display); font-size: var(--step-1); font-weight: 600; }
-.block.primary .key { display: none; }
 .linkish { background: none; border: 0; padding: 6px; color: var(--muted); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; justify-self: center; }
 
 .chips { display: flex; flex-wrap: wrap; gap: 8px; }
@@ -170,43 +161,40 @@ button { font: inherit; color: inherit; }
 .chip.good { background: var(--good-bg); color: var(--good); }
 .chip.bad { background: var(--bad-bg); color: var(--bad); }
 .chip.neutral { background: var(--neutral-bg); color: var(--sleepy); }
+.banner { border-radius: 10px; padding: 10px 12px; font-weight: 700; }
+.banner.bad { background: var(--bad-bg); color: var(--bad); }
 
 /* Title */
 .title-screen { display: grid; gap: 20px; padding-top: 24px; justify-items: center; text-align: center; }
 .title-screen h1 { font-size: clamp(2.6rem, 11vw, 3.6rem); font-weight: 700; letter-spacing: -0.01em; }
 .title-screen h1 span { color: var(--accent); }
-.title-screen .tag { font-size: var(--step-1); max-width: 26ch; }
+.title-screen .tag { font-size: var(--step-1); max-width: 28ch; }
 .title-screen .actions { display: grid; gap: 14px; width: 100%; }
 details.help { width: 100%; text-align: left; background: var(--paper); border-radius: 12px; padding: 14px 16px; border: 1px solid var(--line); }
 details.help summary { cursor: pointer; font-weight: 700; }
 details.help ul { margin: 10px 0 0; padding-left: 1.1em; display: grid; gap: 6px; }
 
-/* Ending */
+.morning-head { display: grid; gap: 4px; justify-items: center; text-align: center; padding-top: 8px; }
+.morning-head h1 { font-size: var(--step-3); }
+.kv { display: grid; gap: 6px; }
+.kv .row { display: flex; justify-content: space-between; gap: 12px; font-variant-numeric: tabular-nums; }
+.kv .row b { font-weight: 700; }
+.due { color: var(--bad); font-weight: 700; white-space: nowrap; }
+
 .ending-head { display: grid; gap: 8px; text-align: center; padding-top: 12px; padding-bottom: 10px; }
 .ending-head h1 { font-size: var(--step-3); }
 .badge { justify-self: center; font: 700 var(--step--1)/1 var(--font-body); letter-spacing: 0.08em; text-transform: uppercase; padding: 8px 12px; border-radius: 999px; }
 .badge.win { background: var(--good-bg); color: var(--good); }
-.badge.soft { background: var(--neutral-bg); color: var(--sleepy); }
 .badge.loss { background: var(--bad-bg); color: var(--bad); }
 .score { font: 600 var(--step-2)/1 var(--font-display); font-variant-numeric: tabular-nums; }
-
-.receipt {
-  font-family: var(--font-lcd);
-  font-size: 1.3rem;
-  line-height: 1.25;
-  background: var(--paper);
-  padding: 20px 18px;
-  border-radius: 4px;
-  box-shadow: 0 10px 24px -16px color-mix(in srgb, var(--ink) 45%, transparent);
+.receipt { font-family: var(--font-lcd); font-size: 1.3rem; line-height: 1.25; background: var(--paper); padding: 20px 18px; border-radius: 4px; box-shadow: 0 10px 24px -16px color-mix(in srgb, var(--ink) 45%, transparent);
   mask: radial-gradient(circle 6px at 50% 0, transparent 98%, #000) 0 0 / 16px 51% repeat-x, radial-gradient(circle 6px at 50% 100%, transparent 98%, #000) 0 100% / 16px 51% repeat-x;
-  -webkit-mask: radial-gradient(circle 6px at 50% 0, transparent 98%, #000) 0 0 / 16px 51% repeat-x, radial-gradient(circle 6px at 50% 100%, transparent 98%, #000) 0 100% / 16px 51% repeat-x;
-}
-.receipt h3 { font-family: var(--font-lcd); font-weight: 400; font-size: 1.6rem; text-align: center; letter-spacing: 0.08em; }
+  -webkit-mask: radial-gradient(circle 6px at 50% 0, transparent 98%, #000) 0 0 / 16px 51% repeat-x, radial-gradient(circle 6px at 50% 100%, transparent 98%, #000) 0 100% / 16px 51% repeat-x; }
+.receipt h3 { font-family: var(--font-lcd); font-weight: 400; font-size: 1.5rem; text-align: center; letter-spacing: 0.06em; }
 .receipt .rule { border-top: 2px dashed var(--line); margin: 10px 0; }
 .receipt .row { display: flex; justify-content: space-between; gap: 12px; font-variant-numeric: tabular-nums; }
 .receipt .row span:first-child { min-width: 0; }
-.receipt .total { font-size: 1.5rem; }
-.receipt .thanks { text-align: center; color: var(--muted); margin-top: 8px; }
+.receipt .total { font-size: 1.45rem; }
 .share { display: grid; gap: 8px; }
 .share textarea { width: 100%; min-height: 4.5em; resize: none; font: 400 var(--step--1)/1.4 var(--font-body); color: var(--ink); background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 10px; }
 footer { text-align: center; font-size: 0.8rem; color: var(--muted); padding-top: 8px; }
@@ -215,10 +203,12 @@ footer { text-align: center; font-size: 0.8rem; color: var(--muted); padding-top
 @keyframes enter { from { transform: translateY(10px); } to { transform: none; } }
 @media (prefers-reduced-motion: reduce) {
   .enter, .lcd .colon { animation: none; }
-  .bar .fill, .block { transition: none; }
+  .bar .fill, .block, body { transition: none; }
 }
-@media (max-width: 380px) {
-  .meters { grid-template-columns: 1fr; }
+@media (max-width: 420px) {
+  .groups { grid-template-columns: 1fr 1fr; }
+  .groups .group:first-child { grid-column: 1 / -1; grid-template-columns: 1fr 1fr; }
+  .groups .group:first-child .eyebrow { grid-column: 1 / -1; }
   .note { padding: 24px 16px 18px; }
 }
 </style>
@@ -227,8 +217,8 @@ footer { text-align: center; font-size: 0.8rem; color: var(--muted); padding-top
   <section class="title-screen">
     <div class="lcd" aria-hidden="true">5<span class="colon">:</span>58</div>
     <h1>Bedtime <span>or</span> Bust</h1>
-    <p class="tag">One day. One toddler. One goal: make it to 7:30 PM.</p>
-    <p class="muted small">Loading the day…</p>
+    <p class="tag">Five days. One toddler. One partner. Make it to date night.</p>
+    <p class="muted small">Loading the week…</p>
   </section>
 </main>
 
@@ -240,11 +230,17 @@ footer { text-align: center; font-size: 0.8rem; color: var(--muted); padding-top
 // ---- Playtest UI. Rules live in the engine above; this only renders. ----
 const app = document.getElementById("app");
 const cfg = CONTENT.config;
-const SAVE_KEY = "bedtime-or-bust.save.v1";
-const STATS_KEY = "bedtime-or-bust.stats.v1";
-const QUALITY = ["sanity", "mood", "home", "rep"];
+const SAVE_KEY = "bedtime-or-bust.week.v2";
+const STATS_KEY = "bedtime-or-bust.stats.v2";
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
 const name = (m) => CONTENT.meters[m];
+const taskDef = (id) => CONTENT.tasks.find((t) => t.id === id);
+const HIGHER_IS_BETTER = { energy: true, rel: true, mood: true, home: true, rep: true, sleepy: null, debt: false };
+const DANGER = { energy: 20, rel: 20, home: 20, rep: 20, mood: 10 };
+// Friday's 7:00 PM requirements, read from the date_check card's failure checks.
+const DATE_CHECKS = CONTENT.events.find((e) => e.id === "date_check")?.checks ?? [];
+const FRIDAY_SLEEPY = (DATE_CHECKS.find((c) => c.when?.max?.sleepy != null)?.when.max.sleepy ?? 59) + 1;
+const FRIDAY_ENERGY = (DATE_CHECKS.find((c) => c.when?.max?.energy != null)?.when.max.energy ?? 29) + 1;
 
 const storage = {
   get(k) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : null; } catch { return null; } },
@@ -260,23 +256,24 @@ function persist() {
   else storage.set(SAVE_KEY, { v: CONTENT.version, seed: session.seed, picks: session.picks, screen: session.screen });
 }
 
-// A saved day is just its seed plus the choices made: replaying them through
-// the deterministic engine rebuilds the exact state.
+// A saved week is its seed plus the choices made; replaying them rebuilds it exactly.
 function rebuild(saved) {
   try {
     if (!saved || saved.v !== CONTENT.version || typeof saved.seed !== "number") return null;
     const game = new Game(CONTENT, saved.seed);
     let last = null;
     for (const p of saved.picks ?? []) last = game.choose(p);
-    const screen = ["intro", "event", "outcome", "ending"].includes(saved.screen) ? saved.screen : "event";
-    return { seed: saved.seed, picks: [...(saved.picks ?? [])], game, screen: screen === "outcome" && !last ? "event" : screen, last };
+    const screens = ["morning", "event", "outcome", "lifeline", "ending"];
+    let screen = screens.includes(saved.screen) ? saved.screen : "event";
+    if (screen === "outcome" && !last) screen = "event";
+    return { seed: saved.seed, picks: [...(saved.picks ?? [])], game, screen, last };
   } catch {
     return null;
   }
 }
 
-function newDay(seed = Math.floor(Math.random() * 4294967296)) {
-  session = { seed, picks: [], game: new Game(CONTENT, seed), screen: "intro", last: null };
+function newWeek(seed = Math.floor(Math.random() * 4294967296)) {
+  session = { seed, picks: [], game: new Game(CONTENT, seed), screen: "morning", last: null };
   persist();
   render();
 }
@@ -284,7 +281,8 @@ function newDay(seed = Math.floor(Math.random() * 4294967296)) {
 function choose(i) {
   const g = session.game;
   if (g.isOver || session.screen !== "event") return;
-  if (!(i >= 0 && i < g.visibleChoices().length)) return;
+  const vis = g.visibleChoices();
+  if (!(i >= 0 && i < vis.length) || g.isLocked(vis[i])) return;
   session.last = g.choose(i);
   session.picks.push(i);
   session.screen = "outcome";
@@ -294,7 +292,9 @@ function choose(i) {
 }
 
 function next() {
-  session.screen = session.game.isOver ? "ending" : "event";
+  const g = session.game;
+  const r = session.last;
+  session.screen = g.isOver ? "ending" : r?.dayEnded === "lifeline" ? "lifeline" : r?.dayEnded === "morning" ? "morning" : "event";
   persist();
   render();
 }
@@ -302,48 +302,76 @@ function next() {
 function recordStats(g) {
   const s = storage.get(STATS_KEY) ?? { played: 0, won: 0, best: 0, endings: [] };
   s.played += 1;
-  const kind = CONTENT.endings[g.state.endingId].kind;
-  if (kind === "win") { s.won += 1; s.best = Math.max(s.best, g.score()); }
+  if (CONTENT.endings[g.state.endingId].kind === "win") { s.won += 1; s.best = Math.max(s.best, g.score()); }
   if (!s.endings.includes(g.state.endingId)) s.endings.push(g.state.endingId);
   storage.set(STATS_KEY, s);
 }
 
 // ---- Views ----
-function lcd(minutes) {
-  const [hm, ap] = formatClock(minutes).split(" ");
+function lcd(text) {
+  const [hm, ap] = text.split(" ");
   const [h, m] = hm.split(":");
-  return `<div class="lcd" role="img" aria-label="${esc(formatClock(minutes))}">${h}<span class="colon">:</span>${m} <small>${ap}</small></div>`;
+  return `<div class="lcd" role="img" aria-label="${esc(text)}">${h}<span class="colon">:</span>${m} <small>${ap}</small></div>`;
 }
 
-function meterRow(m, value, { wide = false } = {}) {
-  const danger = m !== "sleepy" && value <= 20;
-  let extra = "";
-  let label = name(m);
-  if (m === "sleepy") {
-    extra = `<span class="zone" style="left:${cfg.overtiredAt}%;right:0"></span><span class="tick" style="left:${cfg.asleepThreshold}%"></span>`;
-  }
-  return `<div class="meter${wide ? " wide" : ""}${danger ? " danger" : ""}" role="meter" aria-label="${esc(label)}" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${value}">
-    <div class="meter-head"><span class="swatch" style="background:var(--${m})"></span><span class="name">${esc(label)}</span><span class="val">${value}</span></div>
-    <div class="bar"><span class="fill" style="width:${value}%;background:var(--${m})"></span>${extra}</div>
+function meter(m, value) {
+  const danger = DANGER[m] != null && value <= DANGER[m];
+  return `<div class="meter${danger ? " danger" : ""}" role="meter" aria-label="${esc(name(m))}" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${value}">
+    <div class="meter-head"><span class="name">${esc(name(m))}</span><span class="val">${value}</span></div>
+    <div class="bar"><span class="fill" style="width:${value}%;background:var(--${m})"></span></div>
   </div>`;
+}
+
+function sleepWidget(g) {
+  const { sleepy, debt } = g.state.meters;
+  const th = g.state.day === 4 ? FRIDAY_SLEEPY : cfg.bedtime.threshold;
+  return `<div class="meter" role="meter" aria-label="Sleepiness, needs ${th} at bedtime" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${sleepy}">
+      <div class="meter-head"><span class="name">Sleepy</span><span class="val">${sleepy}</span></div>
+      <div class="bar thin"><span class="fill" style="width:${sleepy}%;background:var(--sleepy)"></span><span class="tick" style="left:${th}%"></span></div>
+    </div>
+    <div class="meter" role="meter" aria-label="Sleep debt" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${debt}">
+      <div class="meter-head"><span class="name">Debt</span><span class="val">${debt}</span></div>
+      <div class="bar thin"><span class="fill" style="width:${debt}%;background:var(--debt)"></span></div>
+    </div>`;
+}
+
+function listDetails(g) {
+  const tasks = g.state.tasks;
+  const open = tasks.filter((t) => t.status === "open").length;
+  const cats = [...new Set([...Object.keys(g.state.ledger.you), ...Object.keys(g.state.ledger.partner)])].sort();
+  const taskRows = tasks.length
+    ? tasks.map((t) => `<div class="row"><span class="${t.status === "done" ? "done" : t.status === "expired" ? "expired" : ""}">${esc(taskDef(t.id)?.label ?? t.id)}</span><span class="muted">${esc(CONTENT.days[Math.min(4, Math.floor(t.due / 1440))].name.slice(0, 3))} ${formatClock(t.due % 1440)}</span></div>`).join("")
+    : `<div class="muted">Nothing yet. Enjoy it.</div>`;
+  const ledgerRows = cats.length
+    ? cats.map((c) => `<div class="row"><span>${esc(c[0].toUpperCase() + c.slice(1))}</span><span>You ${g.state.ledger.you[c] ?? 0} · Partner ${g.state.ledger.partner[c] ?? 0}</span></div>`).join("")
+    : `<div class="muted">Nobody has done anything yet. Suspicious.</div>`;
+  return `<details class="list"><summary>Your list (${open} open) and the ledger</summary>
+    <div class="rows"><span class="eyebrow">List</span>${taskRows}<span class="eyebrow" style="margin-top:6px">Ledger</span>${ledgerRows}</div>
+  </details>`;
+}
+
+function upcoming(g) {
+  return g.state.queue
+    .filter((q) => q.at > g.now)
+    .sort((a, b) => a.at - b.at || a.seq - b.seq)
+    .slice(0, 2)
+    .map((q) => `<span>⏳ ${esc(CONTENT.events.find((e) => e.id === q.event)?.title ?? q.event)} at ${formatClock(q.at % 1440)}</span>`)
+    .join("");
 }
 
 function hud(g) {
   const m = g.state.meters;
-  const span = cfg.bedtimeClock - cfg.startClock;
-  const pct = Math.max(0, Math.min(100, ((g.state.clock - cfg.startClock) / span) * 100));
-  const mod = g.modifier;
+  const night = g.state.phase === "night";
+  const ticks = upcoming(g);
   return `<section class="hud" aria-label="Status">
-    <div class="hud-top">${lcd(g.state.clock)}<span class="pill">${esc(mod.title)}</span></div>
-    <div class="day-track" aria-label="Progress to bedtime: ${Math.round(pct)}%">
-      <div class="bar"><span class="fill" style="width:${pct}%;background:var(--sleepy)"></span></div>
-      <div class="ends"><span>${formatClock(cfg.startClock)}</span><span>Bedtime ${formatClock(cfg.bedtimeClock)}</span></div>
+    <div class="hud-top">${lcd(night ? "2:47 AM" : formatClock(g.state.clock))}<span class="dayname">${esc(CONTENT.days[g.state.day].name)}</span><span class="spacer"></span>${g.modifier && g.modifier.title !== CONTENT.days[g.state.day].name ? `<span class="pill">${esc(g.modifier.title)}</span>` : ""}</div>
+    <div class="groups">
+      <div class="group"><span class="eyebrow">You</span>${meter("energy", m.energy)}${meter("rel", m.rel)}</div>
+      <div class="group"><span class="eyebrow">Toddler</span>${meter("mood", m.mood)}${sleepWidget(g)}</div>
+      <div class="group"><span class="eyebrow">Household</span>${meter("home", m.home)}${meter("rep", m.rep)}</div>
     </div>
-    <div class="meters">
-      ${QUALITY.map((k) => meterRow(k, m[k])).join("")}
-      ${meterRow("sleepy", m.sleepy, { wide: true })}
-    </div>
-    <p class="sleep-note">Sleepiness must reach the line (${cfg.asleepThreshold}) by bedtime. In the striped zone (${cfg.overtiredAt}+) they are overtired and their mood drops.</p>
+    ${ticks ? `<div class="ticker">${ticks}</div>` : ""}
+    ${night ? "" : listDetails(g)}
   </section>`;
 }
 
@@ -352,133 +380,169 @@ function chips(deltas) {
   if (!keys.length) return "";
   return `<div class="chips">${keys.map((k) => {
     const d = deltas[k];
-    const cls = k === "sleepy" ? "neutral" : d > 0 ? "good" : "bad";
+    const hib = HIGHER_IS_BETTER[k];
+    const cls = hib == null ? "neutral" : (d > 0) === hib ? "good" : "bad";
     return `<span class="chip ${cls}">${d > 0 ? "+" : "−"}${Math.abs(d)} ${esc(name(k))}</span>`;
   }).join("")}</div>`;
 }
 
+function eyebrow(ev) {
+  if (ev.phase === "night") return ["2 AM", "night", "k-night"];
+  if (ev.hazard === "catastrophe") return ["Catastrophe", "red", "k-red"];
+  if (ev.hazard === "sting") return ["Hazard", "red", "k-red"];
+  if (ev.moment) return ["Small moment", "love", "k-love"];
+  if (CONTENT.events.some((e) => e.tell === ev.id)) return ["Warning", "warn", "k-warn"];
+  if (CONTENT.tasks.some((t) => t.expire === ev.id)) return ["From your list", "warn", "k-warn"];
+  if (ev.forced && !ev.endsWeek) return ["Payback", "warn", "k-warn"];
+  return null;
+}
+
 function titleView() {
-  const saved = storage.get(SAVE_KEY);
-  const canResume = !!rebuild(saved);
+  const canResume = !!rebuild(storage.get(SAVE_KEY));
   const s = storage.get(STATS_KEY);
   return `<section class="title-screen enter">
     <div class="lcd" aria-hidden="true">5<span class="colon">:</span>58 <small>AM</small></div>
     <h1>Bedtime <span>or</span> Bust</h1>
-    <p class="tag">One day. One toddler. One goal: make it to ${formatClock(cfg.bedtimeClock)}.</p>
+    <p class="tag">Five days. One toddler. One partner. Make it to date night.</p>
     <div class="actions">
-      ${canResume ? `<button class="block primary" data-act="resume">Continue today</button>` : ""}
-      <button class="block ${canResume ? "" : "primary"}" data-act="new"><span class="label">${canResume ? "Start a new day" : "Start the day"}</span></button>
+      ${canResume ? `<button class="block primary" data-act="resume">Continue this week</button>` : ""}
+      <button class="block ${canResume ? "" : "primary"}" data-act="new"><span class="label">${canResume ? "Start a new week" : "Start Monday"}</span></button>
     </div>
     <details class="help">
       <summary>How to play</summary>
       <ul>
-        <li>Each card is a moment of your day. Every choice costs time and moves your meters.</li>
-        <li><b>Sanity</b>, <b>House</b> or <b>Reputation</b> at zero ends the day early. <b>Toddler Mood</b> at zero means a meltdown: survivable, but expensive.</li>
-        <li><b>Sleepiness</b> climbs all day and naps lower it. At bedtime it must be ${cfg.asleepThreshold}+ or they get a second wind. Above ${cfg.overtiredAt} they are overtired.</li>
-        <li>Asleep at bedtime? Your day is graded on the total of the four main meters.</li>
-        <li>Keys 1–3 pick a choice.</li>
+        <li><b>Energy</b> is how much parent you have left. Good parenting costs it; below a choice's minimum it's greyed out: too tired. At 0 you collapse.</li>
+        <li><b>Shortcuts</b> (TV, candy, late coffee) give Energy now and send a bill later. The ⏳ chip shows when.</li>
+        <li><b>Relationship</b> drains when you're running on empty. A good one means your partner helps more; at 0 the week ends.</li>
+        <li>Your toddler's <b>Sleepiness</b> must reach the line at bedtime. <b>Sleep Debt</b> carries all week: earlier mornings, more chaos.</li>
+        <li><b>House</b> or <b>Reputation</b> at 0 loses the day. Grandma rescues you once a week.</li>
+        <li><b>Friday at 7:00:</b> the toddler asleep (Sleepy ${FRIDAY_SLEEPY}+) and you with ${FRIDAY_ENERGY}+ Energy, or the date is off.</li>
+        <li>Keys 1–4 pick a choice.</li>
       </ul>
     </details>
-    ${s && s.played ? `<p class="muted small">Days survived: ${s.won} of ${s.played} · Best score: ${s.best} · Endings found: ${s.endings.length} of ${Object.keys(CONTENT.endings).length}</p>` : ""}
+    ${s && s.played ? `<p class="muted small">Weeks survived: ${s.won} of ${s.played} · Best score: ${s.best} · Endings found: ${s.endings.length} of ${Object.keys(CONTENT.endings).length}</p>` : ""}
     <footer>Playtest build. Same rules and content as the iOS app.</footer>
   </section>`;
 }
 
-function introView(g) {
+function morningView(g) {
+  const r = g.state.report;
+  const day = CONTENT.days[g.state.day];
   const mod = g.modifier;
-  return `<section class="enter" style="display:grid;gap:16px">
-    <p class="eyebrow">Today's forecast</p>
-    <article class="note">
-      <h2>${esc(mod.title)}</h2>
-      <p class="text">${esc(mod.text)}</p>
-      ${chips(mod.effects ?? {})}
-    </article>
-    <p class="muted small">Bedtime is ${formatClock(cfg.bedtimeClock)}. Sleepiness needs to be ${cfg.asleepThreshold} or more when it arrives.</p>
-    <button class="block primary" data-act="begin">It's ${formatClock(g.state.clock)}. Begin.</button>
-  </section>`;
+  const added = (day.tasks ?? []).map(taskDef).filter(Boolean);
+  return `<section class="morning-head enter"><p class="eyebrow">Good morning</p><h1>${esc(day.name)}</h1>${lcd(formatClock(g.state.clock))}</section>
+    ${r ? `<article class="note"><p class="eyebrow">Last night</p><div class="kv">
+      <div class="row"><span>You got up</span><b>${r.nightYou}×</b></div>
+      <div class="row"><span>Your partner got up</span><b>${r.nightPartner}×</b></div>
+      <div class="row"><span>Energy refill</span><b>+${r.refill}</b></div>
+      <div class="row"><span>Sleep debt</span><b>${r.debtBefore} → ${r.debtAfter}</b></div>
+      ${r.partnerDid ? `<p class="muted small">Your partner handled "${esc(taskDef(r.partnerDid)?.label ?? r.partnerDid)}" before work.</p>` : ""}
+    </div></article>` : ""}
+    <article class="note"><p class="eyebrow">Today</p><h2>${esc(mod.title)}</h2><p class="text">${esc(mod.text)}</p>${chips(mod.effects ?? {})}</article>
+    ${added.length ? `<article class="note"><p class="eyebrow">Added to your list</p><div class="kv">${added.map((t) => `<div class="row"><span>${esc(t.label)}</span><span class="due">by ${esc(CONTENT.days[t.dueDay].name)}</span></div>`).join("")}</div></article>` : ""}
+    <button class="block primary" data-act="begin">Start ${esc(day.name)}</button>`;
 }
 
 function eventView(g) {
   const ev = g.currentEvent;
+  const tag = eyebrow(ev);
   const choices = g.visibleChoices();
   return `${hud(g)}
-  <article class="note enter" aria-labelledby="ev-title">
+  <article class="note enter ${tag ? tag[2] : ""}" aria-labelledby="ev-title">
+    ${tag ? `<p class="tag-line ${tag[1]}">${tag[0]}</p>` : ""}
     <h2 id="ev-title">${esc(ev.title)}</h2>
     <p class="text">${esc(ev.text)}</p>
   </article>
   <div class="choices">
-    ${choices.map((c, i) => `<button class="block" data-act="choose" data-i="${i}"><span class="key" aria-hidden="true">${i + 1}</span><span class="label">${esc(c.label)}</span><span class="mins">${c.duration} min</span></button>`).join("")}
+    ${choices.map((c, i) => {
+      const locked = g.isLocked(c);
+      return `<button class="block${locked ? " locked" : ""}" data-act="choose" data-i="${i}" ${locked ? `aria-disabled="true"` : ""}><span class="key" aria-hidden="true">${i + 1}</span><span class="label">${esc(c.label)}</span><span class="mins">${locked ? `Too tired · needs ${c.minEnergy}` : `${c.duration} min`}</span></button>`;
+    }).join("")}
   </div>`;
 }
 
 function outcomeView(g, r) {
   const ev = CONTENT.events.find((e) => e.id === r.eventId);
+  const footer = r.dayEnded === "night" ? "Lights out. The night has plans."
+    : r.dayEnded === "lifeline" ? "This day is over."
+    : r.dayEnded === "morning" ? "The night is over."
+    : r.minutes ? `${r.minutes} minutes pass. It's ${formatClock(g.state.clock)}.` : "";
+  const label = g.isOver ? "How did the week end?" : r.dayEnded === "lifeline" ? "Call for help" : r.dayEnded === "morning" ? "Good morning" : "Continue";
   return `${hud(g)}
-  <article class="note enter">
+  <article class="note enter${r.snapped ? " k-red" : ""}">
     <p class="eyebrow">${esc(ev.title)}</p>
+    ${r.snapped ? `<div class="banner bad">You snapped.</div>` : ""}
     <p class="text">${esc(r.text)}</p>
     ${chips(r.deltas)}
-    <p class="muted small">${r.minutes} minutes pass. It's now ${formatClock(g.state.clock)}.</p>
+    ${footer ? `<p class="muted small">${footer}</p>` : ""}
   </article>
-  <button class="block primary" data-act="next">${g.isOver ? "How did the day end?" : "Continue"}</button>`;
+  <button class="block primary" data-act="next">${label}</button>`;
+}
+
+function lifelineView() {
+  const l = CONTENT.lifeline;
+  return `<section class="morning-head enter"><p class="eyebrow">Lifeline</p><h1>${esc(l.title)}</h1></section>
+    <article class="note k-love"><p class="text">${esc(l.text)}</p>${chips(l.effects)}<p class="muted small">That was your one rescue this week. The next loss ends it.</p></article>
+    <button class="block primary" data-act="lifeline">Go to bed</button>`;
 }
 
 function shareText(g) {
   const e = g.ending;
   const m = g.state.meters;
-  const verdict = e.kind === "win" ? "made it to bedtime" : e.kind === "soft" ? "made it to bedtime, but the toddler did not" : "did not make it to bedtime";
-  return `I ${verdict} in Bedtime or Bust: "${e.title}" (${g.score()}/400).\nSanity ${m.sanity} · Mood ${m.mood} · House ${m.home} · Reputation ${m.rep} · Sleepiness ${m.sleepy}`;
+  const verdict = e.kind === "win" ? "made it to date night" : "didn't make it to date night";
+  return `I ${verdict} in Bedtime or Bust: "${e.title}". My style: ${g.style().title}.\nEnergy ${m.energy} · Relationship ${m.rel} · House ${m.home} · Reputation ${m.rep}`;
 }
 
 function endingView(g) {
   const e = g.ending;
-  const badge = { win: "Asleep by bedtime", soft: "Still awake", loss: "Game over" }[e.kind];
-  const rows = CONTENT.counters.map((c) => `<div class="row"><span>${esc(c.label)}</span><span>${g.state.counters[c.id] ?? 0}</span></div>`).join("");
+  const st = g.style();
+  const s = g.state;
+  const sum = (o) => Object.values(o).reduce((a, b) => a + b, 0);
+  const rows = CONTENT.counters.map((c) => `<div class="row"><span>${esc(c.label)}</span><span>${s.counters[c.id] ?? 0}</span></div>`).join("");
   return `<section class="ending-head enter">
-    <span class="badge ${e.kind}">${badge}</span>
+    <span class="badge ${e.kind}">${e.kind === "win" ? "Week complete" : "Week over"}</span>
     <h1>${esc(e.title)}</h1>
   </section>
   <article class="note">
     <p class="text">${esc(e.text)}</p>
-    ${e.kind === "win" ? `<p class="score">${g.score()} <span class="muted small">/ 400</span></p>` : ""}
-    <p class="muted small">Day ended at ${formatClock(g.state.clock)} after ${g.state.step} decisions. Forecast: ${esc(g.modifier.title)}.</p>
+    ${e.kind === "win" ? `<p class="score">${g.score()} <span class="muted small">points</span></p>` : ""}
+    <p class="muted small">Ended ${esc(CONTENT.days[s.day].name)} at ${formatClock(s.clock)} after ${s.step} decisions.</p>
   </article>
-  <section class="meters" aria-label="Final meters">
-    ${QUALITY.map((k) => meterRow(k, g.state.meters[k])).join("")}
-    ${meterRow("sleepy", g.state.meters.sleepy, { wide: true })}
-  </section>
-  <section class="receipt" aria-label="Today's receipt">
-    <h3>TODAY'S RECEIPT</h3>
+  <article class="note k-love"><p class="tag-line love">Your parenting style</p><h2>${esc(st.title)}</h2><p class="text">${esc(st.text)}</p></article>
+  <section class="receipt" aria-label="Weekly performance review">
+    <h3>WEEKLY PERFORMANCE REVIEW</h3>
     <div class="rule"></div>
     ${rows}
     <div class="rule"></div>
-    <div class="row total"><span>CRISES SURVIVED</span><span>${g.state.step}</span></div>
-    <p class="thanks">NO REFUNDS. NO EXCHANGES. SEE YOU TOMORROW AT 5:58.</p>
+    <div class="row"><span>NIGHT WAKE-UPS (YOU · P)</span><span>${s.ledger.you.night ?? 0} · ${s.ledger.partner.night ?? 0}</span></div>
+    <div class="row"><span>CHORES (YOU · P)</span><span>${sum(s.ledger.you)} · ${sum(s.ledger.partner)}</span></div>
+    <div class="row"><span>DAYS GRANDMA SAVED</span><span>${s.lostDays}</span></div>
+    <div class="rule"></div>
+    <div class="row total"><span>RATING</span><span>${e.kind === "win" ? "MEETS EXPECTATIONS" : "SEE ME"}</span></div>
   </section>
   <section class="share">
-    <label for="share-text" class="eyebrow">Share your day</label>
+    <label for="share-text" class="eyebrow">Share your week</label>
     <textarea id="share-text" readonly>${esc(shareText(g))}</textarea>
     <button class="block" data-act="copy"><span class="label" id="copy-label">Copy result</span></button>
   </section>
-  <button class="block primary" data-act="new">Try another day</button>
+  <button class="block primary" data-act="new">Try another week</button>
   <button class="linkish" data-act="title">Back to title</button>`;
 }
 
 function render() {
   let html;
+  const g = session?.game;
   if (!session) html = titleView();
-  else {
-    const g = session.game;
-    if (session.screen === "intro") html = introView(g);
-    else if (session.screen === "outcome" && session.last) html = outcomeView(g, session.last);
-    else if (session.screen === "ending" || g.isOver) html = endingView(g);
-    else html = eventView(g);
-  }
+  else if (session.screen === "morning") html = morningView(g);
+  else if (session.screen === "lifeline") html = lifelineView();
+  else if (session.screen === "outcome" && session.last) html = outcomeView(g, session.last);
+  else if (session.screen === "ending" || g.isOver) html = endingView(g);
+  else html = eventView(g);
+  document.body.classList.toggle("night", !!g && g.state.phase === "night" && !g.isOver && session.screen !== "morning");
   app.innerHTML = html;
   window.scrollTo({ top: 0 });
-  // Keyboard players land on the first choice (or Continue) of each card.
   if (session && (session.screen === "event" || session.screen === "outcome")) {
-    app.querySelector(".block")?.focus({ preventScroll: true });
+    app.querySelector(".choices .block:not(.locked), .block.primary")?.focus({ preventScroll: true });
   }
 }
 
@@ -486,17 +550,16 @@ app.addEventListener("click", async (ev) => {
   const btn = ev.target.closest("[data-act]");
   if (!btn) return;
   const act = btn.dataset.act;
-  if (act === "new") newDay();
+  if (act === "new") newWeek();
   else if (act === "resume") { session = rebuild(storage.get(SAVE_KEY)); render(); }
-  else if (act === "begin") { session.screen = "event"; persist(); render(); }
+  else if (act === "begin" || act === "lifeline") { session.screen = "event"; persist(); render(); }
   else if (act === "choose") choose(Number(btn.dataset.i));
   else if (act === "next") next();
   else if (act === "title") { session = null; render(); }
   else if (act === "copy") {
-    const text = shareText(session.game);
     const label = document.getElementById("copy-label");
     try {
-      await navigator.clipboard.writeText(text);
+      await navigator.clipboard.writeText(shareText(session.game));
       label.textContent = "Copied";
     } catch {
       const ta = document.getElementById("share-text");
@@ -510,10 +573,9 @@ app.addEventListener("click", async (ev) => {
 document.addEventListener("keydown", (ev) => {
   if (!session || session.screen !== "event" || ev.metaKey || ev.ctrlKey || ev.altKey) return;
   const n = Number(ev.key);
-  if (n >= 1 && n <= 3) { ev.preventDefault(); choose(n - 1); }
+  if (n >= 1 && n <= 4) { ev.preventDefault(); choose(n - 1); }
 });
 
-// Keep a game in progress across live updates of this page.
 if (typeof window.claude?.hot?.snapshot === "function") {
   window.claude.hot.snapshot(() => (session ? { seed: session.seed, picks: session.picks, screen: session.screen, v: CONTENT.version } : {}));
 }

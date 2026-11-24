@@ -1,9 +1,9 @@
 import XCTest
 @testable import BedtimeCore
 
-/// Replays traces recorded from the JavaScript reference engine
+/// Replays week traces recorded from the JavaScript reference engine
 /// (tools/golden.mjs). Passing proves the Swift engine implements the same
-/// rules, RNG and content semantics, step for step.
+/// rules, RNG draw order and content semantics, step for step.
 final class ConformanceTests: XCTestCase {
     struct Golden: Decodable {
         struct RNGSamples: Decodable {
@@ -27,28 +27,39 @@ final class ConformanceTests: XCTestCase {
             let n: Int
             let c: Int
             let o: Int
-            let clock: Int
+            let s: Int
+            let d: Int
+            let p: Int
+            let t: Int
             let m: [Int]
         }
 
+        struct Ledger: Decodable {
+            let you: [String: Int]
+            let partner: [String: Int]
+        }
+
         struct Snapshot: Decodable {
+            let day: Int
+            let phase: String
             let clock: Int
             let meters: [String: Int]
             let flags: [String]
             let counters: [String: Int]
-            let modifierId: String
+            let ledger: Ledger
+            let tasks: [String]
             let step: Int
+            let lostDays: Int
             let endingId: String?
         }
 
         struct Trace: Decodable {
             let seed: UInt32
-            let modifierId: String
             let steps: [Step]
             let finalState: Snapshot
 
             enum CodingKeys: String, CodingKey {
-                case seed, modifierId, steps
+                case seed, steps
                 case finalState = "final"
             }
         }
@@ -65,11 +76,6 @@ final class ConformanceTests: XCTestCase {
             "Fixtures/golden.json missing from the test bundle"
         )
         return try JSONDecoder().decode(Golden.self, from: Data(contentsOf: url))
-    }
-
-    /// The same RNG-free policy tools/golden.mjs uses.
-    private func policyIndex(seed: UInt32, step: Int, count: Int) -> Int {
-        (Int(seed) + step * 31) % count
     }
 
     func testMeterOrderMatchesReference() throws {
@@ -90,7 +96,7 @@ final class ConformanceTests: XCTestCase {
         }
     }
 
-    func testGoldenTracesReplayIdentically() throws {
+    func testGoldenWeeksReplayIdentically() throws {
         let content = try GameContent.bundled()
         let golden = try loadGolden()
         XCTAssertGreaterThanOrEqual(golden.traces.count, 10)
@@ -101,38 +107,47 @@ final class ConformanceTests: XCTestCase {
 
     private func replay(_ trace: Golden.Trace, content: GameContent) throws {
         var engine = GameEngine(content: content, seed: trace.seed)
-        XCTAssertEqual(engine.state.modifierID, trace.modifierId, "seed \(trace.seed): modifier")
-
         for (i, expected) in trace.steps.enumerated() {
-            let where_ = "seed \(trace.seed) step \(i)"
+            let here = "seed \(trace.seed) step \(i)"
             guard let event = engine.currentEvent else {
-                return XCTFail("\(where_): Swift engine ended early")
+                return XCTFail("\(here): Swift engine ended early")
             }
             guard event.id == expected.e else {
-                return XCTFail("\(where_): event \(event.id), reference \(expected.e)")
+                return XCTFail("\(here): event \(event.id), reference \(expected.e)")
             }
-            let count = engine.visibleChoices().count
-            XCTAssertEqual(count, expected.n, "\(where_): visible choice count")
-            let pick = policyIndex(seed: trace.seed, step: engine.state.step, count: count)
-            XCTAssertEqual(pick, expected.c, "\(where_): policy index")
+            let visible = engine.visibleChoices()
+            XCTAssertEqual(visible.count, expected.n, "\(here): visible choices")
+            let unlocked = visible.indices.filter { !engine.isLocked(visible[$0]) }
+            let pick = unlocked[(Int(trace.seed) + engine.state.step * 31) % unlocked.count]
+            XCTAssertEqual(pick, expected.c, "\(here): policy pick")
 
             let result = try engine.choose(pick)
-            XCTAssertEqual(result.outcomeIndex, expected.o, "\(where_): outcome")
-            XCTAssertEqual(engine.state.clock, expected.clock, "\(where_): clock")
+            XCTAssertEqual(result.outcomeIndex, expected.o, "\(here): outcome")
+            XCTAssertEqual(result.snapped ? 1 : 0, expected.s, "\(here): snap")
+            XCTAssertEqual(engine.state.day, expected.d, "\(here): day")
+            XCTAssertEqual(engine.state.phase == .night ? 1 : 0, expected.p, "\(here): phase")
+            XCTAssertEqual(engine.state.clock, expected.t, "\(here): clock")
             guard engine.state.meters.values == expected.m else {
-                return XCTFail("\(where_): meters \(engine.state.meters.values), reference \(expected.m)")
+                return XCTFail("\(here): meters \(engine.state.meters.values), reference \(expected.m)")
             }
         }
 
         let snap = trace.finalState
-        XCTAssertTrue(engine.isOver, "seed \(trace.seed): reference ended, Swift did not")
-        XCTAssertEqual(engine.state.endingID, snap.endingId, "seed \(trace.seed): ending")
-        XCTAssertEqual(engine.state.step, snap.step, "seed \(trace.seed): steps")
-        XCTAssertEqual(engine.state.clock, snap.clock, "seed \(trace.seed): final clock")
-        XCTAssertEqual(engine.state.flags, Set(snap.flags), "seed \(trace.seed): flags")
-        XCTAssertEqual(engine.state.counters, snap.counters, "seed \(trace.seed): counters")
+        let here = "seed \(trace.seed) final"
+        XCTAssertTrue(engine.isOver, "\(here): reference ended, Swift did not")
+        XCTAssertEqual(engine.state.endingID, snap.endingId, here)
+        XCTAssertEqual(engine.state.day, snap.day, here)
+        XCTAssertEqual(engine.state.phase.rawValue, snap.phase, here)
+        XCTAssertEqual(engine.state.clock, snap.clock, here)
+        XCTAssertEqual(engine.state.step, snap.step, here)
+        XCTAssertEqual(engine.state.lostDays, snap.lostDays, here)
+        XCTAssertEqual(engine.state.flags, Set(snap.flags), here)
+        XCTAssertEqual(engine.state.counters, snap.counters, here)
+        XCTAssertEqual(engine.state.ledgerYou, snap.ledger.you, here)
+        XCTAssertEqual(engine.state.ledgerPartner, snap.ledger.partner, here)
+        XCTAssertEqual(engine.state.tasks.map { "\($0.id):\($0.status.rawValue)" }, snap.tasks, here)
         for meter in Meter.allCases {
-            XCTAssertEqual(engine.state.meters[meter], snap.meters[meter.rawValue], "seed \(trace.seed): \(meter)")
+            XCTAssertEqual(engine.state.meters[meter], snap.meters[meter.rawValue], "\(here): \(meter)")
         }
     }
 }

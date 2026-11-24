@@ -1,47 +1,66 @@
 import BedtimeCore
 import SwiftUI
 
+/// The weekly performance review.
 struct EndView: View {
     @Environment(GameStore.self) private var store
 
     var body: some View {
         if let engine = store.engine, let ending = engine.ending {
+            let content = engine.content
             ScrollView {
                 VStack(spacing: 16) {
-                    Text(badge(for: ending.kind))
+                    Text(ending.kind == .win ? "Week complete" : "Week over")
                         .font(.subheadline.weight(.semibold))
                         .textCase(.uppercase)
-                        .foregroundStyle(color(for: ending.kind))
+                        .foregroundStyle(ending.kind == .win ? Color.green : Color.red)
                         .padding(.top, 24)
                     Text(ending.title)
                         .font(.largeTitle.bold())
                         .multilineTextAlignment(.center)
                     Card {
-                        Text(ending.text).font(.body)
+                        Text(ending.text)
                         if ending.kind == .win {
-                            Text("Score: \(engine.score) / 400")
-                                .font(.headline.monospacedDigit())
+                            Text("Score: \(engine.score)").font(.headline.monospacedDigit())
                         }
-                        Text("Day ended at \(Clock.format(engine.state.clock)) after \(engine.state.step) decisions.")
+                        Text("Ended \(engine.dayDefinition.name) at \(Clock.format(engine.state.clock)) after \(engine.state.step) decisions.")
                             .font(.footnote)
                             .foregroundStyle(.secondary)
                     }
-                    Card {
-                        Text("Final meters").font(.headline)
-                        ForEach(Meter.allCases, id: \.self) { meter in
-                            MeterBar(meter: meter, value: engine.state.meters[meter], name: engine.content.name(of: meter), danger: meter == .sleepy ? nil : 0)
+                    if let style = engine.style {
+                        Card {
+                            Text("Your parenting style").font(.caption.weight(.semibold)).textCase(.uppercase).foregroundStyle(.secondary)
+                            Text(style.title).font(.title2.bold())
+                            Text(style.text)
                         }
                     }
-                    ReceiptCard(engine: engine)
+                    Card {
+                        Text("Weekly performance review").font(.headline)
+                        ForEach(content.counters) { counter in
+                            ReviewRow(label: counter.label, value: "\(engine.state.counters[counter.id] ?? 0)")
+                        }
+                        Divider()
+                        ReviewRow(label: "Night wake-ups (you · partner)",
+                                  value: "\(engine.state.ledgerYou["night"] ?? 0) · \(engine.state.ledgerPartner["night"] ?? 0)")
+                        ReviewRow(label: "Chores (you · partner)",
+                                  value: "\(engine.state.ledgerYou.values.reduce(0, +)) · \(engine.state.ledgerPartner.values.reduce(0, +))")
+                        ReviewRow(label: "Days Grandma saved", value: "\(engine.state.lostDays)")
+                    }
+                    Card {
+                        Text("Final meters").font(.headline)
+                        ForEach([Meter.energy, .rel, .mood, .home, .rep], id: \.self) { meter in
+                            MeterBar(meter: meter, value: engine.state.meters[meter], name: content.name(of: meter))
+                        }
+                    }
                     VStack(spacing: 12) {
                         ShareLink(item: store.shareText()) {
-                            Label("Share your day", systemImage: "square.and.arrow.up").frame(maxWidth: .infinity)
+                            Label("Share your week", systemImage: "square.and.arrow.up").frame(maxWidth: .infinity)
                         }
                         .buttonStyle(.bordered)
                         Button {
-                            store.newDay()
+                            store.newWeek()
                         } label: {
-                            Text("Try another day").frame(maxWidth: .infinity)
+                            Text("Try another week").frame(maxWidth: .infinity)
                         }
                         .buttonStyle(.borderedProminent)
                         Button("Back to title") { store.backToTitle() }
@@ -53,45 +72,18 @@ struct EndView: View {
             }
         }
     }
-
-    private func badge(for kind: Ending.Kind) -> String {
-        switch kind {
-        case .win: return "Asleep by bedtime"
-        case .soft: return "Still awake"
-        case .loss: return "Game over"
-        }
-    }
-
-    private func color(for kind: Ending.Kind) -> Color {
-        switch kind {
-        case .win: return .green
-        case .soft: return .orange
-        case .loss: return .red
-        }
-    }
 }
 
-/// The satirical end-of-day receipt.
-struct ReceiptCard: View {
-    let engine: GameEngine
+private struct ReviewRow: View {
+    let label: String
+    let value: String
 
     var body: some View {
-        Card {
-            Text("Today's receipt").font(.headline)
-            ForEach(engine.content.counters) { counter in
-                HStack {
-                    Text(counter.label)
-                    Spacer()
-                    Text("\(engine.state.counters[counter.id] ?? 0)").monospacedDigit()
-                }
-                .font(.callout)
-            }
-            Divider()
-            HStack {
-                Text("Crises survived").font(.callout.weight(.semibold))
-                Spacer()
-                Text("\(engine.state.step)").font(.callout.weight(.semibold)).monospacedDigit()
-            }
+        HStack {
+            Text(label)
+            Spacer()
+            Text(value).monospacedDigit()
         }
+        .font(.callout)
     }
 }

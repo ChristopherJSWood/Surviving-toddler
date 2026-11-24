@@ -3,11 +3,12 @@ import SwiftUI
 
 struct PlayView: View {
     @Environment(GameStore.self) private var store
+    @State private var showingList = false
 
     var body: some View {
         if let engine = store.engine {
             VStack(spacing: 0) {
-                HUDView(engine: engine)
+                HUDView(engine: engine, showingList: $showingList)
                     .padding(.horizontal)
                     .padding(.bottom, 8)
                 ScrollView {
@@ -17,7 +18,7 @@ struct PlayView: View {
                             OutcomeCard(result: result, engine: engine)
                         default:
                             if let event = engine.currentEvent {
-                                EventCard(event: event, choices: engine.visibleChoices())
+                                EventCard(event: event, engine: engine)
                             }
                         }
                     }
@@ -26,52 +27,67 @@ struct PlayView: View {
                 }
             }
             .sensoryFeedback(.selection, trigger: engine.state.step)
+            .sheet(isPresented: $showingList) { ListSheet(engine: engine) }
         }
     }
 }
 
-/// Clock, day progress and meters.
+/// Clock, day, meters in three groups, ticking paybacks and the list button.
 struct HUDView: View {
     let engine: GameEngine
+    @Binding var showingList: Bool
 
-    private let columns = [GridItem(.flexible(), spacing: 12), GridItem(.flexible(), spacing: 12)]
+    private var openTasks: Int { engine.state.tasks.filter { $0.status == .open }.count }
 
     var body: some View {
+        let content = engine.content
         VStack(spacing: 10) {
-            HStack {
-                Text(Clock.format(engine.state.clock))
+            HStack(spacing: 10) {
+                Text(engine.state.phase == .night ? "2:47 AM" : Clock.format(engine.state.clock))
                     .font(.title2.bold().monospacedDigit())
                     .contentTransition(.numericText())
-                Spacer()
-                if let modifier = engine.modifier {
-                    Text(modifier.title)
-                        .font(.caption.weight(.semibold))
-                        .padding(.horizontal, 10)
-                        .padding(.vertical, 4)
-                        .background(Capsule().fill(Color.accentColor.opacity(0.15)))
-                }
-            }
-            ProgressView(value: engine.dayProgress) {
-                EmptyView()
-            } currentValueLabel: {
-                Text("Bedtime \(Clock.format(engine.content.config.bedtimeClock))")
-                    .font(.caption2)
+                Text(engine.dayDefinition.name)
+                    .font(.subheadline.weight(.semibold))
                     .foregroundStyle(.secondary)
+                Spacer()
+                Button {
+                    showingList = true
+                } label: {
+                    Label("\(openTasks)", systemImage: "list.bullet.clipboard")
+                        .font(.subheadline.weight(.semibold))
+                }
+                .buttonStyle(.bordered)
+                .accessibilityLabel("Your list, \(openTasks) open")
             }
-            .tint(.indigo)
-            .accessibilityLabel("Progress to bedtime")
-
-            LazyVGrid(columns: columns, spacing: 10) {
-                ForEach(Meter.quality, id: \.self) { meter in
-                    MeterBar(meter: meter, value: engine.state.meters[meter], name: engine.content.name(of: meter), danger: 20)
+            Grid(horizontalSpacing: 12, verticalSpacing: 8) {
+                GridRow {
+                    MeterBar(meter: .energy, value: engine.state.meters.energy, name: content.name(of: .energy))
+                    MeterBar(meter: .rel, value: engine.state.meters.rel, name: content.name(of: .rel))
+                }
+                GridRow {
+                    MeterBar(meter: .mood, value: engine.state.meters.mood, name: content.name(of: .mood))
+                    SleepWidget(engine: engine)
+                }
+                GridRow {
+                    MeterBar(meter: .home, value: engine.state.meters.home, name: content.name(of: .home))
+                    MeterBar(meter: .rep, value: engine.state.meters.rep, name: content.name(of: .rep))
                 }
             }
-            MeterBar(
-                meter: .sleepy,
-                value: engine.state.meters.sleepy,
-                name: "\(engine.content.name(of: .sleepy)) (needs \(engine.content.config.asleepThreshold)+ at bedtime)",
-                danger: nil
-            )
+            let upcoming = Array(engine.upcoming.prefix(2))
+            if !upcoming.isEmpty {
+                HStack(spacing: 6) {
+                    ForEach(Array(upcoming.enumerated()), id: \.offset) { _, item in
+                        Label("\(item.event.title) at \(Clock.format(item.at % 1440))", systemImage: "hourglass")
+                            .font(.caption2.weight(.semibold))
+                            .lineLimit(1)
+                            .padding(.horizontal, 8)
+                            .padding(.vertical, 4)
+                            .background(Capsule().fill(Color.orange.opacity(0.15)))
+                            .foregroundStyle(.orange)
+                    }
+                    Spacer(minLength: 0)
+                }
+            }
         }
     }
 }
@@ -80,10 +96,8 @@ struct MeterBar: View {
     let meter: Meter
     let value: Int
     let name: String
-    /// At or below this value the bar turns red. nil: never.
-    let danger: Int?
 
-    private var isDanger: Bool { danger.map { value <= $0 } ?? false }
+    private var isDanger: Bool { meter.dangerAt.map { value <= $0 } ?? false }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
@@ -110,34 +124,78 @@ struct MeterBar: View {
     }
 }
 
+/// Today's sleepiness (with the bedtime line) and the week's sleep debt.
+struct SleepWidget: View {
+    let engine: GameEngine
+
+    var body: some View {
+        let sleepy = engine.state.meters.sleepy
+        let debt = engine.state.meters.debt
+        let threshold = engine.content.config.bedtime.threshold
+        VStack(alignment: .leading, spacing: 4) {
+            HStack(spacing: 6) {
+                Image(systemName: Meter.sleepy.symbol).foregroundStyle(Meter.sleepy.tint).frame(width: 18)
+                Text("Sleep").font(.caption.weight(.semibold))
+                Spacer(minLength: 0)
+                Text("\(sleepy) · debt \(debt)")
+                    .font(.caption.monospacedDigit().weight(.semibold))
+                    .foregroundStyle(.secondary)
+            }
+            GeometryReader { proxy in
+                ZStack(alignment: .leading) {
+                    Capsule().fill(Color.secondary.opacity(0.15))
+                    Capsule().fill(Meter.sleepy.tint).frame(width: proxy.size.width * CGFloat(sleepy) / 100)
+                    Rectangle().fill(Color.primary.opacity(0.7))
+                        .frame(width: 2)
+                        .offset(x: proxy.size.width * CGFloat(threshold) / 100)
+                }
+            }
+            .frame(height: 4)
+            ProgressView(value: Double(debt), total: 100).tint(Meter.debt.tint)
+        }
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel("Toddler sleep")
+        .accessibilityValue("Sleepiness \(sleepy), needs \(threshold) at bedtime. Sleep debt \(debt).")
+    }
+}
+
 struct EventCard: View {
     @Environment(GameStore.self) private var store
     let event: GameEvent
-    let choices: [Choice]
+    let engine: GameEngine
 
     var body: some View {
+        let eyebrow = engine.content.eyebrow(for: event)
         VStack(spacing: 16) {
-            Card {
+            Card(border: eyebrow?.color.opacity(0.6)) {
+                if let eyebrow {
+                    Text(eyebrow.text)
+                        .font(.caption.weight(.bold))
+                        .textCase(.uppercase)
+                        .foregroundStyle(eyebrow.color)
+                }
                 Text(event.title).font(.title2.bold())
                 Text(event.text).font(.body)
             }
-            ForEach(Array(choices.enumerated()), id: \.offset) { index, choice in
+            ForEach(Array(engine.visibleChoices(for: event).enumerated()), id: \.offset) { index, choice in
+                let locked = engine.isLocked(choice)
                 Button {
                     withAnimation(.snappy) { store.choose(index) }
                 } label: {
                     HStack(alignment: .firstTextBaseline) {
                         Text(choice.label)
                         Spacer(minLength: 8)
-                        Text("\(choice.duration) min")
+                        Text(locked ? "Too tired · needs \(choice.minEnergy)" : "\(choice.duration) min")
                             .font(.caption)
                             .foregroundStyle(.secondary)
                     }
                 }
-                .buttonStyle(ChoiceButtonStyle())
-                .accessibilityHint("Takes about \(choice.duration) minutes")
+                .buttonStyle(ChoiceButtonStyle(locked: locked))
+                .disabled(locked)
+                .accessibilityHint(locked ? "Too tired. Needs \(choice.minEnergy) Energy." : "Takes about \(choice.duration) minutes")
             }
         }
-        .id(event.id)
+        .id(event.id + "-\(engine.state.step)")
     }
 }
 
@@ -148,33 +206,57 @@ struct OutcomeCard: View {
 
     var body: some View {
         VStack(spacing: 16) {
-            Card {
+            Card(border: result.snapped ? Color.red.opacity(0.6) : nil) {
                 if let event = engine.event(withID: result.eventID) {
                     Text(event.title)
                         .font(.subheadline.weight(.semibold))
                         .foregroundStyle(.secondary)
                 }
+                if result.snapped {
+                    Text("You snapped")
+                        .font(.caption.weight(.bold))
+                        .textCase(.uppercase)
+                        .foregroundStyle(.red)
+                }
                 Text(result.text).font(.title3)
                 if !result.deltas.isEmpty {
                     DeltaRow(deltas: result.deltas, content: engine.content)
                 }
-                Text("\(result.minutes) minutes pass. It's now \(Clock.format(engine.state.clock)).")
+                Text(footer)
                     .font(.footnote)
                     .foregroundStyle(.secondary)
             }
             Button {
                 withAnimation(.snappy) { store.continueAfterOutcome() }
             } label: {
-                Text(engine.isOver ? "How did the day end?" : "Continue").frame(maxWidth: .infinity)
+                Text(buttonTitle).frame(maxWidth: .infinity)
             }
             .buttonStyle(.borderedProminent)
             .controlSize(.large)
         }
         .id("outcome-\(engine.state.step)")
     }
+
+    private var footer: String {
+        switch result.transition {
+        case .night: return "Lights out. The night has plans."
+        case .lifeline: return "This day is over."
+        case .morning: return "The night is over."
+        case .none: return result.minutes > 0 ? "\(result.minutes) minutes pass. It's \(Clock.format(engine.state.clock))." : ""
+        }
+    }
+
+    private var buttonTitle: String {
+        if engine.isOver { return "How did the week end?" }
+        switch result.transition {
+        case .lifeline: return "Call for help"
+        case .morning: return "Good morning"
+        default: return "Continue"
+        }
+    }
 }
 
-/// "+6 Toddler Mood  −3 Sanity" chips.
+/// "+6 Toddler Mood  −3 Energy" chips.
 struct DeltaRow: View {
     let deltas: [Meter: Int]
     let content: GameContent
@@ -207,7 +289,56 @@ struct DeltaRow: View {
     }
 }
 
-/// Minimal wrapping layout for chips (iOS 16+ Layout protocol).
+/// Your mental-load list and the who-did-what ledger.
+struct ListSheet: View {
+    @Environment(\.dismiss) private var dismiss
+    let engine: GameEngine
+
+    var body: some View {
+        let content = engine.content
+        NavigationStack {
+            List {
+                Section("Your list") {
+                    if engine.state.tasks.isEmpty {
+                        Text("Nothing yet. Enjoy it.").foregroundStyle(.secondary)
+                    }
+                    ForEach(engine.state.tasks, id: \.id) { task in
+                        HStack {
+                            Image(systemName: task.status == .done ? "checkmark.circle.fill" : (task.status == .expired ? "xmark.circle.fill" : "circle"))
+                                .foregroundStyle(task.status == .done ? Color.green : (task.status == .expired ? Color.red : Color.secondary))
+                            Text(content.task(withID: task.id)?.label ?? task.id)
+                                .strikethrough(task.status != .open)
+                            Spacer()
+                            Text("\(content.days[min(task.due / 1440, 4)].name) \(Clock.format(task.due % 1440))")
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                        }
+                    }
+                }
+                Section("The ledger") {
+                    let categories = Set(engine.state.ledgerYou.keys).union(engine.state.ledgerPartner.keys).sorted()
+                    if categories.isEmpty {
+                        Text("Nobody has done anything yet. Suspicious.").foregroundStyle(.secondary)
+                    }
+                    ForEach(categories, id: \.self) { category in
+                        HStack {
+                            Text(category.capitalized)
+                            Spacer()
+                            Text("You \(engine.state.ledgerYou[category] ?? 0) · Partner \(engine.state.ledgerPartner[category] ?? 0)")
+                                .monospacedDigit()
+                        }
+                    }
+                }
+            }
+            .navigationTitle("The list")
+            .toolbar {
+                ToolbarItem(placement: .confirmationAction) { Button("Done") { dismiss() } }
+            }
+        }
+    }
+}
+
+/// Minimal wrapping layout for chips.
 struct FlowLayout: Layout {
     var spacing: CGFloat = 8
 

@@ -13,7 +13,7 @@ struct TitleView: View {
                 .accessibilityHidden(true)
             Text("Bedtime or Bust")
                 .font(.largeTitle.bold())
-            Text("One day. One toddler. One goal:\nmake it to 7:30 PM.")
+            Text("Five days. One toddler. One partner.\nMake it to date night.")
                 .font(.title3)
                 .multilineTextAlignment(.center)
                 .foregroundStyle(.secondary)
@@ -24,21 +24,21 @@ struct TitleView: View {
                     Button {
                         store.resume()
                     } label: {
-                        Text("Continue today").frame(maxWidth: .infinity)
+                        Text("Continue this week").frame(maxWidth: .infinity)
                     }
                     .buttonStyle(.borderedProminent)
 
                     Button {
-                        store.newDay()
+                        store.newWeek()
                     } label: {
-                        Text("Start a new day").frame(maxWidth: .infinity)
+                        Text("Start a new week").frame(maxWidth: .infinity)
                     }
                     .buttonStyle(.bordered)
                 } else {
                     Button {
-                        store.newDay()
+                        store.newWeek()
                     } label: {
-                        Text("Start the day").frame(maxWidth: .infinity)
+                        Text("Start Monday").frame(maxWidth: .infinity)
                     }
                     .buttonStyle(.borderedProminent)
                 }
@@ -47,8 +47,8 @@ struct TitleView: View {
             }
             .controlSize(.large)
 
-            if store.stats.daysPlayed > 0 {
-                Text("Days survived: \(store.stats.daysWon) of \(store.stats.daysPlayed) · Best score: \(store.stats.bestScore)")
+            if store.stats.weeksPlayed > 0 {
+                Text("Weeks survived: \(store.stats.weeksWon) of \(store.stats.weeksPlayed) · Best score: \(store.stats.bestScore)")
                     .font(.footnote)
                     .foregroundStyle(.secondary)
             }
@@ -65,19 +65,22 @@ struct HowToPlayView: View {
         NavigationStack {
             List {
                 Section("The goal") {
-                    Text("Get from 6:00 AM to bedtime at 7:30 PM. Each card is a moment of your day; every choice costs time and moves your meters.")
+                    Text("Get from Monday morning to Friday's date night. At 7:00 PM on Friday the toddler must be asleep (Sleepiness 67+) and you need at least 35 Energy, or the date is off.")
                 }
-                Section("Your meters") {
-                    Label("Sanity: yours. Hits zero, you hide in the pantry. Game over.", systemImage: "brain.head.profile")
-                    Label("Toddler Mood: hits zero, a meltdown. Survivable, but costly.", systemImage: "face.smiling")
-                    Label("House: hits zero, the house is condemned. Game over.", systemImage: "house.fill")
-                    Label("Reputation: what the other parents think. Hits zero, you're removed from the group chat. Game over.", systemImage: "bubble.left.and.bubble.right.fill")
+                Section("You") {
+                    Label("Energy is how much parent you have left. Good parenting costs it. Below a choice's minimum it's greyed out: too tired. At zero you collapse.", systemImage: "bolt.fill")
+                    Label("Relationship drains when you're running on empty. A healthy one means your partner helps more. At zero the week ends.", systemImage: "heart.fill")
                 }
-                Section("Bedtime") {
-                    Label("Sleepiness rises all day. Naps lower it. At bedtime it must be 50 or more, or your toddler gets a second wind. Above 80 they're overtired, and their mood drops fast.", systemImage: "moon.zzz.fill")
+                Section("Shortcuts") {
+                    Label("TV, candy and late coffee give Energy now and send a bill later. A ticking chip shows when it's due.", systemImage: "hourglass")
                 }
-                Section("Grading") {
-                    Text("If they're asleep at bedtime, your day is graded by the total of Sanity, Mood, House and Reputation.")
+                Section("Your toddler") {
+                    Label("Sleepiness must be 50+ at bedtime. Naps lower it.", systemImage: "moon.zzz.fill")
+                    Label("Sleep Debt carries across the week. High debt means earlier mornings, more chaos, faster meltdowns.", systemImage: "bed.double.fill")
+                }
+                Section("The household") {
+                    Label("House and Reputation at zero end the day. Once a week, Grandma rescues you.", systemImage: "house.fill")
+                    Label("Your list holds the invisible jobs. Forget one and it bites later.", systemImage: "list.bullet.clipboard")
                 }
             }
             .navigationTitle("How to play")

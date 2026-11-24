@@ -1,0 +1,86 @@
+[
+  {
+    "id": "w_moment_hand",
+    "title": "A Small Hand",
+    "text": "Halfway down the block, without being asked, your toddler reaches up and takes your hand. Not for the crossing. Not for anything. Just to hold it.",
+    "window": [480, 1080],
+    "weight": 1,
+    "weightBy": { "counter": "style.present", "every": 3 },
+    "oncePerWeek": true,
+    "moment": true,
+    "choices": [
+      { "label": "Walk slower", "duration": 10, "outcomes": [ { "text": "You walk at their speed, which is the speed of noticing things. A leaf. A cat in a window. Their hand stays in yours the whole way.", "effects": { "energy": 14 }, "count": { "moments": 1 } } ] },
+      { "label": "Tell your partner about it tonight", "duration": 5, "outcomes": [ { "text": "That night you tell them. They go quiet, then say, \"They did that to me last week.\" You both sit with it for a while.", "effects": { "energy": 8, "rel": 6 }, "count": { "moments": 1 } } ] }
+    ]
+  },
+  {
+    "id": "w_moment_song",
+    "title": "The Song, Sung Back",
+    "text": "From the next room you hear your toddler singing the bedtime song to their stuffed rabbit. Your song. They get most of the words right, and the tune exactly.",
+    "window": [480, 1140],
+    "weight": 1,
+    "weightBy": { "counter": "style.present", "every": 3 },
+    "oncePerWeek": true,
+    "moment": true,
+    "choices": [
+      { "label": "Stand in the doorway and listen", "duration": 5, "outcomes": [ { "text": "You don't go in. You stay just out of sight until the last line. The rabbit is tucked in under a dish towel. Somebody taught them that. You did.", "effects": { "energy": 16 }, "count": { "moments": 1 } } ] },
+      { "label": "Record it for your partner", "duration": 5, "outcomes": [ { "text": "Thirty-one seconds of shaky video. Your partner watches it four times on their lunch break and replies, \"I'm not crying, you're crying.\"", "effects": { "energy": 8, "rel": 7 }, "count": { "moments": 1 } } ] }
+    ]
+  },
+  {
+    "id": "w_moment_cracker",
+    "title": "Half a Cracker",
+    "text": "You're sitting on the kitchen floor, out of steam. Your toddler studies your face, breaks their cracker in half, and gives you the bigger piece.",
+    "window": [480, 1140],
+    "weight": 1,
+    "weightBy": { "counter": "style.present", "every": 3 },
+    "oncePerWeek": true,
+    "moment": true,
+    "choices": [
+      { "label": "Eat it, slowly, together", "duration": 5, "outcomes": [ { "text": "You eat your half. They eat theirs. They pat your knee twice, like a doctor who has seen enough. You feel better. You really do.", "effects": { "energy": 15 }, "count": { "moments": 1 } } ] },
+      { "label": "Text your partner: \"They shared.\"", "duration": 3, "outcomes": [ { "text": "\"WHAT,\" your partner replies, then: \"They've never shared with me.\" Then: \"Proud of both of you.\"", "effects": { "energy": 8, "rel": 6 }, "count": { "moments": 1 } } ] }
+    ]
+  },
+  {
+    "id": "w_moment_thank_you",
+    "title": "\"Thank You, Bus Driver\"",
+    "text": "As the bus doors open, your toddler turns to the driver and says, clearly and unprompted, \"Thank you, bus driver.\" The driver puts a hand on their heart.",
+    "window": [480, 1080],
+    "weight": 1,
+    "weightBy": { "counter": "style.present", "every": 3 },
+    "oncePerWeek": true,
+    "moment": true,
+    "choices": [
+      { "label": "Tell them you're proud", "duration": 3, "outcomes": [ { "text": "\"That was really kind.\" They nod, very serious, and say \"kind\" back to you, trying the word on. It fits.", "effects": { "energy": 12, "rep": 3 }, "count": { "moments": 1 } } ] },
+      { "label": "Save it for the dinner table", "duration": 2, "outcomes": [ { "text": "At dinner you tell your partner, and the toddler says \"thank you, bus driver\" again, for an audience this time. You both clap.", "effects": { "energy": 6, "rel": 7 }, "count": { "moments": 1 } } ] }
+    ]
+  },
+  {
+    "id": "w_moment_asleep_on_you",
+    "title": "Asleep on You",
+    "text": "Mid-story on the couch, your toddler goes heavy and warm against your chest and falls asleep. Their breathing slows. Yours does too.",
+    "window": [720, 1140],
+    "weight": 1,
+    "weightBy": { "counter": "style.present", "every": 3 },
+    "oncePerWeek": true,
+    "moment": true,
+    "choices": [
+      { "label": "Stay still. Stay awake. Just be here.", "duration": 20, "outcomes": [ { "text": "Twenty minutes of the most important nothing. You count their eyelashes. You remember the hospital. You don't move until they do.", "effects": { "energy": 16, "sleepy": -10 }, "count": { "moments": 1 } } ] },
+      { "label": "Ease them into bed and send your partner a photo", "duration": 10, "outcomes": [ { "text": "The transfer works. You send a photo of the small, sleeping face. \"Coming home early,\" your partner writes. They mean it.", "effects": { "energy": 8, "rel": 6, "sleepy": -10 }, "count": { "moments": 1 } } ] }
+    ]
+  },
+  {
+    "id": "w_moment_partner_voices",
+    "title": "All the Voices",
+    "text": "From the hallway you watch your partner read to the toddler. They're doing all the voices, badly and wholeheartedly. The toddler is gazing up at them like they invented books.",
+    "window": [1050, 1165],
+    "weight": 1,
+    "weightBy": { "counter": "style.present", "every": 3 },
+    "oncePerWeek": true,
+    "moment": true,
+    "choices": [
+      { "label": "Sit down and join in", "duration": 10, "outcomes": [ { "text": "You take the bear's lines. Your partner keeps the owl. The toddler laughs at the owl every single time. For ten minutes, the three of you are a whole show.", "effects": { "rel": 9, "energy": 4 }, "count": { "moments": 1 } } ] },
+      { "label": "Lean on the doorframe and watch", "duration": 5, "outcomes": [ { "text": "You don't interrupt. You just watch the person you chose being good at this. Later you tell them so, and they look surprised, and pleased.", "effects": { "rel": 6, "energy": 8 }, "count": { "moments": 1 } } ] }
+    ]
+  }
+]

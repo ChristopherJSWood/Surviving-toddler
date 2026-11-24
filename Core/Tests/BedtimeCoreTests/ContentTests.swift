@@ -4,11 +4,15 @@ import XCTest
 final class ContentTests: XCTestCase {
     func testBundledContentLoads() throws {
         let content = try GameContent.bundled()
-        XCTAssertGreaterThan(content.events.count, 20)
+        XCTAssertEqual(content.version, 2)
+        XCTAssertEqual(content.days.count, 5)
         XCTAssertNotNil(content.filler)
-        XCTAssertTrue(content.events.contains { $0.isFinal })
+        XCTAssertTrue(content.events.contains { $0.endsDay })
+        XCTAssertTrue(content.events.contains { $0.endsWeek })
+        XCTAssertTrue(content.events.contains { $0.phase == .night })
+        XCTAssertTrue(content.events.contains { $0.hazard == .catastrophe })
+        XCTAssertFalse(content.styles.isEmpty)
         for meter in Meter.allCases { XCTAssertFalse(content.name(of: meter).isEmpty) }
-        XCTAssertFalse(content.counters.isEmpty)
     }
 
     func testDeclaredCountersCoverEveryCounterUsed() throws {
@@ -30,22 +34,29 @@ final class ContentTests: XCTestCase {
         XCTAssertThrowsError(try JSONDecoder().decode(Outcome.self, from: Data(json.utf8)))
     }
 
+    func testUnknownConditionVariableIsRejected() {
+        let json = #"{ "min": { "vibes": 3 } }"#
+        XCTAssertThrowsError(try JSONDecoder().decode(Condition.self, from: Data(json.utf8)))
+    }
+
     func testDefaultsApplyWhenFieldsAreOmitted() throws {
         let json = #"{ "id": "e", "title": "T", "text": "X", "window": [360, 400], "choices": [ { "label": "L", "duration": 5, "outcomes": [ { "text": "O" } ] } ] }"#
         let event = try JSONDecoder().decode(GameEvent.self, from: Data(json.utf8))
+        XCTAssertEqual(event.phase, .day)
         XCTAssertEqual(event.weight, 1)
-        XCTAssertEqual(event.priority, 0)
-        XCTAssertFalse(event.repeatable)
-        XCTAssertFalse(event.isFiller)
-        XCTAssertFalse(event.isFinal)
+        XCTAssertNil(event.priority)
+        XCTAssertFalse(event.forced)
+        XCTAssertNil(event.hazard)
         XCTAssertEqual(event.window, 360...400)
-        XCTAssertEqual(event.choices[0].outcomes[0].weight, 1)
-        XCTAssertTrue(event.choices[0].outcomes[0].effects.isEmpty)
+        XCTAssertEqual(event.choices[0].minEnergy, 0)
+        XCTAssertFalse(event.choices[0].snapRisk)
+        XCTAssertTrue(event.choices[0].outcomes[0].schedule.isEmpty)
     }
 
-    func testBackwardsWindowIsRejected() {
-        let json = #"{ "id": "e", "title": "T", "text": "X", "window": [400, 360], "choices": [] }"#
-        XCTAssertThrowsError(try JSONDecoder().decode(GameEvent.self, from: Data(json.utf8)))
+    func testScheduleUsesInKey() throws {
+        let json = #"{ "text": "x", "schedule": [ { "event": "screen_off", "in": 22 } ] }"#
+        let outcome = try JSONDecoder().decode(Outcome.self, from: Data(json.utf8))
+        XCTAssertEqual(outcome.schedule, [ScheduledEvent(event: "screen_off", delay: 22)])
     }
 
     func testContentWithoutFillerIsRejected() throws {

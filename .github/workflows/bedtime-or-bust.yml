@@ -18,22 +18,40 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
+      - name: content.json matches content/ sources
+        run: node tools/build-content.mjs --check
       - name: Lint content.json
         run: node tools/validate.mjs
-      - name: Balance targets (simulated days)
+      - name: Balance targets (simulated weeks)
         run: node tools/simulate.mjs --check
       - name: Golden traces are up to date
         run: node tools/golden.mjs --check
       - name: Web prototype is up to date
         run: node tools/build-prototype.mjs --check
 
+  engine-linux:
+    # BedtimeCore is Foundation-only, so its unit and golden-trace conformance
+    # tests run on Linux in the official Swift image. Linux runners are always
+    # available; this is the job that proves the Swift engine matches the spec.
+    name: Swift engine tests (Linux)
+    runs-on: ubuntu-latest
+    container: swift:6.1
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Toolchain
+        run: swift --version
+      - name: Engine unit and conformance tests
+        run: swift test --package-path Core
+
   ios:
     name: Swift tests and iOS build (Xcode)
-    # macos-15 instead of macos-26: in November 2026 two macos-26 jobs were never
-    # acquired by a runner ("Due to capacity constraints..."). macos-15's default
-    # Xcode 16.4 builds this iOS 17 app; App Store uploads still need Xcode 26,
-    # which you run locally. Switch back once macos-26 capacity recovers.
+    # In November 2026 every macOS job for this account (macos-26 and macos-15)
+    # was cancelled after 15 minutes in the queue without ever starting
+    # (GitHub: "Due to capacity constraints..."). Non-blocking until that
+    # clears; build the app locally in Xcode 26 meanwhile.
     runs-on: macos-15
+    continue-on-error: true
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4

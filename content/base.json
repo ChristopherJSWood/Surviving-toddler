@@ -1,0 +1,489 @@
+{
+  "version": 2,
+  "config": {
+    "eventGap": 15,
+    "bedtimeClock": 1170,
+    "wake": [358, 331, 304],
+    "startMeters": { "energy": 75, "rel": 70, "mood": 60, "sleepy": 10, "debt": 20, "home": 85, "rep": 85 },
+    "drift": [
+      { "meter": "sleepy", "every": 12, "delta": 1 },
+      { "meter": "energy", "every": 30, "delta": -1 },
+      { "meter": "home", "every": 90, "delta": -1 },
+      { "meter": "rep", "every": 240, "delta": -1 },
+      { "meter": "rel", "every": 30, "delta": -1, "when": { "max": { "energy": 29 } } },
+      { "meter": "rel", "every": 30, "delta": -1, "when": { "max": { "energy": 14 } } },
+      { "meter": "mood", "every": 10, "delta": -1, "when": { "min": { "sleepy": 80 } } },
+      { "meter": "mood", "every": 30, "delta": -1, "when": { "min": { "debt": 30 } } },
+      { "meter": "mood", "every": 30, "delta": -1, "when": { "min": { "debt": 60 } } }
+    ],
+    "bedtime": { "threshold": 50, "asleep": { "debt": -10 }, "awake": { "debt": 20 }, "awakeFlag": "d:secondWind" },
+    "night": {
+      "cards": 2, "base": 55, "perWake": 12, "minRefill": 25,
+      "lateCoffeeFlag": "d:lateCoffee", "lateCoffeePenalty": 15,
+      "debtPerWake": 5, "recovery": 10, "moodBase": 65, "moodDebtDiv": 4, "sleepyStart": 10,
+      "homeTidy": { "minRel": 50, "high": 18, "low": 8 }, "partnerTaskMinRel": 60
+    },
+    "hazard": { "base": 13, "bandBonus": [0, 8, 16], "lateDayClock": 960, "lateDayBonus": 5, "catastropheShare": [10, 15, 25], "maxCatastrophesPerDay": 1 },
+    "snap": {
+      "belowEnergy": 20, "chancePct": 30,
+      "text": "You meant to say it calmly. It came out at a volume that set off a car alarm. Their lip wobbles. Yours does too.",
+      "effects": { "mood": -10, "rel": -8 },
+      "set": ["d:snapped"]
+    },
+    "lossOrder": ["energy", "rel", "home", "rep"],
+    "losses": { "energy": "collapse", "rel": "talk", "home": "ballpit", "rep": "groupchat" },
+    "lifelineMeters": ["energy", "home", "rep"],
+    "weekScore": { "rel": 2, "energy": 1, "mood": 1, "home": 1, "rep": 1 },
+    "grades": [
+      { "min": 420, "id": "legend" },
+      { "min": 330, "id": "solid" },
+      { "min": 240, "id": "survived" },
+      { "min": 0, "id": "barely" }
+    ]
+  },
+  "meters": {
+    "energy": "Energy",
+    "rel": "Relationship",
+    "mood": "Toddler Mood",
+    "sleepy": "Sleepiness",
+    "debt": "Sleep Debt",
+    "home": "House",
+    "rep": "Reputation"
+  },
+  "counters": [
+    { "id": "coffee", "label": "Coffees reheated" },
+    { "id": "screen", "label": "Minutes of screen time" },
+    { "id": "snacks", "label": "Snacks surrendered" },
+    { "id": "tantrums", "label": "Meltdowns weathered" },
+    { "id": "paybacks", "label": "Screen-off meltdowns" },
+    { "id": "blames", "label": "Blame exchanged" },
+    { "id": "moments", "label": "Small moments" },
+    { "id": "bleeps", "label": "Words bleeped" }
+  ],
+  "styles": [
+    { "id": "tagteam", "title": "The Tag-Teamer", "text": "You passed the baton. Sometimes it was a relay. Sometimes it was a hot potato. Either way, two of you ran the race." },
+    { "id": "negotiate", "title": "The Negotiator", "text": "Every snack was a treaty. Every shoe was a summit. You'd be terrifying at a car dealership." },
+    { "id": "screen", "title": "The Screen Diplomat", "text": "A man in corduroy did a lot of your parenting this week. He did it well. You'll deal with the screen-off meltdowns later. You always do." },
+    { "id": "martyr", "title": "The Martyr", "text": "You did everything yourself, perfectly, and told no one. Your partner is still not sure what you did all week. Neither is your spine." },
+    { "id": "bribe", "title": "The Bribe Economist", "text": "Crackers, stickers, one more episode. The toddler has learned the value of a deal, and the deal has gotten expensive." },
+    { "id": "boundary", "title": "The Drill Sergeant", "text": "No meant no. No meant no forty times. The tantrums were loud, but they were short, and they knew where they stood." }
+  ],
+  "days": [
+    { "id": "mon", "name": "Monday", "modifier": "monday", "tasks": ["diapers", "rsvp"] },
+    { "id": "tue", "name": "Tuesday", "modifier": "deadline", "tasks": ["form"] },
+    { "id": "wed", "name": "Wednesday", "modifier": "pinkeye", "tasks": ["pediatrician"] },
+    { "id": "thu", "name": "Thursday", "modifier": "random", "tasks": ["library"] },
+    { "id": "fri", "name": "Friday", "modifier": "datenight", "tasks": [] }
+  ],
+  "modifiers": [
+    { "id": "monday", "title": "Monday", "text": "Back to it. The weekend was a beautiful lie.", "effects": {} },
+    { "id": "deadline", "title": "Work Deadline", "text": "The report is due at 5. Your toddler is due at everything else.", "effects": { "energy": -5 }, "set": ["d:deadline"] },
+    { "id": "pinkeye", "title": "Daycare Closed: Pink Eye", "text": "Pink eye at daycare. Your toddler is fine. Your toddler is also home all day, touching every surface in the house with intent.", "effects": { "home": -5 }, "set": ["d:home"] },
+    { "id": "datenight", "title": "Date Night", "text": "The sitter arrives at 7:00. The reservation is at 7:30. All you have to do is get through the day with enough left to put on real pants.", "effects": {}, "set": ["d:friday"] },
+    { "id": "teething", "pool": true, "weight": 2, "title": "Teething", "text": "A molar is coming in. Your toddler is chewing everything, including grudges.", "effects": { "mood": -10 }, "set": ["d:teething"] },
+    { "id": "grandma", "pool": true, "weight": 2, "title": "Grandma Is Visiting", "text": "Free childcare! Also opinions. So many opinions.", "effects": { "energy": 10, "rep": -8 }, "set": ["d:grandma"] },
+    { "id": "potty", "pool": true, "weight": 2, "title": "Potty Training: Day 3", "text": "The internet said it would take three days. It is day 3. The internet lied.", "effects": { "home": -5 }, "set": ["d:potty"] },
+    { "id": "regression", "pool": true, "weight": 2, "title": "Sleep Regression", "text": "Your toddler did stand-up comedy from 2 to 4 AM. You slept in installments.", "effects": { "energy": -12, "debt": 10 } }
+  ],
+  "tasks": [
+    { "id": "diapers", "label": "Buy diapers", "dueDay": 2, "dueClock": 720, "expire": "no_diapers" },
+    { "id": "rsvp", "label": "RSVP to Theo's party", "dueDay": 3, "dueClock": 1020, "expire": "rsvp_missed" },
+    { "id": "form", "label": "Sign the daycare form", "dueDay": 2, "dueClock": 540, "expire": "form_missed" },
+    { "id": "pediatrician", "label": "Call the pediatrician about the rash", "dueDay": 3, "dueClock": 1020, "expire": "rash_missed" },
+    { "id": "library", "label": "Return the library books", "dueDay": 4, "dueClock": 1020, "expire": "library_missed" }
+  ],
+  "lifeline": {
+    "title": "Grandma to the Rescue",
+    "text": "You call your mother. She arrives in eleven minutes with a casserole, a bag of cookies and a list of observations. She sends you to bed at 4 PM. You don't argue.",
+    "effects": { "energy": 40, "home": 25, "rep": 15, "mood": 20 },
+    "set": ["grandmaUsed"]
+  },
+  "endings": {
+    "collapse": { "kind": "loss", "title": "Parent.exe Has Stopped Responding", "text": "You sat down on the kitchen floor to tie a shoe and simply did not get up again. Your toddler covers you with a dish towel and says, \"Night night.\" Your partner finds you like that at 6." },
+    "talk": { "kind": "loss", "title": "We Need to Talk", "text": "Not a fight, exactly. Two people at the kitchen counter, too tired to finish their sentences. The monitor hisses. Neither of you moves. Next week, you'll try the ledger thing." },
+    "ballpit": { "kind": "loss", "title": "The House Has Fallen", "text": "Your home is now an installation. A local gallery calls it \"a bold statement on domestic entropy.\" The couch is under there somewhere." },
+    "groupchat": { "kind": "loss", "title": "Removed From the Group Chat", "text": "\"Admin removed you.\" Three words, forty-one parents. You'll never know when pajama day is again. Your toddler, unaware of your social death, hands you a rock." },
+    "sitter_quits": { "kind": "loss", "title": "The Sitter Quits at the Door", "text": "The sitter rings the bell at 7:00. Your toddler answers it, naked, holding a spatula, wide awake. The sitter looks at you, looks at the spatula, and leaves. You eat cereal in your going-out shirt." },
+    "couch": { "kind": "loss", "title": "Asleep in Your Going-Out Shirt", "text": "You sat down on the couch for one minute to put on your shoes. It is now 9:40 PM. Your partner is asleep next to you, also in a going-out shirt. The reservation called twice." },
+    "legend": { "kind": "win", "title": "You Remembered You Like Each Other", "text": "Dessert. A walk. A whole conversation that wasn't about poop. You get home and the toddler is asleep and the sitter says they were \"an angel,\" which is a lie, but a kind one." },
+    "solid": { "kind": "win", "title": "A Good Week, Actually", "text": "Dinner was good. You talked about the toddler for forty-one minutes and each other for twenty. That counts. That absolutely counts." },
+    "survived": { "kind": "win", "title": "You Made It to Friday", "text": "You made it to the restaurant, mostly awake. You split an appetizer and a yawn. It wasn't magic. It was a table for two, and that's more than last month." },
+    "barely": { "kind": "win", "title": "Barely, Together", "text": "You were home by 8:45 and asleep by 8:50, holding hands, fully dressed. The sitter got paid for three hours. Worth it." }
+  },
+  "events": [
+    {
+      "id": "wake",
+      "title": "The Monitor Crackles",
+      "text": "A small voice announces, with total confidence, that it is morning. The sun disagrees. The sun is not in charge here.",
+      "window": [300, 365],
+      "priority": 50,
+      "choices": [
+        { "label": "Go get them. Be the morning person.", "duration": 10, "minEnergy": 30, "tags": ["present"], "outcomes": [
+          { "text": "You are greeted like a returning war hero. Then asked for a banana. Then told the banana is wrong.", "effects": { "mood": 8, "energy": -4 }, "ledger": { "morning": "you" } } ] },
+        { "label": "Nudge your partner. It's their turn.", "duration": 5, "tags": ["tagteam"], "outcomes": [
+          { "when": { "min": { "ledger": 1 } }, "text": "Your partner gets up without a word. They know the ledger. You get nine more minutes and a dream about sleeping.", "effects": { "energy": 8 }, "ledger": { "morning": "partner" } },
+          { "when": { "max": { "ledger": 0 } }, "text": "\"I did it yesterday,\" your partner mumbles, which is technically true. You get up. The banana is still wrong.", "effects": { "rel": -4, "energy": -2 }, "ledger": { "morning": "you" } } ] },
+        { "label": "Pretend you can't hear it", "duration": 10, "outcomes": [
+          { "text": "You lie in the dark absorbing nine minutes of escalating demands. Technically rest.", "effects": { "energy": 4, "mood": -6 } } ] }
+      ]
+    },
+    {
+      "id": "breakfast",
+      "title": "Breakfast Service",
+      "text": "You cut the toast into triangles. Your toddler wanted squares. Your toddler did not say this out loud. You were supposed to know.",
+      "window": [400, 540],
+      "priority": 40,
+      "choices": [
+        { "label": "Make new toast. Squares.", "duration": 10, "minEnergy": 15, "tags": ["negotiate"], "outcomes": [
+          { "text": "Squares: approved. One bite is taken. The rest goes into the heating vent.", "effects": { "mood": 8, "energy": -4, "home": -2 } } ] },
+        { "label": "\"Triangles are what we have.\"", "duration": 5, "tags": ["boundary"], "snapRisk": true, "outcomes": [
+          { "weight": 1, "text": "They consider this. They eat a triangle while making eye contact, like a small mob boss.", "effects": { "mood": -2 } },
+          { "weight": 2, "text": "The triangle hits the floor butter-side down, as physics demands. So does your toddler.", "effects": { "mood": -10, "home": -3 } } ] },
+        { "label": "Hand over a pouch", "duration": 3, "tags": ["bribe"], "outcomes": [
+          { "text": "\"Organic Harvest Medley.\" It costs $3.49 and tastes like a wet garden. They love it.", "effects": { "mood": 6, "rep": -2 }, "count": { "snacks": 1 } } ] }
+      ]
+    },
+    {
+      "id": "meltdown",
+      "title": "Full Meltdown",
+      "text": "Something has gone wrong. Maybe the banana. Maybe the concept of time. Your toddler is a boneless puddle on the floor, screaming at a frequency only dogs and parents can hear.",
+      "window": [0, 1440],
+      "priority": 90,
+      "repeatable": true,
+      "when": { "max": { "mood": 0 } },
+      "choices": [
+        { "label": "Get on the floor and validate their feelings", "duration": 15, "minEnergy": 35, "tags": ["present"], "outcomes": [
+          { "text": "\"You're frustrated that the sky is the wrong blue.\" It works. You are covered in floor dust and something like peace.", "effects": { "mood": 40, "energy": -12 }, "count": { "tantrums": 1 } } ] },
+        { "label": "Put on Sunshine Sing-Along", "duration": 5, "tags": ["screen"], "outcomes": [
+          { "text": "The man in corduroy sings about feelings. Your toddler becomes a statue. You drink a coffee while it is still technically hot.", "effects": { "mood": 30, "energy": 8 }, "set": ["d:screen"], "count": { "screen": 22, "tantrums": 1 }, "schedule": [ { "event": "screen_off", "in": 22 } ] } ] },
+        { "label": "Wait it out. Become a rock.", "duration": 15, "tags": ["boundary"], "snapRisk": true, "outcomes": [
+          { "text": "You become a rock. The storm passes, as storms do. Most last only a few minutes. This one felt like a fiscal quarter.", "effects": { "mood": 30, "energy": -4 }, "count": { "tantrums": 1 } } ] }
+      ]
+    },
+    {
+      "id": "screen_off",
+      "title": "The Screen-Off Meltdown",
+      "text": "The credits roll. The silence breaks. This one has a second act, a key change and a lighting design.",
+      "forced": true,
+      "priority": 85,
+      "choices": [
+        { "label": "One more episode", "duration": 5, "tags": ["screen"], "outcomes": [
+          { "text": "Peace, again. You both know how this ends. You both choose not to think about it.", "effects": { "energy": 6, "mood": 10, "rep": -3 }, "count": { "screen": 22, "paybacks": 1 }, "schedule": [ { "event": "screen_off", "in": 22 } ] } ] },
+        { "label": "Ride it out", "duration": 20, "snapRisk": true, "tags": ["boundary"], "outcomes": [
+          { "text": "Twenty minutes of grief for a man in corduroy. Then, abruptly, they want a snack. Like nothing happened. Like you didn't just age.", "effects": { "mood": -30, "energy": -10, "rep": -4 }, "count": { "paybacks": 1 } } ] }
+      ]
+    },
+    {
+      "id": "nap",
+      "title": "Nap Time (Allegedly)",
+      "text": "Your toddler's eyes are drooping. Your toddler is also standing in the crib gripping the bars, yelling \"I'M NOT TIRED\" like an inmate in a prison movie.",
+      "window": [750, 900],
+      "priority": 60,
+      "choices": [
+        { "label": "Full ritual: sleep sack, white noise, the Song", "duration": 25, "minEnergy": 20, "tags": ["present"], "outcomes": [
+          { "weight": 7, "text": "They're out. You freeze in the hallway, terrified a floorboard will betray you.", "effects": { "sleepy": -40, "debt": -15, "mood": 15, "energy": -4 }, "set": ["d:napDone"], "schedule": [ { "event": "nap_window", "in": 25 } ] },
+          { "weight": 3, "text": "Twenty-two minutes. The shortest nap known to science. They wake up refreshed and furious.", "effects": { "sleepy": -15, "debt": 5, "mood": -5 }, "set": ["d:napDone"] } ] },
+        { "label": "Car nap: drive until they pass out", "duration": 45, "outcomes": [
+          { "weight": 4, "text": "You drive in circles. They sleep. You sit in the driveway with the engine running, eating crackers from the cup holder. Peak living.", "effects": { "sleepy": -35, "debt": -10, "mood": 10, "energy": 6 }, "set": ["d:napDone"] },
+          { "weight": 1, "text": "The moment the engine stops, their eyes snap open, like a vampire at sundown.", "effects": { "sleepy": -10, "debt": 8, "mood": -5, "energy": -6 }, "set": ["d:napDone"] } ] },
+        { "label": "Skip it. They said they're not tired.", "duration": 5, "outcomes": [
+          { "text": "You believe them. This is a mistake. But it's a mistake with an extra hour in it.", "effects": { "mood": -5, "debt": 15, "energy": 2 }, "set": ["d:napDone", "d:napSkipped"] } ] }
+      ]
+    },
+    {
+      "id": "nap_window",
+      "title": "Nap Time: Your 90 Minutes",
+      "text": "They're down. You have about an hour and a half. You have nine hours of things to do.",
+      "forced": true,
+      "priority": 70,
+      "choices": [
+        { "label": "Sleep too", "duration": 45, "outcomes": [ { "text": "You wake with the couch's texture printed on your face. You feel like a new person. A new, slightly damp person.", "effects": { "energy": 20 } } ] },
+        { "label": "Clean the kitchen", "duration": 40, "tags": ["martyr"], "outcomes": [ { "text": "Every surface is clean. You stand there admiring it. You hear a small voice. It's over.", "effects": { "home": 15, "energy": -6 }, "ledger": { "dishes": "you" } } ] },
+        { "label": "Knock out the oldest thing on your list", "duration": 20, "outcomes": [ { "text": "Done. Crossed off. You feel a level of satisfaction usually reserved for people who have slept.", "effects": { "energy": -3 }, "completeTask": "oldest" } ] },
+        { "label": "Scroll in silence", "duration": 40, "outcomes": [ { "text": "You watch a stranger renovate a bathroom for forty minutes. It's the most relaxing thing you've done since 2019.", "effects": { "energy": 6 } } ] }
+      ]
+    },
+    {
+      "id": "handoff_blame",
+      "title": "\"Who Gave Them the iPad?\"",
+      "text": "Your partner walks in, holding the iPad, the toddler and a tone. The iPad is sticky. The toddler is wearing yogurt.",
+      "window": [1035, 1100],
+      "priority": 45,
+      "when": { "max": { "day": 3 }, "flags": ["d:screen"], "notFlags": ["d:handoff"] },
+      "choices": [
+        { "label": "\"That was me. It was a day.\"", "duration": 5, "minEnergy": 15, "outcomes": [ { "text": "They put the iPad down. \"Yeah. Mine too.\" A small truce, signed in yogurt.", "effects": { "energy": -5, "rel": 6 }, "set": ["d:handoff"], "count": { "blames": 1 } } ] },
+        { "label": "\"You weren't here.\"", "duration": 5, "snapRisk": true, "outcomes": [ { "text": "It lands. It's true and it doesn't help. Dinner is very quiet.", "effects": { "energy": 3, "rel": -10 }, "set": ["d:handoff"], "count": { "blames": 1 } } ] },
+        { "label": "Show them the ledger", "duration": 5, "outcomes": [
+          { "when": { "min": { "ledger": 3 } }, "text": "They read it. They go quiet. Then they take bedtime without being asked. You were right. It still costs something.", "effects": { "energy": 10, "rel": -4 }, "set": ["d:handoff", "d:partnerBedtime"], "count": { "blames": 1 } },
+          { "when": { "max": { "ledger": 2 } }, "text": "They read it. It's not as lopsided as you thought. It's lopsided the other way. You both decide to never mention the ledger again.", "effects": { "rel": -8, "energy": -3 }, "set": ["d:handoff"], "count": { "blames": 1 } } ] }
+      ]
+    },
+    {
+      "id": "handoff",
+      "title": "The Handoff",
+      "text": "Your partner walks in. The toddler runs to them like they've returned from war. You've been here all day and you are, apparently, furniture.",
+      "window": [1035, 1100],
+      "priority": 44,
+      "when": { "max": { "day": 3 }, "notFlags": ["d:handoff"] },
+      "choices": [
+        { "label": "Tag out. Ten minutes alone in the car.", "duration": 10, "tags": ["tagteam"], "outcomes": [ { "text": "You sit in the driveway with the engine off, staring at nothing. It is the best ten minutes of your week.", "effects": { "energy": 12, "rel": -2 }, "set": ["d:handoff"], "ledger": { "evening": "partner" } } ] },
+        { "label": "Ask about their day. Really ask.", "duration": 10, "minEnergy": 25, "outcomes": [ { "text": "They talk. You listen. For six minutes you are two adults having a conversation. The toddler interrupts, but the six minutes happened.", "effects": { "rel": 8, "energy": -5 }, "set": ["d:handoff"] } ] },
+        { "label": "List everything that went wrong", "duration": 10, "outcomes": [ { "text": "You deliver the full incident report. They nod. They had their own day. Nobody wins the who's-more-tired contest. Nobody ever does.", "effects": { "rel": -4, "energy": 4 }, "set": ["d:handoff"], "count": { "blames": 1 } } ] }
+      ]
+    },
+    {
+      "id": "dinner",
+      "title": "The Dinner Standoff",
+      "text": "Dinner contains a vegetable. Your toddler examines the plate like a critic who has already decided to write a bad review.",
+      "window": [1050, 1140],
+      "priority": 40,
+      "choices": [
+        { "label": "Cook something real", "duration": 30, "minEnergy": 25, "tags": ["martyr"], "outcomes": [ { "text": "A real dinner, with colors. Your toddler eats the bread. You eat the colors. Everyone is fed, technically.", "effects": { "energy": -10, "mood": 4, "rep": 3 }, "ledger": { "dinner": "you" } } ] },
+        { "label": "Buttered noodles. Again.", "duration": 10, "outcomes": [ { "text": "Plain buttered noodles: the official cuisine of toddlerhood. Somewhere, a nutritionist feels a disturbance.", "effects": { "mood": 10, "rep": -4 } } ] },
+        { "label": "Order takeout", "duration": 10, "tags": ["tagteam"], "outcomes": [ { "text": "The delivery driver knows your name. The delivery driver knows your toddler's name. This is fine.", "effects": { "energy": 6, "rep": -2, "mood": 4 } } ] }
+      ]
+    },
+    {
+      "id": "bedtime",
+      "title": "Bedtime: The Final Boss",
+      "text": "It's 7:30. Pajamas are on, after a ten-minute chase. Teeth are brushed: one tooth, briefly. Now comes the negotiation.",
+      "window": [1170, 1440],
+      "priority": 100,
+      "endsDay": true,
+      "when": { "max": { "day": 3 } },
+      "choices": [
+        { "label": "Full routine: three books, two songs", "duration": 30, "minEnergy": 15, "tags": ["present"], "outcomes": [ { "text": "Three books become five. Two songs become an encore. But their eyes are closing, and they tell you they love you.", "effects": { "sleepy": 14, "energy": -6, "rel": 2 }, "ledger": { "bedtime": "you" } } ] },
+        { "label": "Your partner's turn", "duration": 5, "tags": ["tagteam"], "outcomes": [
+          { "when": { "min": { "rel": 45 } }, "text": "Your partner takes bedtime. You hear the songs through the wall. You lie on the couch, eyes closed, a free person.", "effects": { "sleepy": 10, "energy": 8 }, "ledger": { "bedtime": "partner" } },
+          { "when": { "max": { "rel": 44 } }, "text": "\"I did it last night.\" They didn't. You don't have the energy to argue. You do bedtime.", "effects": { "sleepy": 10, "energy": -6, "rel": -4 }, "ledger": { "bedtime": "you" } } ] },
+        { "label": "Speedrun: kiss, lights out, door", "duration": 5, "outcomes": [
+          { "weight": 1, "text": "Silence. You don't trust it, so you do the dishes on high alert.", "effects": { "home": 6 } },
+          { "weight": 1, "text": "The door clicks shut. A small voice: \"I need to tell you something.\" It's about a dog they saw in April.", "effects": { "sleepy": -8, "energy": -3 } } ] }
+      ]
+    },
+    {
+      "id": "friday_bedtime",
+      "title": "The Early Bedtime",
+      "text": "It's Friday. The sitter comes at 7. The toddler must be asleep by then, which means bedtime is now, which the toddler can smell.",
+      "window": [1050, 1139],
+      "priority": 100,
+      "when": { "min": { "day": 4 } },
+      "choices": [
+        { "label": "Bath, book, song: speed edition", "duration": 30, "minEnergy": 15, "tags": ["present"], "outcomes": [ { "text": "Warm bath. One book, read at auctioneer speed. One song, abridged. Their eyes go heavy. Yours do too. Not yet.", "effects": { "sleepy": 18, "energy": -6 } } ] },
+        { "label": "Tag-team it", "duration": 20, "tags": ["tagteam"], "outcomes": [
+          { "when": { "min": { "rel": 50 } }, "text": "You do the bath. They do the book. It runs like a pit crew. You high-five in the hallway like idiots.", "effects": { "sleepy": 16, "rel": 4 } },
+          { "when": { "max": { "rel": 49 } }, "text": "You both do the bath and neither does the book, and you argue in whispers about whose job the book was.", "effects": { "sleepy": 8, "rel": -5 } } ] },
+        { "label": "Drive around until they pass out", "duration": 30, "outcomes": [ { "text": "Two laps of the neighborhood. Asleep in the car seat. The transfer to the crib is a bomb disposal operation.", "effects": { "sleepy": 14, "energy": -4 } } ] }
+      ]
+    },
+    {
+      "id": "date_check",
+      "title": "Can You Even Go?",
+      "text": "It's 7:00. The doorbell rings. The reservation is at 7:30. Your going-out shirt has a stain you have decided is a pattern.",
+      "window": [1140, 1440],
+      "priority": 100,
+      "noHazard": true,
+      "when": { "min": { "day": 4 } },
+      "checks": [
+        { "when": { "max": { "sleepy": 66 } }, "ending": "sitter_quits" },
+        { "when": { "max": { "energy": 34 } }, "ending": "couch" }
+      ],
+      "choices": [
+        { "label": "Espresso. Make it a double.", "duration": 5, "outcomes": [ { "text": "Liquid courage. Your eyes open a little wider. Tonight's sleep will pay for this, but tonight is tonight.", "effects": { "energy": 10 }, "set": ["d:lateCoffee"], "count": { "coffee": 1 }, "schedule": [ { "event": "date", "in": 0 } ] } ] },
+        { "label": "Fifteen-minute power nap", "duration": 15, "outcomes": [ { "text": "You lie on the bed fully dressed and set three alarms. You wake up confused but upright.", "effects": { "energy": 12 }, "schedule": [ { "event": "date", "in": 0 } ] } ] },
+        { "label": "Just go", "duration": 2, "outcomes": [ { "text": "Shoes. Keys. Door. You're out before anyone can ask you for anything.", "effects": {}, "schedule": [ { "event": "date", "in": 0 } ] } ] }
+      ]
+    },
+    {
+      "id": "date",
+      "title": "Table for Two",
+      "text": "You made it. Candles. Real napkins. Nobody is throwing anything. You both stare at the menu like it's a foreign country.",
+      "forced": true,
+      "priority": 100,
+      "endsWeek": true,
+      "noHazard": true,
+      "choices": [
+        { "label": "Talk about anything but the toddler", "duration": 60, "outcomes": [
+          { "when": { "min": { "rel": 60 } }, "text": "You last eleven minutes. Then you show each other photos of the toddler. Then your partner says, \"Hey. I missed you.\"", "effects": { "rel": 12, "energy": -5 } },
+          { "when": { "max": { "rel": 59 } }, "text": "You try. The silences are long. Then you both laugh at the same terrible thing at the next table, and it's almost like before.", "effects": { "rel": 6, "energy": -5 } } ] },
+        { "label": "Order dessert. Stay out late.", "duration": 90, "outcomes": [ { "text": "Dessert. A second glass. A walk home the long way. You will be destroyed tomorrow. Tomorrow is Saturday.", "effects": { "rel": 10, "energy": -10 } } ] }
+      ]
+    },
+    {
+      "id": "buy_diapers",
+      "title": "Diaper Math",
+      "text": "You open the box. There are four diapers left. You do the math. The math is bad.",
+      "window": [420, 1100],
+      "task": "diapers",
+      "weight": 3,
+      "choices": [
+        { "label": "Order them now", "duration": 5, "outcomes": [ { "text": "Subscribe and save. Arriving tomorrow. You are an adult who handles things.", "effects": { "energy": -2 }, "completeTask": "diapers" } ] },
+        { "label": "Text your partner to grab some", "duration": 2, "tags": ["tagteam"], "outcomes": [
+          { "when": { "min": { "rel": 55 } }, "text": "\"On it 👍\" They will absolutely forget. Wait, no. They send a photo of the receipt. Who is this person?", "effects": { "rel": 2 }, "completeTask": "diapers", "ledger": { "errands": "partner" } },
+          { "when": { "max": { "rel": 54 } }, "text": "Read at 2:14 PM. No reply. The diapers remain theoretical.", "effects": { "rel": -2 } } ] },
+        { "label": "Later. There are four.", "duration": 1, "outcomes": [ { "text": "Four is plenty. Four is a number. Nothing bad has ever happened with four.", "effects": {} } ] }
+      ]
+    },
+    {
+      "id": "no_diapers",
+      "title": "There Are No Diapers",
+      "text": "\"Buy diapers\" expired. It's evening. There is one diaper left and the toddler has plans for it.",
+      "forced": true,
+      "priority": 85,
+      "choices": [
+        { "label": "Drive to the 24-hour pharmacy", "duration": 40, "outcomes": [ { "text": "You buy diapers in slippers under fluorescent lights. The cashier has seen this before. The cashier has seen everything.", "effects": { "energy": -12 } } ] },
+        { "label": "\"Whose turn was it to buy them?\"", "duration": 10, "outcomes": [ { "text": "It was yours. It was on your list. You both know it. The argument is about something else, as they always are.", "effects": { "rel": -10, "energy": -4 }, "count": { "blames": 1 } } ] }
+      ]
+    },
+    {
+      "id": "rsvp_missed",
+      "title": "\"Did You RSVP?\"",
+      "text": "Theo's mom texts the group chat: \"Still waiting on a few RSVPs 🙂\". The smiley face is doing a lot of work.",
+      "forced": true,
+      "priority": 85,
+      "choices": [ { "label": "Apologize profusely", "duration": 5, "outcomes": [ { "text": "\"So sorry!! Crazy week!!\" Two exclamation points. The universal sign of a parent drowning politely.", "effects": { "rep": -10 } } ] } ]
+    },
+    {
+      "id": "form_missed",
+      "title": "The Form",
+      "text": "Daycare calls. The form was due this morning. Your child cannot go on the field trip to the pumpkin patch without it, and will be told why.",
+      "forced": true,
+      "priority": 85,
+      "choices": [ { "label": "Drive it over now", "duration": 30, "outcomes": [ { "text": "You hand-deliver a form like it's a subpoena. The teacher's smile is very patient.", "effects": { "energy": -8, "rep": -4 } } ] } ]
+    },
+    {
+      "id": "rash_missed",
+      "title": "The Rash, Revisited",
+      "text": "You never called about the rash. The rash has opinions now.",
+      "forced": true,
+      "priority": 85,
+      "choices": [ { "label": "Call the after-hours nurse line", "duration": 25, "outcomes": [ { "text": "The nurse is calm and kind and says it's probably eczema. You feel a rush of gratitude so big it's embarrassing.", "effects": { "energy": -8, "mood": 4 } } ] } ]
+    },
+    {
+      "id": "library_missed",
+      "title": "Overdue",
+      "text": "The library emails. The books are overdue. One of them is now partially eaten.",
+      "forced": true,
+      "priority": 85,
+      "choices": [ { "label": "Pay the fine. Accept your shame.", "duration": 5, "outcomes": [ { "text": "$11.40 for a book about a bear who is also tired. You get it, bear.", "effects": { "rep": -4, "energy": -2 } } ] } ]
+    },
+    {
+      "id": "quiet_tell",
+      "title": "It's Quiet. Too Quiet.",
+      "text": "The living room has been silent for six minutes. Silence, in this house, is never good news.",
+      "forced": true,
+      "priority": 86,
+      "choices": [
+        { "label": "Go look. Now.", "duration": 5, "outcomes": [ { "text": "You catch them uncapping a permanent marker, eyes locked on a fresh white wall. You confiscate it. Crisis averted. This time.", "effects": { "energy": -3 }, "cancel": ["sharpie"] } ] },
+        { "label": "Finish your coffee first", "duration": 5, "outcomes": [ { "text": "You finish your coffee. It's lovely. It's the last lovely thing for a while.", "effects": { "energy": 3 }, "count": { "coffee": 1 } } ] }
+      ]
+    },
+    {
+      "id": "sharpie",
+      "title": "The Sharpie Incident",
+      "text": "The hallway is now a mural titled \"Untitled (Permanent).\"",
+      "hazard": "sting",
+      "tell": "quiet_tell",
+      "weight": 2,
+      "choices": [
+        { "label": "Scrub it now", "duration": 20, "tags": ["martyr"], "outcomes": [ { "text": "Magic eraser, elbow grease, and words you bleep in your head. It's mostly gone. Mostly.", "effects": { "home": -4, "energy": -8 } } ] },
+        { "label": "Post it as \"art\"", "duration": 5, "outcomes": [ { "text": "\"Our little Basquiat 🎨\" Forty likes. One comment asking if it's washable. It is not.", "effects": { "home": -10, "rep": -6 } } ] },
+        { "label": "Leave it. Deal with it Friday.", "duration": 1, "outcomes": [ { "text": "It's a feature wall now. You walk past it eleven times today. It looks at you every time.", "effects": { "home": -12 } } ] }
+      ]
+    },
+    {
+      "id": "lego",
+      "title": "You Said the Word",
+      "text": "Lego, bare foot, 3 PM. You said a word. A [BLEEP] word. Your toddler said it back, perfectly, and is now saying it to the dog. You don't have a dog.",
+      "hazard": "sting",
+      "weight": 2,
+      "choices": [ { "label": "Continue", "duration": 2, "outcomes": [ { "text": "It will come up again. At daycare. To the director. You know this the way you know the sun will rise.", "effects": { "rep": -6, "energy": -4 }, "count": { "bleeps": 1 } } ] } ]
+    },
+    {
+      "id": "stomach_bug",
+      "title": "The Stomach Bug Has Entered the Chat",
+      "text": "It started with one ominous burp. It ended with you holding a mixing bowl like a goalie. It is coming for you next.",
+      "hazard": "catastrophe",
+      "weight": 2,
+      "choices": [
+        { "label": "Bleach everything", "duration": 45, "tags": ["martyr"], "outcomes": [ { "text": "Every surface, every toy, every doorknob. You smell like a public pool. It might not be enough.", "effects": { "energy": -20, "home": -5, "debt": 10 } } ] },
+        { "label": "Towels. So many towels.", "duration": 15, "outcomes": [ { "text": "You lay towels like a field medic. The laundry pile reaches a height that requires a permit.", "effects": { "energy": -12, "home": -18, "debt": 10 } } ] }
+      ]
+    },
+    {
+      "id": "best_friend",
+      "title": "\"You're My Best Friend.\"",
+      "text": "Out of nowhere, mid-snack, they pat your face with a hand covered in hummus and say it. Then they go back to the snack like nothing happened.",
+      "window": [480, 1140],
+      "weight": 1,
+      "weightBy": { "counter": "style.present", "every": 3 },
+      "oncePerWeek": true,
+      "moment": true,
+      "choices": [
+        { "label": "Text your partner about it", "duration": 3, "outcomes": [ { "text": "\"!!!!!\" they reply, from a meeting. Then a heart. Then: \"I'm so jealous.\"", "effects": { "energy": 12, "rel": 6 }, "count": { "moments": 1 } } ] },
+        { "label": "Just sit with it", "duration": 5, "outcomes": [ { "text": "You don't post it. You don't tell anyone. You just keep it.", "effects": { "energy": 18 }, "count": { "moments": 1 } } ] }
+      ]
+    },
+    {
+      "id": "coffee",
+      "title": "Coffee, Attempt #3",
+      "text": "You've reheated this coffee so many times it's legally a soup.",
+      "window": [380, 1080],
+      "weight": 3,
+      "repeatable": true,
+      "choices": [
+        { "label": "Reheat it again", "duration": 5, "outcomes": [ { "text": "You drink it hot. A single tear rolls down your cheek.", "effects": { "energy": 8 }, "count": { "coffee": 1 } } ] },
+        { "label": "Fresh pot", "duration": 10, "outcomes": [ { "text": "A fresh pot. You smell it. You feel briefly human.", "effects": { "energy": 12 }, "set": ["d:lateCoffee"], "count": { "coffee": 1 } } ] },
+        { "label": "Skip it. Hydrate like an adult.", "duration": 2, "outcomes": [ { "text": "Water. How novel. Your body doesn't know what to do with it.", "effects": { "energy": 2 } } ] }
+      ]
+    },
+    {
+      "id": "filler",
+      "title": "A Quiet Moment",
+      "text": "Your toddler is sitting calmly in a corner. When they see you, they say, \"I didn't do it.\" You don't know what \"it\" is.",
+      "window": [0, 1440],
+      "filler": true,
+      "repeatable": true,
+      "choices": [
+        { "label": "Investigate", "duration": 10, "outcomes": [ { "text": "It was the lipstick. It was always going to be the lipstick.", "effects": { "home": -5, "energy": -2 } } ] },
+        { "label": "Don't ask questions you don't want answered", "duration": 10, "outcomes": [ { "text": "You'll find out at 4 PM. It involves the toilet.", "effects": { "energy": 3, "home": -8 } } ] }
+      ]
+    },
+    {
+      "id": "night_whisper",
+      "title": "The Crib Whisper",
+      "text": "2:47 AM. A small figure is standing in the crib whispering your name at the wall. You're about 70% sure this isn't a ghost.",
+      "phase": "night",
+      "weight": 3,
+      "choices": [
+        { "label": "Go in. Shush. Pat. Leave.", "duration": 20, "outcomes": [ { "text": "Twenty minutes of the shush-pat. They go down. You lie awake for forty more, because your body thinks it's a job now.", "effects": { "energy": -4 }, "ledger": { "night": "you" } } ] },
+        { "label": "Nudge your partner", "duration": 5, "outcomes": [
+          { "when": { "min": { "ledger": 2 } }, "text": "Your partner gets up without a word. The ledger is a powerful document.", "effects": {}, "ledger": { "night": "partner" } },
+          { "when": { "max": { "ledger": 1 } }, "text": "\"I got the last two,\" they whisper. They did. You get up.", "effects": { "rel": -3 }, "ledger": { "night": "you" } } ] },
+        { "label": "Wait it out from bed", "duration": 5, "outcomes": [
+          { "weight": 1, "text": "The whispering stops. You listen to the silence like it's a symphony.", "effects": {} },
+          { "weight": 1, "text": "The whispering becomes yelling. You both get up. Nobody wins.", "effects": { "rel": -2 }, "ledger": { "night": "you" } } ] }
+      ]
+    },
+    {
+      "id": "night_regret",
+      "title": "You Replay It. Again.",
+      "text": "3:12 AM. You're replaying the moment you snapped today. In the replay you are calm and wise. In real life you were not.",
+      "phase": "night",
+      "weight": 5,
+      "when": { "flags": ["d:snapped"] },
+      "choices": [
+        { "label": "Wake your partner to talk about it", "duration": 15, "outcomes": [ { "text": "They listen, half asleep. \"You're a good parent,\" they mumble. \"Everyone yells.\" It helps more than it should. Now you're both awake.", "effects": { "rel": 4, "energy": -7 } } ] },
+        { "label": "Look up how to repair it", "duration": 20, "outcomes": [ { "text": "The article says repair matters more than perfection. Tomorrow you'll say sorry. They'll say \"OK\" and ask for a snack.", "effects": { "energy": -3 } } ] }
+      ]
+    },
+    {
+      "id": "night_quiet",
+      "title": "Nothing",
+      "text": "2 AM, 3 AM, 4 AM. Nothing. The monitor is silent. You wake up every hour anyway, to check that the nothing is still happening.",
+      "phase": "night",
+      "weight": 2,
+      "choices": [ { "label": "Sleep like a person", "duration": 1, "outcomes": [ { "text": "You almost don't trust it. Almost.", "effects": {} } ] } ]
+    }
+  ]
+}

@@ -1,75 +1,74 @@
 # Bedtime or Bust
 
-A satirical iOS game. You are a parent. Your goal is to get through one day with your toddler, from the 5:58 AM monitor crackle to bedtime at 7:30 PM, without losing your sanity, your house, or your standing in the parents' group chat.
+A satirical iOS game about getting through a week with a toddler. You're a partnered parent. Make it from Monday's 5:58 AM monitor crackle to Friday's date night without collapsing, losing your partner, or getting removed from the group chat.
 
 - **Platform:** iOS 17+ (iPhone and iPad), SwiftUI
-- **Status:** playable vertical slice: 46 events, 7 day types, 8 endings
-- **Play it in a browser now:** open `prototype/index.html`, or the hosted playtest build. It runs the same rules and content as the iOS app.
+- **Play it in a browser:** open `prototype/index.html`. It runs the same rules and content as the iOS app.
 
-## How a day works
+## How the week works
 
-Each card is a moment of your day with two or three choices. Every choice costs time and moves five meters:
+Each card is a moment of your day with two to four choices. Every choice costs time and moves your meters.
 
-| Meter | Hits zero → | Notes |
+| Group | Meter | What it does |
 |---|---|---|
-| Sanity | **Game over** (you're in the pantry) | Drains 1 point per 20 minutes on its own |
-| Toddler Mood | A meltdown event (survivable, costly) | Drops fast once the toddler is overtired |
-| House | **Game over** (the house is condemned) | Drains 1 point per 30 minutes: toddlers make mess |
-| Reputation | **Game over** (removed from the group chat) | Drains 1 point per 40 minutes: the chat forgets you |
-| Sleepiness | — | Rises all day; naps lower it. Must be 50+ at bedtime, 80+ means overtired |
+| You | **Energy** | How much parent you have left. Engaged choices cost it and lock ("Too tired") below their minimum. Shortcuts give it back now and bill you later. 0 = you collapse. |
+| | **Relationship** | Drains when your Energy is low. Decides how much your partner helps. 0 = "We need to talk": the week ends. |
+| Toddler | **Mood** | 0 = meltdown. |
+| | **Sleep** | Today's sleepiness (must reach the line at bedtime) and the week's **sleep debt**. High debt means earlier mornings, more hazards and faster meltdowns. |
+| Household | **House**, **Reputation** | 0 loses the day. Grandma rescues one day per week. |
 
-Reach bedtime with a sleepy toddler and the day is graded on Sanity + Mood + House + Reputation (out of 400). A random daily modifier (Teething, Grandma Is Visiting, Potty Training: Day 3…) changes the starting meters and unlocks its own events.
+Also in play:
 
-## Run it on a Mac
+- **Shortcuts with paybacks.** TV during a tantrum gives +Energy now and queues the Screen-Off Meltdown. A ticking chip shows when it's due.
+- **Random hazards.** Most come with a warning you can act on; some are pure ambushes; rare catastrophes can follow you into tomorrow.
+- **The mental-load list.** Tasks arrive each morning; forget one and it bites.
+- **The ledger.** It records who did the night wakings, baths and dishes, and it decides how blame plays out.
+- **Nights.** Two or three 2 AM cards set tomorrow's Energy and sleep debt.
+- **Friday's date night.** At 7:00 the toddler must be asleep (Sleepiness 67+) and you need 35+ Energy.
+- **Endings.** The week closes with your parenting style and a weekly performance review.
 
-You need a Mac with **Xcode 26 or later** (free on the Mac App Store). Apple has required apps uploaded to the App Store to be built with Xcode 26 and the iOS 26 SDK since April 28, 2026 ([Apple](https://developer.apple.com/news/upcoming-requirements/)).
+## Run it on a Mac (Xcode 26)
 
 ```sh
-brew install xcodegen          # one time; generates the Xcode project from project.yml
-xcodegen generate              # creates BedtimeOrBust.xcodeproj
+brew install xcodegen          # one time
+xcodegen generate              # creates BedtimeOrBust.xcodeproj from project.yml
 open BedtimeOrBust.xcodeproj   # pick an iPhone simulator, press ⌘R
+swift test --package-path Core # engine + conformance tests, no simulator needed
 ```
-
-To run on your own iPhone, select your phone as the run destination and choose your Apple ID under *Signing & Capabilities*. A free Apple ID works for personal testing. Shipping to the App Store needs the Apple Developer Program, which costs 99 USD a year ([Apple](https://developer.apple.com/programs/whats-included/)).
-
-Engine tests (no simulator needed): `swift test --package-path Core`
 
 ## Project layout
 
 ```
-.
-├── App/                      SwiftUI app: screens, GameStore (flow + save/resume)
-├── Core/                     Swift package "BedtimeCore": the rules engine, Foundation only
-│   ├── Sources/BedtimeCore/
-│   │   ├── Engine.swift      rules, time, drift, endings
-│   │   ├── Content.swift     data model for content.json
-│   │   └── Resources/content.json   ALL game text and numbers
-│   └── Tests/                unit tests + golden-trace conformance tests
-├── tools/                    Node scripts (no npm install needed; Node 18+)
-│   ├── engine.mjs            reference rules engine (the executable spec)
-│   ├── validate.mjs          content linter
-│   ├── simulate.mjs          balance simulator (thousands of seeded days)
-│   ├── golden.mjs            records traces the Swift tests replay
-│   └── build-prototype.mjs   builds the browser playtest page
-├── prototype/                single-file web playtest build
-├── docs/DESIGN.md            design rationale, balance data, risks, roadmap
-├── docs/CONTENT_GUIDE.md     how to write events
-└── project.yml               XcodeGen spec for the iOS app
+App/                  SwiftUI app: GameStore (flow, save/resume) and screens
+Core/                 Swift package BedtimeCore: the rules engine (Foundation only)
+  Sources/BedtimeCore/Resources/content.json   GENERATED: built from content/
+  Tests/              unit tests + golden-trace conformance tests
+content/              THE GAME'S WORDS AND NUMBERS
+  base.json           config, days, tasks, styles, endings, anchor cards
+  events/*.json       card packs, merged in filename order
+tools/                Node scripts (Node 18+, no npm install)
+  engine.mjs          reference rules engine: the executable spec
+  build-content.mjs   merges content/ into content.json (--validate, --check)
+  validate.mjs        content linter
+  simulate.mjs        week simulator with balance targets (--check)
+  golden.mjs          records traces the Swift tests replay
+  build-prototype.mjs builds the browser playtest page
+prototype/            single-file browser build
+docs/RULES.md         the rules, including the order of random draws
+docs/CONTENT_GUIDE.md how to write cards
+docs/DESIGN.md        design rationale, research, balance data, risks
 ```
 
 ## Changing the game
 
-All writing and tuning lives in `Core/Sources/BedtimeCore/Resources/content.json`. After editing it:
-
 ```sh
-node tools/validate.mjs            # catches typos, unknown meters, bad windows
-node tools/simulate.mjs            # are the win rates still in the target bands?
-node tools/golden.mjs              # refresh the Swift conformance fixture
-node tools/build-prototype.mjs     # refresh the browser build
+node tools/build-content.mjs --validate   # lint your edits
+node tools/build-content.mjs              # write content.json
+node tools/simulate.mjs                   # still balanced?
+node tools/golden.mjs                     # refresh the Swift conformance fixture
+node tools/build-prototype.mjs            # refresh the browser build
 ```
 
-CI (`.github/workflows/bedtime-or-bust.yml`) runs all four checks, then the Swift tests and an iOS Simulator build on a macOS runner.
+CI runs all of these, then the Swift tests and an iOS Simulator build on a GitHub macOS runner.
 
-## Why two engines?
-
-The rules exist twice: in Swift for the app, and in JavaScript (`tools/engine.mjs`) for the simulator and the browser build. Duplication can drift, so it is fenced in. Both use the same 32-bit RNG (mulberry32), and `golden.mjs` records 40 complete seeded days (1,127 decisions) from the JavaScript engine. `ConformanceTests.swift` replays every one and fails on the first differing event, outcome, clock value or meter. If you change a rule, change it in both files and regenerate the traces.
+**Two engines, one set of rules.** The rules exist in Swift (for the app) and JavaScript (for the simulator and browser build). Both use the same random number generator (mulberry32) and the same draw order (docs/RULES.md). `golden.mjs` records 30 full seeded weeks from the JavaScript engine, and `ConformanceTests.swift` replays them, failing on the first difference.
