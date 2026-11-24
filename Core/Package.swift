@@ -20,5 +20,10 @@ let package = Package(
             dependencies: ["BedtimeCore"],
             resources: [.copy("Fixtures")]
         ),
+        // Plain `import BedtimeCore` only: proves the app-facing API is public.
+        .testTarget(
+            name: "BedtimeCoreAPITests",
+            dependencies: ["BedtimeCore"]
+        ),
     ]
 )

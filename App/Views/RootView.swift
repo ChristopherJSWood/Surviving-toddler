@@ -1,5 +1,6 @@
 import BedtimeCore
 import SwiftUI
+import UIKit
 
 struct RootView: View {
     @Environment(GameStore.self) private var store
