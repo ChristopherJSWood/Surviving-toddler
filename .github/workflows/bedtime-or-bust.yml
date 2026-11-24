@@ -2,19 +2,12 @@ name: Bedtime or Bust
 
 on:
   push:
-    paths:
-      - "BedtimeOrBust/**"
-      - ".github/workflows/bedtime-or-bust.yml"
   pull_request:
-    paths:
-      - "BedtimeOrBust/**"
-      - ".github/workflows/bedtime-or-bust.yml"
   workflow_dispatch:
 
 defaults:
   run:
     shell: bash
-    working-directory: BedtimeOrBust
 
 jobs:
   content:

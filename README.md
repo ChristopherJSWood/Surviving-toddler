@@ -4,7 +4,7 @@ A satirical iOS game. You are a parent. Your goal is to get through one day with
 
 - **Platform:** iOS 17+ (iPhone and iPad), SwiftUI
 - **Status:** playable vertical slice: 46 events, 7 day types, 8 endings
-- **Play it in a browser now:** open `prototype/index.html`. It runs the same rules and content as the iOS app.
+- **Play it in a browser now:** open `prototype/index.html`, or the hosted playtest build. It runs the same rules and content as the iOS app.
 
 ## How a day works
 
@@ -26,7 +26,6 @@ You need a Mac with **Xcode 26 or later** (free on the Mac App Store). Apple has
 
 ```sh
 brew install xcodegen          # one time; generates the Xcode project from project.yml
-cd BedtimeOrBust
 xcodegen generate              # creates BedtimeOrBust.xcodeproj
 open BedtimeOrBust.xcodeproj   # pick an iPhone simulator, press ⌘R
 ```
@@ -38,7 +37,7 @@ Engine tests (no simulator needed): `swift test --package-path Core`
 ## Project layout
 
 ```
-BedtimeOrBust/
+.
 ├── App/                      SwiftUI app: screens, GameStore (flow + save/resume)
 ├── Core/                     Swift package "BedtimeCore": the rules engine, Foundation only
 │   ├── Sources/BedtimeCore/
@@ -69,7 +68,7 @@ node tools/golden.mjs              # refresh the Swift conformance fixture
 node tools/build-prototype.mjs     # refresh the browser build
 ```
 
-CI (`.github/workflows/bedtime-or-bust.yml`) runs all four checks, then the Swift tests and an iOS Simulator build on a macOS runner. **This repository is a fork, and GitHub does not run workflows in forks until you enable Actions in the repository's Actions tab** ([GitHub Docs](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows)).
+CI (`.github/workflows/bedtime-or-bust.yml`) runs all four checks, then the Swift tests and an iOS Simulator build on a macOS runner.
 
 ## Why two engines?
 
