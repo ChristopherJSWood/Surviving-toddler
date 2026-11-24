@@ -33,9 +33,15 @@ jobs:
     # BedtimeCore is Foundation-only, so its unit and golden-trace conformance
     # tests run on Linux in the official Swift image. Linux runners are always
     # available; this is the job that proves the Swift engine matches the spec.
-    name: Swift engine tests (Linux)
+    # Swift 5.9 is what Xcode 15 ships (the oldest Xcode the app supports and
+    # the one it was first built with); 6.1 covers current toolchains.
+    name: Swift ${{ matrix.swift }} engine tests (Linux)
+    strategy:
+      fail-fast: false
+      matrix:
+        swift: ["5.9", "6.1"]
     runs-on: ubuntu-latest
-    container: swift:6.1
+    container: swift:${{ matrix.swift }}
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v7

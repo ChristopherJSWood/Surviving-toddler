@@ -27,16 +27,17 @@ Also in play:
 - **Friday's date night.** At 7:00 the toddler must be asleep (Sleepiness 67+) and you need 35+ Energy.
 - **Endings.** The week closes with your parenting style and a weekly performance review.
 
-## Run it on a Mac (Xcode 26)
+## Run it on a Mac (Xcode 15 or later)
 
 One command checks your tools, runs the engine tests, builds the app and launches it in the iOS Simulator:
 
 ```sh
-brew install xcodegen      # one time (Homebrew: https://brew.sh)
 tools/mac-build.sh         # or: tools/mac-build.sh --no-launch
 ```
 
-Each step stops with the command that fixes it. The full output is in `build/mac-build.log`.
+Each step stops with the command that fixes it. The full output is in `build/mac-build.log`. If XcodeGen isn't installed, the script downloads the official release into `build/tools` and checks its checksum. Homebrew can't install XcodeGen on macOS 14 with Xcode older than 15.3.
+
+Tested: Xcode 15.2 (Swift 5.9.2) on macOS 14.8, iPhone 15 Pro simulator, iOS 17.2. Submitting to the App Store requires a current Xcode, which needs a newer macOS than 14.
 
 | If it stops at | Run |
 |---|---|

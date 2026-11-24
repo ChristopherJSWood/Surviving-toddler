@@ -55,21 +55,43 @@ case "$DEV" in
 esac
 run "xcodebuild -version" xcodebuild -version
 grep -E "^Xcode|^Build version" "$LOG" || true
+# The app targets iOS 17 and uses Observation (Swift 5.9): Xcode 15 or later.
+XCODE_MAJOR=$(grep -E "^Xcode [0-9]" "$LOG" | head -n 1 | sed 's/^Xcode \([0-9][0-9]*\).*/\1/')
+{ [ -n "$XCODE_MAJOR" ] && [ "$XCODE_MAJOR" -ge 15 ]; } ||
+  fail "Xcode ${XCODE_MAJOR:-?} is too old: this app needs Xcode 15 or later" "install a newer Xcode (App Store, or developer.apple.com/download/all)"
 
 step "iOS Simulator runtime"
 run "listing simulator runtimes" xcrun simctl list runtimes
 grep -E "^iOS" "$LOG" | tail -n 3 || fail "no iOS Simulator runtime installed" "xcodebuild -downloadPlatform iOS"
 
 step "XcodeGen"
-command -v xcodegen >/dev/null 2>&1 || fail "XcodeGen is not installed" "brew install xcodegen   (no Homebrew? see https://brew.sh)"
-xcodegen --version 2>&1 | tee -a "$LOG" || true
+# Uses an installed xcodegen if there is one. Otherwise downloads the official
+# release binary into build/tools (git-ignored) and checks its SHA-256: Homebrew
+# can't install XcodeGen on macOS 14 with Xcode older than 15.3.
+XCODEGEN_VERSION=2.48.0
+XCODEGEN_SHA256=620c9f0dc10849f94728ab5df52d225ebab8187439dd6fee1925e59e80dff892
+if command -v xcodegen >/dev/null 2>&1; then
+  XCODEGEN=xcodegen
+else
+  XCODEGEN=build/tools/xcodegen/bin/xcodegen
+  if [ ! -x "$XCODEGEN" ]; then
+    echo "Not installed: downloading XcodeGen $XCODEGEN_VERSION into build/tools"
+    mkdir -p build/tools
+    run "downloading XcodeGen" curl -fsSL -o build/tools/xcodegen.zip \
+      "https://github.com/yonaskolb/XcodeGen/releases/download/$XCODEGEN_VERSION/xcodegen.zip"
+    echo "$XCODEGEN_SHA256  build/tools/xcodegen.zip" | shasum -a 256 -c >>"$LOG" 2>&1 ||
+      fail "the XcodeGen download doesn't match its checksum" "delete build/tools and run again"
+    run "unpacking XcodeGen" unzip -q -o build/tools/xcodegen.zip -d build/tools
+  fi
+fi
+"$XCODEGEN" --version 2>&1 | tee -a "$LOG" || true
 
 step "Engine tests (swift test)"
 run "engine tests" swift test --package-path Core
 grep -E "Executed [0-9]+ tests" "$LOG" | tail -n 1 || true
 
 step "Generate BedtimeOrBust.xcodeproj"
-run "xcodegen generate" xcodegen generate
+run "xcodegen generate" "$XCODEGEN" generate
 
 step "Build the app for the iOS Simulator (first build takes a few minutes)"
 run "app build" xcodebuild build \
