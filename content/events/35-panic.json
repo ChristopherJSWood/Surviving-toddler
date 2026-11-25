@@ -26,28 +26,27 @@
             "weight": 2,
             "text": "Mouth: plugged. They chew, glaring, holding the sentence in reserve. You've only moved it to the parking lot.",
             "effects": {
-              "mood": 4,
-              "rep": 2
+              "mood": 6,
+              "rep": 4
             },
             "count": {
               "snacks": 1
             }
           },
           {
-            "text": "They take the bar, hold it up like a microphone and say it anyway, now with crumbs and a new verse.",
+            "text": "They take the bar, point it at the cashier and say it anyway, now with crumbs and a new verse.",
             "effects": {
               "rep": -16,
               "mood": 4
             },
             "count": {
               "snacks": 1
-            },
-            "fx": "shake"
+            }
           }
         ]
       },
       {
-        "label": "Confess first: \"I said a mean thing about this lane!\"",
+        "label": "Confess: \"I was mean about this lane!\"",
         "duration": 1,
         "outcomes": [
           {
@@ -127,7 +126,8 @@
           {
             "text": "\"WISH LIST,\" they whisper, and tap the little heart. The tractor is safe in the future, where all expensive things belong.",
             "effects": {
-              "mood": 6
+              "mood": 6,
+              "rel": 4
             },
             "stamp": "DEFERRED"
           },
@@ -137,7 +137,7 @@
               "rel": -16,
               "mood": 12
             },
-            "stamp": "ORDER CONFIRMED",
+            "stamp": "SHIPPED",
             "fx": "flash"
           }
         ]
@@ -205,8 +205,8 @@
           {
             "text": "{kid} gasps, hugs the keys and carries them out to \"keep them safe.\" You find them tonight, tucked into bed beside the stuffed rabbit.",
             "effects": {
-              "mood": 4,
-              "energy": 2
+              "mood": 8,
+              "energy": 4
             }
           },
           {
@@ -214,8 +214,7 @@
             "effects": {
               "energy": -10,
               "home": -12
-            },
-            "fx": "shake"
+            }
           }
         ]
       },
@@ -231,8 +230,8 @@
           {
             "text": "{kid} goes very still. Rex's sacrifice will not be forgotten. They hand you the keys, then salute the toilet.",
             "effects": {
-              "mood": -2,
-              "energy": 4
+              "mood": -6,
+              "energy": 6
             },
             "stamp": "NEVER FORGET"
           }
@@ -281,8 +280,8 @@
             "weight": 2,
             "text": "They say it straight into your neck, muffled past recognition. One teacher catches the word \"closet\" and nods slowly. It could be anything. It isn't anything.",
             "effects": {
-              "rep": -4,
-              "mood": 4
+              "rep": -6,
+              "mood": 6
             }
           },
           {
@@ -384,8 +383,8 @@
           {
             "text": "\"Okay,\" they say, and don't. You stare at each other. It worked. You don't trust it.",
             "effects": {
-              "mood": -4,
-              "energy": 2
+              "mood": -6,
+              "energy": 4
             }
           }
         ]
@@ -514,8 +513,7 @@
             },
             "count": {
               "bleeps": 1
-            },
-            "fx": "shake"
+            }
           }
         ]
       },
@@ -524,7 +522,7 @@
         "duration": 1,
         "outcomes": [
           {
-            "text": "\"TRUCK!\" they announce, crisply. Grandma claps. Crisis averted by a vehicle.",
+            "text": "\"TRUCK!\" they announce, proudly. Grandma claps. Crisis averted by a vehicle.",
             "effects": {
               "mood": 4,
               "rep": 6
@@ -538,8 +536,7 @@
             },
             "count": {
               "bleeps": 1
-            },
-            "fx": "shake"
+            }
           }
         ]
       },
@@ -567,7 +564,7 @@
   {
     "id": "panic_bleep_brynn",
     "title": "Brynn Is Right There",
-    "text": "Pickup. Brynn, who once asked the group chat whether the microwave clock counts as screen time, is telling you about a violin recital. {kid} remembers the word. {kid} is smiling.",
+    "text": "Pickup. Brynn, who once asked the group chat whether the microwave clock counts as screen time, is telling you about Juniper's violin recital. Juniper is two. {kid} remembers the word. {kid} is smiling.",
     "window": [
       960,
       1080
@@ -590,7 +587,7 @@
           {
             "text": "You sprint for the car. {kid} says the word to the parking lot, which has heard worse.",
             "effects": {
-              "rep": 2,
+              "rep": 4,
               "energy": -6
             },
             "count": {
@@ -612,14 +609,14 @@
         "outcomes": [
           {
             "weight": 2,
-            "text": "The word goes into your palm, where it belongs. Brynn talks on about the violin. You hear none of it. You've never been so happy to hear none of something.",
+            "text": "The word goes into your palm, where it belongs. Brynn talks on about Juniper's bow hold. You hear none of it, and it's wonderful.",
             "effects": {
               "rep": 4,
               "mood": -6
             }
           },
           {
-            "text": "It comes out muffled: \"mmmBLEEP.\" Brynn hears \"mmmBLEEP.\" Brynn's eyebrows go up and stay up.",
+            "text": "It comes out muffled: \"Mmm-[BLEEP].\" Brynn hears every letter. Brynn's eyebrows go up and stay up.",
             "effects": {
               "rep": -12,
               "mood": -4

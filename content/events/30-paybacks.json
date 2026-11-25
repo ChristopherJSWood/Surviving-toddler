@@ -73,8 +73,8 @@
           {
             "text": "\"Weekend food,\" they repeat, filing it with the other laws. They will enforce it on you Saturday at 7 AM.",
             "effects": {
-              "mood": -4,
-              "rep": 2
+              "mood": -6,
+              "rep": 4
             }
           },
           {
@@ -100,12 +100,12 @@
         "duration": 2,
         "outcomes": [
           {
-            "text": "{kid} accepts this. Your lie now has a sequel. By Thursday it will need a prequel and a map.",
+            "text": "{kid} accepts this. Your lie now has a sequel. By the weekend it will need a prequel and a map.",
             "effects": {
-              "mood": -4,
-              "energy": 2
+              "mood": -6,
+              "energy": 4
             },
-            "stamp": "LORE EXPANDED"
+            "stamp": "SEQUEL GREENLIT"
           },
           {
             "text": "\"Then why is the music ON?\" They've found the flaw in the doctrine. The investigation will be ongoing. The scream is immediate.",
@@ -180,9 +180,23 @@
         "duration": 20,
         "outcomes": [
           {
+            "weight": 2,
             "text": "You lie down for a minute. The minute lasts 20. It's the best minute of your month.",
             "effects": {
               "energy": 14
+            },
+            "schedule": [
+              {
+                "event": "w_partner_dishes",
+                "in": 15
+              }
+            ]
+          },
+          {
+            "text": "You lie down. {kid} climbs on top of you, nose to nose, and whispers \"are you sleeping\" every nine seconds. Still the best minute of your month.",
+            "effects": {
+              "energy": 10,
+              "mood": 8
             },
             "schedule": [
               {
@@ -310,8 +324,7 @@
             },
             "ledger": {
               "dishes": "partner"
-            },
-            "fx": "shake"
+            }
           },
           {
             "text": "You fake a snore. Too big. A cartoon snore. {partner} laughs so hard they have to sit on the kitchen floor. You've never been forgiven so fast for something so bad.",
@@ -430,7 +443,8 @@
               "energy": -14,
               "mood": 12,
               "sleepy": 8
-            }
+            },
+            "fx": "confetti"
           }
         ]
       },
@@ -443,6 +457,7 @@
         "snapRisk": true,
         "outcomes": [
           {
+            "weight": 2,
             "text": "\"You SAID.\" They're right. You did. This meltdown has the moral high ground, and it knows it.",
             "effects": {
               "mood": -22,
@@ -453,6 +468,14 @@
             },
             "stamp": "MORAL HIGH GROUND",
             "fx": "shake"
+          },
+          {
+            "text": "\"You SAID.\" You did. You kneel, explain the rain, promise tomorrow and mean it. They think it over, then grant you a continuance, with conditions.",
+            "effects": {
+              "mood": -6,
+              "energy": -8
+            },
+            "stamp": "CONTINUANCE GRANTED"
           }
         ]
       },
@@ -469,7 +492,7 @@
             },
             "schedule": [
               {
-                "event": "w_promise_due",
+                "event": "w_promise_due_2",
                 "in": 90
               }
             ]
@@ -482,6 +505,88 @@
               "sleepy": 6
             },
             "stamp": "OUT-LAWYERED"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "w_promise_due_2",
+    "title": "\"Later Later\" Is Now",
+    "text": "Ninety minutes ago you said \"later later.\" {kid} has waited by the door ever since, in both shoes, holding your keys. They've brought the stuffed rabbit as a witness.",
+    "forced": true,
+    "choices": [
+      {
+        "label": "Go. Go now. Go in the dark.",
+        "duration": 40,
+        "minEnergy": 25,
+        "tags": [
+          "present"
+        ],
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "The playground at dusk: one other parent, staring at nothing by the swings. You nod. They nod. {kid} goes down the slide 31 times. A promise kept late still counts.",
+            "effects": {
+              "energy": -16,
+              "mood": 14,
+              "sleepy": 10
+            }
+          },
+          {
+            "text": "The gate is locked for the night. {kid} slides down the porch steps instead, 14 times, narrating. It counts. They've ruled that it counts.",
+            "effects": {
+              "energy": -10,
+              "mood": 8,
+              "sleepy": 6
+            }
+          }
+        ]
+      },
+      {
+        "label": "\"Later later later.\"",
+        "duration": 1,
+        "outcomes": [
+          {
+            "text": "\"There's no later later later,\" {kid} informs you. They've checked. The rabbit nods. The meltdown opens with a citation.",
+            "effects": {
+              "mood": -22,
+              "energy": -6
+            },
+            "count": {
+              "tantrums": 1
+            },
+            "stamp": "NO SUCH TIME",
+            "fx": "shake"
+          }
+        ]
+      },
+      {
+        "label": "\"Tomorrow, first thing. I swear on the rabbit.\"",
+        "duration": 10,
+        "tags": [
+          "boundary"
+        ],
+        "snapRisk": true,
+        "outcomes": [
+          {
+            "text": "The rabbit is consulted. The rabbit accepts. {kid} carries your oath and the rabbit to dinner, in that order.",
+            "effects": {
+              "mood": -4,
+              "rel": 4,
+              "energy": -4
+            }
+          },
+          {
+            "weight": 2,
+            "text": "The rabbit has heard your promises before. The rabbit is not convinced. Neither is {kid}.",
+            "effects": {
+              "mood": -16,
+              "energy": -6
+            },
+            "count": {
+              "tantrums": 1
+            }
           }
         ]
       }
@@ -563,11 +668,20 @@
         "duration": 3,
         "outcomes": [
           {
+            "weight": 2,
             "text": "You leave. The package rides home in the stroller basket, where it will live for another week, judging you.",
             "effects": {
-              "energy": -2,
-              "home": -6
+              "energy": -4,
+              "home": -8
             }
+          },
+          {
+            "text": "You leave. Right outside is a mailbox. The package already has postage. It always had postage.",
+            "effects": {
+              "energy": 6,
+              "mood": 4
+            },
+            "stamp": "WAS ALWAYS AN OPTION"
           }
         ]
       }
@@ -605,12 +719,13 @@
             "text": "You hold out your hand. They hand it over. Just like that. A stranger looks at you like you're a wizard. You will never understand them.",
             "effects": {
               "mood": -2,
-              "rep": 6
+              "rep": 8
             },
             "count": {
               "paybacks": 1
             },
-            "stamp": "UNEXPLAINED"
+            "stamp": "UNEXPLAINED",
+            "fx": "confetti"
           }
         ]
       },
@@ -624,9 +739,9 @@
           {
             "text": "Five more minutes. You both know what five more minutes is. It's a down payment on this exact fight.",
             "effects": {
-              "mood": 4,
-              "energy": 3,
-              "rep": -3
+              "mood": 6,
+              "energy": 4,
+              "rep": -4
             },
             "set": [
               "d:screen"
@@ -637,8 +752,8 @@
             },
             "schedule": [
               {
-                "event": "w_phone_off",
-                "in": 15
+                "event": "w_phone_off_2",
+                "in": 5
               }
             ]
           }
@@ -672,6 +787,102 @@
               "paybacks": 1
             },
             "fx": "shake"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "w_phone_off_2",
+    "title": "Five More Minutes Are Up",
+    "text": "The five minutes are up. The phone is now in Finnish and Portuguese. There are three new voicemails from Grandma, all of them just breathing. {kid} holds the phone the way you'd hold a newborn.",
+    "forced": true,
+    "choices": [
+      {
+        "label": "Take it back. For real this time.",
+        "duration": 15,
+        "tags": [
+          "boundary"
+        ],
+        "snapRisk": true,
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "\"For real this time\" is louder than last time. The scream has a second verse now, about fairness. You did earn this one.",
+            "effects": {
+              "mood": -22,
+              "energy": -8,
+              "rep": -6
+            },
+            "count": {
+              "paybacks": 1,
+              "tantrums": 1
+            },
+            "fx": "shake"
+          },
+          {
+            "text": "They hand it over with a heavy sigh and say, \"Thank you for the time.\" You are both changed.",
+            "effects": {
+              "mood": -4,
+              "rep": 8
+            },
+            "count": {
+              "paybacks": 1
+            }
+          }
+        ]
+      },
+      {
+        "label": "Offer the TV remote. It's basically a phone.",
+        "duration": 3,
+        "tags": [
+          "negotiate"
+        ],
+        "outcomes": [
+          {
+            "text": "They hold the remote to their ear and have a long, serious call with it. Nobody hangs up. You've won something.",
+            "effects": {
+              "mood": 6,
+              "energy": 6
+            },
+            "count": {
+              "paybacks": 1
+            }
+          },
+          {
+            "text": "\"That's a REMOTE,\" they say, with total contempt. Negotiations collapse. The scream is in Finnish.",
+            "effects": {
+              "mood": -16,
+              "energy": -4
+            },
+            "count": {
+              "paybacks": 1
+            }
+          }
+        ]
+      },
+      {
+        "label": "Let them keep it. You live here now.",
+        "duration": 2,
+        "tags": [
+          "screen"
+        ],
+        "outcomes": [
+          {
+            "text": "You surrender and sit on the floor. Twenty minutes later the phone dies at 1%, in their hands. They take it up with the battery. Perfect crime.",
+            "effects": {
+              "energy": 8,
+              "rep": -8,
+              "mood": -4
+            },
+            "set": [
+              "d:screen"
+            ],
+            "count": {
+              "screen": 20,
+              "paybacks": 1
+            },
+            "stamp": "BLAME THE BATTERY"
           }
         ]
       }
@@ -737,9 +948,23 @@
         "duration": 3,
         "outcomes": [
           {
+            "weight": 2,
             "text": "The third coffee of the day tastes like a decision you'll revisit at 1 AM.",
             "effects": {
-              "energy": 8
+              "energy": 9
+            },
+            "set": [
+              "d:lateCoffee"
+            ],
+            "count": {
+              "coffee": 1
+            }
+          },
+          {
+            "text": "You make the third coffee, set it down to deal with a sock and find it at 6 PM, cold, on the bookshelf. You drink it anyway. It's still a decision.",
+            "effects": {
+              "energy": 5,
+              "home": 4
             },
             "set": [
               "d:lateCoffee"
@@ -764,10 +989,18 @@
         "minEnergy": 20,
         "outcomes": [
           {
+            "weight": 2,
             "text": "Cold water, a head shake and a pep talk in the mirror, which you lose. You get through the afternoon at about 60% of a person.",
             "effects": {
               "energy": -12,
               "home": -4
+            }
+          },
+          {
+            "text": "Cold water, a head shake, a long look in the mirror. Something clicks. Second wind. You fold two loads of laundry in record time and decide not to question it.",
+            "effects": {
+              "energy": -4,
+              "home": 10
             }
           }
         ]
@@ -777,7 +1010,7 @@
         "duration": 3,
         "outcomes": [
           {
-            "text": "Coffee at 4 PM. The fog lifts. You can already hear it at 1 AM, knocking politely on the inside of your skull.",
+            "text": "Coffee, this late. The fog lifts. You can already hear it at 1 AM, knocking politely on the inside of your skull.",
             "effects": {
               "energy": 4,
               "home": -6
@@ -831,10 +1064,24 @@
         "duration": 20,
         "outcomes": [
           {
+            "weight": 2,
             "text": "Twenty glorious minutes of tiny hands patting your face. You may have dozed. You definitely relaxed. You did not check a mirror.",
             "effects": {
               "energy": 12,
               "mood": 10
+            },
+            "schedule": [
+              {
+                "event": "pay_sticker_face",
+                "in": 60
+              }
+            ]
+          },
+          {
+            "text": "Every sticker comes with a review: \"Good.\" \"Very good.\" \"Not this one.\" It's the most attention anyone has paid to your face in a year. You did not check a mirror.",
+            "effects": {
+              "energy": 10,
+              "mood": 12
             },
             "schedule": [
               {
@@ -856,8 +1103,8 @@
           {
             "text": "They put all 48 on one sheet of paper in a single, furious layer, glaring at you. It's a protest piece. It's honestly strong.",
             "effects": {
-              "mood": -6,
-              "rep": 2
+              "mood": -8,
+              "rep": 4
             }
           },
           {
@@ -902,7 +1149,7 @@
           {
             "text": "The mail carrier. The neighbor. Eleven coworkers on video, for 40 minutes. Nobody said anything. That's either kindness or a group decision.",
             "effects": {
-              "rep": -12,
+              "rep": -8,
               "energy": -4
             },
             "stamp": "GROUP DECISION"
@@ -921,10 +1168,10 @@
             }
           },
           {
-            "weight": 1,
+            "weight": 2,
             "text": "You wear them to pickup. Brynn looks at the POTTY STAR, then at you, then types something into a phone.",
             "effects": {
-              "rep": -12,
+              "rep": -18,
               "mood": 6
             }
           }
