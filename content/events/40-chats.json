@@ -38,8 +38,8 @@
       { "label": "Send a photo: you, {kid}, laundry, chaos", "duration": 2, "outcomes": [
         { "text": "You, {kid} on your hip, a laundry basket and a pot of pasta foaming over the side. No fire. Close enough.", "effects": { "rel": 8, "energy": 6, "home": -8 }, "chat": [ { "from": "{partner}", "text": "oh no it's literally us" }, { "from": "{partner}", "text": "leaving now" } ] } ] },
       { "label": "Circle the couch one. Label it YOU.", "duration": 2, "outcomes": [
-        { "weight": 1, "text": "They circle the couch one too and label it SATURDAY. You did nap Saturday. For two hours. In a hammock. Ceasefire.", "effects": { "rel": -4, "energy": 4 }, "count": { "blames": 1 }, "set": ["pt:sniped"], "stamp": "SEE: SATURDAY" },
-        { "weight": 1, "text": "No reply for an hour. Then a screenshot of their calendar: Thursday, 4 to 7 PM, blocked out as COUCH (YOU).", "effects": { "rel": 6, "energy": 10 }, "chat": [ { "from": "{partner}", "text": "fair. thursday is yours" } ] } ] }
+        { "weight": 1, "text": "They circle the couch one too and label it SATURDAY. You did nap Saturday. For two hours. In a hammock. Ceasefire.", "effects": { "rel": -6, "energy": 6 }, "count": { "blames": 1 }, "set": ["pt:sniped"], "stamp": "SEE: SATURDAY" },
+        { "weight": 1, "text": "No reply for an hour. Then a screenshot of their calendar: Sunday, 2 to 5 PM, blocked out as COUCH (YOU).", "effects": { "rel": 6, "energy": 10 }, "chat": [ { "from": "{partner}", "text": "fair. sunday is yours" } ] } ] }
     ]
   },
   {
@@ -77,14 +77,14 @@
     "when": { "min": { "day": 2 }, "max": { "day": 3 } },
     "choices": [
       { "label": "\"I'll call the backup. GO.\"", "duration": 5, "tags": ["tagteam"], "outcomes": [
-        { "weight": 2, "text": "Kaylee was already booked. By you. On Monday. You don't remember doing it. Your phone does. Past you is a stranger, and a great one.", "effects": { "energy": 8, "rel": 8 }, "chat": [ { "from": "{partner}", "text": "kaylee says YOU booked her monday??" } ], "stamp": "PAST YOU DID IT" },
+        { "weight": 2, "text": "Kaylee was already booked. By you. On Monday. You don't remember doing it. Your phone does. Past you is a stranger, and a great one.", "effects": { "energy": 8, "rel": 8 }, "chat": [ { "from": "{partner}", "text": "kaylee says YOU booked monday??" } ], "stamp": "PAST YOU DID IT", "fx": "confetti" },
         { "weight": 1, "text": "Kaylee's free. The backup's free. You each book one. On Friday at 7, two teenagers arrive and $44 an hour leaves the house.", "effects": { "energy": -6, "rel": 10 } } ] },
       { "label": "\"This is a sign. We stay home.\"", "duration": 2, "outcomes": [
         { "weight": 1, "text": "You both feel relieved. Then terrible about feeling relieved. Then relieved again.", "effects": { "energy": 8, "rel": -12 }, "chat": [ { "from": "{partner}", "text": "is it though" }, { "from": "you", "text": "it is" }, { "from": "{partner}", "text": "ok" } ] },
         { "weight": 1, "text": "They book Kaylee from a stairwell in nine seconds. Date night survives on {partner}'s grit alone.", "effects": { "energy": 2, "rel": 8 }, "chat": [ { "from": "{partner}", "text": "absolutely not" } ] } ] },
       { "label": "\"Whose turn was it to book?\"", "duration": 5, "outcomes": [
-        { "weight": 1, "text": "You both scroll back eight months to see who booked last time. It was Grandma. The sitter is still unbooked. The scrolling continues.", "effects": { "energy": -6, "rel": -10 }, "count": { "blames": 1 }, "set": ["pt:sniped"] },
-        { "weight": 1, "text": "Mid-argument, Kaylee texts you both: \"still on for fri? 🙂\" Someone booked her. Neither of you will ever concede it was the other.", "effects": { "energy": 6, "rel": -4 }, "count": { "blames": 1 }, "set": ["pt:sniped"], "stamp": "NO CONTEST" } ] }
+        { "weight": 1, "text": "You both scroll back eight months to see who booked last time. It was Grandma. The sitter is still unbooked. The scrolling continues.", "effects": { "energy": -2, "rel": -10 }, "count": { "blames": 1 }, "set": ["pt:sniped"] },
+        { "weight": 1, "text": "Mid-argument, Kaylee texts you both: \"still on for fri? 🙂\" Someone booked Kaylee. Neither of you will ever concede it was the other.", "effects": { "energy": 8, "rel": -4 }, "count": { "blames": 1 }, "set": ["pt:sniped"], "stamp": "NO CONTEST" } ] }
     ]
   },
   {
@@ -98,7 +98,7 @@
     "window": [1040, 1160], "weight": 2, "oncePerWeek": true,
     "choices": [
       { "label": "Send {kid} to knock.", "duration": 5, "outcomes": [
-        { "weight": 1, "text": "{kid} knocks for four minutes straight: \"WHAT ARE YOU DOING. ARE YOU DONE. CAN I SEE.\" The door opens at minute five. Article: finished.", "effects": { "energy": 8, "rel": -6, "mood": 6 } },
+        { "weight": 1, "text": "{kid} knocks for four minutes straight: \"WHAT ARE YOU DOING. ARE YOU DONE. CAN I SEE.\" The door opens at minute five. Article: finished.", "effects": { "energy": 8, "rel": -6, "mood": 6 }, "fx": "shake" },
         { "weight": 1, "text": "{kid} knocks, is let in, and doesn't come out. You hear laughing. The bathroom is a club now. You're not in the club, and it's wonderful.", "effects": { "energy": 14, "rel": 4 }, "stamp": "MEMBERS ONLY" } ] },
       { "label": "Reply with an article of your own", "duration": 2, "outcomes": [
         { "weight": 1, "text": "It exists. Of course it exists. They're out in forty seconds, laughing, and take {kid} for the rest of the evening.", "effects": { "energy": 10, "rel": 6 }, "chat": [ { "from": "you", "text": "[link: \"Signs Your Partner Is Hiding in the Bathroom\"]" }, { "from": "{partner}", "text": "ok ok coming" } ], "count": { "blames": 1 } },
@@ -147,10 +147,10 @@
         { "weight": 2, "text": "Sent. Brynn reacts with a 🙏 in under a second. You're in good standing for $40, which is about what good standing costs.", "effects": { "rep": 12, "energy": -2 }, "set": ["gc:dev"] },
         { "weight": 1, "text": "You send $40. Dev sends $400. Dev meant $40. By the time anyone notices, Brynn has bought a second robe.", "effects": { "rep": 8, "energy": 4 }, "set": ["gc:dev"], "stamp": "TWO ROBES" } ] },
       { "label": "\"what if the gift is just a nap\"", "duration": 1, "outcomes": [
-        { "weight": 1, "text": "Fourteen hearts in nine seconds. It's the most popular thing you've ever said. Then Brynn: \"love the energy!! still $40 🙂\"", "effects": { "rep": 10, "energy": 4 }, "set": ["gc:dev"] },
+        { "weight": 1, "text": "Eleven hearts, fast. It's the most popular thing you've ever said. Then Brynn: \"love the energy!! still $40 🙂\"", "effects": { "rep": 10, "energy": 4 }, "set": ["gc:dev"] },
         { "weight": 1, "text": "Nobody can argue with that. Nobody tries. You have been out-Brynned.", "effects": { "rep": -8, "energy": 2 }, "set": ["gc:dev"], "chat": [ { "from": "Brynn", "text": "naps aren't a gift, they're a right 🙂" } ] } ] },
       { "label": "Leave the chat. Quietly.", "duration": 1, "outcomes": [
-        { "text": "\"You left the conversation.\" Everyone sees it. There is no quietly. Brynn re-adds you in forty seconds.", "effects": { "rep": -10, "energy": 6 }, "set": ["gc:dev"], "chat": [ { "from": "Brynn", "text": "oops! 🙂" } ] } ] }
+        { "text": "\"You left the conversation.\" Everyone sees it. There is no quietly. Within a minute, Brynn has messaged you privately.", "effects": { "rep": -10, "energy": 6 }, "set": ["gc:dev"], "chat": [ { "from": "Brynn", "text": "everything ok? 🙂" } ] } ] }
     ]
   },
   {
@@ -169,10 +169,10 @@
         { "weight": 2, "text": "Dev replies in four seconds. On Thursday you have coffee with someone you've only ever known as two words. They have a lot more words. So do you.", "effects": { "energy": 8, "rep": 10 }, "count": { "moments": 1 }, "chat": [ { "from": "Dev", "text": "yes. please. thursday?" } ] },
         { "weight": 1, "text": "A minute later, one more message. You know exactly what it means now.", "effects": { "energy": 6, "rep": 8 }, "count": { "moments": 1 }, "chat": [ { "from": "Dev", "text": "can't this week, bodhi. but thank you. really" }, { "from": "Dev", "text": "lol same" } ] } ] },
       { "label": "Reply \"lol same\"", "duration": 1, "outcomes": [
-        { "weight": 1, "text": "You type it and mean it. Dev hearts it instantly. It's the most anyone has said in this chat all year.", "effects": { "energy": 6, "rep": 8 } },
-        { "weight": 1, "text": "You send it. Then Marcus: \"honestly same.\" Then Brynn: \"same 💛\" Dev sends one crying face. It's a good crying face.", "effects": { "energy": 8, "rep": 10 }, "count": { "moments": 1 } } ] },
+        { "weight": 1, "text": "You type it and mean it. Dev hearts it instantly. It's the most anyone has said in this chat all year.", "effects": { "energy": 2, "rep": 8 } },
+        { "weight": 1, "text": "You send it. Then Marcus: \"honestly same.\" Then Brynn: \"same 💛\" Dev sends one crying face. It's a good crying face.", "effects": { "energy": 2, "rep": 10 }, "count": { "moments": 1 } } ] },
       { "label": "Heart it. Keep scrolling.", "duration": 1, "outcomes": [
-        { "text": "A heart from you, one from Marcus, and the chat moves on to a lost water bottle. You think about the car wash for the rest of the day.", "effects": { "energy": -6, "rep": 2 } } ] }
+        { "text": "A heart from you, one from Marcus, and the chat moves on to a lost water bottle. You meant to say more. You think about the car wash in the shower that night.", "effects": { "energy": 6, "rep": -4 } } ] }
     ]
   },
   {
@@ -194,7 +194,7 @@
         { "weight": 1, "text": "The rest of the crayon is in the backpack, wrapped in a paper towel. It's yours now. You keep it in the car.", "effects": { "energy": 8, "mood": 6 }, "chat": [ { "from": "Ms. Patty", "text": "They saved you the rest 🙂" } ] } ] },
       { "label": "Pick up early. Reclaim the title.", "duration": 40, "minEnergy": 25, "tags": ["present"], "outcomes": [
         { "weight": 1, "text": "{kid} looks up from the sand table: \"Hi, {me}.\" Then, cheerfully, to Ms. Patty: \"Bye, {me}.\" A tie, officially.", "effects": { "energy": -10, "mood": 12, "rep": -4 }, "stamp": "TITLE SHARED" },
-        { "weight": 1, "text": "You arrive 40 minutes early. {kid} is mid-song, holds up one finger and makes you wait in the doorway like a delivery. You've never been prouder to wait.", "effects": { "energy": -10, "mood": 10, "rep": 6 } } ] }
+        { "weight": 1, "text": "You arrive 40 minutes early. {kid} is mid-song, holds up one finger and makes you wait in the doorway like a delivery. You wait. Proudly.", "effects": { "energy": -10, "mood": 10, "rep": 6 } } ] }
     ]
   },
   {
@@ -212,7 +212,7 @@
         { "weight": 1, "text": "{kid} insists Barnaby join bath time. Barnaby goes back to daycare 30% heavier and smelling of strawberry. The entry says \"Barnaby swam!\"", "effects": { "energy": -8, "rep": -8, "mood": 12 } } ] },
       { "label": "Write the truth: \"We had cereal for dinner.\"", "duration": 2, "outcomes": [
         { "weight": 1, "text": "Ms. Patty reads it aloud at circle time. The parents at pickup laugh. Next week's entry, from Marcus: \"Barnaby sat in traffic.\" Honesty is catching.", "effects": { "energy": 6, "rep": 14 }, "stamp": "HONESTY WINS" },
-        { "weight": 1, "text": "Brynn posts a photo of your entry in the group chat with \"haha love this 😅\". You've never been so hurt by an emoji.", "effects": { "energy": 6, "rep": -12 } } ] },
+        { "weight": 1, "text": "Brynn reposts your entry to the group chat with \"haha love this 😅\". You'll be decoding that sweat drop for weeks.", "effects": { "energy": 6, "rep": -12 } } ] },
       { "label": "Take Barnaby somewhere real", "duration": 45, "minEnergy": 30, "tags": ["present"], "outcomes": [
         { "text": "The library, the duck pond and a fire truck that happened to be parked. Barnaby has the best night of anyone's life. {kid} talks about it through dinner, with Barnaby at the table in a napkin.", "effects": { "energy": -14, "mood": 14, "rep": 10, "sleepy": 10 } } ] }
     ]
@@ -251,10 +251,10 @@
     "choices": [
       { "label": "Call now. Get it over with.", "duration": 25, "outcomes": [
         { "weight": 1, "text": "It's about the report. It's due at 5. You knew that. Trent knew you knew. Now you both know that Trent knows you know.", "effects": { "energy": -10, "rep": 8 } },
-        { "weight": 1, "text": "Trent wants to know if the report can \"also be a deck.\" You say yes in a voice you don't recognize.", "effects": { "energy": -16, "rep": 12 }, "stamp": "SCOPE CREEP", "fx": "flash" } ] },
+        { "weight": 1, "text": "Trent wants to know if the report can \"also be a deck.\" You say yes in a voice you don't recognize.", "effects": { "energy": -16, "rep": 12 }, "stamp": "NOW IT'S A DECK", "fx": "flash" } ] },
       { "label": "\"So sorry!! Toddler emergency!\"", "duration": 2, "outcomes": [
-        { "weight": 1, "text": "You feel great for four seconds, until you remember {kid} is at daycare and the emergency is you.", "effects": { "energy": 6, "rep": -4 }, "chat": [ { "from": "Trent", "text": "omg of course!! family first 💛" } ] },
-        { "weight": 1, "text": "Of course it is. Of course. The emergency is now the report.", "effects": { "energy": -6, "rep": -8 }, "chat": [ { "from": "Trent", "text": "of course! report still on for 5?" } ] } ] }
+        { "weight": 1, "text": "You feel great for four seconds, until you remember {kid} is at daycare and the emergency is you.", "effects": { "energy": 10, "rep": -4 }, "chat": [ { "from": "Trent", "text": "omg of course!! family first 💛" } ] },
+        { "weight": 1, "text": "Of course it is. Of course. The emergency is now the report.", "effects": { "energy": -2, "rep": -8 }, "chat": [ { "from": "Trent", "text": "of course! report still on for 5?" } ] } ] }
     ]
   },
   {

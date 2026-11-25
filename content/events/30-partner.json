@@ -9,7 +9,7 @@
         { "weight": 2, "text": "They do. Renewed the car seat registration. Knew the pediatrician's fax number. Thought about the gutters (×3). It's mostly real. You add two checkmarks yourself.", "effects": { "rel": 14, "energy": -8 }, "stamp": "MARKS VERIFIED" },
         { "weight": 1, "text": "Checkmark four: \"Remembered your mom's birthday.\" You remembered it. You told them. They wrote it down, which is remembering, which is a checkmark.", "effects": { "rel": -8, "energy": -8 }, "count": { "blames": 1 }, "set": ["pt:sniped"] } ] },
       { "label": "Add column four: STUFF I DID WHILE YOU SLEPT", "duration": 3, "outcomes": [
-        { "text": "It fills up fast. By breakfast the fridge is a spreadsheet. Then {kid} adds a fifth column in purple marker, directly on the fridge. It has more checkmarks than both of yours.", "effects": { "energy": 6, "rel": -12, "home": -8 }, "count": { "blames": 1 }, "set": ["pt:sniped"] } ] },
+        { "text": "It fills up fast. By breakfast the fridge is a spreadsheet. Then {kid} adds a fifth column in purple marker, directly on the fridge. It has more checkmarks than both of yours.", "effects": { "energy": 6, "rel": -12, "home": -8 }, "count": { "blames": 1 }, "set": ["pt:sniped"], "fx": "shake" } ] },
       { "label": "Wipe the board. Declare amnesty.", "duration": 2, "outcomes": [
         { "weight": 1, "text": "Clean slate. {partner} exhales like someone let out of a meeting early. For one whole day, nobody counts anything out loud.", "effects": { "rel": 10, "energy": 2 } },
         { "weight": 1, "text": "You wipe it clean. {partner} watches, uncaps the marker and adds one checkmark under nothing. \"That's for wiping it.\"", "effects": { "rel": -6, "energy": 4 }, "count": { "blames": 1 }, "set": ["pt:sniped"] } ] }
@@ -24,7 +24,7 @@
     "choices": [
       { "label": "\"And I did the four before that.\"", "duration": 3, "outcomes": [
         { "when": { "min": { "ledger": 3 } }, "text": "They count on their fingers. They run out of fingers. They roll up their sleeves without a word. You were right, and now you get to stand in a hallway being right.", "effects": { "energy": 10, "rel": -8 }, "ledger": { "bath": "partner" }, "count": { "blames": 1 }, "set": ["pt:sniped"] },
-        { "when": { "max": { "ledger": 2 } }, "text": "\"Four? Name them.\" You name three. One of them was Grandma. The tub overflows while you both scroll your phones for proof.", "effects": { "energy": -6, "rel": -12, "home": -8 }, "ledger": { "bath": "you" }, "count": { "blames": 1 }, "set": ["pt:sniped"], "stamp": "INSUFFICIENT EVIDENCE" } ] },
+        { "when": { "max": { "ledger": 2 } }, "text": "\"Four? Name them.\" You name three. One of them was Grandma. The tub overflows while you both scroll your phones for proof.", "effects": { "energy": -6, "rel": -12, "home": -8 }, "ledger": { "bath": "you" }, "count": { "blames": 1 }, "set": ["pt:sniped"], "stamp": "INSUFFICIENT EVIDENCE", "fx": "shake" } ] },
       { "label": "\"Rock, paper, scissors. Best of three.\"", "duration": 3, "tags": ["tagteam"], "outcomes": [
         { "weight": 1, "text": "Rock. Rock. Rock. Rock. You know each other too well to win anything. {kid} wanders in naked and picks {partner}, who does the good splashing.", "effects": { "rel": 10, "energy": 8 }, "ledger": { "bath": "partner" } },
         { "weight": 1, "text": "You lose on paper. Best of five: you lose on paper. You do bath, and {partner} sits on the closed toilet the whole time keeping you company, which is what you wanted.", "effects": { "rel": 12, "energy": -8 }, "ledger": { "bath": "you" } } ] },
@@ -42,7 +42,7 @@
         { "weight": 2, "text": "There's a system. It has a philosophy. Bowls face the center, \"like a congregation.\" You nod at all of it. You'll never use it. They know, and they're thrilled anyway.", "effects": { "rel": 12, "energy": -8 } },
         { "weight": 1, "text": "They start explaining, stop, and admit there's no system. They just like moving the bowls. It calms them. You hand them a bowl. They move it.", "effects": { "rel": 16, "energy": -8 }, "stamp": "IT'S JUST VIBES" } ] },
       { "label": "Confess: \"I reload yours too.\"", "duration": 3, "outcomes": [
-        { "weight": 1, "text": "A long silence. \"Since when?\" Since 2022. For three years nothing in this house has been washed the way it was loaded. You laugh until {kid} joins in without knowing why.", "effects": { "rel": 12, "energy": 4, "mood": 6 } },
+        { "weight": 1, "text": "A long silence. \"Since when?\" Since {kid} was born. For two years nothing in this house has been washed the way it was loaded. You laugh until {kid} joins in without knowing why.", "effects": { "rel": 12, "energy": 4, "mood": 6 } },
         { "weight": 1, "text": "\"I KNEW the forks were moving.\" An inquiry follows. You agree to alternate weeks. By Thursday you're both reloading again, quietly, at night.", "effects": { "rel": -6, "energy": -4 }, "count": { "blames": 1 }, "set": ["pt:sniped"] } ] },
       { "label": "Wait till they leave. Put it all back.", "duration": 5, "outcomes": [
         { "weight": 2, "text": "You restore every bowl the second their car turns the corner. The dishwasher has now been loaded three times and run zero. The pans have started to form opinions.", "effects": { "energy": 6, "home": -10 } },
@@ -110,7 +110,7 @@
         { "weight": 2, "text": "Diapers, wipes, a spare outfit, a snack that doesn't need a knife. You hand {partner} their badge without a word. The silence is itemized.", "effects": { "energy": -8, "rep": 10, "rel": -4 } },
         { "weight": 1, "text": "In the side pocket: the bag you packed last Tuesday. Two left shoes and a yogurt from a previous era. You both have a style.", "effects": { "energy": -8, "rep": 6, "rel": 8 } } ] },
       { "label": "Send it as is. Let daycare see.", "duration": 1, "outcomes": [
-        { "text": "Off it goes, cucumber and all. Daycare will see. Daycare sees everything. You feel a deep calm that will last until around lunch.", "effects": { "energy": 8 }, "schedule": [ { "event": "w_pt_bag_report", "in": 300 } ] } ] },
+        { "text": "Off it goes, cucumber and all. Daycare will see. Daycare sees everything. You feel a deep calm that will last until around lunch.", "effects": { "energy": 10 }, "schedule": [ { "event": "w_pt_bag_report", "in": 300 } ] } ] },
       { "label": "Text {partner}: \"cucumber??\"", "duration": 2, "outcomes": [
         { "weight": 1, "text": "You can't argue with that. You could, but you'd lose. You add wipes and let the cucumber ride.", "effects": { "energy": 2, "rel": 4, "rep": -4 }, "chat": [ { "from": "{partner}", "text": "they like cucumber" } ] },
         { "weight": 1, "text": "They've been standing outside the office door for twelve minutes. Security is involved. You drive the badge over. They drive the cucumber home.", "effects": { "energy": -8, "rel": 10, "rep": 4 }, "chat": [ { "from": "{partner}", "text": "WAIT is my badge in there" } ], "stamp": "BADGE RECOVERED" } ] }
@@ -127,7 +127,7 @@
       { "from": "Ms. Patty", "text": "Also we found a work badge? 🙂" } ] },
     "choices": [
       { "label": "\"{partner} packed it 🙂\"", "duration": 1, "outcomes": [
-        { "weight": 1, "text": "Ms. Patty replies \"Ha! 🙂\" and has told the other teachers by lunch. In the staff room, {partner} is now known as Cucumber.", "effects": { "rep": 4, "rel": -10 }, "count": { "blames": 1 }, "set": ["pt:sniped"] },
+        { "weight": 1, "text": "Ms. Patty replies \"Ha! 🙂\" and has told the other teachers by lunch. In the staff room, {partner} is now known as Cucumber.", "effects": { "rep": 10, "rel": -10 }, "count": { "blames": 1 }, "set": ["pt:sniped"] },
         { "weight": 1, "text": "There was a pumpkin in October. Nobody told you about the pumpkin.", "effects": { "rep": -6, "rel": -4 }, "chat": [ { "from": "Ms. Patty", "text": "Ha! 🙂 like the pumpkin in October" } ] } ] },
       { "label": "\"Thank you!! Restocking tomorrow!\"", "duration": 2, "outcomes": [
         { "text": "Tomorrow you send 40 diapers, two packs of wipes and an apology granola bar. The badge goes home in a sandwich bag, labeled BADGE.", "effects": { "rep": 6, "energy": -8 } } ] }
@@ -210,8 +210,8 @@
       { "label": "\"I owe you. Sit down.\" Take dinner.", "duration": 10, "minEnergy": 20, "tags": ["martyr"], "outcomes": [
         { "text": "You cook. They sit. Neither of you mentions the count, but you both watch it move.", "effects": { "energy": -10, "rel": 14 }, "set": ["d:handoff"], "ledger": { "dinner": "you" } } ] },
       { "label": "\"So I've been, um. Busy?\"", "duration": 3, "outcomes": [
-        { "weight": 1, "text": "\"Mm-hm.\" They set the shoe on the counter like an exhibit. {kid} points at you and says, \"BUSY,\" accurately.", "effects": { "energy": 4, "rel": -8 }, "set": ["d:handoff"] },
-        { "weight": 1, "text": "They laugh. \"You were busy. I've seen the kitchen.\" They hand you the mail. It's all bills. It's all yours now.", "effects": { "energy": -4, "rel": 6 }, "set": ["d:handoff"], "ledger": { "errands": "you" } } ] },
+        { "weight": 1, "text": "\"Mm-hm.\" They set the shoe on the counter like an exhibit. {kid} points at you and says, \"BUSY,\" accurately.", "effects": { "energy": 8, "rel": -8 }, "set": ["d:handoff"] },
+        { "weight": 1, "text": "They laugh. \"You were busy. I've seen the kitchen.\" They hand you the mail. It's all bills. It's all yours now.", "effects": { "energy": -2, "rel": 6 }, "set": ["d:handoff"], "ledger": { "errands": "you" } } ] },
       { "label": "Tag out anyway. Bold.", "duration": 10, "tags": ["tagteam"], "outcomes": [
         { "when": { "min": { "rel": 50 } }, "text": "They take {kid}. They also take a long look at you. You spend all ten minutes feeling it.", "effects": { "energy": 10, "rel": -6 }, "set": ["d:handoff"], "ledger": { "evening": "partner" } },
         { "when": { "max": { "rel": 49 } }, "text": "\"Seriously?\" They take {kid}. You take ten minutes and the full weight of the ledger, which is heavier than {kid}.", "effects": { "energy": 8, "rel": -14 }, "set": ["d:handoff", "pt:sniped"], "ledger": { "evening": "partner" }, "count": { "blames": 1 } } ] }
