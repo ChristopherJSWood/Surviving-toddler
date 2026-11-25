@@ -119,10 +119,10 @@
     "title": "Last Call for Coffee",
     "text": "The report needs two more hours of brain. You have about twenty minutes left. It's mid-afternoon: last call for coffee, if you'd like to sleep tonight.",
     "window": [
-      780,
+      760,
       960
     ],
-    "weight": 8,
+    "weight": 10,
     "oncePerWeek": true,
     "when": {
       "flags": [
