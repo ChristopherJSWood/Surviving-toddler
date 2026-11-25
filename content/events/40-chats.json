@@ -250,8 +250,8 @@
       { "from": "Trent", "text": "mostly" } ] },
     "choices": [
       { "label": "Call now. Walk straight into the \"mostly.\"", "duration": 25, "outcomes": [
-        { "weight": 1, "text": "It's about the report. Trent would like it \"punchier.\" You ask what that means. Trent says, \"You know.\" You don't. It's due at 5, and now it also has to punch.", "effects": { "energy": -2, "rep": 8 } },
-        { "weight": 1, "text": "Trent wants to know if the report can \"also be a deck.\" You say yes in a voice you don't recognize.", "effects": { "energy": -16, "rep": 12 }, "stamp": "NOW IT'S A DECK", "fx": "flash" } ] },
+        { "weight": 1, "text": "It's about the report. Trent would like it \"punchier.\" You ask what that means. Trent says, \"You know.\" You don't. It's due at 5, and now it also has to punch.", "effects": { "energy": -6, "rep": 8 } },
+        { "weight": 1, "text": "Trent wants to know if the report can \"also be a deck.\" You say yes in a voice you don't recognize.", "effects": { "energy": -12, "rep": 12 }, "stamp": "NOW IT'S A DECK", "fx": "flash" } ] },
       { "label": "\"So sorry!! Toddler emergency!\"", "duration": 2, "outcomes": [
         { "weight": 1, "text": "It works. You feel great for four seconds, until you remember {kid} is at daycare, napping, and the emergency is you.", "effects": { "energy": -6, "rep": -4 }, "chat": [ { "from": "Trent", "text": "omg of course!! family first 💛" } ] },
         { "weight": 1, "text": "Trent is very supportive. Your emergency has been noted and scheduled around.", "effects": { "energy": -14, "rep": -8 }, "chat": [ { "from": "Trent", "text": "of course! report still on for 5?" } ] } ] }

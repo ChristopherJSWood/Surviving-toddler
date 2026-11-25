@@ -635,7 +635,8 @@
             "text": "\"In a meeting till 4.\" It's 12:10. You do the math again. It's worse the second time.",
             "effects": {
               "home": -18,
-              "rel": -10
+              "rel": -10,
+              "energy": -12
             },
             "when": {
               "max": {
