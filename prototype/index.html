@@ -207,6 +207,54 @@ details.help ul { margin: 10px 0 0; padding-left: 1.1em; display: grid; gap: 6px
 .share textarea { width: 100%; min-height: 4.5em; resize: none; font: 400 var(--step--1)/1.4 var(--font-body); color: var(--ink); background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 10px; }
 footer { text-align: center; font-size: 0.8rem; color: var(--muted); padding-top: 8px; }
 
+/* v3: chats, stamps, the panic timer, reactions, screen effects */
+.chat { display: grid; gap: 6px; margin-top: 6px; }
+.chat-with { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: var(--step--1); }
+.chat-with .avatar { width: 26px; height: 26px; border-radius: 50%; background: var(--sleepy); color: #fff; display: grid; place-items: center; font-size: 0.8rem; }
+.bubble { max-width: 82%; padding: 8px 12px; border-radius: 18px; font-size: var(--step--1); line-height: 1.35; animation: pop 260ms ease both; }
+.bubble.theirs { justify-self: start; background: color-mix(in srgb, var(--muted) 18%, var(--paper)); }
+.bubble.mine { justify-self: end; background: #2f7bf6; color: #fff; }
+.bubble .from { display: block; font-size: 0.72rem; font-weight: 700; color: var(--muted); }
+.after-chat { animation: pop 300ms ease both; }
+.stamp { justify-self: center; display: inline-block; font: 700 1.45rem/1 var(--font-display); letter-spacing: 0.06em; padding: 7px 14px; border: 4px solid currentColor; border-radius: 8px; transform: rotate(-7deg); animation: slam 380ms cubic-bezier(.2, 1.6, .4, 1) .35s both; }
+.stamp.good { color: var(--good); }
+.stamp.bad { color: var(--bad); }
+.stamp.neutral { color: var(--sleepy); }
+.stamp-row { display: grid; justify-items: center; padding: 8px 0 2px; }
+.lights-out { text-align: center; font: 700 var(--step-2)/1.1 var(--font-display); letter-spacing: 0.2em; animation: pop 700ms ease both; }
+.countdown { display: grid; gap: 6px; color: var(--warn); font-weight: 800; }
+.countdown .head { display: flex; justify-content: space-between; letter-spacing: 0.2em; font-size: var(--step--1); }
+.countdown .secs { font: 700 var(--step-1)/1 var(--font-display); }
+.countdown.urgent { color: var(--bad); }
+.countdown .track { height: 10px; border-radius: 999px; background: color-mix(in srgb, var(--muted) 18%, transparent); overflow: hidden; }
+.countdown .run { height: 100%; width: 100%; background: currentColor; border-radius: 999px; }
+.reactions { display: flex; gap: 8px; align-items: center; }
+.reactions .spacer { flex: 1; }
+.reactions button { font-size: 1.4rem; padding: 6px 10px; border-radius: 12px; border: 1px solid var(--line); background: var(--paper); cursor: pointer; transition: transform 150ms ease, opacity 150ms ease; }
+.reactions button[aria-pressed="true"] { transform: scale(1.2); border-color: var(--ink); }
+.reactions button.dim { opacity: 0.35; }
+.reactions .send { font: 700 var(--step--1)/1 var(--font-body); }
+.house { display: grid; gap: 14px; }
+.house label { display: grid; gap: 6px; font-weight: 700; }
+.house input[type=text] { font: 400 var(--step-0)/1.2 var(--font-body); padding: 10px 12px; border-radius: 10px; border: 1px solid var(--line); background: var(--paper); color: var(--ink); }
+.house .opts { display: flex; flex-wrap: wrap; gap: 6px; }
+.house .opts button { padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--paper); color: var(--ink); cursor: pointer; font: 600 var(--step--1)/1 var(--font-body); }
+.house .opts button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+.house .toggle { display: flex; gap: 10px; align-items: center; font-weight: 600; }
+#app.shake { animation: shake 450ms linear both; }
+.fx-flash { position: fixed; inset: 0; background: #ff2a2a; pointer-events: none; z-index: 20; animation: flash 800ms ease-out both; }
+.confetti { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 21; }
+.confetti i { position: absolute; top: -20px; width: 10px; height: 5px; border-radius: 2px; animation: fall var(--d) ease-in var(--delay) both; }
+@keyframes pop { from { opacity: 0; transform: scale(0.6); } to { opacity: 1; transform: none; } }
+@keyframes slam { from { opacity: 0; transform: rotate(-7deg) scale(2.8); } to { opacity: 0.92; transform: rotate(-7deg) scale(1); } }
+@keyframes shake { 10% { transform: translateX(-16px); } 25% { transform: translateX(14px); } 40% { transform: translateX(-11px); } 55% { transform: translateX(8px); } 70% { transform: translateX(-4px); } 100% { transform: none; } }
+@keyframes flash { from { opacity: 0.45; } to { opacity: 0; } }
+@keyframes fall { to { transform: translate(var(--dx), 110vh) rotate(var(--spin)); } }
+@media (prefers-reduced-motion: reduce) {
+  .bubble, .after-chat, .stamp, .lights-out, #app.shake { animation: none !important; }
+  .confetti { display: none; }
+}
+
 .enter { animation: enter 260ms ease both; }
 @keyframes enter { from { transform: translateY(10px); } to { transform: none; } }
 @media (prefers-reduced-motion: reduce) {
@@ -460,6 +508,10 @@ class Game {
       outcomeIndex,
       snapped,
       text: out.text,
+      // Presentation only (the UI's verdict badge, screen effect, reply bubbles).
+      stamp: out.stamp ?? null,
+      fx: out.fx ?? null,
+      chat: out.chat ?? [],
       deltas,
       minutes,
       dayEnded: dayEnded ?? (s.day !== dayBefore ? "morning" : null),
@@ -731,6 +783,25 @@ const DATE_CHECKS = CONTENT.events.find((e) => e.id === "date_check")?.checks ??
 const FRIDAY_SLEEPY = (DATE_CHECKS.find((c) => c.when?.max?.sleepy != null)?.when.max.sleepy ?? 59) + 1;
 const FRIDAY_ENERGY = (DATE_CHECKS.find((c) => c.when?.max?.energy != null)?.when.max.energy ?? 29) + 1;
 
+// Names (docs/VOICE.md placeholders), settings and the playtest reaction log.
+const HOUSE_KEY = "bedtime-or-bust.household.v1";
+const SETTINGS_KEY = "bedtime-or-bust.settings.v1";
+const REACT_KEY = "bedtime-or-bust.reactions.v1";
+const CALL_YOU = ["Mama", "Dada", "Mommy", "Daddy", "Mom", "Dad", "Papa", "Mum"];
+const trim = (x) => String(x ?? "").trim().slice(0, 14);
+const houseComplete = (h) => !!(h && trim(h.kid) && trim(h.partner) && trim(h.me));
+function say(text) {
+  const h = storage.get(HOUSE_KEY) ?? {};
+  const kid = trim(h.kid) || "Bean";
+  const partner = trim(h.partner) || "your partner";
+  const me = trim(h.me) || "Mama";
+  return String(text ?? "").replaceAll("{kid}", kid).replaceAll("{KID}", kid.toUpperCase())
+    .replaceAll("{partner}", partner).replaceAll("{me}", me).replaceAll("{ME}", me.toUpperCase());
+}
+const sayEsc = (text) => esc(say(text));
+const settings = () => ({ timers: true, reactions: true, ...(storage.get(SETTINGS_KEY) ?? {}) });
+const reduceMotion = () => !!window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
+
 const storage = {
   get(k) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : null; } catch { return null; } },
   set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch { /* storage unavailable */ } },
@@ -738,6 +809,8 @@ const storage = {
 };
 
 let session = null; // { seed, picks, game, screen, last }
+let houseScreen = null; // "start" | "edit" while the names form is open
+let timerHandle = null;
 
 function persist() {
   if (!session) return;
@@ -767,11 +840,12 @@ function newWeek(seed = Math.floor(Math.random() * 4294967296)) {
   render();
 }
 
-function choose(i) {
+function choose(i, fromTimer = false) {
   const g = session.game;
   if (g.isOver || session.screen !== "event") return;
   const vis = g.visibleChoices();
   if (!(i >= 0 && i < vis.length) || g.isLocked(vis[i])) return;
+  if (vis[i].timeout && !fromTimer) return;
   session.last = g.choose(i);
   session.picks.push(i);
   session.screen = "outcome";
@@ -829,10 +903,10 @@ function listDetails(g) {
   const open = tasks.filter((t) => t.status === "open").length;
   const cats = [...new Set([...Object.keys(g.state.ledger.you), ...Object.keys(g.state.ledger.partner)])].sort();
   const taskRows = tasks.length
-    ? tasks.map((t) => `<div class="row"><span class="${t.status === "done" ? "done" : t.status === "expired" ? "expired" : ""}">${esc(taskDef(t.id)?.label ?? t.id)}</span><span class="muted">${esc(CONTENT.days[Math.min(4, Math.floor(t.due / 1440))].name.slice(0, 3))} ${formatClock(t.due % 1440)}</span></div>`).join("")
+    ? tasks.map((t) => `<div class="row"><span class="${t.status === "done" ? "done" : t.status === "expired" ? "expired" : ""}">${sayEsc(taskDef(t.id)?.label ?? t.id)}</span><span class="muted">${esc(CONTENT.days[Math.min(4, Math.floor(t.due / 1440))].name.slice(0, 3))} ${formatClock(t.due % 1440)}</span></div>`).join("")
     : `<div class="muted">Nothing yet. Enjoy it.</div>`;
   const ledgerRows = cats.length
-    ? cats.map((c) => `<div class="row"><span>${esc(c[0].toUpperCase() + c.slice(1))}</span><span>You ${g.state.ledger.you[c] ?? 0} · Partner ${g.state.ledger.partner[c] ?? 0}</span></div>`).join("")
+    ? cats.map((c) => `<div class="row"><span>${esc(c[0].toUpperCase() + c.slice(1))}</span><span>You ${g.state.ledger.you[c] ?? 0} · ${sayEsc("{partner}")} ${g.state.ledger.partner[c] ?? 0}</span></div>`).join("")
     : `<div class="muted">Nobody has done anything yet. Suspicious.</div>`;
   return `<details class="list"><summary>Your list (${open} open) and the ledger</summary>
     <div class="rows"><span class="eyebrow">List</span>${taskRows}<span class="eyebrow" style="margin-top:6px">Ledger</span>${ledgerRows}</div>
@@ -844,7 +918,7 @@ function upcoming(g) {
     .filter((q) => q.at > g.now)
     .sort((a, b) => a.at - b.at || a.seq - b.seq)
     .slice(0, 2)
-    .map((q) => `<span>⏳ ${esc(CONTENT.events.find((e) => e.id === q.event)?.title ?? q.event)} at ${formatClock(q.at % 1440)}</span>`)
+    .map((q) => `<span>⏳ ${sayEsc(CONTENT.events.find((e) => e.id === q.event)?.title ?? q.event)} at ${formatClock(q.at % 1440)}</span>`)
     .join("");
 }
 
@@ -896,6 +970,8 @@ function titleView() {
     <div class="actions">
       ${canResume ? `<button class="block primary" data-act="resume">Continue this week</button>` : ""}
       <button class="block ${canResume ? "" : "primary"}" data-act="new"><span class="label">${canResume ? "Start a new week" : "Start Monday"}</span></button>
+      <button class="linkish" data-act="house-edit">Names &amp; settings</button>
+      ${(storage.get(REACT_KEY) ?? []).length ? `<button class="linkish" data-act="export">Export playtest log (${storage.get(REACT_KEY).length})</button>` : ""}
     </div>
     <details class="help">
       <summary>How to play</summary>
@@ -914,6 +990,39 @@ function titleView() {
   </section>`;
 }
 
+function householdView() {
+  const h = storage.get(HOUSE_KEY) ?? { kid: "", partner: "", me: "" };
+  const st = settings();
+  const kidLabel = trim(h.kid) || "your toddler";
+  return `<section class="morning-head enter"><p class="eyebrow">Before Monday</p><h1>Who's in your house?</h1></section>
+  <form class="note house" data-form="house">
+    <label>Your toddler's name<input type="text" name="kid" maxlength="14" placeholder="Bean" value="${esc(h.kid ?? "")}" autocomplete="off"></label>
+    <label>Your partner's name<input type="text" name="partner" maxlength="14" placeholder="Sam" value="${esc(h.partner ?? "")}" autocomplete="off"></label>
+    <p class="muted small">The game calls them both “they.”</p>
+    <div><b>What does ${esc(kidLabel)} call you?</b>
+      <div class="opts">${CALL_YOU.map((o) => `<button type="button" data-act="me" data-me="${o}" aria-pressed="${h.me === o}">${o}</button>`).join("")}</div>
+    </div>
+    <label>Or something else<input type="text" name="me" maxlength="14" placeholder="Usually yelled at 5:58 AM" value="${esc(h.me ?? "")}" autocomplete="off"></label>
+    <label class="toggle"><input type="checkbox" name="timers" ${st.timers ? "checked" : ""}> Panic timers (a few seconds to decide)</label>
+    <label class="toggle"><input type="checkbox" name="reactions" ${st.reactions ? "checked" : ""}> 😂 / 😴 playtest buttons</label>
+    <button class="block primary" type="submit">${houseScreen === "start" ? "Start Monday" : "Save"}</button>
+    <button class="linkish" type="button" data-act="title">Cancel</button>
+  </form>`;
+}
+
+function chatThread(withName, messages, startDelay = 0) {
+  let delay = startDelay;
+  const rows = messages.map((m, i) => {
+    const mine = m.from === "you";
+    const prev = messages[i - 1];
+    const sender = !mine && withName && m.from !== withName && (!prev || prev.from !== m.from) ? `<span class="from">${sayEsc(m.from)}</span>` : "";
+    delay += 0.35 + Math.min(0.75, String(m.text).length * 0.01);
+    return `<div class="bubble ${mine ? "mine" : "theirs"}" style="animation-delay:${delay.toFixed(2)}s">${sender}${sayEsc(m.text)}</div>`;
+  }).join("");
+  const head = withName ? `<div class="chat-with"><span class="avatar">${esc(say(withName).slice(0, 1))}</span>${sayEsc(withName)}</div>` : "";
+  return { html: `<div class="chat">${head}${rows}</div>`, ends: delay + 0.3 };
+}
+
 function morningView(g) {
   const r = g.state.report;
   const day = CONTENT.days[g.state.day];
@@ -922,32 +1031,51 @@ function morningView(g) {
   return `<section class="morning-head enter"><p class="eyebrow">Good morning</p><h1>${esc(day.name)}</h1>${lcd(formatClock(g.state.clock))}</section>
     ${r ? `<article class="note"><p class="eyebrow">Last night</p><div class="kv">
       <div class="row"><span>You got up</span><b>${r.nightYou}×</b></div>
-      <div class="row"><span>Your partner got up</span><b>${r.nightPartner}×</b></div>
+      <div class="row"><span>${sayEsc("{partner} got up")}</span><b>${r.nightPartner}×</b></div>
       <div class="row"><span>Energy refill</span><b>+${r.refill}</b></div>
       <div class="row"><span>Sleep debt</span><b>${r.debtBefore} → ${r.debtAfter}</b></div>
-      ${r.partnerDid ? `<p class="muted small">Your partner handled "${esc(taskDef(r.partnerDid)?.label ?? r.partnerDid)}" before work.</p>` : ""}
+      ${r.partnerDid ? `<p class="muted small">${sayEsc("{partner}")} handled "${sayEsc(taskDef(r.partnerDid)?.label ?? r.partnerDid)}" before work.</p>` : ""}
     </div></article>` : ""}
-    <article class="note"><p class="eyebrow">Today</p><h2>${esc(mod.title)}</h2><p class="text">${esc(mod.text)}</p>${chips(mod.effects ?? {})}</article>
-    ${added.length ? `<article class="note"><p class="eyebrow">Added to your list</p><div class="kv">${added.map((t) => `<div class="row"><span>${esc(t.label)}</span><span class="due">by ${esc(CONTENT.days[t.dueDay].name)}</span></div>`).join("")}</div></article>` : ""}
+    <article class="note"><p class="eyebrow">Today</p><h2>${sayEsc(mod.title)}</h2><p class="text">${sayEsc(mod.text)}</p>${chips(mod.effects ?? {})}</article>
+    ${added.length ? `<article class="note"><p class="eyebrow">Added to your list</p><div class="kv">${added.map((t) => `<div class="row"><span>${sayEsc(t.label)}</span><span class="due">by ${esc(CONTENT.days[t.dueDay].name)}</span></div>`).join("")}</div></article>` : ""}
     <button class="block primary" data-act="begin">Start ${esc(day.name)}</button>`;
+}
+
+function timerOn(ev, choices) {
+  return ev.timer != null && choices.some((c) => c.timeout) && settings().timers;
 }
 
 function eventView(g) {
   const ev = g.currentEvent;
-  const tag = eyebrow(ev);
   const choices = g.visibleChoices();
+  const timed = timerOn(ev, choices);
+  const tag = timed ? ["Panic", "red", "k-red"] : eyebrow(ev);
+  const chat = ev.chat ? chatThread(ev.chat.with, ev.chat.messages) : null;
+  const after = chat && !reduceMotion() ? ` after-chat" style="animation-delay:${chat.ends.toFixed(2)}s` : "";
+  let key = 0;
   return `${hud(g)}
   <article class="note enter ${tag ? tag[2] : ""}" aria-labelledby="ev-title">
     ${tag ? `<p class="tag-line ${tag[1]}">${tag[0]}</p>` : ""}
-    <h2 id="ev-title">${esc(ev.title)}</h2>
-    <p class="text">${esc(ev.text)}</p>
+    <h2 id="ev-title">${sayEsc(ev.title)}</h2>
+    <p class="${chat ? "muted small" : "text"}">${sayEsc(ev.text)}</p>
+    ${chat ? chat.html : ""}
   </article>
-  <div class="choices">
+  ${timed ? `<div class="countdown${after}" data-timer="${ev.timer}"><div class="head"><span>DECIDE</span><span class="secs">${ev.timer}</span></div><div class="track"><div class="run"></div></div></div>` : ""}
+  <div class="choices${after}">
     ${choices.map((c, i) => {
+      if (c.timeout) return "";
       const locked = g.isLocked(c);
-      return `<button class="block${locked ? " locked" : ""}" data-act="choose" data-i="${i}" ${locked ? `aria-disabled="true"` : ""}><span class="key" aria-hidden="true">${i + 1}</span><span class="label">${esc(c.label)}</span><span class="mins">${locked ? `Too tired · needs ${c.minEnergy}` : `${c.duration} min`}</span></button>`;
+      key += 1;
+      return `<button class="block${locked ? " locked" : ""}" data-act="choose" data-i="${i}" ${locked ? `aria-disabled="true"` : ""}><span class="key" aria-hidden="true">${key}</span><span class="label">${sayEsc(c.label)}</span><span class="mins">${locked ? `Too tired · needs ${c.minEnergy}` : `${c.duration} min`}</span></button>`;
     }).join("")}
   </div>`;
+}
+
+function stampTone(r) {
+  if (r.snapped) return "bad";
+  let score = 0;
+  for (const [k, d] of Object.entries(r.deltas)) { const hib = HIGHER_IS_BETTER[k]; if (hib != null) score += hib ? d : -d; }
+  return score > 4 ? "good" : score < -4 ? "bad" : "neutral";
 }
 
 function outcomeView(g, r) {
@@ -956,22 +1084,33 @@ function outcomeView(g, r) {
     : r.dayEnded === "lifeline" ? "This day is over."
     : r.dayEnded === "morning" ? "The night is over."
     : r.minutes ? `${r.minutes} minutes pass. It's ${formatClock(g.state.clock)}.` : "";
-  const label = g.isOver ? "How did the week end?" : r.dayEnded === "lifeline" ? "Call for help" : r.dayEnded === "morning" ? "Good morning" : "Continue";
+  const label = g.isOver ? "How did the week end?" : r.dayEnded === "lifeline" ? "Call for help" : r.dayEnded === "morning" ? "Good morning" : r.dayEnded === "night" ? "Lights out" : "Continue";
+  const stamp = r.snapped ? "YOU SNAPPED" : r.stamp;
+  const replies = (r.chat ?? []).length ? chatThread(null, r.chat, 0.2).html : "";
+  const mine = (storage.get(REACT_KEY) ?? []).find((x) => x.step === g.state.step)?.kind;
   return `${hud(g)}
+  ${r.dayEnded === "night" ? `<p class="lights-out">🌙 LIGHTS OUT</p>` : ""}
   <article class="note enter${r.snapped ? " k-red" : ""}">
-    <p class="eyebrow">${esc(ev.title)}</p>
-    ${r.snapped ? `<div class="banner bad">You snapped.</div>` : ""}
-    <p class="text">${esc(r.text)}</p>
+    <p class="eyebrow">${sayEsc(ev.title)}</p>
+    <p class="text">${sayEsc(r.text)}</p>
+    ${replies}
+    ${stamp ? `<div class="stamp-row"><span class="stamp ${stampTone(r)}">${sayEsc(stamp)}</span></div>` : ""}
     ${chips(r.deltas)}
     ${footer ? `<p class="muted small">${footer}</p>` : ""}
   </article>
+  <div class="reactions">
+    ${settings().reactions ? `<button data-act="react" data-kind="laugh" aria-label="This was funny" aria-pressed="${mine === "laugh"}" class="${mine && mine !== "laugh" ? "dim" : ""}">😂</button>
+    <button data-act="react" data-kind="bored" aria-label="This dragged" aria-pressed="${mine === "bored"}" class="${mine && mine !== "bored" ? "dim" : ""}">😴</button>` : ""}
+    <span class="spacer"></span>
+    <button class="send" data-act="send">Send to ${sayEsc("{partner}")}</button>
+  </div>
   <button class="block primary" data-act="next">${label}</button>`;
 }
 
 function lifelineView() {
   const l = CONTENT.lifeline;
-  return `<section class="morning-head enter"><p class="eyebrow">Lifeline</p><h1>${esc(l.title)}</h1></section>
-    <article class="note k-love"><p class="text">${esc(l.text)}</p>${chips(l.effects)}<p class="muted small">That was your one rescue this week. The next loss ends it.</p></article>
+  return `<section class="morning-head enter"><p class="eyebrow">Lifeline</p><h1>${sayEsc(l.title)}</h1></section>
+    <article class="note k-love"><p class="text">${sayEsc(l.text)}</p>${chips(l.effects)}<p class="muted small">That was your one rescue this week. The next loss ends it.</p></article>
     <button class="block primary" data-act="lifeline">Go to bed</button>`;
 }
 
@@ -979,7 +1118,7 @@ function shareText(g) {
   const e = g.ending;
   const m = g.state.meters;
   const verdict = e.kind === "win" ? "made it to date night" : "didn't make it to date night";
-  return `I ${verdict} in Bedtime or Bust: "${e.title}". My style: ${g.style().title}.\nEnergy ${m.energy} · Relationship ${m.rel} · House ${m.home} · Reputation ${m.rep}`;
+  return `I ${verdict} in Bedtime or Bust: "${say(e.title)}". My style: ${say(g.style().title)}.\nEnergy ${m.energy} · Relationship ${m.rel} · House ${m.home} · Reputation ${m.rep}`;
 }
 
 function endingView(g) {
@@ -987,24 +1126,24 @@ function endingView(g) {
   const st = g.style();
   const s = g.state;
   const sum = (o) => Object.values(o).reduce((a, b) => a + b, 0);
-  const rows = CONTENT.counters.map((c) => `<div class="row"><span>${esc(c.label)}</span><span>${s.counters[c.id] ?? 0}</span></div>`).join("");
+  const rows = CONTENT.counters.map((c) => `<div class="row"><span>${sayEsc(c.label)}</span><span>${s.counters[c.id] ?? 0}</span></div>`).join("");
   return `<section class="ending-head enter">
-    <span class="badge ${e.kind}">${e.kind === "win" ? "Week complete" : "Week over"}</span>
-    <h1>${esc(e.title)}</h1>
+    <div class="stamp-row"><span class="stamp ${e.kind === "win" ? "good" : "bad"}">${e.kind === "win" ? "WEEK: SURVIVED" : "WEEK: OVER"}</span></div>
+    <h1>${sayEsc(e.title)}</h1>
   </section>
   <article class="note">
-    <p class="text">${esc(e.text)}</p>
+    <p class="text">${sayEsc(e.text)}</p>
     ${e.kind === "win" ? `<p class="score">${g.score()} <span class="muted small">points</span></p>` : ""}
     <p class="muted small">Ended ${esc(CONTENT.days[s.day].name)} at ${formatClock(s.clock)} after ${s.step} decisions.</p>
   </article>
-  <article class="note k-love"><p class="tag-line love">Your parenting style</p><h2>${esc(st.title)}</h2><p class="text">${esc(st.text)}</p></article>
+  <article class="note k-love"><p class="tag-line love">Your parenting style</p><h2>${sayEsc(st.title)}</h2><p class="text">${sayEsc(st.text)}</p></article>
   <section class="receipt" aria-label="Weekly performance review">
     <h3>WEEKLY PERFORMANCE REVIEW</h3>
     <div class="rule"></div>
     ${rows}
     <div class="rule"></div>
-    <div class="row"><span>NIGHT WAKE-UPS (YOU · P)</span><span>${s.ledger.you.night ?? 0} · ${s.ledger.partner.night ?? 0}</span></div>
-    <div class="row"><span>CHORES (YOU · P)</span><span>${sum(s.ledger.you)} · ${sum(s.ledger.partner)}</span></div>
+    <div class="row"><span>NIGHT WAKE-UPS (YOU · ${sayEsc("{partner}").toUpperCase()})</span><span>${s.ledger.you.night ?? 0} · ${s.ledger.partner.night ?? 0}</span></div>
+    <div class="row"><span>CHORES (YOU · ${sayEsc("{partner}").toUpperCase()})</span><span>${sum(s.ledger.you)} · ${sum(s.ledger.partner)}</span></div>
     <div class="row"><span>DAYS GRANDMA SAVED</span><span>${s.lostDays}</span></div>
     <div class="rule"></div>
     <div class="row total"><span>RATING</span><span>${e.kind === "win" ? "MEETS EXPECTATIONS" : "SEE ME"}</span></div>
@@ -1018,10 +1157,57 @@ function endingView(g) {
   <button class="linkish" data-act="title">Back to title</button>`;
 }
 
+// Screen effects for an outcome or the ending: shake, red flash, confetti.
+function effects(kinds) {
+  if (kinds.includes("shake") && !reduceMotion()) { app.classList.remove("shake"); void app.offsetWidth; app.classList.add("shake"); }
+  if (kinds.includes("flash")) {
+    const f = document.createElement("div");
+    f.className = "fx-flash";
+    f.addEventListener("animationend", () => f.remove());
+    document.body.append(f);
+  }
+  if (kinds.includes("confetti") && !reduceMotion()) {
+    const box = document.createElement("div");
+    box.className = "confetti";
+    const colors = ["#ff5fa2", "#ffb347", "#ffe066", "#6ee7b7", "#818cf8", "#2dd4bf", "#f87171"];
+    box.innerHTML = Array.from({ length: 70 }, () => {
+      const x = Math.random() * 100, dx = Math.round(Math.random() * 120 - 60), spin = Math.round(240 + Math.random() * 660);
+      return `<i style="left:${x}%;background:${colors[Math.floor(Math.random() * colors.length)]};--dx:${dx}px;--spin:${spin}deg;--d:${(1.3 + Math.random()).toFixed(2)}s;--delay:${(Math.random() * 0.35).toFixed(2)}s"></i>`;
+    }).join("");
+    document.body.append(box);
+    setTimeout(() => box.remove(), 3200);
+  }
+}
+
+// Panic countdown: when it runs out, the card's timeout choice happens.
+function startTimer() {
+  const el = app.querySelector(".countdown");
+  if (!el || !session) return;
+  const total = Number(el.dataset.timer) * 1000;
+  const lead = parseFloat(el.style.animationDelay || "0") * 1000;
+  const t0 = performance.now() + lead;
+  const step = session.game.state.step;
+  timerHandle = setInterval(() => {
+    if (!session || session.screen !== "event" || session.game.state.step !== step) { clearInterval(timerHandle); return; }
+    const left = Math.max(0, total - Math.max(0, performance.now() - t0));
+    el.querySelector(".run").style.width = `${(100 * left) / total}%`;
+    const secs = Math.ceil(left / 1000);
+    el.querySelector(".secs").textContent = secs;
+    el.classList.toggle("urgent", secs <= 2);
+    if (left <= 0) {
+      clearInterval(timerHandle);
+      const idx = session.game.visibleChoices().findIndex((c) => c.timeout);
+      if (idx >= 0) choose(idx, true);
+    }
+  }, 50);
+}
+
 function render() {
+  clearInterval(timerHandle);
   let html;
   const g = session?.game;
-  if (!session) html = titleView();
+  if (houseScreen) html = householdView();
+  else if (!session) html = titleView();
   else if (session.screen === "morning") html = morningView(g);
   else if (session.screen === "lifeline") html = lifelineView();
   else if (session.screen === "outcome" && session.last) html = outcomeView(g, session.last);
@@ -1030,6 +1216,14 @@ function render() {
   document.body.classList.toggle("night", !!g && g.state.phase === "night" && !g.isOver && session.screen !== "morning");
   app.innerHTML = html;
   window.scrollTo({ top: 0 });
+  if (!houseScreen && session?.screen === "outcome" && session.last) {
+    const r = session.last;
+    effects(r.snapped ? ["shake", "flash"] : r.fx ? [r.fx] : []);
+  } else if (!houseScreen && session && (session.screen === "ending" || g?.isOver)) {
+    setTimeout(() => effects(g.ending.kind === "win" ? ["confetti"] : ["shake", "flash"]), 500);
+  } else if (!houseScreen && session?.screen === "event") {
+    startTimer();
+  }
   if (session && (session.screen === "event" || session.screen === "outcome")) {
     app.querySelector(".choices .block:not(.locked), .block.primary")?.focus({ preventScroll: true });
   }
@@ -1039,12 +1233,41 @@ app.addEventListener("click", async (ev) => {
   const btn = ev.target.closest("[data-act]");
   if (!btn) return;
   const act = btn.dataset.act;
-  if (act === "new") newWeek();
+  if (act === "new") { if (houseComplete(storage.get(HOUSE_KEY))) newWeek(); else { houseScreen = "start"; render(); } }
+  else if (act === "house-edit") { houseScreen = "edit"; render(); }
+  else if (act === "me") {
+    const input = app.querySelector('input[name="me"]');
+    input.value = btn.dataset.me;
+    app.querySelectorAll('[data-act="me"]').forEach((b) => b.setAttribute("aria-pressed", String(b === btn)));
+  }
+  else if (act === "react") {
+    const g = session.game, r = session.last;
+    const log = (storage.get(REACT_KEY) ?? []).filter((x) => x.step !== g.state.step);
+    const had = (storage.get(REACT_KEY) ?? []).find((x) => x.step === g.state.step)?.kind;
+    if (had !== btn.dataset.kind) log.push({ at: new Date().toISOString(), day: g.state.day, step: g.state.step, card: r.eventId, title: say(CONTENT.events.find((e) => e.id === r.eventId)?.title ?? r.eventId), choice: r.choiceIndex, outcome: r.outcomeIndex, kind: btn.dataset.kind });
+    storage.set(REACT_KEY, log.slice(-5000));
+    const mine = log.find((x) => x.step === g.state.step)?.kind;
+    app.querySelectorAll('[data-act="react"]').forEach((b) => { b.setAttribute("aria-pressed", String(b.dataset.kind === mine)); b.classList.toggle("dim", !!mine && b.dataset.kind !== mine); });
+  }
+  else if (act === "send") {
+    const r = session.last;
+    const text = `${say(CONTENT.events.find((e) => e.id === r.eventId)?.title ?? "")}\n\n${say(r.text)}\n\n(Bedtime or Bust)`;
+    try { if (navigator.share) await navigator.share({ text }); else { await navigator.clipboard.writeText(text); btn.textContent = "Copied"; } } catch { /* cancelled */ }
+  }
+  else if (act === "export") {
+    const log = storage.get(REACT_KEY) ?? [];
+    const q = (v) => `"${String(v).replaceAll('"', '""')}"`;
+    const csv = ["time,day,card,title,choice,outcome,reaction", ...log.map((x) => [x.at, x.day, q(x.card), q(x.title), x.choice, x.outcome, x.kind].join(","))].join("\n");
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob([csv], { type: "text/csv" }));
+    a.download = "bedtime-or-bust-playtest.csv";
+    a.click();
+  }
   else if (act === "resume") { session = rebuild(storage.get(SAVE_KEY)); render(); }
   else if (act === "begin" || act === "lifeline") { session.screen = "event"; persist(); render(); }
   else if (act === "choose") choose(Number(btn.dataset.i));
   else if (act === "next") next();
-  else if (act === "title") { session = null; render(); }
+  else if (act === "title") { houseScreen = null; session = null; render(); }
   else if (act === "copy") {
     const label = document.getElementById("copy-label");
     try {
@@ -1059,10 +1282,25 @@ app.addEventListener("click", async (ev) => {
   }
 });
 
+app.addEventListener("submit", (ev) => {
+  const form = ev.target.closest('[data-form="house"]');
+  if (!form) return;
+  ev.preventDefault();
+  const data = new FormData(form);
+  const h = { kid: trim(data.get("kid")), partner: trim(data.get("partner")), me: trim(data.get("me")) };
+  if (!houseComplete(h)) { form.querySelector("input:placeholder-shown, input[value='']")?.focus(); return; }
+  storage.set(HOUSE_KEY, h);
+  storage.set(SETTINGS_KEY, { timers: !!data.get("timers"), reactions: !!data.get("reactions") });
+  const starting = houseScreen === "start";
+  houseScreen = null;
+  if (starting) newWeek(); else render();
+});
+
 document.addEventListener("keydown", (ev) => {
-  if (!session || session.screen !== "event" || ev.metaKey || ev.ctrlKey || ev.altKey) return;
+  if (houseScreen || !session || session.screen !== "event" || ev.metaKey || ev.ctrlKey || ev.altKey) return;
   const n = Number(ev.key);
-  if (n >= 1 && n <= 4) { ev.preventDefault(); choose(n - 1); }
+  const buttons = [...app.querySelectorAll('.choices [data-act="choose"]')];
+  if (n >= 1 && n <= buttons.length) { ev.preventDefault(); choose(Number(buttons[n - 1].dataset.i)); }
 });
 
 if (typeof window.claude?.hot?.snapshot === "function") {
