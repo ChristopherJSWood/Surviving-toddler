@@ -327,7 +327,7 @@
             "weight": 2,
             "text": "\"Happy to discuss!\" is corporate for \"I know.\" Trent replies with a thumbs-up and nothing else. A thumbs-up can mean anything. This one means Monday.",
             "effects": {
-              "energy": 12,
+              "energy": -6,
               "rep": -20
             },
             "fx": "flash"
@@ -382,7 +382,8 @@
             "effects": {
               "rep": 10,
               "home": -8,
-              "mood": 8
+              "mood": 8,
+              "energy": -8
             }
           },
           {
@@ -391,7 +392,7 @@
             "effects": {
               "rep": -12,
               "home": -6,
-              "energy": 6
+              "energy": -6
             },
             "stamp": "SUBJECT: (CRY)",
             "fx": "flash"
@@ -682,7 +683,8 @@
             "effects": {
               "energy": -12,
               "home": 14,
-              "mood": -10
+              "mood": -10,
+              "rel": 6
             },
             "set": [
               "bunbun:washed"
@@ -698,7 +700,8 @@
             "effects": {
               "energy": -16,
               "home": 14,
-              "mood": -14
+              "mood": -14,
+              "rel": 4
             },
             "set": [
               "bunbun:washed"
@@ -763,7 +766,8 @@
             "effects": {
               "energy": -6,
               "home": 9,
-              "rep": -12
+              "rep": -12,
+              "mood": 10
             },
             "ledger": {
               "laundry": "you"
@@ -1045,7 +1049,7 @@
             "weight": 2,
             "text": "You swap your shoulder for a cold teether and say it in the voice of a flight attendant during turbulence. They chomp the teether instead. Lesson received, for about ten minutes.",
             "effects": {
-              "mood": 12,
+              "mood": 14,
               "energy": -8
             }
           },
@@ -1098,7 +1102,8 @@
             "effects": {
               "mood": 10,
               "rep": -4,
-              "home": -8
+              "home": -8,
+              "energy": -6
             },
             "count": {
               "snacks": 1
@@ -1235,7 +1240,8 @@
             "text": "You explain, calmly, that nobody puts whiskey on a toddler now. Grandma nods. \"Oh, I know. I'm not going to DO it. I'm just saying it worked.\" The bottle stays shut. The point stays on the table.",
             "effects": {
               "rep": 9,
-              "energy": -12
+              "energy": -12,
+              "rel": 6
             }
           },
           {
@@ -1270,6 +1276,13 @@
               "energy": 8,
               "rep": -8
             }
+          },
+          {
+            "weight": 1,
+            "text": "\"Oh, wonderfully,\" says Grandma, and then explains how it worked, and then explains 1987, for forty minutes, with digressions.",
+            "effects": {
+              "energy": -10
+            }
           }
         ]
       },
@@ -1282,12 +1295,13 @@
         "outcomes": [
           {
             "weight": 2,
-            "text": "You sleep 58 minutes. You wake to a toddler who has eaten three cookies and learned a new word. You don't know which word. Daycare will tell you.",
+            "text": "You sleep 58 minutes. You wake to a toddler who has eaten three cookies and learned a new word. You don't know which word. {partner} will find out first.",
             "effects": {
               "energy": 22,
               "mood": 8,
               "home": -6,
-              "rep": -12
+              "rep": -12,
+              "rel": -6
             },
             "count": {
               "snacks": 3
@@ -1348,7 +1362,8 @@
             "text": "\"Of course, sweetheart,\" says Grandma, and takes it down, in a voice so sincere you check it for traps. There are no traps. You're too tired to trust that.",
             "effects": {
               "rep": 12,
-              "energy": -6
+              "energy": -6,
+              "rel": 6
             }
           }
         ]
@@ -1362,7 +1377,7 @@
             "text": "Spin control. Two parents like your comment. One replies \"lol the spaghetti 😂.\" You've made it a thread. Threads are forever.",
             "effects": {
               "rep": -12,
-              "energy": 4
+              "energy": -6
             }
           },
           {
@@ -1663,7 +1678,7 @@
             "text": "They were sure.",
             "effects": {
               "home": -22,
-              "energy": 4
+              "energy": -10
             },
             "fx": "shake"
           },
@@ -1723,7 +1738,8 @@
             "text": "They accept the terms, sulk and go anyway. One sticker. You feel like a central banker who did the hard thing.",
             "effects": {
               "home": 12,
-              "mood": -8
+              "mood": -8,
+              "energy": 6
             },
             "stamp": "RATES HELD"
           },
@@ -1878,7 +1894,8 @@
             "text": "Fourteen towels. The living room looks like a spa that's given up. It works: everything lands on terry cloth. You now have fourteen towels to wash.",
             "effects": {
               "home": 8,
-              "energy": -12
+              "energy": -12,
+              "rel": 6
             },
             "ledger": {
               "laundry": "you"
@@ -2014,7 +2031,8 @@
             "text": "Stain stick, steam, a second pass. The crease surrenders. The stain fades into something you could call a pattern, in low light, which the restaurant will provide.",
             "effects": {
               "energy": -10,
-              "rep": 8
+              "rep": 8,
+              "rel": 8
             },
             "ledger": {
               "laundry": "you"
@@ -2042,7 +2060,7 @@
             "weight": 1,
             "text": "The crease is 60% gone. The stain is now baked in, permanently. You'll keep an arm over it all night like a nervous senator.",
             "effects": {
-              "energy": 4,
+              "energy": -4,
               "rep": -8
             }
           },
@@ -2225,7 +2243,8 @@
             "effects": {
               "home": 18,
               "energy": -16,
-              "rep": 4
+              "rep": 4,
+              "rel": 6
             }
           },
           {
@@ -2257,7 +2276,8 @@
             "text": "Doors closed. At 7:20 the sitter texts, \"which door is the bathroom 😅\" They've opened them all. They've seen everything.",
             "effects": {
               "energy": 6,
-              "rep": -10
+              "rep": -10,
+              "rel": -6
             },
             "fx": "flash"
           }
@@ -2268,10 +2288,11 @@
         "duration": 30,
         "outcomes": [
           {
-            "text": "You lie down \"for ten minutes\" and get up at 1:40, rested and certain you never fell asleep. The house is a disaster. You are a new person in it.",
+            "text": "You lie down \"for ten minutes\" and get up at 1:40, rested and certain you never fell asleep. {partner} walks in at 5 to a disaster with a new person standing in it.",
             "effects": {
               "energy": 16,
-              "home": -10
+              "home": -10,
+              "rel": -6
             }
           }
         ]

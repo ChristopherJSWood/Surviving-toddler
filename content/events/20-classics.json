@@ -212,11 +212,12 @@
           },
           {
             "weight": 1,
-            "text": "{partner} does bath. They also do the floor, the hallway and their own shirt. It's a disaster, but it's their disaster, and you are horizontal.",
+            "text": "{partner} does bath. They also do the floor, the hallway and their own shirt. It's a disaster, but it's their disaster, and you are horizontal. The hallway will come up tomorrow.",
             "effects": {
               "sleepy": 10,
               "energy": 12,
-              "home": -8
+              "home": -8,
+              "rel": -4
             },
             "ledger": {
               "bath": "partner"
@@ -738,7 +739,8 @@
             "effects": {
               "rep": 12,
               "energy": -9,
-              "mood": -12
+              "mood": -12,
+              "rel": 8
             }
           },
           {
@@ -747,7 +749,8 @@
             "effects": {
               "rep": -6,
               "mood": 12,
-              "energy": -6
+              "energy": -6,
+              "rel": 6
             },
             "stamp": "NEW MANAGEMENT"
           }
@@ -975,9 +978,9 @@
         "outcomes": [
           {
             "weight": 1,
-            "text": "Ms. Patty says, \"Cozy!\" in the voice teachers use for things they'll be mentioning to the director.",
+            "text": "Ms. Patty says, \"Cozy!\" in the voice teachers use for things they'll mention to the director. The director's email arrives at 10:14. It's friendly. It's three paragraphs.",
             "effects": {
-              "energy": 8,
+              "energy": -6,
               "mood": 6,
               "rep": -10
             }
@@ -1020,7 +1023,8 @@
             "effects": {
               "home": 12,
               "energy": -12,
-              "rep": 4
+              "rep": 4,
+              "mood": 6
             }
           },
           {
@@ -1028,7 +1032,8 @@
             "text": "Done. Then you see it: one buckle piece, on the floor, unexplained. It goes in at step one. You start again, because that one matters.",
             "effects": {
               "home": 10,
-              "energy": -18
+              "energy": -18,
+              "mood": 4
             }
           }
         ]
@@ -1039,10 +1044,11 @@
         "outcomes": [
           {
             "weight": 2,
-            "text": "Eighty wipes later, it's clean from a distance. It will smell faintly of today until the day you sell it.",
+            "text": "Eighty wipes later, it's clean from a distance. It will smell faintly of today until the day you sell it. {partner} is driving it tomorrow.",
             "effects": {
               "home": -10,
-              "energy": 6
+              "energy": 6,
+              "rel": -6
             }
           },
           {
@@ -1050,7 +1056,7 @@
             "text": "Seventy-nine wipes in, you find more. It's in the cup holder. How is it in the cup holder? You put the windows down and stop asking questions.",
             "effects": {
               "home": -14,
-              "energy": 4
+              "energy": -4
             },
             "stamp": "CUP HOLDER: COMPROMISED",
             "fx": "flash"
@@ -1128,7 +1134,8 @@
             "effects": {
               "rep": 12,
               "mood": -6,
-              "sleepy": 8
+              "sleepy": 8,
+              "energy": 6
             }
           },
           {
@@ -1151,11 +1158,24 @@
         ],
         "outcomes": [
           {
+            "weight": 1,
             "text": "Your emergency apple has been in the bag since Sunday. It has more bruise than apple. The narrator says \"ooh, an APPLE\" with real effort. Still: an apple.",
             "effects": {
               "rep": 9,
               "mood": -6,
               "energy": -12,
+              "sleepy": 10
+            },
+            "count": {
+              "snacks": 1
+            }
+          },
+          {
+            "weight": 1,
+            "text": "{kid} trades the wood chip for the apple, takes one bite and offers the rest to the narrator's child. The narrator has nothing to say. For once.",
+            "effects": {
+              "mood": 10,
+              "energy": -8,
               "sleepy": 10
             },
             "count": {
@@ -1170,10 +1190,10 @@
         "outcomes": [
           {
             "weight": 1,
-            "text": "The narrator narrates you: \"Some grown-ups need a little break, don't they?\" Everyone hears it. Everyone.",
+            "text": "The narrator narrates you: \"Some grown-ups need a little break, don't they?\" Everyone hears it. You spend the next twenty minutes pushing a swing with enormous energy, for the record.",
             "effects": {
               "rep": -18,
-              "energy": 10,
+              "energy": -8,
               "sleepy": 8
             },
             "fx": "flash"
@@ -1183,7 +1203,7 @@
             "text": "The narrator sits beside you, drops the voice and says, \"I hate this. Do you hate this?\" You trade numbers. You'll never text. It helps anyway.",
             "effects": {
               "rep": 9,
-              "energy": 12,
+              "energy": 16,
               "sleepy": 8
             },
             "stamp": "UNLIKELY ALLIANCE"
@@ -1337,7 +1357,7 @@
             "weight": 2,
             "text": "One tickle at the ribs and they fold like a lawn chair. Buckled in four seconds. The SUV driver nods once: a professional acknowledging a professional.",
             "effects": {
-              "mood": 6,
+              "mood": 10,
               "energy": -6,
               "rep": 10
             },
@@ -1386,6 +1406,7 @@
         ],
         "outcomes": [
           {
+            "weight": 2,
             "text": "The fruit snack appears. The plank bends instantly. They were never rigid. They were negotiating.",
             "effects": {
               "mood": 12,
@@ -1396,6 +1417,17 @@
               "snacks": 1
             },
             "stamp": "TERMS ACCEPTED"
+          },
+          {
+            "weight": 1,
+            "text": "The fruit snack appears. The plank bends, accepts it and goes rigid again. \"Two.\" The price of a car seat has doubled in four seconds, in the rain.",
+            "effects": {
+              "mood": 8,
+              "energy": -6
+            },
+            "count": {
+              "snacks": 1
+            }
           }
         ]
       }
@@ -1454,11 +1486,26 @@
         ],
         "outcomes": [
           {
+            "weight": 2,
             "text": "Silence. {kid} watches a stranger unbox eggs. You eat a hot meal, slowly, like a citizen. The next table gives you a look that's practically a review.",
             "effects": {
               "mood": 8,
               "energy": 12,
               "rep": -10
+            },
+            "set": [
+              "d:screen"
+            ],
+            "count": {
+              "screen": 30
+            }
+          },
+          {
+            "weight": 1,
+            "text": "Silence, for 31 minutes. Then you ask for the phone back. The negotiation takes longer than the meal, and you lose, in front of the next table.",
+            "effects": {
+              "mood": -12,
+              "energy": 4
             },
             "set": [
               "d:screen"
@@ -1549,7 +1596,8 @@
               "home": 14,
               "energy": -16,
               "rep": 6,
-              "mood": 6
+              "mood": 6,
+              "rel": 6
             },
             "set": [
               "anchored"
@@ -1562,7 +1610,8 @@
             "effects": {
               "home": 6,
               "energy": -16,
-              "mood": 6
+              "mood": 6,
+              "rel": 6
             },
             "set": [
               "anchored"
@@ -1624,7 +1673,7 @@
             "text": "Eleven seconds of pure magic before they spot you and say \"cheese\" again. You post it. 312 likes. It's the most you've heard from other adults since Sunday.",
             "effects": {
               "rep": 12,
-              "energy": -6
+              "energy": 8
             }
           },
           {
@@ -1649,7 +1698,7 @@
             "weight": 2,
             "text": "You watch. You don't post. It's lovely, and nobody will ever know it happened, which bothers you more than it should.",
             "effects": {
-              "energy": 4,
+              "energy": -4,
               "mood": 10,
               "rep": -8
             }
@@ -1671,10 +1720,11 @@
         "outcomes": [
           {
             "weight": 1,
-            "text": "\"I put my phone away to be present,\" you type, on your phone. 214 likes. You check all 214.",
+            "text": "\"I put my phone away to be present,\" you type, on your phone. 214 likes, one of them from {partner} in the next room. You check all 214.",
             "effects": {
               "rep": 10,
-              "energy": -8
+              "energy": 6,
+              "rel": 6
             }
           },
           {
@@ -1717,11 +1767,12 @@
           },
           {
             "weight": 1,
-            "text": "Diagnosis: \"broken.\" Treatment: 41 bandages, real ones, from the good box, all on one knee. You're healed. The bandage budget is not.",
+            "text": "Diagnosis: \"broken.\" Treatment: 41 bandages, real ones, from the good box, all on one knee. You're healed. The box is empty, which {partner} will discover at the worst possible time.",
             "effects": {
               "energy": 10,
               "mood": 12,
-              "home": -8
+              "home": -8,
+              "rel": -4
             }
           }
         ]
@@ -1768,9 +1819,9 @@
           },
           {
             "weight": 1,
-            "text": "Dr. {kid} nods, writes something on your arm in marker and says, \"Come back Tuesday.\" It's not washable. You'll be wearing the appointment all week.",
+            "text": "Dr. {kid} nods, writes something on your arm in marker and says, \"Come back Tuesday.\" You scrub it for ten minutes. It's not washable. You'll be wearing the appointment all week.",
             "effects": {
-              "energy": 4,
+              "energy": -6,
               "mood": 8,
               "rep": -10
             }
@@ -1861,7 +1912,8 @@
             "effects": {
               "rep": 8,
               "home": 10,
-              "energy": -6
+              "energy": -6,
+              "rel": 6
             },
             "ledger": {
               "errands": "you"
@@ -1873,7 +1925,8 @@
             "effects": {
               "rep": 6,
               "home": 10,
-              "energy": -10
+              "energy": -10,
+              "rel": 6
             },
             "ledger": {
               "errands": "you"
@@ -1991,7 +2044,7 @@
             "effects": {
               "rep": 9,
               "mood": -12,
-              "energy": -9,
+              "energy": 4,
               "sleepy": 6
             }
           },
@@ -2017,7 +2070,8 @@
             "effects": {
               "rep": -12,
               "mood": 12,
-              "sleepy": 6
+              "sleepy": 6,
+              "energy": -6
             },
             "stamp": "THE TRUTH IS OUT"
           },
@@ -2134,9 +2188,9 @@
         "duration": 2,
         "outcomes": [
           {
-            "text": "Broccoli is now a sometimes food. \"Sometimes\" is a legal term meaning \"when they're 30.\" Dinner goes great.",
+            "text": "Broccoli is now a sometimes food. \"Sometimes\" is a legal term meaning \"when they're 30.\" Dinner goes great. You spend 11 PM reading about iron.",
             "effects": {
-              "energy": 9,
+              "energy": -6,
               "mood": 12,
               "rep": -12
             }
@@ -2211,10 +2265,11 @@
         "duration": 2,
         "outcomes": [
           {
-            "text": "For forty minutes you're unreachable, like it's 1997. It's wonderful. Then the group chat assumes you're dead and someone calls your mother.",
+            "text": "For forty minutes you're unreachable, like it's 1997. It's wonderful. Then the group chat assumes the worst and someone calls your mother, who calls {partner}, at work.",
             "effects": {
               "energy": 14,
-              "rep": -16
+              "rep": -16,
+              "rel": -8
             }
           }
         ]
@@ -2281,6 +2336,14 @@
             "effects": {
               "energy": 9,
               "mood": 12
+            }
+          },
+          {
+            "weight": 1,
+            "text": "You come out after ninety seconds. {kid} has emptied the crisper drawer onto the kitchen floor and is lining up carrots by height. One of them is a celery.",
+            "effects": {
+              "energy": -6,
+              "mood": 8
             }
           }
         ]

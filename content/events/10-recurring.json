@@ -200,10 +200,11 @@
         "outcomes": [
           {
             "weight": 1,
-            "text": "Eight minutes of brewing. In that time {kid} takes every magnet off the fridge and lines them up on the floor, by size. You drink a hot, fresh coffee and admire the exhibit.",
+            "text": "Eight minutes of brewing. In that time {kid} takes every magnet off the fridge and lines them up on the floor, by size. You move one. That was a mistake. You drink a hot, fresh coffee during the appeal.",
             "effects": {
               "energy": 16,
-              "home": -6
+              "home": -6,
+              "mood": -8
             },
             "set": [
               "coffee:2"
@@ -296,10 +297,11 @@
         "outcomes": [
           {
             "weight": 1,
-            "text": "You find three socks, the remote, a crayon in the butter and a shoelace tied, tightly, to a chair. No mug. The house gives you everything except what you asked for.",
+            "text": "You find three socks, {partner}'s missing earbud, a crayon in the butter and a shoelace tied, tightly, to a chair. No mug. The house gives you everything except what you asked for.",
             "effects": {
               "home": 12,
-              "energy": -10
+              "energy": -10,
+              "rel": 8
             },
             "set": [
               "coffee:3",
@@ -1276,7 +1278,8 @@
             "text": "You lift {kid} to the panel. They press 1 through 6. The elevator stops at every floor. The man in the fleece vest rides along in silence, gets off at 6 and waits for the next one.",
             "effects": {
               "mood": 14,
-              "rep": -10
+              "rep": -10,
+              "energy": -6
             },
             "set": [
               "tantrum:5"
@@ -1288,10 +1291,11 @@
           },
           {
             "weight": 1,
-            "text": "They press 1 through 6, then the red one. The alarm is very loud and very brief. The librarian has a face for this. It has been used before.",
+            "text": "They press 1 through 6, then the red one. The alarm is very loud and very brief. The librarian has a face for this. You spend the walk to the car drafting an apology to a building.",
             "effects": {
               "mood": 10,
-              "rep": -18
+              "rep": -18,
+              "energy": -10
             },
             "set": [
               "tantrum:5"
@@ -1866,10 +1870,25 @@
         ],
         "outcomes": [
           {
+            "weight": 2,
             "text": "A cracker, no admission of wrongdoing. {kid} accepts the settlement and eats it. The nuggets go in the bin. Their lawyer will open with crackers next time.",
             "effects": {
               "mood": 10,
               "home": -4
+            },
+            "set": [
+              "food:2"
+            ],
+            "count": {
+              "snacks": 1
+            }
+          },
+          {
+            "weight": 1,
+            "text": "A cracker, no admission of wrongdoing. {kid} eats it, then demands one cracker per nugget, retroactively. There were nine nuggets. Their lawyer is very good.",
+            "effects": {
+              "mood": -6,
+              "energy": -6
             },
             "set": [
               "food:2"
@@ -1939,10 +1958,11 @@
         "duration": 2,
         "outcomes": [
           {
-            "text": "Toast, rice, noodles, a pale apple slice. Everything gets eaten. The daycare form asks about \"variety in the diet.\" You write \"tan.\"",
+            "text": "Toast, rice, noodles, a pale apple slice. Everything gets eaten. The daycare form asks about \"variety in the diet.\" You stare at that line for twenty minutes, then write \"tan.\"",
             "effects": {
               "mood": 14,
-              "rep": -10
+              "rep": -10,
+              "energy": -6
             },
             "set": [
               "food:3"
@@ -2015,10 +2035,11 @@
         "outcomes": [
           {
             "weight": 2,
-            "text": "The dog eats everything, carrots included, face-first. It's the best they've eaten all week, and it was served on the floor. Draw your own conclusions.",
+            "text": "The dog eats everything, carrots included, face-first, hair included. It's the best they've eaten all week, and it was served on the floor. Draw your own conclusions at bath time.",
             "effects": {
               "mood": 14,
-              "home": -8
+              "home": -8,
+              "energy": -6
             },
             "set": [
               "food:4"
@@ -2189,10 +2210,11 @@
         "duration": 2,
         "outcomes": [
           {
-            "text": "Pea after pea, each with a \"No thank you.\" Around pea 40 you stop hearing the thank-yous. The last pea will surface in July, in the dryer.",
+            "text": "Pea after pea, each with a \"No thank you.\" Around pea 40 you stop hearing the thank-yous. {kid} has eaten nothing and will bring it up at 4 PM. The last pea will surface in July, in the dryer.",
             "effects": {
               "home": -14,
-              "energy": 6
+              "energy": 6,
+              "mood": -8
             },
             "set": [
               "food:5"
@@ -2311,11 +2333,23 @@
         "duration": 2,
         "outcomes": [
           {
+            "weight": 2,
             "text": "Cereal, poured with the dignity of a lawyer leaving through the courthouse back door. Two bowls. The pasta goes back in the fridge, to be refused again tomorrow.",
             "effects": {
               "mood": 12,
               "rep": -6,
               "energy": 4
+            },
+            "set": [
+              "food:6"
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "Cereal. {kid} eats four bites, then asks, very politely, for the pasta. The yesterday pasta. Overnight, it has been ruled today food.",
+            "effects": {
+              "mood": -6,
+              "energy": -6
             },
             "set": [
               "food:6"
@@ -2692,7 +2726,8 @@
             "text": "\"Thank you for the update.\" Nobody laughs. Someone in a blazer moves one place further away. \"MORE POOPING,\" {kid} adds, as a correction.",
             "effects": {
               "rep": -12,
-              "mood": 6
+              "mood": 6,
+              "energy": -6
             },
             "set": [
               "diaper:1"
@@ -2712,7 +2747,8 @@
             "text": "\"Inside voice,\" you whisper. {kid} nods and whispers, \"I'm pooping,\" which is somehow worse, and carries further.",
             "effects": {
               "rep": -10,
-              "mood": 4
+              "mood": 4,
+              "energy": -6
             },
             "set": [
               "diaper:1"
@@ -3052,7 +3088,8 @@
             "text": "You carry the bag out at arm's length, breathing through your mouth, then somehow through your ears. A neighbor watering their plants turns off the hose and goes inside.",
             "effects": {
               "home": 16,
-              "energy": -8
+              "energy": -8,
+              "rel": 6
             },
             "set": [
               "diaper:4"
@@ -3102,7 +3139,8 @@
             "text": "They do it tonight, gagging twice in the driveway, quietly, so the neighbors won't know. You watch from the window with deep, unspoken love.",
             "effects": {
               "rel": 6,
-              "home": 14
+              "home": 14,
+              "energy": 6
             },
             "set": [
               "diaper:4"
@@ -3464,10 +3502,11 @@
         },
         "outcomes": [
           {
-            "text": "A gasp. The moon is nosy AND it texts you. The next note from daycare is a full page, double-sided.",
+            "text": "A gasp. The moon is nosy AND it texts you. The next note from daycare is a full page, double-sided, and requests a reply.",
             "effects": {
               "mood": 14,
-              "rep": -10
+              "rep": -10,
+              "energy": -6
             },
             "set": [
               "why:3"
