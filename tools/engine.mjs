@@ -4,7 +4,9 @@
 // prose; Core/Sources/BedtimeCore/Engine.swift must behave identically, and
 // tools/golden.mjs records traces the Swift tests replay.
 
-export const METERS = ["energy", "rel", "mood", "sleepy", "debt", "home", "rep"];
+// Players see four: Bandwidth (energy), Relationship, Mood, and Sleep (100 - debt).
+// Today's sleepy is shown as a bedtime word.
+export const METERS = ["energy", "rel", "mood", "sleepy", "debt"];
 
 export function mulberry32(seed) {
   let a = seed | 0;
@@ -421,7 +423,6 @@ export class Game {
     s.meters.debt = clamp(s.meters.debt + n.debtPerWake * (s.nightYou + s.nightPartner) - n.recovery);
     s.meters.mood = clamp(n.moodBase - Math.floor(s.meters.debt / n.moodDebtDiv));
     s.meters.sleepy = n.sleepyStart;
-    s.meters.home = clamp(s.meters.home + (s.meters.rel >= n.homeTidy.minRel ? n.homeTidy.high : n.homeTidy.low));
     for (const f of [...s.flags]) if (f.startsWith("d:")) s.flags.delete(f);
     let partnerDid = null;
     if (s.meters.rel >= n.partnerTaskMinRel) {

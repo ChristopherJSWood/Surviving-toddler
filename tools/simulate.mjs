@@ -121,7 +121,7 @@ function dominated() {
     return e;
   };
   const plain = (c) => !c.when && !c.minEnergy && !c.outcomes.some((o) => o.when || o.schedule || o.completeTask || o.cancel || o.ledger || o.set);
-  const GOOD = ["energy", "rel", "mood", "home", "rep"];
+  const GOOD = ["energy", "rel", "mood"];
   for (const ev of content.events) {
     const cs = ev.choices;
     cs.forEach((c, i) => {
@@ -165,7 +165,10 @@ const TARGETS = {
   // (Originally "fails date night >= 40%", but this player burns out before Friday.)
   "always-right-thing finishes <= 40%": () => by.right.winRate <= 0.4,
   "after a forced terrible Monday night, careful still wins >= half its usual rate": () => shocked.winRate >= 0.5 * by.careful.winRate,
-  "no loss cause above 40% of losses (random)": () => by.random.maxLossShare <= 0.4,
+  // Four ways to lose since House and Reputation were cut (collapse, the talk,
+  // and two date-night failures), so an even split is 25%. Blind play
+  // neglects the relationship most; cap any one cause at 60%.
+  "no loss cause above 60% of losses (random)": () => by.random.maxLossShare <= 0.6,
   "a small moment in >= 90% of careful weeks": () => by.careful.momentWeeks >= 0.9,
   "filler under 3% of cards (random)": () => by.random.fillerShare < 0.03,
   // Pacing and freshness: the first playtest found ~170 cards a week, half of

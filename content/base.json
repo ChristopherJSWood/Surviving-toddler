@@ -13,9 +13,7 @@
       "rel": 70,
       "mood": 60,
       "sleepy": 10,
-      "debt": 20,
-      "home": 85,
-      "rep": 85
+      "debt": 20
     },
     "drift": [
       {
@@ -26,16 +24,6 @@
       {
         "meter": "energy",
         "every": 30,
-        "delta": -1
-      },
-      {
-        "meter": "home",
-        "every": 90,
-        "delta": -1
-      },
-      {
-        "meter": "rep",
-        "every": 240,
         "delta": -1
       },
       {
@@ -90,7 +78,7 @@
       },
       {
         "meter": "rel",
-        "every": 120,
+        "every": 180,
         "delta": -1
       }
     ],
@@ -116,11 +104,6 @@
       "moodBase": 65,
       "moodDebtDiv": 4,
       "sleepyStart": 10,
-      "homeTidy": {
-        "minRel": 50,
-        "high": 18,
-        "low": 8
-      },
       "partnerTaskMinRel": 60
     },
     "hazard": {
@@ -153,39 +136,32 @@
     },
     "lossOrder": [
       "energy",
-      "rel",
-      "home",
-      "rep"
+      "rel"
     ],
     "losses": {
       "energy": "collapse",
-      "rel": "talk",
-      "home": "ballpit",
-      "rep": "groupchat"
+      "rel": "talk"
     },
     "lifelineMeters": [
-      "energy",
-      "home",
-      "rep"
+      "energy"
     ],
     "weekScore": {
       "rel": 2,
       "energy": 1,
       "mood": 1,
-      "home": 1,
-      "rep": 1
+      "debt": -1
     },
     "grades": [
       {
-        "min": 485,
+        "min": 340,
         "id": "legend"
       },
       {
-        "min": 440,
+        "min": 314,
         "id": "solid"
       },
       {
-        "min": 380,
+        "min": 270,
         "id": "survived"
       },
       {
@@ -195,13 +171,11 @@
     ]
   },
   "meters": {
-    "energy": "Energy",
+    "energy": "Bandwidth",
     "rel": "Relationship",
-    "mood": "Toddler Mood",
+    "mood": "Mood",
     "sleepy": "Sleepiness",
-    "debt": "Sleep Debt",
-    "home": "House",
-    "rep": "Reputation"
+    "debt": "Sleep debt"
   },
   "counters": [
     {
@@ -333,7 +307,7 @@
       "title": "Daycare Closed: Pink Eye",
       "text": "Pink eye at daycare. Your toddler is fine. Your toddler is also home all day, touching every surface in the house with intent.",
       "effects": {
-        "home": -5
+        "energy": -5
       },
       "set": [
         "d:home"
@@ -369,7 +343,7 @@
       "text": "Free childcare! Also opinions. So many opinions.",
       "effects": {
         "energy": 10,
-        "rep": -8
+        "rel": -6
       },
       "set": [
         "d:grandma"
@@ -382,7 +356,7 @@
       "title": "Potty Training: Day 3",
       "text": "The internet said it would take three days. It is day 3. The internet lied.",
       "effects": {
-        "home": -5
+        "energy": -6
       },
       "set": [
         "d:potty"
@@ -442,8 +416,6 @@
     "text": "You call your mother. She arrives in eleven minutes with a casserole, a bag of cookies and a list of observations. She sends you to bed at 4 PM. You don't argue.",
     "effects": {
       "energy": 40,
-      "home": 25,
-      "rep": 15,
       "mood": 20
     },
     "set": [
@@ -460,16 +432,6 @@
       "kind": "loss",
       "title": "We Need to Talk",
       "text": "Not a fight, exactly. Two people at the kitchen counter, too tired to finish their sentences. The monitor hisses. Neither of you moves. Next week, you'll try the ledger thing."
-    },
-    "ballpit": {
-      "kind": "loss",
-      "title": "The House Has Fallen",
-      "text": "Your home is now an installation. A local gallery calls it \"a bold statement on domestic entropy.\" The couch is under there somewhere."
-    },
-    "groupchat": {
-      "kind": "loss",
-      "title": "Removed From the Group Chat",
-      "text": "\"Admin removed you.\" Three words, forty-one parents. You'll never know when pajama day is again. Your toddler, unaware of your social death, hands you a rock."
     },
     "sitter_quits": {
       "kind": "loss",

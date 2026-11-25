@@ -3,360 +3,2253 @@
     "id": "arc_banana_broken",
     "title": "The Banana Is Broken",
     "text": "The banana has been declared broken. It is not broken. It has one brown freckle, the size of a lentil. {kid} holds it at arm's length and looks at you like you did this.",
-    "window": [400, 720], "weight": 6, "oncePerWeek": true,
-    "when": { "max": { "day": 1 } },
+    "window": [
+      400,
+      720
+    ],
+    "weight": 6,
+    "oncePerWeek": true,
+    "when": {
+      "max": {
+        "day": 1
+      }
+    },
     "choices": [
-      { "label": "\"Look. I'll eat the freckle.\"", "duration": 3, "outcomes": [
-        { "text": "You bite out the freckle. Now it's broken AND bitten. {kid} takes it back, says \"I FIX IT,\" and leaves. Four minutes later they return empty-handed, with total professional calm.", "effects": { "mood": -10, "energy": 4 }, "set": ["banana:1"], "stamp": "WHEREABOUTS UNKNOWN" } ] },
-      { "label": "Banana two. Fresh. Unfreckled.", "duration": 3, "tags": ["bribe"], "outcomes": [
-        { "weight": 2, "text": "{kid} accepts banana two and keeps banana one. Banana one is carried down the hall \"for a nap.\" Banana one does not come back.", "effects": { "mood": 10, "energy": -4 }, "set": ["banana:1"] },
-        { "weight": 1, "text": "Banana two has a freckle too. They all have freckles. {kid} declares a state of emergency and takes both into the hallway. Neither returns.", "effects": { "mood": -12, "energy": -4, "home": -4 }, "set": ["banana:1"], "fx": "shake" } ] },
-      { "label": "\"Then it goes in the trash.\"", "duration": 8, "minEnergy": 20, "tags": ["boundary"], "outcomes": [
-        { "weight": 1, "text": "\"NO. MINE.\" They back out of the kitchen holding the banana and your eye contact. When they return, their hands are empty and their story is ready: \"What banana.\"", "effects": { "mood": -8, "energy": -2, "home": 6 }, "set": ["banana:1"], "stamp": "PLEADS THE FIFTH" },
-        { "weight": 1, "text": "You drop it in the trash. {kid} waits until you turn around, retrieves it and walks out. Banana: at large.", "effects": { "mood": 12, "energy": -6, "home": -4 }, "set": ["banana:1"] } ] }
+      {
+        "label": "\"Look. I'll eat the freckle.\"",
+        "duration": 3,
+        "outcomes": [
+          {
+            "text": "You bite out the freckle. Now it's broken AND bitten. {kid} takes it back, says \"I FIX IT,\" and leaves. Four minutes later they return empty-handed, with total professional calm.",
+            "effects": {
+              "mood": -10,
+              "energy": 4
+            },
+            "set": [
+              "banana:1"
+            ],
+            "stamp": "WHEREABOUTS UNKNOWN"
+          }
+        ]
+      },
+      {
+        "label": "Banana two. Fresh. Unfreckled.",
+        "duration": 3,
+        "tags": [
+          "bribe"
+        ],
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "{kid} accepts banana two and keeps banana one. Banana one is carried down the hall \"for a nap.\" Banana one does not come back.",
+            "effects": {
+              "mood": 10,
+              "energy": -4
+            },
+            "set": [
+              "banana:1"
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "Banana two has a freckle too. They all have freckles. {kid} declares a state of emergency and takes both into the hallway. Neither returns.",
+            "effects": {
+              "mood": -12,
+              "energy": -4
+            },
+            "set": [
+              "banana:1"
+            ],
+            "fx": "shake"
+          }
+        ]
+      },
+      {
+        "label": "\"Then it goes in the trash.\"",
+        "duration": 8,
+        "minEnergy": 20,
+        "tags": [
+          "boundary"
+        ],
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "\"NO. MINE.\" They back out of the kitchen holding the banana and your eye contact. When they return, their hands are empty and their story is ready: \"What banana.\"",
+            "effects": {
+              "mood": -8,
+              "energy": -2
+            },
+            "set": [
+              "banana:1"
+            ],
+            "stamp": "PLEADS THE FIFTH"
+          },
+          {
+            "weight": 1,
+            "text": "You drop it in the trash. {kid} waits until you turn around, retrieves it and walks out. Banana: at large.",
+            "effects": {
+              "mood": 12,
+              "energy": -6
+            },
+            "set": [
+              "banana:1"
+            ]
+          }
+        ]
+      }
     ]
   },
   {
     "id": "arc_banana_fly",
     "title": "A Fruit Fly Has Moved In",
     "text": "One fruit fly is doing slow laps of the hallway with the confidence of someone who knows where the food is. You don't know where the food is. The fly does.",
-    "window": [480, 1100], "weight": 4, "oncePerWeek": true,
-    "when": { "flags": ["banana:1"], "min": { "day": 1 }, "max": { "day": 3 } },
+    "window": [
+      480,
+      1100
+    ],
+    "weight": 4,
+    "oncePerWeek": true,
+    "when": {
+      "flags": [
+        "banana:1"
+      ],
+      "min": {
+        "day": 1
+      },
+      "max": {
+        "day": 3
+      }
+    },
     "choices": [
-      { "label": "Follow the fly. It knows things.", "duration": 10, "minEnergy": 20, "outcomes": [
-        { "weight": 1, "text": "Nine minutes, bent double, squinting. It leads you down the hall, past the closet, and lands on your nose. You've been outplayed by a fly.", "effects": { "energy": -8, "mood": 10 }, "set": ["banana:fly"], "stamp": "LOST THE FLY" },
-        { "weight": 1, "text": "It leads you straight to the hall closet and slips in under the door. You open it. Coats. Umbrella. No fly. No banana. No lead.", "effects": { "energy": -8, "home": 6 }, "set": ["banana:fly"] } ] },
-      { "label": "Clap it out of the air", "duration": 1, "outcomes": [
-        { "weight": 2, "text": "You miss. {kid} gasps in horror. \"NO! It's VISITING!\" They escort the fly away from you with both hands.", "effects": { "energy": 4, "mood": -8 }, "set": ["banana:fly"] },
-        { "weight": 1, "text": "You get it. {kid} holds a small, devastating funeral by the closet door and says something you don't catch to someone you can't see.", "effects": { "energy": 4, "mood": -10, "home": 4 }, "set": ["banana:fly"] } ] },
-      { "label": "Ask {kid} what they know. Play it cool.", "duration": 3, "outcomes": [
-        { "text": "{kid} watches the fly loop the hallway. \"That's Banana's friend,\" they say. \"Visiting.\" They will not elaborate. They've said too much.", "effects": { "energy": -2, "mood": 6 }, "set": ["banana:fly"], "stamp": "SAID TOO MUCH" } ] }
+      {
+        "label": "Follow the fly. It knows things.",
+        "duration": 10,
+        "minEnergy": 20,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "Nine minutes, bent double, squinting. It leads you down the hall, past the closet, and lands on your nose. You've been outplayed by a fly.",
+            "effects": {
+              "energy": -8,
+              "mood": 10
+            },
+            "set": [
+              "banana:fly"
+            ],
+            "stamp": "LOST THE FLY"
+          },
+          {
+            "weight": 1,
+            "text": "It leads you straight to the hall closet and slips in under the door. You open it. Coats. Umbrella. No fly. No banana. No lead.",
+            "effects": {
+              "energy": -8
+            },
+            "set": [
+              "banana:fly"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Clap it out of the air",
+        "duration": 1,
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "You miss. {kid} gasps in horror. \"NO! It's VISITING!\" They escort the fly away from you with both hands.",
+            "effects": {
+              "energy": 4,
+              "mood": -8
+            },
+            "set": [
+              "banana:fly"
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "You get it. {kid} holds a small, devastating funeral by the closet door and says something you don't catch to someone you can't see.",
+            "effects": {
+              "energy": 4,
+              "mood": -10
+            },
+            "set": [
+              "banana:fly"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Ask {kid} what they know. Play it cool.",
+        "duration": 3,
+        "outcomes": [
+          {
+            "text": "{kid} watches the fly loop the hallway. \"That's Banana's friend,\" they say. \"Visiting.\" They will not elaborate. They've said too much.",
+            "effects": {
+              "energy": -2,
+              "mood": 6
+            },
+            "set": [
+              "banana:fly"
+            ],
+            "stamp": "SAID TOO MUCH"
+          }
+        ]
+      }
     ]
   },
   {
     "id": "arc_banana_closet",
     "title": "Visiting Hours",
     "text": "{kid} walks to the hall closet, opens it, whispers \"night night,\" and closes it very gently. It's the fourth visit since lunch. This time they brought a cracker, and a cup of water for the guest.",
-    "window": [480, 1100], "weight": 4, "oncePerWeek": true,
-    "when": { "flags": ["banana:1"], "min": { "day": 1 }, "max": { "day": 3 } },
+    "window": [
+      480,
+      1100
+    ],
+    "weight": 4,
+    "oncePerWeek": true,
+    "when": {
+      "flags": [
+        "banana:1"
+      ],
+      "min": {
+        "day": 1
+      },
+      "max": {
+        "day": 3
+      }
+    },
     "choices": [
-      { "label": "Search the closet. Every coat pocket.", "duration": 10, "minEnergy": 20, "outcomes": [
-        { "text": "Coats, an umbrella, a bag of bags, one mitten, a cracker. Every pocket. No banana. You don't check the shoes. Why would anyone check the shoes?", "effects": { "energy": -8, "home": 8, "rel": 4 }, "set": ["banana:closet"], "stamp": "SEARCH INCONCLUSIVE" } ] },
-      { "label": "Tail them. Undercover. In socks.", "duration": 8, "minEnergy": 20, "tags": ["present"], "outcomes": [
-        { "weight": 1, "text": "{kid} spots you, freezes, and calmly walks you to the bathroom instead. \"Banana here,\" they lie, beautifully.", "effects": { "energy": -6, "mood": 10 }, "set": ["banana:closet"] },
-        { "weight": 1, "text": "They open the closet, see you behind them and shut it again. \"No visitors.\"", "effects": { "energy": -6, "mood": -6 }, "set": ["banana:closet"], "stamp": "VISITATION DENIED" } ] },
-      { "label": "Let them have this. Some things are private.", "duration": 1, "outcomes": [
-        { "weight": 1, "text": "Some things are between a toddler and a closet. They visit six more times. By dinner the cracker count is three.", "effects": { "energy": 6, "home": -6, "mood": 6, "rel": -4 }, "set": ["banana:closet"] },
-        { "weight": 1, "text": "You let them have it. At bedtime {kid} insists on saying good night to the closet. You say it too. You don't know why.", "effects": { "energy": 4, "mood": 8, "home": -4 }, "set": ["banana:closet"] } ] }
+      {
+        "label": "Search the closet. Every coat pocket.",
+        "duration": 10,
+        "minEnergy": 20,
+        "outcomes": [
+          {
+            "text": "Coats, an umbrella, a bag of bags, one mitten, a cracker. Every pocket. No banana. You don't check the shoes. Why would anyone check the shoes?",
+            "effects": {
+              "energy": -8,
+              "rel": 4
+            },
+            "set": [
+              "banana:closet"
+            ],
+            "stamp": "SEARCH INCONCLUSIVE"
+          }
+        ]
+      },
+      {
+        "label": "Tail them. Undercover. In socks.",
+        "duration": 8,
+        "minEnergy": 20,
+        "tags": [
+          "present"
+        ],
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "{kid} spots you, freezes, and calmly walks you to the bathroom instead. \"Banana here,\" they lie, beautifully.",
+            "effects": {
+              "energy": -6,
+              "mood": 10
+            },
+            "set": [
+              "banana:closet"
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "They open the closet, see you behind them and shut it again. \"No visitors.\"",
+            "effects": {
+              "energy": -6,
+              "mood": -6
+            },
+            "set": [
+              "banana:closet"
+            ],
+            "stamp": "VISITATION DENIED"
+          }
+        ]
+      },
+      {
+        "label": "Let them have this. Some things are private.",
+        "duration": 1,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "Some things are between a toddler and a closet. They visit six more times. By dinner the cracker count is three.",
+            "effects": {
+              "energy": 6,
+              "mood": 6,
+              "rel": -4
+            },
+            "set": [
+              "banana:closet"
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "You let them have it. At bedtime {kid} insists on saying good night to the closet. You say it too. You don't know why.",
+            "effects": {
+              "energy": 4,
+              "mood": 8
+            },
+            "set": [
+              "banana:closet"
+            ]
+          }
+        ]
+      }
     ]
   },
   {
     "id": "arc_banana_hotel",
     "title": "Fun Share From Circle Time",
     "text": "Ms. Patty has news from circle time, and an emoji for it.",
-    "chat": { "with": "Ms. Patty 🐛 Caterpillar Room", "messages": [
-      { "from": "Ms. Patty", "text": "Fun share from circle time! 🌈" },
-      { "from": "Ms. Patty", "text": "{kid} told everyone the banana is staying \"at the shoe hotel\" 🍌🏨" },
-      { "from": "Ms. Patty", "text": "Not sure what that means but they were VERY proud!" } ] },
-    "window": [840, 1040], "weight": 4, "oncePerWeek": true,
-    "when": { "flags": ["banana:1"], "notFlags": ["d:home"], "min": { "day": 1 }, "max": { "day": 3 } },
+    "chat": {
+      "with": "Ms. Patty 🐛 Caterpillar Room",
+      "messages": [
+        {
+          "from": "Ms. Patty",
+          "text": "Fun share from circle time! 🌈"
+        },
+        {
+          "from": "Ms. Patty",
+          "text": "{kid} told everyone the banana is staying \"at the shoe hotel\" 🍌🏨"
+        },
+        {
+          "from": "Ms. Patty",
+          "text": "Not sure what that means but they were VERY proud!"
+        }
+      ]
+    },
+    "window": [
+      840,
+      1040
+    ],
+    "weight": 4,
+    "oncePerWeek": true,
+    "when": {
+      "flags": [
+        "banana:1"
+      ],
+      "notFlags": [
+        "d:home"
+      ],
+      "min": {
+        "day": 1
+      },
+      "max": {
+        "day": 3
+      }
+    },
     "choices": [
-      { "label": "\"Ha! Kids! 🙂\" (You have no idea.)", "duration": 1, "outcomes": [
-        { "weight": 1, "text": "Ms. Patty hearts it. You spend the drive home trying to think of a hotel for shoes. At every red light you get closer. You never once think of the closet.", "effects": { "energy": 4, "rep": 6 }, "set": ["banana:hotel"] },
-        { "weight": 1, "text": "Ms. Patty hearts it, then adds one more detail. You decide not to think about it. You've gotten very good at that.", "effects": { "energy": 4, "rep": 6 }, "set": ["banana:hotel"], "chat": [ { "from": "Ms. Patty", "text": "They said it's very dark there and smells like feet 🙂" } ] } ] },
-      { "label": "Forward it to {partner}. Get a second opinion.", "duration": 2, "outcomes": [
-        { "text": "You both agree the shoe hotel is a toddler thing. Two adults with four pairs of shoes each, in a hall closet, agreeing.", "effects": { "rel": 8, "energy": 2 }, "set": ["banana:hotel"], "chat": [ { "from": "{partner}", "text": "the WHAT hotel" }, { "from": "{partner}", "text": "lol toddlers" } ] } ] },
-      { "label": "Go home. Check every shoe. Every single one.", "duration": 15, "minEnergy": 25, "outcomes": [
-        { "weight": 1, "text": "You check every shoe in the house except the good ones at the back of the hall closet, because nobody has worn those since March. Nothing.", "effects": { "energy": -10, "home": 6, "rel": 4 }, "set": ["banana:hotel"], "stamp": "SO CLOSE" },
-        { "weight": 1, "text": "Two raisins, a toy car and a sock inside a sock. No banana. You put everything back exactly where it was, including the good shoes, unopened.", "effects": { "energy": -10, "home": 8, "mood": 6 }, "set": ["banana:hotel"] } ] }
+      {
+        "label": "\"Ha! Kids! 🙂\" (You have no idea.)",
+        "duration": 1,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "Ms. Patty hearts it. You spend the drive home trying to think of a hotel for shoes. At every red light you get closer. You never once think of the closet.",
+            "effects": {
+              "energy": 4
+            },
+            "set": [
+              "banana:hotel"
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "Ms. Patty hearts it, then adds one more detail. You decide not to think about it. You've gotten very good at that.",
+            "effects": {
+              "energy": 4
+            },
+            "set": [
+              "banana:hotel"
+            ],
+            "chat": [
+              {
+                "from": "Ms. Patty",
+                "text": "They said it's very dark there and smells like feet 🙂"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Forward it to {partner}. Get a second opinion.",
+        "duration": 2,
+        "outcomes": [
+          {
+            "text": "You both agree the shoe hotel is a toddler thing. Two adults with four pairs of shoes each, in a hall closet, agreeing.",
+            "effects": {
+              "rel": 8,
+              "energy": 2
+            },
+            "set": [
+              "banana:hotel"
+            ],
+            "chat": [
+              {
+                "from": "{partner}",
+                "text": "the WHAT hotel"
+              },
+              {
+                "from": "{partner}",
+                "text": "lol toddlers"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Go home. Check every shoe. Every single one.",
+        "duration": 15,
+        "minEnergy": 25,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "You check every shoe in the house except the good ones at the back of the hall closet, because nobody has worn those since March. Nothing.",
+            "effects": {
+              "energy": -10,
+              "rel": 4
+            },
+            "set": [
+              "banana:hotel"
+            ],
+            "stamp": "SO CLOSE"
+          },
+          {
+            "weight": 1,
+            "text": "Two raisins, a toy car and a sock inside a sock. No banana. You put everything back exactly where it was, including the good shoes, unopened.",
+            "effects": {
+              "energy": -10,
+              "mood": 6
+            },
+            "set": [
+              "banana:hotel"
+            ]
+          }
+        ]
+      }
     ]
   },
   {
     "id": "arc_banana_found",
     "title": "The Shoe Hotel",
     "text": "Date night is tonight. You pull your good shoes from the back of the hall closet for the first time since March. Your right foot goes in. Something gives. It's warm. It's the banana.",
-    "window": [600, 1045], "weight": 9, "oncePerWeek": true,
-    "when": { "flags": ["banana:1"], "min": { "day": 4 } },
+    "window": [
+      600,
+      1045
+    ],
+    "weight": 9,
+    "oncePerWeek": true,
+    "when": {
+      "flags": [
+        "banana:1"
+      ],
+      "min": {
+        "day": 4
+      }
+    },
     "choices": [
-      { "label": "Scream into a dish towel", "duration": 3, "outcomes": [
-        { "weight": 1, "text": "A short, private scream into a towel with a turkey on it. From the next room, {kid} shouts, with enormous pride: \"YOU FOUND IT!\"", "effects": { "energy": -6, "mood": 14 }, "set": ["banana:found"], "stamp": "CHECKED OUT", "fx": "confetti" },
-        { "weight": 1, "text": "You scream into the towel. {partner} comes running, sees the shoe, sees your foot and has to sit down on the stairs. They're laughing too hard to help.", "effects": { "energy": -6, "rel": 12 }, "set": ["banana:found"] } ] },
-      { "label": "Wear the sneakers. The ones that say \"parent.\"", "duration": 2, "outcomes": [
-        { "weight": 2, "text": "The sneakers it is: gray, sensible and visibly giving up. {partner} looks at your feet, then your face, and decides not to ask.", "effects": { "energy": 4, "rel": -6 }, "set": ["banana:found"] },
-        { "weight": 1, "text": "You pick up the sneakers. Inside the left one: a second banana. You never noticed a second banana go missing. There's a chain.", "effects": { "energy": -4, "home": -10, "mood": 8 }, "set": ["banana:found"], "stamp": "IT'S A CHAIN", "fx": "shake" } ] },
-      { "label": "\"{KID}. Why.\"", "duration": 5, "minEnergy": 20, "tags": ["present"], "outcomes": [
-        { "text": "{kid} beams. \"I FIXED IT.\" All week at the shoe hotel. To them, this was repair. You're too impressed to be angry, and it turns out that's the same face.", "effects": { "energy": -8, "mood": 14, "rel": 4 }, "set": ["banana:found"] } ] },
-      { "label": "\"The SHOE hotel.\" It all makes sense.", "duration": 2, "when": { "flags": ["banana:hotel"] }, "outcomes": [
-        { "text": "Ms. Patty told you. In writing. With an emoji. You text {partner}: \"the shoe hotel was my shoe.\" The reply is instant.", "effects": { "energy": 6, "rel": 6 }, "set": ["banana:found"], "chat": [ { "from": "{partner}", "text": "i know" }, { "from": "{partner}", "text": "i smelled it tuesday" } ], "stamp": "THEY KNEW" } ] }
+      {
+        "label": "Scream into a dish towel",
+        "duration": 3,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "A short, private scream into a towel with a turkey on it. From the next room, {kid} shouts, with enormous pride: \"YOU FOUND IT!\"",
+            "effects": {
+              "energy": -6,
+              "mood": 14
+            },
+            "set": [
+              "banana:found"
+            ],
+            "stamp": "CHECKED OUT",
+            "fx": "confetti"
+          },
+          {
+            "weight": 1,
+            "text": "You scream into the towel. {partner} comes running, sees the shoe, sees your foot and has to sit down on the stairs. They're laughing too hard to help.",
+            "effects": {
+              "energy": -6,
+              "rel": 12
+            },
+            "set": [
+              "banana:found"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Wear the sneakers. The ones that say \"parent.\"",
+        "duration": 2,
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "The sneakers it is: gray, sensible and visibly giving up. {partner} looks at your feet, then your face, and decides not to ask.",
+            "effects": {
+              "energy": 4,
+              "rel": -6
+            },
+            "set": [
+              "banana:found"
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "You pick up the sneakers. Inside the left one: a second banana. You never noticed a second banana go missing. There's a chain.",
+            "effects": {
+              "energy": -4,
+              "mood": 8
+            },
+            "set": [
+              "banana:found"
+            ],
+            "stamp": "IT'S A CHAIN",
+            "fx": "shake"
+          }
+        ]
+      },
+      {
+        "label": "\"{KID}. Why.\"",
+        "duration": 5,
+        "minEnergy": 20,
+        "tags": [
+          "present"
+        ],
+        "outcomes": [
+          {
+            "text": "{kid} beams. \"I FIXED IT.\" All week at the shoe hotel. To them, this was repair. You're too impressed to be angry, and it turns out that's the same face.",
+            "effects": {
+              "energy": -8,
+              "mood": 14,
+              "rel": 4
+            },
+            "set": [
+              "banana:found"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "\"The SHOE hotel.\" It all makes sense.",
+        "duration": 2,
+        "when": {
+          "flags": [
+            "banana:hotel"
+          ]
+        },
+        "outcomes": [
+          {
+            "text": "Ms. Patty told you. In writing. With an emoji. You text {partner}: \"the shoe hotel was my shoe.\" The reply is instant.",
+            "effects": {
+              "energy": 6,
+              "rel": 6
+            },
+            "set": [
+              "banana:found"
+            ],
+            "chat": [
+              {
+                "from": "{partner}",
+                "text": "i know"
+              },
+              {
+                "from": "{partner}",
+                "text": "i smelled it tuesday"
+              }
+            ],
+            "stamp": "THEY KNEW"
+          }
+        ]
+      }
     ]
   },
   {
     "id": "arc_party_invite",
     "title": "You're Invited (Intentionally)",
     "text": "Brynn has posted an invitation. It has a dress code, a mission statement and a QR code that leads to a second, longer invitation.",
-    "chat": { "with": "Caterpillar Room Parents 🐛 (23)", "messages": [
-      { "from": "Brynn", "text": "Juniper is turning 3!! 🎉🌿" },
-      { "from": "Brynn", "text": "friday 4pm, our backyard. nut-free, screen-free, sugar-free and intention-forward 🙏" },
-      { "from": "Brynn", "text": "rsvp by thurs 5pm 💛" },
-      { "from": "Dev", "text": "lol same" } ] },
-    "window": [480, 1100], "weight": 6, "oncePerWeek": true,
-    "when": { "max": { "day": 1 } },
+    "chat": {
+      "with": "Caterpillar Room Parents 🐛 (23)",
+      "messages": [
+        {
+          "from": "Brynn",
+          "text": "Juniper is turning 3!! 🎉🌿"
+        },
+        {
+          "from": "Brynn",
+          "text": "friday 4pm, our backyard. nut-free, screen-free, sugar-free and intention-forward 🙏"
+        },
+        {
+          "from": "Brynn",
+          "text": "rsvp by thurs 5pm 💛"
+        },
+        {
+          "from": "Dev",
+          "text": "lol same"
+        }
+      ]
+    },
+    "window": [
+      480,
+      1100
+    ],
+    "weight": 6,
+    "oncePerWeek": true,
+    "when": {
+      "max": {
+        "day": 1
+      }
+    },
     "choices": [
-      { "label": "RSVP yes. Now. Before you can think.", "duration": 2, "outcomes": [
-        { "text": "Brynn hearts it in 0.4 seconds. You've committed to a sugar-free party on Friday at 4 PM, the exact hour toddlers turn into weather.", "effects": { "rep": 10, "energy": -4 }, "set": ["party:1", "party:yes", "gc:dev"], "completeTask": "rsvp", "chat": [ { "from": "you", "text": "we'll be there!! 🎉" } ] } ] },
-      { "label": "\"what does intention-forward mean 🙂\"", "duration": 3, "outcomes": [
-        { "weight": 1, "text": "You're no wiser. Now neither is Marcus.", "effects": { "rep": 8, "energy": 6 }, "set": ["party:1", "gc:dev"], "chat": [ { "from": "Brynn", "text": "each child sets an intention at the gate 🙏" }, { "from": "Marcus", "text": "like a password?" }, { "from": "Brynn", "text": "like an intention" } ] },
-        { "weight": 1, "text": "Brynn sends a four-minute voice memo. You play it at 2x. It's still two minutes. You understand it less.", "effects": { "energy": -8, "rep": 6 }, "set": ["party:1", "gc:dev"], "stamp": "PLAYED AT 2X" } ] },
-      { "label": "Heart it. Decide later. Decide never.", "duration": 1, "outcomes": [
-        { "weight": 2, "text": "One heart. Commitment level: heart. The RSVP moves into your head and lives next to the dentist appointment you also haven't made.", "effects": { "energy": 4, "rep": -6 }, "set": ["party:1", "gc:dev"] },
-        { "weight": 1, "text": "Nine seconds later Brynn replies to your heart. You put the phone face down on the counter and walk away from it.", "effects": { "energy": -4, "rep": -4 }, "set": ["party:1", "gc:dev"], "chat": [ { "from": "Brynn", "text": "is that a yes? 💛" } ] } ] }
+      {
+        "label": "RSVP yes. Now. Before you can think.",
+        "duration": 2,
+        "outcomes": [
+          {
+            "text": "Brynn hearts it in 0.4 seconds. You've committed to a sugar-free party on Friday at 4 PM, the exact hour toddlers turn into weather.",
+            "effects": {
+              "energy": -4
+            },
+            "set": [
+              "party:1",
+              "party:yes",
+              "gc:dev"
+            ],
+            "completeTask": "rsvp",
+            "chat": [
+              {
+                "from": "you",
+                "text": "we'll be there!! 🎉"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "label": "\"what does intention-forward mean 🙂\"",
+        "duration": 3,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "You're no wiser. Now neither is Marcus.",
+            "effects": {
+              "energy": 6
+            },
+            "set": [
+              "party:1",
+              "gc:dev"
+            ],
+            "chat": [
+              {
+                "from": "Brynn",
+                "text": "each child sets an intention at the gate 🙏"
+              },
+              {
+                "from": "Marcus",
+                "text": "like a password?"
+              },
+              {
+                "from": "Brynn",
+                "text": "like an intention"
+              }
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "Brynn sends a four-minute voice memo. You play it at 2x. It's still two minutes. You understand it less.",
+            "effects": {
+              "energy": -8
+            },
+            "set": [
+              "party:1",
+              "gc:dev"
+            ],
+            "stamp": "PLAYED AT 2X"
+          }
+        ]
+      },
+      {
+        "label": "Heart it. Decide later. Decide never.",
+        "duration": 1,
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "One heart. Commitment level: heart. The RSVP moves into your head and lives next to the dentist appointment you also haven't made.",
+            "effects": {
+              "energy": 4
+            },
+            "set": [
+              "party:1",
+              "gc:dev"
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "Nine seconds later Brynn replies to your heart. You put the phone face down on the counter and walk away from it.",
+            "effects": {
+              "energy": -4
+            },
+            "set": [
+              "party:1",
+              "gc:dev"
+            ],
+            "chat": [
+              {
+                "from": "Brynn",
+                "text": "is that a yes? 💛"
+              }
+            ]
+          }
+        ]
+      }
     ]
   },
   {
     "id": "arc_party_rules",
     "title": "A Few Gentle Notes",
     "text": "Brynn has a few gentle notes about Friday. They are numbered.",
-    "chat": { "with": "Caterpillar Room Parents 🐛 (23)", "messages": [
-      { "from": "Brynn", "text": "a few gentle notes for friday 🌿" },
-      { "from": "Brynn", "text": "1) no plastic 2) no gifts that make sound 3) no characters 4) experiences > things" },
-      { "from": "Brynn", "text": "5) Juniper is not doing \"stuff\" this year 🙏" },
-      { "from": "Marcus", "text": "what about a book" },
-      { "from": "Brynn", "text": "is it plastic 🙂" } ] },
-    "window": [480, 1100], "weight": 5, "oncePerWeek": true,
-    "when": { "flags": ["party:1"], "min": { "day": 1 }, "max": { "day": 2 } },
+    "chat": {
+      "with": "Caterpillar Room Parents 🐛 (23)",
+      "messages": [
+        {
+          "from": "Brynn",
+          "text": "a few gentle notes for friday 🌿"
+        },
+        {
+          "from": "Brynn",
+          "text": "1) no plastic 2) no gifts that make sound 3) no characters 4) experiences > things"
+        },
+        {
+          "from": "Brynn",
+          "text": "5) Juniper is not doing \"stuff\" this year 🙏"
+        },
+        {
+          "from": "Marcus",
+          "text": "what about a book"
+        },
+        {
+          "from": "Brynn",
+          "text": "is it plastic 🙂"
+        }
+      ]
+    },
+    "window": [
+      480,
+      1100
+    ],
+    "weight": 5,
+    "oncePerWeek": true,
+    "when": {
+      "flags": [
+        "party:1"
+      ],
+      "min": {
+        "day": 1
+      },
+      "max": {
+        "day": 2
+      }
+    },
     "choices": [
-      { "label": "\"we'll be there!! 🌿\" Accept all notes.", "duration": 2, "when": { "notFlags": ["party:yes", "party:no"] }, "outcomes": [
-        { "text": "Sent. You've agreed to five rules, a sixth you haven't seen yet and Friday at 4 PM. Brynn replies with a single leaf. 🌿", "effects": { "rep": 10, "energy": -4 }, "set": ["party:2", "party:yes", "gc:dev"], "completeTask": "rsvp" } ] },
-      { "label": "RSVP no. Invent a grandma.", "duration": 2, "when": { "notFlags": ["party:yes", "party:no"] }, "outcomes": [
-        { "weight": 1, "text": "\"so sad!! grandma's in town 😩\" Brynn: \"bring grandma!! 🌿\" You now have until Friday to produce a grandma.", "effects": { "energy": -6, "rep": -4 }, "set": ["party:2", "party:no", "gc:dev"], "completeTask": "rsvp", "stamp": "GRANDMA REQUIRED" },
-        { "weight": 1, "text": "\"so sad!! grandma's in town 😩\" Brynn: \"next year 💛\" Relief. Then guilt. Then relief, which wins on points.", "effects": { "energy": 4, "rep": -8 }, "set": ["party:2", "party:no", "gc:dev"], "completeTask": "rsvp" } ] },
-      { "label": "\"is a hug an experience? 🙂\"", "duration": 2, "outcomes": [
-        { "weight": 1, "text": "{kid} will now be giving Juniper one hug, as a gift, in front of everyone. There's no going back.", "effects": { "rep": 8, "energy": 2, "mood": 4 }, "set": ["party:2", "gc:dev"], "chat": [ { "from": "Brynn", "text": "LOVE that!! 💛" } ] },
-        { "weight": 1, "text": "Then Dev, helpfully: \"lol same.\"", "effects": { "rep": -8, "energy": -8 }, "set": ["party:2", "gc:dev"], "chat": [ { "from": "Brynn", "text": "Juniper isn't doing hugs this year 🙏" } ] } ] },
-      { "label": "Mute the chat until Friday", "duration": 1, "outcomes": [
-        { "text": "Muted. Blissful. Brynn posts six more gentle notes, and you read every one of them at 11 PM, in bed, with the brightness all the way down.", "effects": { "energy": -4, "rep": -8 }, "set": ["party:2", "gc:dev"] } ] }
+      {
+        "label": "\"we'll be there!! 🌿\" Accept all notes.",
+        "duration": 2,
+        "when": {
+          "notFlags": [
+            "party:yes",
+            "party:no"
+          ]
+        },
+        "outcomes": [
+          {
+            "text": "Sent. You've agreed to five rules, a sixth you haven't seen yet and Friday at 4 PM. Brynn replies with a single leaf. 🌿",
+            "effects": {
+              "energy": -4
+            },
+            "set": [
+              "party:2",
+              "party:yes",
+              "gc:dev"
+            ],
+            "completeTask": "rsvp"
+          }
+        ]
+      },
+      {
+        "label": "RSVP no. Invent a grandma.",
+        "duration": 2,
+        "when": {
+          "notFlags": [
+            "party:yes",
+            "party:no"
+          ]
+        },
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "\"so sad!! grandma's in town 😩\" Brynn: \"bring grandma!! 🌿\" You now have until Friday to produce a grandma.",
+            "effects": {
+              "energy": -6
+            },
+            "set": [
+              "party:2",
+              "party:no",
+              "gc:dev"
+            ],
+            "completeTask": "rsvp",
+            "stamp": "GRANDMA REQUIRED"
+          },
+          {
+            "weight": 1,
+            "text": "\"so sad!! grandma's in town 😩\" Brynn: \"next year 💛\" Relief. Then guilt. Then relief, which wins on points.",
+            "effects": {
+              "energy": 4
+            },
+            "set": [
+              "party:2",
+              "party:no",
+              "gc:dev"
+            ],
+            "completeTask": "rsvp"
+          }
+        ]
+      },
+      {
+        "label": "\"is a hug an experience? 🙂\"",
+        "duration": 2,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "{kid} will now be giving Juniper one hug, as a gift, in front of everyone. There's no going back.",
+            "effects": {
+              "energy": 2,
+              "mood": 4
+            },
+            "set": [
+              "party:2",
+              "gc:dev"
+            ],
+            "chat": [
+              {
+                "from": "Brynn",
+                "text": "LOVE that!! 💛"
+              }
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "Then Dev, helpfully: \"lol same.\"",
+            "effects": {
+              "energy": -8
+            },
+            "set": [
+              "party:2",
+              "gc:dev"
+            ],
+            "chat": [
+              {
+                "from": "Brynn",
+                "text": "Juniper isn't doing hugs this year 🙏"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Mute the chat until Friday",
+        "duration": 1,
+        "outcomes": [
+          {
+            "text": "Muted. Blissful. Brynn posts six more gentle notes, and you read every one of them at 11 PM, in bed, with the brightness all the way down.",
+            "effects": {
+              "energy": -4
+            },
+            "set": [
+              "party:2",
+              "gc:dev"
+            ]
+          }
+        ]
+      }
     ]
   },
   {
     "id": "arc_party_gift",
     "title": "Gift Panic: Not Stuff",
     "text": "Juniper's gift has to be plastic-free, silent, character-free and \"not stuff.\" You have a closet, $40 and until Friday at 4.",
-    "window": [480, 1100], "weight": 4, "oncePerWeek": true,
-    "when": { "flags": ["party:2"], "notFlags": ["party:no"], "min": { "day": 2 }, "max": { "day": 3 } },
+    "window": [
+      480,
+      1100
+    ],
+    "weight": 4,
+    "oncePerWeek": true,
+    "when": {
+      "flags": [
+        "party:2"
+      ],
+      "notFlags": [
+        "party:no"
+      ],
+      "min": {
+        "day": 2
+      },
+      "max": {
+        "day": 3
+      }
+    },
     "choices": [
-      { "label": "Regift the wooden xylophone. Lose the mallets.", "duration": 5, "outcomes": [
-        { "weight": 1, "text": "Wood: yes. Silent: without mallets, yes. Character-free, if you sand off the frog. You wrap it in a paper bag and call it \"rustic.\"", "effects": { "energy": 4, "rep": 8 }, "set": ["party:gift"] },
-        { "weight": 1, "text": "You flip it over. A tag: \"Love, Juniper 🌿.\" It's from Juniper's party last year. You were about to return Juniper's gift to Juniper.", "effects": { "energy": -2, "rep": -6 }, "set": ["party:gift"], "stamp": "FULL CIRCLE" } ] },
-      { "label": "Buy an \"experience\": a $45 pottery class", "duration": 10, "outcomes": [
-        { "weight": 2, "text": "It's for ages four and up. Juniper is turning three. Brynn will call it \"aspirational.\" You'll call it $45.", "effects": { "energy": 4, "rep": 12 }, "set": ["party:gift"] },
-        { "weight": 1, "text": "Sold out. The only experience left is \"Forest Bathing for Under-5s,\" $70. You buy it. Juniper will bathe in a forest, and so will your savings.", "effects": { "energy": -2, "rep": 14, "rel": -6 }, "set": ["party:gift"] } ] },
-      { "label": "{kid} makes a card. Pure intention.", "duration": 20, "minEnergy": 25, "tags": ["present"], "outcomes": [
-        { "weight": 2, "text": "{kid} draws Juniper: a circle with eleven teeth. Underneath, with your help, it says HAPY. It's the most intention-forward object in the state.", "effects": { "energy": -10, "mood": 12, "rep": 6 }, "set": ["party:gift", "party:card"] },
-        { "weight": 1, "text": "{kid} draws Juniper, then eats one corner of the card. It's still a card. It's also a snack. Brynn would call it \"multi-use.\"", "effects": { "energy": -10, "mood": 10, "rep": 2 }, "set": ["party:gift", "party:card"] } ] }
+      {
+        "label": "Regift the wooden xylophone. Lose the mallets.",
+        "duration": 5,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "Wood: yes. Silent: without mallets, yes. Character-free, if you sand off the frog. You wrap it in a paper bag and call it \"rustic.\"",
+            "effects": {
+              "energy": 4
+            },
+            "set": [
+              "party:gift"
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "You flip it over. A tag: \"Love, Juniper 🌿.\" It's from Juniper's party last year. You were about to return Juniper's gift to Juniper.",
+            "effects": {
+              "energy": -2
+            },
+            "set": [
+              "party:gift"
+            ],
+            "stamp": "FULL CIRCLE"
+          }
+        ]
+      },
+      {
+        "label": "Buy an \"experience\": a $45 pottery class",
+        "duration": 10,
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "It's for ages four and up. Juniper is turning three. Brynn will call it \"aspirational.\" You'll call it $45.",
+            "effects": {
+              "energy": 4
+            },
+            "set": [
+              "party:gift"
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "Sold out. The only experience left is \"Forest Bathing for Under-5s,\" $70. You buy it. Juniper will bathe in a forest, and so will your savings.",
+            "effects": {
+              "energy": -2,
+              "rel": -6
+            },
+            "set": [
+              "party:gift"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "{kid} makes a card. Pure intention.",
+        "duration": 20,
+        "minEnergy": 25,
+        "tags": [
+          "present"
+        ],
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "{kid} draws Juniper: a circle with eleven teeth. Underneath, with your help, it says HAPY. It's the most intention-forward object in the state.",
+            "effects": {
+              "energy": -10,
+              "mood": 12
+            },
+            "set": [
+              "party:gift",
+              "party:card"
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "{kid} draws Juniper, then eats one corner of the card. It's still a card. It's also a snack. Brynn would call it \"multi-use.\"",
+            "effects": {
+              "energy": -10,
+              "mood": 10
+            },
+            "set": [
+              "party:gift",
+              "party:card"
+            ]
+          }
+        ]
+      }
     ]
   },
   {
     "id": "arc_party_backyard",
     "title": "Juniper's Third",
     "text": "Brynn's backyard. A sign says THIS IS A YES SPACE. There's a toddler sound bath, a \"celebration loaf\" sweetened with \"the idea of apple,\" and no cake. {kid}'s intention, stated at the gate: \"CAKE.\"",
-    "window": [900, 1000], "weight": 10, "oncePerWeek": true,
-    "when": { "flags": ["party:1"], "notFlags": ["party:no"], "min": { "day": 4 } },
+    "window": [
+      900,
+      1000
+    ],
+    "weight": 10,
+    "oncePerWeek": true,
+    "when": {
+      "flags": [
+        "party:1"
+      ],
+      "notFlags": [
+        "party:no"
+      ],
+      "min": {
+        "day": 4
+      }
+    },
     "choices": [
-      { "label": "Find the cake. There is always a cake.", "duration": 20, "outcomes": [
-        { "weight": 2, "text": "Behind the garage, Juniper's other parent is eating a frosted donut over the recycling. They put a finger to their lips, then break off a piece for {kid}. You've joined something.", "effects": { "mood": 14, "energy": 6, "rep": 6 }, "stamp": "DONUT DIPLOMACY" },
-        { "weight": 1, "text": "There is no cake. There is a plum. {kid} receives the plum like a diagnosis.", "effects": { "mood": -14, "energy": -6 }, "fx": "shake" } ] },
-      { "label": "Lie down for the toddler sound bath", "duration": 30, "minEnergy": 25, "tags": ["present"], "outcomes": [
-        { "weight": 2, "text": "Twelve toddlers on yoga mats. One gong. {kid} lasts nine seconds, then falls deeply asleep. A 4:30 PM nap, on date night. Brynn whispers, \"See? Intention.\"", "effects": { "energy": -6, "mood": 12, "sleepy": -25 }, "stamp": "WORST TIME TO SLEEP" },
-        { "weight": 1, "text": "The gong goes off. {kid} screams the scream of the betrayed. Eleven toddlers join in. It is, technically, still a sound bath.", "effects": { "energy": -10, "mood": -10, "sleepy": 12, "rep": -6 }, "fx": "shake" } ] },
-      { "label": "Leave at 4:20, citing \"the nap schedule\"", "duration": 5, "outcomes": [
-        { "text": "Brynn understands. Brynn respects schedules. You're in the car by 4:22 with a goodie bag containing a single acorn.", "effects": { "energy": 10, "rep": -10, "mood": -8 } } ] },
-      { "label": "Present the card. The one with eleven teeth.", "duration": 5, "when": { "flags": ["party:card"] }, "outcomes": [
-        { "text": "Brynn holds it up for the whole yard. \"THIS is what intention looks like.\" It goes on the YES SPACE sign. Your standing in this group will never be higher.", "effects": { "rep": 20, "mood": 8, "energy": -2 }, "stamp": "INTENTION: SET", "fx": "confetti" } ] }
+      {
+        "label": "Find the cake. There is always a cake.",
+        "duration": 20,
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "Behind the garage, Juniper's other parent is eating a frosted donut over the recycling. They put a finger to their lips, then break off a piece for {kid}. You've joined something.",
+            "effects": {
+              "mood": 14,
+              "energy": 6
+            },
+            "stamp": "DONUT DIPLOMACY"
+          },
+          {
+            "weight": 1,
+            "text": "There is no cake. There is a plum. {kid} receives the plum like a diagnosis.",
+            "effects": {
+              "mood": -14,
+              "energy": -6
+            },
+            "fx": "shake"
+          }
+        ]
+      },
+      {
+        "label": "Lie down for the toddler sound bath",
+        "duration": 30,
+        "minEnergy": 25,
+        "tags": [
+          "present"
+        ],
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "Twelve toddlers on yoga mats. One gong. {kid} lasts nine seconds, then falls deeply asleep. A 4:30 PM nap, on date night. Brynn whispers, \"See? Intention.\"",
+            "effects": {
+              "energy": -6,
+              "mood": 12,
+              "sleepy": -25
+            },
+            "stamp": "WORST TIME TO SLEEP"
+          },
+          {
+            "weight": 1,
+            "text": "The gong goes off. {kid} screams the scream of the betrayed. Eleven toddlers join in. It is, technically, still a sound bath.",
+            "effects": {
+              "energy": -10,
+              "mood": -10,
+              "sleepy": 12
+            },
+            "fx": "shake"
+          }
+        ]
+      },
+      {
+        "label": "Leave at 4:20, citing \"the nap schedule\"",
+        "duration": 5,
+        "outcomes": [
+          {
+            "text": "Brynn understands. Brynn respects schedules. You're in the car by 4:22 with a goodie bag containing a single acorn.",
+            "effects": {
+              "energy": 10,
+              "mood": -8
+            }
+          }
+        ]
+      },
+      {
+        "label": "Present the card. The one with eleven teeth.",
+        "duration": 5,
+        "when": {
+          "flags": [
+            "party:card"
+          ]
+        },
+        "outcomes": [
+          {
+            "text": "Brynn holds it up for the whole yard. \"THIS is what intention looks like.\" It goes on the YES SPACE sign. Your standing in this group will never be higher.",
+            "effects": {
+              "mood": 8,
+              "energy": -2
+            },
+            "stamp": "INTENTION: SET",
+            "fx": "confetti"
+          }
+        ]
+      }
     ]
   },
   {
     "id": "arc_party_photos",
     "title": "61 Photos",
     "text": "You didn't go to Juniper's party. Brynn has posted 61 photos, so in a way, you did.",
-    "chat": { "with": "Caterpillar Room Parents 🐛 (23)", "messages": [
-      { "from": "Brynn", "text": "thank you all for an INTENTIONAL afternoon 🌿🙏" },
-      { "from": "Brynn", "text": "[61 photos]" },
-      { "from": "Marcus", "text": "photo 38 lol" },
-      { "from": "Dev", "text": "lol same" } ] },
-    "window": [990, 1045], "weight": 8, "oncePerWeek": true,
-    "when": { "flags": ["party:no"], "min": { "day": 4 } },
+    "chat": {
+      "with": "Caterpillar Room Parents 🐛 (23)",
+      "messages": [
+        {
+          "from": "Brynn",
+          "text": "thank you all for an INTENTIONAL afternoon 🌿🙏"
+        },
+        {
+          "from": "Brynn",
+          "text": "[61 photos]"
+        },
+        {
+          "from": "Marcus",
+          "text": "photo 38 lol"
+        },
+        {
+          "from": "Dev",
+          "text": "lol same"
+        }
+      ]
+    },
+    "window": [
+      840,
+      1045
+    ],
+    "weight": 8,
+    "oncePerWeek": true,
+    "when": {
+      "flags": [
+        "party:no"
+      ],
+      "min": {
+        "day": 4
+      }
+    },
     "choices": [
-      { "label": "Heart all 61. Individually.", "duration": 10, "minEnergy": 20, "outcomes": [
-        { "weight": 1, "text": "Nine minutes of hearts. Brynn notices. Brynn always notices. Your standing rises like a sugar-free loaf, which is to say slightly.", "effects": { "energy": 6, "rep": 12 }, "chat": [ { "from": "Brynn", "text": "you're so sweet 💛 missed you!!" } ] },
-        { "weight": 1, "text": "At heart 44 your thumb slips, and Juniper's grandmother receives a single 😬. You can't unsend it. You are not the kind of person who can unsend things.", "effects": { "energy": -8, "rep": -10 }, "stamp": "THUMB INCIDENT" } ] },
-      { "label": "Zoom in on photo 38", "duration": 2, "outcomes": [
-        { "text": "Photo 38, background, by the garage: Juniper's other parent eating a frosted donut over the recycling. Zoomed in, their eyes say: don't.", "effects": { "energy": 4 }, "stamp": "PHOTO 38" } ] },
-      { "label": "\"so sad we missed it!!\" (from the couch)", "duration": 1, "outcomes": [
-        { "weight": 1, "text": "Sent from the couch, with {kid} eating a cookie on your lap. Sugar-forward. You are not sad. You are horizontal.", "effects": { "energy": 10, "rep": -6, "mood": 8, "debt": 4 }, "count": { "snacks": 1 } },
-        { "weight": 1, "text": "It's on your porch by 5: dense, warm, tied with twine. {kid} eats a slice and calls it \"cake.\" Nobody corrects them.", "effects": { "energy": 6, "rep": 4 }, "chat": [ { "from": "Brynn", "text": "we saved you a loaf 🌿" } ] } ] }
+      {
+        "label": "Heart all 61. Individually.",
+        "duration": 10,
+        "minEnergy": 20,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "Nine minutes of hearts. Brynn notices. Brynn always notices. Your standing rises like a sugar-free loaf, which is to say slightly.",
+            "effects": {
+              "energy": 6
+            },
+            "chat": [
+              {
+                "from": "Brynn",
+                "text": "you're so sweet 💛 missed you!!"
+              }
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "At heart 44 your thumb slips, and Juniper's grandmother receives a single 😬. You can't unsend it. You are not the kind of person who can unsend things.",
+            "effects": {
+              "energy": -8
+            },
+            "stamp": "THUMB INCIDENT"
+          }
+        ]
+      },
+      {
+        "label": "Zoom in on photo 38",
+        "duration": 2,
+        "outcomes": [
+          {
+            "text": "Photo 38, background, by the garage: Juniper's other parent eating a frosted donut over the recycling. Zoomed in, their eyes say: don't.",
+            "effects": {
+              "energy": 4
+            },
+            "stamp": "PHOTO 38"
+          }
+        ]
+      },
+      {
+        "label": "\"so sad we missed it!!\" (from the couch)",
+        "duration": 1,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "Sent from the couch, with {kid} eating a cookie on your lap. Sugar-forward. You are not sad. You are horizontal.",
+            "effects": {
+              "energy": 10,
+              "mood": 8,
+              "debt": 4
+            },
+            "count": {
+              "snacks": 1
+            }
+          },
+          {
+            "weight": 1,
+            "text": "It's on your porch by 5: dense, warm, tied with twine. {kid} eats a slice and calls it \"cake.\" Nobody corrects them.",
+            "effects": {
+              "energy": 6
+            },
+            "chat": [
+              {
+                "from": "Brynn",
+                "text": "we saved you a loaf 🌿"
+              }
+            ]
+          }
+        ]
+      }
     ]
   },
   {
     "id": "arc_lice_rumor",
     "title": "Is It Lice",
     "text": "The group chat is 63 messages deep. You scroll up to see how it started.",
-    "chat": { "with": "Caterpillar Room Parents 🐛 (23)", "messages": [
-      { "from": "Brynn", "text": "not to alarm anyone but Juniper has been scratching 👀" },
-      { "from": "+1 (555) 014-2276", "text": "is it LICE" },
-      { "from": "Brynn", "text": "we don't know that" },
-      { "from": "Dev", "text": "lol same" },
-      { "from": "Marcus", "text": "dev WHAT" } ] },
-    "window": [480, 1100], "weight": 6, "oncePerWeek": true,
-    "when": { "max": { "day": 1 }, "notFlags": ["hz:w_lice_notice"] },
+    "chat": {
+      "with": "Caterpillar Room Parents 🐛 (23)",
+      "messages": [
+        {
+          "from": "Brynn",
+          "text": "not to alarm anyone but Juniper has been scratching 👀"
+        },
+        {
+          "from": "+1 (555) 014-2276",
+          "text": "is it LICE"
+        },
+        {
+          "from": "Brynn",
+          "text": "we don't know that"
+        },
+        {
+          "from": "Dev",
+          "text": "lol same"
+        },
+        {
+          "from": "Marcus",
+          "text": "dev WHAT"
+        }
+      ]
+    },
+    "window": [
+      480,
+      1100
+    ],
+    "weight": 6,
+    "oncePerWeek": true,
+    "when": {
+      "max": {
+        "day": 1
+      },
+      "notFlags": [
+        "hz:w_lice_notice"
+      ]
+    },
     "choices": [
-      { "label": "Check {kid}'s head. Now. With a flashlight.", "duration": 10, "minEnergy": 20, "outcomes": [
-        { "weight": 2, "text": "You part {kid}'s hair under the kitchen light while they narrate: \"BUGS? BUGS? BUGS?\" No bugs. One sesame seed. You don't think about the sesame seed.", "effects": { "energy": -8, "mood": 6, "rep": 4 }, "set": ["lice:1", "gc:dev"] },
-        { "weight": 1, "text": "{kid} takes the flashlight, sits you down and inspects YOUR head with great seriousness. \"BUGS,\" they announce. Then: \"Just kidding.\" You'll never fully recover.", "effects": { "energy": -8, "mood": 14 }, "set": ["lice:1", "gc:dev"], "stamp": "JUST KIDDING" } ] },
-      { "label": "\"not us! 🙏\"", "duration": 1, "outcomes": [
-        { "weight": 1, "text": "Brynn replies \"that's what Juniper said 🙂\" and seven people heart it. You don't know what it means. It means nothing good.", "effects": { "energy": -6, "rep": -8 }, "set": ["lice:1", "gc:dev"] },
-        { "weight": 1, "text": "Eleven people reply \"not us!\" too. A wall of not-us. Statistically, at least one of you is lying.", "effects": { "energy": 6, "rep": 6 }, "set": ["lice:1", "gc:dev"] } ] },
-      { "label": "Ask Dev what \"lol same\" means here", "duration": 1, "outcomes": [
-        { "weight": 1, "text": "Marcus: \"DEV.\" Dev goes quiet for six hours, then posts a photo of a fine-tooth comb. No caption.", "effects": { "energy": 4, "rep": 6 }, "set": ["lice:1", "gc:dev"], "chat": [ { "from": "Dev", "text": "lol same" } ] },
-        { "weight": 1, "text": "Dev has answered the question. Nineteen people are now itching.", "effects": { "energy": -4, "rep": -6 }, "set": ["lice:1", "gc:dev"], "chat": [ { "from": "Dev", "text": "lol same" } ] } ] }
+      {
+        "label": "Check {kid}'s head. Now. With a flashlight.",
+        "duration": 10,
+        "minEnergy": 20,
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "You part {kid}'s hair under the kitchen light while they narrate: \"BUGS? BUGS? BUGS?\" No bugs. One sesame seed. You don't think about the sesame seed.",
+            "effects": {
+              "energy": -8,
+              "mood": 6
+            },
+            "set": [
+              "lice:1",
+              "gc:dev"
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "{kid} takes the flashlight, sits you down and inspects YOUR head with great seriousness. \"BUGS,\" they announce. Then: \"Just kidding.\" You'll never fully recover.",
+            "effects": {
+              "energy": -8,
+              "mood": 14
+            },
+            "set": [
+              "lice:1",
+              "gc:dev"
+            ],
+            "stamp": "JUST KIDDING"
+          }
+        ]
+      },
+      {
+        "label": "\"not us! 🙏\"",
+        "duration": 1,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "Brynn replies \"that's what Juniper said 🙂\" and seven people heart it. You don't know what it means. It means nothing good.",
+            "effects": {
+              "energy": -6
+            },
+            "set": [
+              "lice:1",
+              "gc:dev"
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "Eleven people reply \"not us!\" too. A wall of not-us. Statistically, at least one of you is lying.",
+            "effects": {
+              "energy": 6
+            },
+            "set": [
+              "lice:1",
+              "gc:dev"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Ask Dev what \"lol same\" means here",
+        "duration": 1,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "Marcus: \"DEV.\" Dev goes quiet for six hours, then posts a photo of a fine-tooth comb. No caption.",
+            "effects": {
+              "energy": 4
+            },
+            "set": [
+              "lice:1",
+              "gc:dev"
+            ],
+            "chat": [
+              {
+                "from": "Dev",
+                "text": "lol same"
+              }
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "Dev has answered the question. Nineteen people are now itching.",
+            "effects": {
+              "energy": -4
+            },
+            "set": [
+              "lice:1",
+              "gc:dev"
+            ],
+            "chat": [
+              {
+                "from": "Dev",
+                "text": "lol same"
+              }
+            ]
+          }
+        ]
+      }
     ]
   },
   {
     "id": "arc_lice_patty",
     "title": "Just Being Proactive!!",
     "text": "A note from Ms. Patty arrives in the daycare app. You count the smileys before you read the words.",
-    "chat": { "with": "Ms. Patty 🐛 Caterpillar Room", "messages": [
-      { "from": "Ms. Patty", "text": "Hi families! 🌈" },
-      { "from": "Ms. Patty", "text": "Please check heads tonight! 🙂" },
-      { "from": "Ms. Patty", "text": "No confirmed cases!! Just being proactive!! 🙂🙂" } ] },
-    "window": [840, 1100], "weight": 4, "oncePerWeek": true,
-    "when": { "flags": ["lice:1"], "notFlags": ["d:home", "lice:done"], "min": { "day": 1 }, "max": { "day": 3 } },
+    "chat": {
+      "with": "Ms. Patty 🐛 Caterpillar Room",
+      "messages": [
+        {
+          "from": "Ms. Patty",
+          "text": "Hi families! 🌈"
+        },
+        {
+          "from": "Ms. Patty",
+          "text": "Please check heads tonight! 🙂"
+        },
+        {
+          "from": "Ms. Patty",
+          "text": "No confirmed cases!! Just being proactive!! 🙂🙂"
+        }
+      ]
+    },
+    "window": [
+      840,
+      1100
+    ],
+    "weight": 4,
+    "oncePerWeek": true,
+    "when": {
+      "flags": [
+        "lice:1"
+      ],
+      "notFlags": [
+        "d:home",
+        "lice:done"
+      ],
+      "min": {
+        "day": 1
+      },
+      "max": {
+        "day": 3
+      }
+    },
     "choices": [
-      { "label": "Headlamp. Fine comb. Every head in the house.", "duration": 40, "minEnergy": 30, "tags": ["martyr"], "outcomes": [
-        { "weight": 2, "text": "Forty minutes, three heads, one headlamp. Nothing on {kid}. Nothing on {partner}. On you: one gray hair, which you'll think about longer than lice.", "effects": { "energy": -14, "rel": 6, "home": 6 }, "set": ["lice:2"] },
-        { "weight": 1, "text": "{partner} combs you while you comb {kid}. A grooming conga line, by headlamp. It's the most anyone has touched your head in a year. Nobody finds a thing.", "effects": { "energy": -12, "rel": 14 }, "set": ["lice:2"], "ledger": { "evening": "partner" } } ] },
-      { "label": "Wash every pillowcase on hot. Just in case.", "duration": 30, "tags": ["martyr"], "outcomes": [
-        { "text": "Pillowcases, sheets, towels and both car-seat covers, all on hot. The dryer runs until 11:40. {kid} spends bedtime in a nest of bath towels and takes it personally.", "effects": { "energy": -8, "home": 10, "mood": -6, "rel": 6 }, "set": ["lice:2"], "ledger": { "laundry": "you" } } ] },
-      { "label": "Two smileys means \"probably fine.\"", "duration": 1, "outcomes": [
-        { "weight": 1, "text": "Two smileys: probably fine. Three would be lice. You do the smiley math all evening, mostly with your scalp. You're not itchy. You're informed.", "effects": { "energy": 2, "rep": -6 }, "set": ["lice:2"] },
-        { "weight": 1, "text": "You decide it's fine. Then Ms. Patty sends one more message, with no words at all.", "effects": { "energy": -8, "rep": -8 }, "set": ["lice:2"], "chat": [ { "from": "Ms. Patty", "text": "🙂" } ], "stamp": "THREE SMILEYS", "fx": "flash" } ] }
+      {
+        "label": "Headlamp. Fine comb. Every head in the house.",
+        "duration": 40,
+        "minEnergy": 30,
+        "tags": [
+          "martyr"
+        ],
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "Forty minutes, three heads, one headlamp. Nothing on {kid}. Nothing on {partner}. On you: one gray hair, which you'll think about longer than lice.",
+            "effects": {
+              "energy": -14,
+              "rel": 6
+            },
+            "set": [
+              "lice:2"
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "{partner} combs you while you comb {kid}. A grooming conga line, by headlamp. It's the most anyone has touched your head in a year. Nobody finds a thing.",
+            "effects": {
+              "energy": -12,
+              "rel": 14
+            },
+            "set": [
+              "lice:2"
+            ],
+            "ledger": {
+              "evening": "partner"
+            }
+          }
+        ]
+      },
+      {
+        "label": "Wash every pillowcase on hot. Just in case.",
+        "duration": 30,
+        "tags": [
+          "martyr"
+        ],
+        "outcomes": [
+          {
+            "text": "Pillowcases, sheets, towels and both car-seat covers, all on hot. The dryer runs until 11:40. {kid} spends bedtime in a nest of bath towels and takes it personally.",
+            "effects": {
+              "energy": -8,
+              "mood": -6,
+              "rel": 6
+            },
+            "set": [
+              "lice:2"
+            ],
+            "ledger": {
+              "laundry": "you"
+            }
+          }
+        ]
+      },
+      {
+        "label": "Two smileys means \"probably fine.\"",
+        "duration": 1,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "Two smileys: probably fine. Three would be lice. You do the smiley math all evening, mostly with your scalp. You're not itchy. You're informed.",
+            "effects": {
+              "energy": 2
+            },
+            "set": [
+              "lice:2"
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "You decide it's fine. Then Ms. Patty sends one more message, with no words at all.",
+            "effects": {
+              "energy": -8
+            },
+            "set": [
+              "lice:2"
+            ],
+            "chat": [
+              {
+                "from": "Ms. Patty",
+                "text": "🙂"
+              }
+            ],
+            "stamp": "THREE SMILEYS",
+            "fx": "flash"
+          }
+        ]
+      }
     ]
   },
   {
     "id": "arc_lice_stall",
     "title": "Stall Two",
     "text": "Work bathroom, second stall. You're holding your phone to your scalp in selfie mode at 400% zoom. The door opens. Someone from Finance walks in. You are very, very still.",
-    "window": [540, 1000], "weight": 4, "oncePerWeek": true,
-    "when": { "flags": ["lice:2"], "notFlags": ["d:home", "lice:done"], "min": { "day": 1 }, "max": { "day": 3 } },
+    "window": [
+      540,
+      1000
+    ],
+    "weight": 4,
+    "oncePerWeek": true,
+    "when": {
+      "flags": [
+        "lice:2"
+      ],
+      "notFlags": [
+        "d:home",
+        "lice:done"
+      ],
+      "min": {
+        "day": 1
+      },
+      "max": {
+        "day": 3
+      }
+    },
     "choices": [
-      { "label": "\"Just checking for gray hairs!\"", "duration": 2, "outcomes": [
-        { "weight": 1, "text": "\"Oh, me too,\" says Finance, and takes the next stall. You both check in silence. Nobody finds anything. Nobody says the word.", "effects": { "energy": 4, "rep": 6 }, "set": ["lice:3"] },
-        { "weight": 1, "text": "\"In the stall?\" Finance asks. Yes. In the stall. That's where the gray hairs are.", "effects": { "energy": -6, "rep": -10 }, "set": ["lice:3"] } ] },
-      { "label": "Commit. \"Can you check the back?\"", "duration": 5, "minEnergy": 20, "outcomes": [
-        { "weight": 2, "text": "Finance looks. Finance is thorough. Finance also has a kid at Little Sprouts, Butterfly Room. \"I've been in here since two,\" Finance whispers. You're friends now.", "effects": { "energy": 4, "rep": 14 }, "set": ["lice:3", "lice:finance"], "stamp": "STALL ALLIES" },
-        { "weight": 1, "text": "Finance backs out of the bathroom without a word. At 3 PM a calendar invite arrives: \"Quick chat re: wellness 🙂\"", "effects": { "energy": -12, "rep": -16 }, "set": ["lice:3"], "fx": "flash" } ] },
-      { "label": "Flush. Leave. Itch through the 3 PM.", "duration": 2, "outcomes": [
-        { "text": "You sit through \"Q3 Learnings\" scratching in small, polite circles. Trent asks if you have a question. You do. It's about lice.", "effects": { "energy": -2, "rep": -10 }, "set": ["lice:3"] } ] }
+      {
+        "label": "\"Just checking for gray hairs!\"",
+        "duration": 2,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "\"Oh, me too,\" says Finance, and takes the next stall. You both check in silence. Nobody finds anything. Nobody says the word.",
+            "effects": {
+              "energy": 4
+            },
+            "set": [
+              "lice:3"
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "\"In the stall?\" Finance asks. Yes. In the stall. That's where the gray hairs are.",
+            "effects": {
+              "energy": -6
+            },
+            "set": [
+              "lice:3"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Commit. \"Can you check the back?\"",
+        "duration": 5,
+        "minEnergy": 20,
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "Finance looks. Finance is thorough. Finance also has a kid at Little Sprouts, Butterfly Room. \"I've been in here since two,\" Finance whispers. You're friends now.",
+            "effects": {
+              "energy": 4
+            },
+            "set": [
+              "lice:3",
+              "lice:finance"
+            ],
+            "stamp": "STALL ALLIES"
+          },
+          {
+            "weight": 1,
+            "text": "Finance backs out of the bathroom without a word. At 3 PM a calendar invite arrives: \"Quick chat re: wellness 🙂\"",
+            "effects": {
+              "energy": -12
+            },
+            "set": [
+              "lice:3"
+            ],
+            "fx": "flash"
+          }
+        ]
+      },
+      {
+        "label": "Flush. Leave. Itch through the 3 PM.",
+        "duration": 2,
+        "outcomes": [
+          {
+            "text": "You sit through \"Q3 Learnings\" scratching in small, polite circles. Trent asks if you have a question. You do. It's about lice.",
+            "effects": {
+              "energy": -2
+            },
+            "set": [
+              "lice:3"
+            ]
+          }
+        ]
+      }
     ]
   },
   {
     "id": "arc_lice_reveal",
     "title": "Update: Not Lice",
     "text": "Ms. Patty posts an update to the group chat. Twenty-three parents stop scratching to read it.",
-    "chat": { "with": "Caterpillar Room Parents 🐛 (23)", "messages": [
-      { "from": "Ms. Patty", "text": "Update families! 🌈 NOT lice!!" },
-      { "from": "Ms. Patty", "text": "It was sesame seeds 🙂 Juniper had an everything bagel" },
-      { "from": "Brynn", "text": "seeded sourdough. not a bagel 🙂" },
-      { "from": "Dev", "text": "lol same" } ] },
-    "window": [600, 1100], "weight": 7, "oncePerWeek": true,
-    "when": { "flags": ["lice:1"], "min": { "day": 3 } },
+    "chat": {
+      "with": "Caterpillar Room Parents 🐛 (23)",
+      "messages": [
+        {
+          "from": "Ms. Patty",
+          "text": "Update families! 🌈 NOT lice!!"
+        },
+        {
+          "from": "Ms. Patty",
+          "text": "It was sesame seeds 🙂 Juniper had an everything bagel"
+        },
+        {
+          "from": "Brynn",
+          "text": "seeded sourdough. not a bagel 🙂"
+        },
+        {
+          "from": "Dev",
+          "text": "lol same"
+        }
+      ]
+    },
+    "window": [
+      600,
+      1100
+    ],
+    "weight": 7,
+    "oncePerWeek": true,
+    "when": {
+      "flags": [
+        "lice:1"
+      ],
+      "min": {
+        "day": 3
+      }
+    },
     "choices": [
-      { "label": "\"so relieved!! 🙏\"", "duration": 1, "outcomes": [
-        { "text": "Twenty-one people send \"so relieved!!\" The chat becomes a field of praying hands. Your scalp keeps itching, out of habit.", "effects": { "energy": 2, "rep": 4 }, "set": ["lice:done", "gc:dev"] } ] },
-      { "label": "Reply with one bagel emoji. 🥯", "duration": 1, "outcomes": [
-        { "weight": 1, "text": "Seventeen people heart the bagel. That evening, Brynn changes the group photo to a loaf of sourdough.", "effects": { "energy": 8, "rep": 14 }, "set": ["lice:done", "gc:dev"], "stamp": "BAGELGATE" },
-        { "weight": 1, "text": "Brynn posts a photo of the sourdough. It has more seeds than a bird feeder. The chat turns on you for \"starting something.\"", "effects": { "energy": -8, "rep": -12 }, "set": ["lice:done", "gc:dev"] } ] },
-      { "label": "Confess: you checked your scalp at work", "duration": 2, "outcomes": [
-        { "weight": 1, "text": "Marcus: \"same.\" Brynn: \"same 🙂\" Then Ms. Patty: \"Same!! 🙂\" You've started something good, completely by accident.", "effects": { "energy": 8, "rep": 12 }, "set": ["lice:done", "gc:dev"] },
-        { "weight": 1, "text": "Silence. A long, long silence. Then a single 👍 from Trent, your boss, who you did not know was in this chat.", "effects": { "energy": -8, "rep": -10 }, "set": ["lice:done", "gc:dev"], "stamp": "TRENT IS HERE" } ] },
-      { "label": "Text Finance: \"sesame.\"", "duration": 1, "when": { "flags": ["lice:finance"] }, "outcomes": [
-        { "text": "You have a work friend now. It cost you a stall and some dignity, which you weren't using.", "effects": { "energy": 6, "rep": 10 }, "set": ["lice:done"], "chat": [ { "from": "Finance (Stall 3)", "text": "SESAME??" }, { "from": "Finance (Stall 3)", "text": "butterfly room was sand in march. same panic" } ] } ] }
+      {
+        "label": "\"so relieved!! 🙏\"",
+        "duration": 1,
+        "outcomes": [
+          {
+            "text": "Twenty-one people send \"so relieved!!\" The chat becomes a field of praying hands. Your scalp keeps itching, out of habit.",
+            "effects": {
+              "energy": 2
+            },
+            "set": [
+              "lice:done",
+              "gc:dev"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Reply with one bagel emoji. 🥯",
+        "duration": 1,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "Seventeen people heart the bagel. That evening, Brynn changes the group photo to a loaf of sourdough.",
+            "effects": {
+              "energy": 8
+            },
+            "set": [
+              "lice:done",
+              "gc:dev"
+            ],
+            "stamp": "BAGELGATE"
+          },
+          {
+            "weight": 1,
+            "text": "Brynn posts a photo of the sourdough. It has more seeds than a bird feeder. The chat turns on you for \"starting something.\"",
+            "effects": {
+              "energy": -8
+            },
+            "set": [
+              "lice:done",
+              "gc:dev"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Confess: you checked your scalp at work",
+        "duration": 2,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "Marcus: \"same.\" Brynn: \"same 🙂\" Then Ms. Patty: \"Same!! 🙂\" You've started something good, completely by accident.",
+            "effects": {
+              "energy": 8
+            },
+            "set": [
+              "lice:done",
+              "gc:dev"
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "Silence. A long, long silence. Then a single 👍 from Trent, your boss, who you did not know was in this chat.",
+            "effects": {
+              "energy": -8
+            },
+            "set": [
+              "lice:done",
+              "gc:dev"
+            ],
+            "stamp": "TRENT IS HERE"
+          }
+        ]
+      },
+      {
+        "label": "Text Finance: \"sesame.\"",
+        "duration": 1,
+        "when": {
+          "flags": [
+            "lice:finance"
+          ]
+        },
+        "outcomes": [
+          {
+            "text": "You have a work friend now. It cost you a stall and some dignity, which you weren't using.",
+            "effects": {
+              "energy": 6
+            },
+            "set": [
+              "lice:done"
+            ],
+            "chat": [
+              {
+                "from": "Finance (Stall 3)",
+                "text": "SESAME??"
+              },
+              {
+                "from": "Finance (Stall 3)",
+                "text": "butterfly room was sand in march. same panic"
+              }
+            ]
+          }
+        ]
+      }
     ]
   },
   {
     "id": "arc_gary_blower",
     "title": "Gary Has a Leaf Blower",
     "text": "The nap is holding. The house is silent. Next door, Gary walks out with a leaf blower, studies the three leaves on the lawn, and pulls the cord.",
-    "window": [790, 900], "weight": 6, "oncePerWeek": true,
-    "when": { "flags": ["d:napDone"], "notFlags": ["d:napSkipped"], "max": { "day": 2 } },
+    "window": [
+      790,
+      900
+    ],
+    "weight": 6,
+    "oncePerWeek": true,
+    "when": {
+      "flags": [
+        "d:napDone"
+      ],
+      "notFlags": [
+        "d:napSkipped"
+      ],
+      "max": {
+        "day": 2
+      }
+    },
     "choices": [
-      { "label": "Go over and ask nicely. In socks.", "duration": 25, "minEnergy": 20, "outcomes": [
-        { "weight": 2, "text": "Gary is delighted to meet you. Gary turns it off and talks for 22 minutes about mulch. The nap survives. You barely do.", "effects": { "energy": -10, "rep": 8, "debt": -6 }, "set": ["gary:1"] },
-        { "weight": 1, "text": "Gary can't hear you. Gary gives you a big thumbs-up and blows a leaf onto your socks. From upstairs: \"{ME}?\"", "effects": { "energy": -8, "mood": -12, "debt": 8 }, "set": ["gary:1"], "fx": "shake" } ] },
-      { "label": "White noise to max. The setting called JET.", "duration": 2, "outcomes": [
-        { "weight": 1, "text": "White noise versus Gary. White noise wins on volume. The nap holds. You can't hear yourself think, which is a relief.", "effects": { "energy": 6, "debt": -4 }, "set": ["gary:1"] },
-        { "weight": 1, "text": "It beats Gary. It does not beat {kid}, who sits up in the dark and asks, with wonder, \"AIRPLANE?\" Nap: over.", "effects": { "energy": -6, "mood": -10, "debt": 10, "sleepy": 10 }, "set": ["gary:1"], "stamp": "NAP: GROUNDED" } ] },
-      { "label": "Stare out the window until Gary feels it", "duration": 5, "outcomes": [
-        { "weight": 1, "text": "Gary feels it. Gary turns, sees you, and waves at you with the leaf blower, which turns out to be worse.", "effects": { "energy": 4, "mood": -6, "debt": 4 }, "set": ["gary:1"] },
-        { "weight": 1, "text": "Gary doesn't feel it. Gary is wearing ear defenders. Gary protects Gary's own ears.", "effects": { "energy": 6, "mood": -8, "debt": 6 }, "set": ["gary:1"], "stamp": "GARY: PROTECTED" } ] }
+      {
+        "label": "Go over and ask nicely. In socks.",
+        "duration": 25,
+        "minEnergy": 20,
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "Gary is delighted to meet you. Gary turns it off and talks for 22 minutes about mulch. The nap survives. You barely do.",
+            "effects": {
+              "energy": -10,
+              "debt": -6
+            },
+            "set": [
+              "gary:1"
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "Gary can't hear you. Gary gives you a big thumbs-up and blows a leaf onto your socks. From upstairs: \"{ME}?\"",
+            "effects": {
+              "energy": -8,
+              "mood": -12,
+              "debt": 8
+            },
+            "set": [
+              "gary:1"
+            ],
+            "fx": "shake"
+          }
+        ]
+      },
+      {
+        "label": "White noise to max. The setting called JET.",
+        "duration": 2,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "White noise versus Gary. White noise wins on volume. The nap holds. You can't hear yourself think, which is a relief.",
+            "effects": {
+              "energy": 6,
+              "debt": -4
+            },
+            "set": [
+              "gary:1"
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "It beats Gary. It does not beat {kid}, who sits up in the dark and asks, with wonder, \"AIRPLANE?\" Nap: over.",
+            "effects": {
+              "energy": -6,
+              "mood": -10,
+              "debt": 10,
+              "sleepy": 10
+            },
+            "set": [
+              "gary:1"
+            ],
+            "stamp": "NAP: GROUNDED"
+          }
+        ]
+      },
+      {
+        "label": "Stare out the window until Gary feels it",
+        "duration": 5,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "Gary feels it. Gary turns, sees you, and waves at you with the leaf blower, which turns out to be worse.",
+            "effects": {
+              "energy": 4,
+              "mood": -6,
+              "debt": 4
+            },
+            "set": [
+              "gary:1"
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "Gary doesn't feel it. Gary is wearing ear defenders. Gary protects Gary's own ears.",
+            "effects": {
+              "energy": 6,
+              "mood": -8,
+              "debt": 6
+            },
+            "set": [
+              "gary:1"
+            ],
+            "stamp": "GARY: PROTECTED"
+          }
+        ]
+      }
     ]
   },
   {
     "id": "arc_gary_impression",
     "title": "The Gary",
     "text": "{kid} has learned to do Gary. They stand at the window, make a low, wet roar and sweep the carpet in long, even strokes, edging along the baseboards. They've been at it for forty minutes. They're good.",
-    "window": [480, 1100], "weight": 4, "oncePerWeek": true,
-    "when": { "flags": ["gary:1"], "min": { "day": 1 }, "max": { "day": 3 } },
+    "window": [
+      480,
+      1100
+    ],
+    "weight": 4,
+    "oncePerWeek": true,
+    "when": {
+      "flags": [
+        "gary:1"
+      ],
+      "min": {
+        "day": 1
+      },
+      "max": {
+        "day": 3
+      }
+    },
     "choices": [
-      { "label": "Join in. Become a second Gary.", "duration": 15, "minEnergy": 20, "tags": ["present"], "outcomes": [
-        { "weight": 2, "text": "Two Garys. You do the low roar, {kid} does the high one. Together you clear the living room of imaginary leaves. Real Gary waves from next door.", "effects": { "energy": -8, "mood": 16 }, "set": ["gary:2"] },
-        { "weight": 1, "text": "\"NO. I GARY.\" There is only one Gary in this house. You've been reassigned to leaf.", "effects": { "energy": -6, "mood": 8 }, "set": ["gary:2"], "stamp": "DEMOTED TO LEAF" } ] },
-      { "label": "Offer a classier noise: gentle rain", "duration": 10, "outcomes": [
-        { "text": "You do the rain: a long, soft shhhh. {kid} listens carefully, nods and does the rain back. Their rain sounds exactly like Gary.", "effects": { "energy": -4, "mood": 8 }, "set": ["gary:2"] } ] },
-      { "label": "Let it run. Gary is free entertainment.", "duration": 2, "outcomes": [
-        { "weight": 1, "text": "Forty more minutes of Gary. You fold laundry to it. It's oddly soothing. At dinner {kid} does Gary into a cup of milk.", "effects": { "energy": 8, "home": -8, "rel": -6 }, "set": ["gary:2"] },
-        { "weight": 1, "text": "{kid} does Gary until they're yawning between roars. It's a lullaby, if a lullaby were a lawn tool. You make a note of this.", "effects": { "energy": 6, "sleepy": 10, "mood": 4 }, "set": ["gary:2"], "stamp": "NOTED: GARY WORKS" } ] }
+      {
+        "label": "Join in. Become a second Gary.",
+        "duration": 15,
+        "minEnergy": 20,
+        "tags": [
+          "present"
+        ],
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "Two Garys. You do the low roar, {kid} does the high one. Together you clear the living room of imaginary leaves. Real Gary waves from next door.",
+            "effects": {
+              "energy": -8,
+              "mood": 16
+            },
+            "set": [
+              "gary:2"
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "\"NO. I GARY.\" There is only one Gary in this house. You've been reassigned to leaf.",
+            "effects": {
+              "energy": -6,
+              "mood": 8
+            },
+            "set": [
+              "gary:2"
+            ],
+            "stamp": "DEMOTED TO LEAF"
+          }
+        ]
+      },
+      {
+        "label": "Offer a classier noise: gentle rain",
+        "duration": 10,
+        "outcomes": [
+          {
+            "text": "You do the rain: a long, soft shhhh. {kid} listens carefully, nods and does the rain back. Their rain sounds exactly like Gary.",
+            "effects": {
+              "energy": -4,
+              "mood": 8
+            },
+            "set": [
+              "gary:2"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Let it run. Gary is free entertainment.",
+        "duration": 2,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "Forty more minutes of Gary. You fold laundry to it. It's oddly soothing. At dinner {kid} does Gary into a cup of milk.",
+            "effects": {
+              "energy": 8,
+              "rel": -6
+            },
+            "set": [
+              "gary:2"
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "{kid} does Gary until they're yawning between roars. It's a lullaby, if a lullaby were a lawn tool. You make a note of this.",
+            "effects": {
+              "energy": 6,
+              "sleepy": 10,
+              "mood": 4
+            },
+            "set": [
+              "gary:2"
+            ],
+            "stamp": "NOTED: GARY WORKS"
+          }
+        ]
+      }
     ]
   },
   {
     "id": "arc_gary_neighbors",
     "title": "Maple Court Neighbors",
     "text": "The neighborhood chat lights up. Gary has something to say, and has found the caps lock.",
-    "chat": { "with": "Maple Court Neighbors (41)", "messages": [
-      { "from": "Gary", "text": "Good afternoon neighbors! 🍂" },
-      { "from": "Gary", "text": "If my blower EVER bothers anyone please LET ME KNOW!!" },
-      { "from": "Gary", "text": "Planning to do the WHOLE STREET this weekend as a gift 🙂" },
-      { "from": "Linda (#14)", "text": "that's so kind gary" } ] },
-    "window": [600, 1100], "weight": 4, "oncePerWeek": true,
-    "when": { "flags": ["gary:1"], "min": { "day": 1 }, "max": { "day": 3 } },
+    "chat": {
+      "with": "Maple Court Neighbors (41)",
+      "messages": [
+        {
+          "from": "Gary",
+          "text": "Good afternoon neighbors! 🍂"
+        },
+        {
+          "from": "Gary",
+          "text": "If my blower EVER bothers anyone please LET ME KNOW!!"
+        },
+        {
+          "from": "Gary",
+          "text": "Planning to do the WHOLE STREET this weekend as a gift 🙂"
+        },
+        {
+          "from": "Linda (#14)",
+          "text": "that's so kind gary"
+        }
+      ]
+    },
+    "window": [
+      600,
+      1100
+    ],
+    "weight": 4,
+    "oncePerWeek": true,
+    "when": {
+      "flags": [
+        "gary:1"
+      ],
+      "min": {
+        "day": 1
+      },
+      "max": {
+        "day": 3
+      }
+    },
     "choices": [
-      { "label": "\"could you avoid 12:30–2:30? 🙂 nap!\"", "duration": 3, "minEnergy": 20, "outcomes": [
-        { "weight": 2, "text": "Gary is thrilled to help. Gary runs it at 2:31 the next day, precisely, as if an alarm had been set. An alarm had been set.", "effects": { "energy": -4, "rep": 10, "debt": -6 }, "set": ["gary:3"], "chat": [ { "from": "Gary", "text": "ABSOLUTELY!! 🙂🙂🙂" } ] },
-        { "weight": 1, "text": "Gary has misread it. Gary has misread it in the worst possible direction.", "effects": { "energy": -4, "rep": 6, "debt": 8, "mood": -6 }, "set": ["gary:3"], "chat": [ { "from": "Gary", "text": "12:30 it is!!! 🍂" } ], "stamp": "MISREAD" } ] },
-      { "label": "Heart it. Hate it.", "duration": 1, "outcomes": [
-        { "text": "A heart. Linda hearts your heart. Nothing changes, but you're now on record as supportive of Gary, which will matter at the block party.", "effects": { "energy": 4, "rep": 6, "debt": 4 }, "set": ["gary:3"] } ] },
-      { "label": "\"gary it's always nap time somewhere\"", "duration": 1, "outcomes": [
-        { "weight": 1, "text": "Three neighbors heart it. Gary replies \"oh no!! 😢\" and doesn't blow a single leaf for two days. You feel guilty on behalf of both of you.", "effects": { "energy": -4, "rep": -6, "debt": -4 }, "set": ["gary:3"] },
-        { "weight": 1, "text": "Linda (#14) has been waiting years for this.", "effects": { "energy": -8, "rep": -10 }, "set": ["gary:3"], "chat": [ { "from": "Linda (#14)", "text": "some of us work from home and ENJOY the sound 🙂" } ] } ] }
+      {
+        "label": "\"could you avoid 12:30–2:30? 🙂 nap!\"",
+        "duration": 3,
+        "minEnergy": 20,
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "Gary is thrilled to help. Gary runs it at 2:31 the next day, precisely, as if an alarm had been set. An alarm had been set.",
+            "effects": {
+              "energy": -4,
+              "debt": -6
+            },
+            "set": [
+              "gary:3"
+            ],
+            "chat": [
+              {
+                "from": "Gary",
+                "text": "ABSOLUTELY!! 🙂🙂🙂"
+              }
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "Gary has misread it. Gary has misread it in the worst possible direction.",
+            "effects": {
+              "energy": -4,
+              "debt": 8,
+              "mood": -6
+            },
+            "set": [
+              "gary:3"
+            ],
+            "chat": [
+              {
+                "from": "Gary",
+                "text": "12:30 it is!!! 🍂"
+              }
+            ],
+            "stamp": "MISREAD"
+          }
+        ]
+      },
+      {
+        "label": "Heart it. Hate it.",
+        "duration": 1,
+        "outcomes": [
+          {
+            "text": "A heart. Linda hearts your heart. Nothing changes, but you're now on record as supportive of Gary, which will matter at the block party.",
+            "effects": {
+              "energy": 4,
+              "debt": 4
+            },
+            "set": [
+              "gary:3"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "\"gary it's always nap time somewhere\"",
+        "duration": 1,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "Three neighbors heart it. Gary replies \"oh no!! 😢\" and doesn't blow a single leaf for two days. You feel guilty on behalf of both of you.",
+            "effects": {
+              "energy": -4,
+              "debt": -4
+            },
+            "set": [
+              "gary:3"
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "Linda (#14) has been waiting years for this.",
+            "effects": {
+              "energy": -8
+            },
+            "set": [
+              "gary:3"
+            ],
+            "chat": [
+              {
+                "from": "Linda (#14)",
+                "text": "some of us work from home and ENJOY the sound 🙂"
+              }
+            ]
+          }
+        ]
+      }
     ]
   },
   {
     "id": "arc_gary_bedtime",
     "title": "Bring Me Gary",
     "text": "Bedtime is in an hour and {kid} won't settle. They've been very clear about what they need: \"GARY NOISE.\" The leaf blower is how they fall asleep now. This is your life.",
-    "window": [1000, 1160], "weight": 8, "oncePerWeek": true,
-    "when": { "flags": ["gary:2"], "min": { "day": 3 } },
+    "window": [
+      1080,
+      1165
+    ],
+    "weight": 8,
+    "oncePerWeek": true,
+    "when": {
+      "flags": [
+        "gary:2"
+      ],
+      "min": {
+        "day": 3
+      },
+      "max": {
+        "day": 3
+      }
+    },
     "choices": [
-      { "label": "Knock on Gary's door. Ask for a blow.", "duration": 20, "outcomes": [
-        { "weight": 2, "text": "Gary has never been so happy. Gary blows the same nine leaves back and forth across the lawn, waving at the window. {kid}'s eyes are closing by the third pass.", "effects": { "sleepy": 28, "energy": -4, "rep": 6 }, "set": ["gary:done"], "stamp": "GARY, OUR HERO", "fx": "confetti" },
-        { "weight": 1, "text": "Gary's not home. Gary's car is gone. On Gary's door, a sign: BACK SUNDAY 🍂. You stand on the porch for a while, holding nothing.", "effects": { "energy": -8, "mood": -10 }, "set": ["gary:done"], "fx": "flash" } ] },
-      { "label": "Do the noise yourself. With your mouth.", "duration": 15, "minEnergy": 25, "tags": ["present"], "outcomes": [
-        { "weight": 2, "text": "Fourteen minutes of low, wet roaring beside the crib. {kid} goes heavy. You come out lightheaded and hoarse. {partner} says the voice is \"kind of a look.\"", "effects": { "sleepy": 22, "energy": -12, "rel": 6 }, "set": ["gary:done"] },
-        { "weight": 1, "text": "Your Gary is not Gary. {kid} sits up, looks you in the eye and says, flatly, \"No. GARY.\"", "effects": { "sleepy": 6, "energy": -12, "mood": -10 }, "set": ["gary:done"], "stamp": "NOT GARY" } ] },
-      { "label": "Play a ten-hour leaf blower recording", "duration": 5, "outcomes": [
-        { "weight": 2, "text": "It exists. Somebody recorded their own leaf blower for ten hours and shared it with the world. {kid} melts. You decide never to meet that person.", "effects": { "sleepy": 16, "energy": 6 }, "set": ["gary:done"] },
-        { "weight": 1, "text": "The recording opens with an ad. The ad is loud. It's for a leaf blower.", "effects": { "sleepy": -6, "mood": -10, "energy": 2 }, "set": ["gary:done"] } ] },
-      { "label": "Message Gary in the neighbors chat", "duration": 2, "when": { "flags": ["gary:3"] }, "outcomes": [
-        { "text": "Gary replies in eight seconds and is on the lawn two minutes later, wearing a headlamp, as if this is what Gary was born for.", "effects": { "sleepy": 28, "energy": 4, "rep": 4 }, "set": ["gary:done"], "chat": [ { "from": "you", "text": "gary this is weird but could you blow some leaves" }, { "from": "Gary", "text": "SAY NO MORE 🍂🍂🍂" } ] } ] }
-    ]
+      {
+        "label": "Knock on Gary's door. Ask for a blow.",
+        "duration": 20,
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "Gary has never been so happy. Gary blows the same nine leaves back and forth across the lawn, waving at the window. {kid}'s eyes are closing by the third pass.",
+            "effects": {
+              "sleepy": 28,
+              "energy": -4
+            },
+            "set": [
+              "gary:done"
+            ],
+            "stamp": "GARY, OUR HERO",
+            "fx": "confetti"
+          },
+          {
+            "weight": 1,
+            "text": "Gary's not home. Gary's car is gone. On Gary's door, a sign: BACK SUNDAY 🍂. You stand on the porch for a while, holding nothing.",
+            "effects": {
+              "energy": -8,
+              "mood": -10
+            },
+            "set": [
+              "gary:done"
+            ],
+            "fx": "flash"
+          }
+        ]
+      },
+      {
+        "label": "Do the noise yourself. With your mouth.",
+        "duration": 15,
+        "minEnergy": 25,
+        "tags": [
+          "present"
+        ],
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "Fourteen minutes of low, wet roaring beside the crib. {kid} goes heavy. You come out lightheaded and hoarse. {partner} says the voice is \"kind of a look.\"",
+            "effects": {
+              "sleepy": 22,
+              "energy": -12,
+              "rel": 6
+            },
+            "set": [
+              "gary:done"
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "Your Gary is not Gary. {kid} sits up, looks you in the eye and says, flatly, \"No. GARY.\"",
+            "effects": {
+              "sleepy": 6,
+              "energy": -12,
+              "mood": -10
+            },
+            "set": [
+              "gary:done"
+            ],
+            "stamp": "NOT GARY"
+          }
+        ]
+      },
+      {
+        "label": "Play a ten-hour leaf blower recording",
+        "duration": 5,
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "It exists. Somebody recorded their own leaf blower for ten hours and shared it with the world. {kid} melts. You decide never to meet that person.",
+            "effects": {
+              "sleepy": 16,
+              "energy": 6
+            },
+            "set": [
+              "gary:done"
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "The recording opens with an ad. The ad is loud. It's for a leaf blower.",
+            "effects": {
+              "sleepy": -6,
+              "mood": -10,
+              "energy": 2
+            },
+            "set": [
+              "gary:done"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Message Gary in the neighbors chat",
+        "duration": 2,
+        "when": {
+          "flags": [
+            "gary:3"
+          ]
+        },
+        "outcomes": [
+          {
+            "text": "Gary replies in eight seconds and is on the lawn two minutes later, wearing a headlamp, as if this is what Gary was born for.",
+            "effects": {
+              "sleepy": 28,
+              "energy": 4
+            },
+            "set": [
+              "gary:done"
+            ],
+            "chat": [
+              {
+                "from": "you",
+                "text": "gary this is weird but could you blow some leaves"
+              },
+              {
+                "from": "Gary",
+                "text": "SAY NO MORE 🍂🍂🍂"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "priority": 35
   }
 ]

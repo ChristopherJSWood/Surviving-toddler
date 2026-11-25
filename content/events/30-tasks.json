@@ -28,8 +28,7 @@
             "weight": 1,
             "text": "Done in four taps. Three days later you learn you've subscribed to a box every nine days, forever, with no visible way out. The diapers have you now.",
             "effects": {
-              "energy": -4,
-              "home": -8
+              "energy": -4
             },
             "completeTask": "diapers",
             "stamp": "SUBSCRIBED FOREVER"
@@ -109,8 +108,7 @@
             "weight": 2,
             "text": "Allergies: none. Party energy: 5, unfortunately. Number 14 takes eleven minutes and a second draft. Brynn replies at once: \"LOVE this 💛\"",
             "effects": {
-              "energy": -8,
-              "rep": 10
+              "energy": -8
             },
             "completeTask": "rsvp"
           },
@@ -118,8 +116,7 @@
             "weight": 1,
             "text": "You hit submit. A second form arrives: \"Volunteer Sign-Up (optional!!).\" It is not optional. You're on cupcakes: no sugar, no honey, no fruit, \"no workarounds 🙂.\" You're on two dozen small breads.",
             "effects": {
-              "energy": -12,
-              "rep": 14
+              "energy": -12
             },
             "completeTask": "rsvp",
             "stamp": "VOLUNTEERED"
@@ -134,8 +131,7 @@
             "weight": 1,
             "text": "It goes through. Brynn texts: \"Just confirming!! 'No' for number of kids attending?\" You fix it. Your row has a comment on it now.",
             "effects": {
-              "energy": -6,
-              "rep": -10
+              "energy": -6
             },
             "completeTask": "rsvp"
           },
@@ -143,7 +139,6 @@
             "weight": 1,
             "text": "It goes through clean. Nobody reads number 14 anyway, except Brynn, who reads every one of them twice.",
             "effects": {
-              "rep": -4,
               "energy": -2
             },
             "completeTask": "rsvp"
@@ -165,8 +160,7 @@
             },
             "text": "Four minutes. Under \"Tell us about your family!\" {partner} has written, \"We're very tired.\" Brynn replies: \"SAME 😭💛\"",
             "effects": {
-              "rel": 4,
-              "rep": 6
+              "rel": 4
             },
             "completeTask": "rsvp",
             "ledger": {
@@ -224,8 +218,7 @@
             "weight": 2,
             "text": "Emergency contact #2 can't live with the child. You write down your neighbor Dale, whose last name you have never known. \"Dale (next door).\" It's a legal document now.",
             "effects": {
-              "energy": -8,
-              "rep": 6
+              "energy": -8
             },
             "completeTask": "form",
             "stamp": "DALE (NEXT DOOR)"
@@ -234,8 +227,7 @@
             "weight": 1,
             "text": "Comfort item: Bun-Bun. Backup comfort item: you look around the room for a while and write \"also Bun-Bun.\" Signed. It's the most honest document you've ever filed.",
             "effects": {
-              "energy": -6,
-              "rep": 4
+              "energy": -6
             },
             "completeTask": "form"
           }
@@ -249,8 +241,7 @@
             "weight": 2,
             "text": "The closest pen is a purple crayon. The second closest is the TV remote. You sign a three-page legal document in purple crayon. Daycare doesn't even blink.",
             "effects": {
-              "energy": -4,
-              "rep": -6
+              "energy": -4
             },
             "completeTask": "form"
           },
@@ -258,8 +249,7 @@
             "weight": 1,
             "text": "The closest pen is a pen. You can't believe it either. Signed, folded and in the backpack in ninety seconds. It will never happen again.",
             "effects": {
-              "energy": -2,
-              "rep": 2
+              "energy": -2
             },
             "completeTask": "form"
           }
@@ -280,8 +270,7 @@
             },
             "text": "{partner} reads all three pages and catches that you listed the vet as your pediatrician. You don't have a pet. Signed, fixed, in the backpack.",
             "effects": {
-              "rel": 4,
-              "rep": 4
+              "rel": 4
             },
             "completeTask": "form",
             "ledger": {
@@ -348,8 +337,7 @@
             "weight": 1,
             "text": "The second a human answers, {kid} yells \"I'M NAKED\" from the next room. Accurate. Nurse Pat makes a note, says \"eczema, cream twice a day,\" and never brings it up.",
             "effects": {
-              "energy": -8,
-              "rep": -4
+              "energy": -8
             },
             "completeTask": "pediatrician",
             "stamp": "NOTED IN CHART"
@@ -464,8 +452,7 @@
             "text": "At the slot, {kid} won't let go of the last one. A librarian kneels and explains due dates, very seriously, one professional to another. They hand it over.",
             "effects": {
               "energy": -10,
-              "mood": 6,
-              "rep": 6
+              "mood": 6
             },
             "completeTask": "library"
           }
@@ -561,7 +548,6 @@
             "text": "They have every size but yours. You buy the next one up. {kid} rides in the cart announcing \"DIAPERS\" to strangers, who agree: diapers.",
             "effects": {
               "energy": -22,
-              "rep": -8,
               "mood": 6
             },
             "ledger": {
@@ -590,9 +576,7 @@
             "weight": 1,
             "text": "Dale has diapers, left over from the grandkid's beach trip: swim diapers. Swim diapers are designed not to absorb anything. They don't. Your couch finds out first.",
             "effects": {
-              "home": -20,
-              "energy": -14,
-              "rep": -4
+              "energy": -14
             },
             "stamp": "SWIM DIAPER",
             "fx": "shake"
@@ -601,9 +585,7 @@
             "weight": 1,
             "text": "Dale comes back with one cloth diaper from 1987 and two safety pins. Neither of you knows how it works. You figure it out together, on Dale's porch, in silence.",
             "effects": {
-              "home": -6,
-              "energy": -10,
-              "rep": 6
+              "energy": -10
             },
             "stamp": "DALE PROVIDES"
           }
@@ -634,7 +616,6 @@
           {
             "text": "\"In a meeting till 4.\" It's 12:10. You do the math again. It's worse the second time.",
             "effects": {
-              "home": -18,
               "rel": -10,
               "energy": -12
             },
@@ -664,8 +645,7 @@
             "weight": 1,
             "text": "You write 340 words. You use \"unprecedented\" once and \"so sorry\" four times. The reply: \"This once.\" You will owe this person forever.",
             "effects": {
-              "energy": -8,
-              "rep": -12
+              "energy": -8
             }
           },
           {
@@ -673,7 +653,6 @@
             "text": "\"Rules are rules,\" the director replies, in a font that feels personal. Tomorrow, {kid} stays behind with the assistant director and a bin of puzzles.",
             "effects": {
               "energy": -8,
-              "rep": -14,
               "mood": -12
             },
             "stamp": "NO FORM, NO TRUCK",
@@ -692,7 +671,6 @@
             "text": "A parent who comes along doesn't need a form. Tomorrow: four hours, eleven toddlers, eleven plastic fire hats and one real hose. You've done the math. You will be wet.",
             "effects": {
               "energy": -22,
-              "rep": 10,
               "mood": 10
             },
             "stamp": "CHAPERONE: DRAFTED"
@@ -706,7 +684,6 @@
           {
             "text": "It isn't just a truck. It's a truck, a bell and a hat, and Juniper got all three. Brynn sends you a photo of the hat, captioned \"next time!! 🙂\"",
             "effects": {
-              "rep": -22,
               "energy": -6,
               "mood": -8
             }
@@ -747,8 +724,7 @@
             "weight": 1,
             "text": "Late RSVPs bring the ice. Nobody told you this rule. It's the oldest rule there is.",
             "effects": {
-              "energy": -10,
-              "rep": -6
+              "energy": -10
             },
             "chat": [
               {
@@ -762,7 +738,6 @@
             "weight": 1,
             "text": "Brynn will not see what Brynn can do. You can tell from the smiley, which has been through a lot today.",
             "effects": {
-              "rep": -16,
               "energy": -8
             },
             "chat": [
@@ -781,7 +756,6 @@
           {
             "text": "Three smileys, each one a little colder than the last.",
             "effects": {
-              "rep": -24,
               "energy": -10
             },
             "chat": [
@@ -801,7 +775,6 @@
           {
             "text": "Brynn does not forget. Brynn has a spreadsheet with conditional formatting. Your row is red. Somehow, at the party, your row will still be red.",
             "effects": {
-              "rep": -26,
               "energy": -11
             },
             "stamp": "ROW: RED",
@@ -850,16 +823,14 @@
             "weight": 1,
             "text": "Marcus's mom is a pediatric nurse. \"Eczema. Fragrance-free cream. Call Monday if it spreads.\" Right, kind, fast. And now 22 parents have seen your child's knee.",
             "effects": {
-              "energy": -12,
-              "rep": -10
+              "energy": -12
             }
           },
           {
             "weight": 1,
             "text": "Forty replies in nine minutes: eczema, allergies, \"have you tried celery juice,\" a photo of somebody else's rash. You call the nurse line anyway, an hour behind.",
             "effects": {
-              "energy": -24,
-              "rep": -10
+              "energy": -24
             }
           }
         ]
@@ -898,7 +869,6 @@
             "text": "5:52 PM. You slide the books across the desk, panting. {kid} says \"thank you, library\" to the whole building. The librarian waives the fine. You act like you planned the timing.",
             "effects": {
               "energy": -14,
-              "rep": 6,
               "mood": 8
             }
           },
@@ -907,7 +877,6 @@
             "text": "5:59 PM. The door locks as your hand touches it. Through the glass, a librarian points at the hours sign and mouths, \"Monday.\"",
             "effects": {
               "energy": -20,
-              "rep": -8,
               "mood": -6
             },
             "stamp": "SEE YOU MONDAY"
@@ -922,7 +891,6 @@
             "text": "$16.80, plus a $2 fee for the convenience of paying it. The card stays frozen until the books come back, which they won't, because they're furniture now.",
             "effects": {
               "energy": -4,
-              "rep": -12,
               "mood": -6
             }
           }
@@ -935,7 +903,6 @@
           {
             "text": "You declare the books part of the household's permanent collection. The library sends a $68 replacement bill. Your account has gone to collections, in both senses.",
             "effects": {
-              "rep": -24,
               "energy": 4,
               "mood": -8,
               "rel": -6

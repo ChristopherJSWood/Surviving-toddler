@@ -8,7 +8,7 @@ so every rule below, including the **order of random draws**, is normative.
 
 | Field | Meaning |
 |---|---|
-| `meters` | `energy, rel, mood, sleepy, debt, home, rep` (this order), integers clamped to 0–100 |
+| `meters` | `energy, rel, mood, sleepy, debt` (this order), integers clamped to 0–100. Players see Bandwidth (`energy`), Relationship, Mood and Sleep (`100 − debt`); `sleepy` appears as a bedtime word. |
 | `day` | 0–4, Monday to Friday |
 | `phase` | `day` or `night` |
 | `clock` | minutes since midnight of the current day |
@@ -72,10 +72,9 @@ Night cards: events with `phase: night`, `when` passes, not seen today (nor this
 1. `energy += max(minRefill, base − perWake × nightYou − (lateCoffeeFlag ? lateCoffeePenalty : 0))`
 2. `debt += debtPerWake × (nightYou + nightPartner) − recovery`
 3. `mood = moodBase − ⌊debt / moodDebtDiv⌋`; `sleepy = sleepyStart`
-4. `home += rel ≥ homeTidy.minRel ? homeTidy.high : homeTidy.low`
-5. Clear `d:` flags.
-6. If `rel ≥ partnerTaskMinRel`, your partner completes the oldest open task (`ledger.partner.errands += 1`).
-7. `day += 1`, then start the day:
+4. Clear `d:` flags.
+5. If `rel ≥ partnerTaskMinRel`, your partner completes the oldest open task (`ledger.partner.errands += 1`).
+6. `day += 1`, then start the day:
    - `clock = dayStart =` the wake time for the debt band;
    - clear `seenToday`, the queue and `lastEventId`; `catastrophesToday = 0`;
    - apply the day's modifier (`random` draws from the pool);

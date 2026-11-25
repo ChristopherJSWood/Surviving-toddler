@@ -46,8 +46,7 @@
             "text": "It melts down {kid}'s arm, both sleeves and the stroller. Pure joy, then stickiness, in that order.",
             "effects": {
               "mood": 14,
-              "energy": -4,
-              "home": -8
+              "energy": -4
             },
             "count": {
               "snacks": 1
@@ -74,7 +73,6 @@
             "text": "\"Weekend food,\" they repeat, filing it with the other laws. They will enforce it on you Saturday at 7 AM.",
             "effects": {
               "mood": -6,
-              "rep": 4,
               "energy": 4
             }
           },
@@ -82,8 +80,7 @@
             "weight": 2,
             "text": "The truck turns the corner. The song fades. The scream does not.",
             "effects": {
-              "mood": -14,
-              "rep": -4
+              "mood": -14
             }
           }
         ]
@@ -130,8 +127,7 @@
             "text": "You catch the truck at the corner. {kid} gets the ice cream and full knowledge of what you are. They eat it while watching you, the way the neighbor's kid did.",
             "effects": {
               "mood": 12,
-              "energy": -8,
-              "rep": -4
+              "energy": -8
             },
             "count": {
               "snacks": 1
@@ -169,10 +165,10 @@
   {
     "id": "w_lie_down",
     "title": "Just Lie Down for a Minute",
-    "text": "6:20 PM. The dishes are a tower with a pot on top, like a hat. {partner} is chiseling rice off the high chair tray. The couch is right there, humming a song only you can hear.",
+    "text": "The lunch dishes are a tower with a pot on top, like a hat. {partner}, home early, is chiseling rice off the high chair tray. The couch is right there, humming a song only you can hear.",
     "window": [
-      1050,
-      1125
+      870,
+      1040
     ],
     "oncePerWeek": true,
     "choices": [
@@ -221,7 +217,6 @@
             "text": "You wash. You stack. You narrate your own sacrifice in your head, in the voice of a nature documentary.",
             "effects": {
               "energy": -8,
-              "home": 10,
               "rel": 8
             },
             "ledger": {
@@ -232,7 +227,6 @@
             "text": "You do every dish. At 9 PM {partner} says, \"Oh, you did the dishes?\" in the tone people use when you take up the harp.",
             "effects": {
               "energy": -8,
-              "home": 10,
               "rel": -4
             },
             "ledger": {
@@ -253,8 +247,7 @@
             "text": "You wash, they dry. Neither of you mentions the toddler. It feels like a small, damp date.",
             "effects": {
               "energy": -5,
-              "rel": 10,
-              "home": 8
+              "rel": 10
             }
           }
         ]
@@ -411,7 +404,6 @@
             "text": "They drop the shoes and wander off to bother a block tower. You suspect a trap. There is no trap. You fold an entire load of laundry, stunned.",
             "effects": {
               "mood": -4,
-              "home": 8,
               "energy": 4
             }
           },
@@ -490,8 +482,7 @@
             "text": "\"Later later\" buys you 90 more minutes. They empty the shoe rack in protest. Your credit score with this toddler is now in the low hundreds.",
             "effects": {
               "mood": -8,
-              "energy": 3,
-              "home": -8
+              "energy": 3
             },
             "schedule": [
               {
@@ -621,8 +612,7 @@
             "text": "Silence, instantly. The woman behind you mouths \"same.\" The line moves. Nobody has to know what this costs yet.",
             "effects": {
               "mood": 8,
-              "energy": 7,
-              "rep": 2
+              "energy": 7
             },
             "set": [
               "d:screen"
@@ -652,16 +642,14 @@
             "text": "A stamp, a sad plant, a man holding nine identical boxes. By the window, {kid} is narrating for the whole line. Two people clap. The clerk does not.",
             "effects": {
               "mood": 6,
-              "energy": -8,
-              "rep": 10
+              "energy": -8
             }
           },
           {
             "text": "\"I spy something... YOU.\" They spy you eleven times in a row. It's still somehow the best option you had.",
             "effects": {
               "mood": 4,
-              "energy": -8,
-              "rep": 2
+              "energy": -8
             }
           }
         ]
@@ -674,8 +662,7 @@
             "weight": 2,
             "text": "You leave. The package rides home in the stroller basket, where it will live for another week, judging you.",
             "effects": {
-              "energy": -4,
-              "home": -8
+              "energy": -4
             }
           },
           {
@@ -709,8 +696,7 @@
             "text": "You pry it loose. The scream has a bridge and a key change. Everyone in the post office is a witness now, and two of them are filming.",
             "effects": {
               "mood": -18,
-              "energy": -6,
-              "rep": -8
+              "energy": -6
             },
             "count": {
               "paybacks": 1,
@@ -722,7 +708,6 @@
             "text": "You hold out your hand. They hand it over. Just like that. A stranger looks at you like you're a wizard. You will never understand them.",
             "effects": {
               "mood": -2,
-              "rep": 8,
               "energy": 6
             },
             "count": {
@@ -744,8 +729,7 @@
             "text": "Five more minutes. You both know what five more minutes is. It's a down payment on this exact fight.",
             "effects": {
               "mood": 6,
-              "energy": 4,
-              "rep": -4
+              "energy": 4
             },
             "set": [
               "d:screen"
@@ -784,7 +768,6 @@
             "text": "They take the keys and press the red button. Outside, your car starts screaming. {kid} is thrilled. The post office is not. You've traded one alarm for a louder one.",
             "effects": {
               "mood": 6,
-              "rep": -12,
               "energy": -4
             },
             "count": {
@@ -816,7 +799,6 @@
             "effects": {
               "mood": -22,
               "energy": -8,
-              "rep": -2,
               "debt": -4
             },
             "count": {
@@ -829,7 +811,6 @@
             "text": "They hand it over with a heavy sigh and say, \"Thank you for the time.\" You are both changed.",
             "effects": {
               "mood": -4,
-              "rep": 10,
               "energy": 6,
               "debt": -4
             },
@@ -879,7 +860,6 @@
             "text": "You surrender and sit on the floor. Twenty minutes later the phone dies at 1%, in their hands. They take it up with the battery. Perfect crime.",
             "effects": {
               "energy": 8,
-              "rep": -8,
               "mood": -4
             },
             "set": [
@@ -970,8 +950,7 @@
           {
             "text": "The third coffee works. You feel unstoppable. You feel so unstoppable you reply \"happy to help!!\" to the bake sale thread. Brynn hearts it before you've put the mug down.",
             "effects": {
-              "energy": 5,
-              "home": 4
+              "energy": 5
             },
             "set": [
               "d:lateCoffee"
@@ -999,15 +978,13 @@
             "weight": 2,
             "text": "Cold water, a head shake and a pep talk in the mirror, which you lose. You get through the afternoon at about 60% of a person.",
             "effects": {
-              "energy": -12,
-              "home": -4
+              "energy": -12
             }
           },
           {
             "text": "Cold water, a head shake, a long look in the mirror. Something clicks. Second wind. You fold two loads of laundry in record time and decide not to question it.",
             "effects": {
-              "energy": 6,
-              "home": 10
+              "energy": 6
             }
           }
         ]
@@ -1019,8 +996,7 @@
           {
             "text": "Coffee, this late. The fog lifts. You can already hear it at 1 AM, knocking politely on the inside of your skull.",
             "effects": {
-              "energy": 4,
-              "home": -6
+              "energy": 4
             },
             "set": [
               "d:lateCoffee"
@@ -1040,7 +1016,6 @@
             "text": "You lie back down. {kid} narrates the living room's destruction like a sports announcer. The cushions are gone. You hear the word \"marker.\"",
             "effects": {
               "energy": 6,
-              "home": -16,
               "rel": -6
             }
           },
@@ -1112,7 +1087,6 @@
             "text": "They put all 48 on one sheet of paper in a single, furious layer, glaring at you. It's a protest piece. It's honestly strong.",
             "effects": {
               "mood": -8,
-              "rep": 4,
               "energy": 4
             }
           },
@@ -1121,7 +1095,6 @@
             "text": "They put all 48 on the TV screen instead. It's paper-adjacent. You don't have the energy to argue the definition.",
             "effects": {
               "mood": 4,
-              "home": -10,
               "rel": -6
             }
           }
@@ -1159,7 +1132,6 @@
           {
             "text": "The mail carrier. The neighbor. Eleven coworkers on video, for 40 minutes. Nobody said anything. That's either kindness or a group decision.",
             "effects": {
-              "rep": -8,
               "energy": -4
             },
             "stamp": "GROUP DECISION"
@@ -1173,7 +1145,6 @@
           {
             "text": "You wear them to pickup. Two parents compliment your \"look.\" One asks where you got the pickle. You have never been more respected.",
             "effects": {
-              "rep": 8,
               "mood": 8,
               "energy": 4
             }
@@ -1182,7 +1153,6 @@
             "weight": 2,
             "text": "You wear them to pickup. Brynn looks at the POTTY STAR, then at you, then types something into a phone.",
             "effects": {
-              "rep": -18,
               "mood": 6,
               "energy": -10
             }

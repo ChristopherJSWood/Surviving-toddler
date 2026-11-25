@@ -4,7 +4,7 @@
 
 // Concave utility: the last 10 points of a meter matter far more than the first.
 const u = (v) => 100 * (1 - Math.exp(-Math.max(v, 0) / 22));
-const WEIGHTS = { energy: 1.3, rel: 1.2, mood: 0.7, home: 0.9, rep: 0.8 };
+const WEIGHTS = { energy: 1.3, rel: 1.2, mood: 0.7 };
 
 function expectedAfter(g, choice) {
   const m = g.state.meters;
@@ -26,7 +26,7 @@ export function makePolicies(content) {
     for (const { p, after, o } of expectedAfter(g, choice)) {
       let x = 0;
       for (const [k, w] of Object.entries(WEIGHTS)) x += w * u(after[k]);
-      for (const k of ["energy", "rel", "home", "rep"]) if (after[k] <= 0) x -= 2000;
+      for (const k of ["energy", "rel"]) if (after[k] <= 0) x -= 2000;
       x -= Math.max(0, after.debt - 35) * 0.8;
       x -= (o.schedule?.length ?? 0) * 25; // careful players know the bill comes
       if (ev.endsDay) x += after.sleepy >= cfg.bedtime.threshold ? 120 : -120;

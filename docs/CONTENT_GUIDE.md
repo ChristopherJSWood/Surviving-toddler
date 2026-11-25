@@ -27,15 +27,15 @@ The rules themselves are in `docs/RULES.md`.
 
 ## Meters
 
-| Key | Name | Notes |
+| Key | Shown as | Notes |
 |---|---|---|
-| `energy` | Energy | The parent's capacity. 0 = collapse. Engaged parenting costs it; shortcuts give it back now and bill you later. |
-| `rel` | Relationship | With your partner. Drains on its own when Energy is low. 0 ends the week ("We need to talk"). |
-| `mood` | Toddler Mood | 0 triggers the meltdown card. |
-| `sleepy` | Sleepiness | Today's sleep pressure. Rises all day; naps lower it. Must be 50+ at bedtime (67+ at 7:00 PM on Friday, when you also need 35+ Energy). |
-| `debt` | Sleep Debt | Toddler sleep debt across the week. High debt = earlier wake-up, more hazards, faster mood loss. |
-| `home` | House | 0 = condemned. |
-| `rep` | Reputation | What other parents think. 0 = removed from the group chat. |
+| `energy` | **Bandwidth** | The parent's capacity, mental load included. 0 = collapse. Engaged parenting costs it; shortcuts give it back now and bill you later. Social judgment costs it too. |
+| `rel` | **Relationship** | With your partner. Drifts down slowly, and faster when Bandwidth is low. 0 ends the week ("We need to talk"). Shared mess and blame cost it. |
+| `mood` | **Mood** | The toddler's. 0 triggers the meltdown card. |
+| `debt` | **Sleep** (shown as 100 − debt) | Toddler sleep debt across the week. Raising `debt` lowers Sleep. High debt = earlier wake-up, more hazards, faster mood loss. |
+| `sleepy` | the **bedtime word** | Today's sleep pressure. Rises all day; naps lower it. Must be 50+ at bedtime (higher at 7:00 PM on Friday, when you also need 35+ Bandwidth). |
+
+There is no House or Reputation meter (removed in v3). Mess and the group chat's judgment are paid in Bandwidth or Relationship.
 
 Typical effect sizes (v3): small ±4–8, medium ±10–18, big ±20–35. A week is about 100 cards, so each one has to matter.
 

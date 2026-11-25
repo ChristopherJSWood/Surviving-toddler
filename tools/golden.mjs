@@ -24,7 +24,7 @@ export function policyPick(seed, step, unlockedIndices) {
 const COVERAGE_POLICIES = ["careful", "right", "worst", "shortcut", "random"];
 const CANDIDATES_PER_POLICY = 400;
 const MIN_SNAPS = 50;
-const MAX_SNAP_TRACES = 16;
+const MAX_SNAP_TRACES = 40;
 
 function record(content, seed, choose) {
   const g = new Game(content, seed);

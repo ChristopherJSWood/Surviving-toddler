@@ -104,7 +104,7 @@ button { font: inherit; color: inherit; }
 .dayname { font: 600 var(--step-1)/1 var(--font-display); }
 .pill { font: 600 0.8rem/1 var(--font-body); padding: 7px 10px; border-radius: 999px; background: var(--paper); border: 1px solid var(--line); }
 .hud-top .spacer { flex: 1; }
-.groups { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.groups { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
 .group { background: var(--paper); border-radius: 12px; padding: 10px; display: grid; gap: 8px; align-content: start; min-width: 0; }
 .group .eyebrow { font-size: 0.7rem; }
 .meter { display: grid; gap: 3px; min-width: 0; }
@@ -161,6 +161,7 @@ details.list .row span:first-child { min-width: 0; }
 .chip.good { background: var(--good-bg); color: var(--good); }
 .chip.bad { background: var(--bad-bg); color: var(--bad); }
 .chip.neutral { background: var(--neutral-bg); color: var(--sleepy); }
+.chip.warn { background: var(--warn-bg); color: var(--warn); }
 .banner { border-radius: 10px; padding: 10px 12px; font-weight: 700; }
 .banner.bad { background: var(--bad-bg); color: var(--bad); }
 
@@ -255,8 +256,6 @@ footer { text-align: center; font-size: 0.8rem; color: var(--muted); padding-top
 }
 @media (max-width: 420px) {
   .groups { grid-template-columns: 1fr 1fr; }
-  .groups .group:first-child { grid-column: 1 / -1; grid-template-columns: 1fr 1fr; }
-  .groups .group:first-child .eyebrow { grid-column: 1 / -1; }
   .note { padding: 24px 16px 18px; }
 }
 </style>
@@ -283,8 +282,8 @@ const STATS_KEY = "bedtime-or-bust.stats.v2";
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
 const name = (m) => CONTENT.meters[m];
 const taskDef = (id) => CONTENT.tasks.find((t) => t.id === id);
-const HIGHER_IS_BETTER = { energy: true, rel: true, mood: true, home: true, rep: true, sleepy: null, debt: false };
-const DANGER = { energy: 20, rel: 20, home: 20, rep: 20, mood: 10 };
+const HIGHER_IS_BETTER = { energy: true, rel: true, mood: true, sleepy: null, debt: false };
+const DANGER = { energy: 20, rel: 20, mood: 10, rested: 25 };
 // Friday's 7:00 PM requirements, read from the date_check card's failure checks.
 const DATE_CHECKS = CONTENT.events.find((e) => e.id === "date_check")?.checks ?? [];
 const FRIDAY_SLEEPY = (DATE_CHECKS.find((c) => c.when?.max?.sleepy != null)?.when.max.sleepy ?? 59) + 1;
@@ -384,25 +383,28 @@ function lcd(text) {
   return `<div class="lcd" role="img" aria-label="${esc(text)}">${h}<span class="colon">:</span>${m} <small>${ap}</small></div>`;
 }
 
-function meter(m, value) {
+function meter(m, value, label = name(m), color = m) {
   const danger = DANGER[m] != null && value <= DANGER[m];
-  return `<div class="meter${danger ? " danger" : ""}" role="meter" aria-label="${esc(name(m))}" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${value}">
-    <div class="meter-head"><span class="name">${esc(name(m))}</span><span class="val">${value}</span></div>
-    <div class="bar"><span class="fill" style="width:${value}%;background:var(--${m})"></span></div>
+  return `<div class="meter${danger ? " danger" : ""}" role="meter" aria-label="${esc(label)}" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${value}">
+    <div class="meter-head"><span class="name">${esc(label)}</span><span class="val">${value}</span></div>
+    <div class="bar"><span class="fill" style="width:${value}%;background:var(--${color})"></span></div>
   </div>`;
 }
 
-function sleepWidget(g) {
-  const { sleepy, debt } = g.state.meters;
-  const th = g.state.day === 4 ? FRIDAY_SLEEPY : cfg.bedtime.threshold;
-  return `<div class="meter" role="meter" aria-label="Sleepiness, needs ${th} at bedtime" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${sleepy}">
-      <div class="meter-head"><span class="name">Sleepy</span><span class="val">${sleepy}</span></div>
-      <div class="bar thin"><span class="fill" style="width:${sleepy}%;background:var(--sleepy)"></span><span class="tick" style="left:${th}%"></span></div>
-    </div>
-    <div class="meter" role="meter" aria-label="Sleep debt" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${debt}">
-      <div class="meter-head"><span class="name">Debt</span><span class="val">${debt}</span></div>
-      <div class="bar thin"><span class="fill" style="width:${debt}%;background:var(--debt)"></span></div>
-    </div>`;
+// Today's sleepiness as a word against tonight's bedtime bar.
+function bedtime(g) {
+  const sleepy = g.state.meters.sleepy;
+  const bar = g.state.day === 4 ? FRIDAY_SLEEPY : cfg.bedtime.threshold;
+  if (sleepy >= 80) return ["Overtired", "bad"];
+  if (sleepy >= bar) return ["Ready for bed", "good"];
+  if (sleepy >= bar - 20) return ["Drowsy", "neutral"];
+  return ["Wired", "warn"];
+}
+
+function bedtimeChip(g) {
+  if (g.state.phase === "night") return `<span class="chip neutral">🌙 Asleep (allegedly)</span>`;
+  const [word, cls] = bedtime(g);
+  return `<span class="chip ${cls}">Bedtime: ${word}</span>`;
 }
 
 function listDetails(g) {
@@ -437,9 +439,9 @@ function hud(g) {
     <div class="hud-top">${lcd(night ? "2:47 AM" : formatClock(g.state.clock))}<span class="dayname">${esc(CONTENT.days[g.state.day].name)}</span><span class="spacer"></span>${g.modifier && g.modifier.title !== CONTENT.days[g.state.day].name ? `<span class="pill">${esc(g.modifier.title)}</span>` : ""}</div>
     <div class="groups">
       <div class="group"><span class="eyebrow">You</span>${meter("energy", m.energy)}${meter("rel", m.rel)}</div>
-      <div class="group"><span class="eyebrow">Toddler</span>${meter("mood", m.mood)}${sleepWidget(g)}</div>
-      <div class="group"><span class="eyebrow">Household</span>${meter("home", m.home)}${meter("rep", m.rep)}</div>
+      <div class="group"><span class="eyebrow">${sayEsc("{kid}")}</span>${meter("mood", m.mood)}${meter("rested", 100 - m.debt, "Sleep", "debt")}</div>
     </div>
+    <div class="chips">${bedtimeChip(g)}</div>
     ${ticks ? `<div class="ticker">${ticks}</div>` : ""}
     ${night ? "" : listDetails(g)}
   </section>`;
@@ -449,10 +451,12 @@ function chips(deltas) {
   const keys = METERS.filter((k) => deltas[k]);
   if (!keys.length) return "";
   return `<div class="chips">${keys.map((k) => {
-    const d = deltas[k];
-    const hib = HIGHER_IS_BETTER[k];
+    if (k === "sleepy") return `<span class="chip neutral">${deltas[k] > 0 ? "Sleepier" : "Livelier"}</span>`;
+    // Sleep is how rested the toddler is: debt down means Sleep up.
+    const d = k === "debt" ? -deltas[k] : deltas[k];
+    const hib = k === "debt" ? true : HIGHER_IS_BETTER[k];
     const cls = hib == null ? "neutral" : (d > 0) === hib ? "good" : "bad";
-    return `<span class="chip ${cls}">${d > 0 ? "+" : "−"}${Math.abs(d)} ${esc(name(k))}</span>`;
+    return `<span class="chip ${cls}">${d > 0 ? "+" : "−"}${Math.abs(d)} ${k === "debt" ? "Sleep" : esc(name(k))}</span>`;
   }).join("")}</div>`;
 }
 
@@ -483,12 +487,12 @@ function titleView() {
     <details class="help">
       <summary>How to play</summary>
       <ul>
-        <li><b>Energy</b> is how much parent you have left. Good parenting costs it; below a choice's minimum it's greyed out: too tired. At 0 you collapse.</li>
-        <li><b>Shortcuts</b> (TV, candy, late coffee) give Energy now and send a bill later. The ⏳ chip shows when.</li>
+        <li><b>Bandwidth</b> is how much parent you have left. Good parenting costs it; below a choice's minimum it's greyed out: too tired. At 0 you collapse (Grandma rescues you once a week).</li>
+        <li><b>Shortcuts</b> (TV, snacks, late coffee) buy Bandwidth now and send a bill later. The ⏳ chip shows when.</li>
         <li><b>Relationship</b> drains when you're running on empty. A good one means your partner helps more; at 0 the week ends.</li>
-        <li>Your toddler's <b>Sleepiness</b> must reach the line at bedtime. <b>Sleep Debt</b> carries all week: earlier mornings, more chaos.</li>
-        <li><b>House</b> or <b>Reputation</b> at 0 loses the day. Grandma rescues you once a week.</li>
-        <li><b>Friday at 7:00:</b> the toddler asleep (Sleepy ${FRIDAY_SLEEPY}+) and you with ${FRIDAY_ENERGY}+ Energy, or the date is off.</li>
+        <li>Your toddler's <b>Mood</b>: at 0, a full meltdown. <b>Sleep</b> is how rested they are this week: bad nights cost it, and it costs you (earlier mornings, more chaos).</li>
+        <li><b>Bedtime</b> reads Wired, Drowsy, Ready for bed or Overtired. Time the nap so they're Ready at bedtime.</li>
+        <li><b>Friday at 7:00:</b> the toddler Ready for bed and you with ${FRIDAY_ENERGY}+ Bandwidth, or the date is off.</li>
         <li>Keys 1–4 pick a choice.</li>
       </ul>
     </details>
@@ -539,8 +543,8 @@ function morningView(g) {
     ${r ? `<article class="note"><p class="eyebrow">Last night</p><div class="kv">
       <div class="row"><span>You got up</span><b>${r.nightYou}×</b></div>
       <div class="row"><span>${sayEsc("{partner} got up")}</span><b>${r.nightPartner}×</b></div>
-      <div class="row"><span>Energy refill</span><b>+${r.refill}</b></div>
-      <div class="row"><span>Sleep debt</span><b>${r.debtBefore} → ${r.debtAfter}</b></div>
+      <div class="row"><span>Bandwidth refill</span><b>+${r.refill}</b></div>
+      <div class="row"><span>${sayEsc("{kid}'s sleep")}</span><b>${100 - r.debtBefore} → ${100 - r.debtAfter}</b></div>
       ${r.partnerDid ? `<p class="muted small">${sayEsc("{partner}")} handled "${sayEsc(taskDef(r.partnerDid)?.label ?? r.partnerDid)}" before work.</p>` : ""}
     </div></article>` : ""}
     <article class="note"><p class="eyebrow">Today</p><h2>${sayEsc(mod.title)}</h2><p class="text">${sayEsc(mod.text)}</p>${chips(mod.effects ?? {})}</article>
@@ -573,7 +577,7 @@ function eventView(g) {
       if (c.timeout) return "";
       const locked = g.isLocked(c);
       key += 1;
-      return `<button class="block${locked ? " locked" : ""}" data-act="choose" data-i="${i}" ${locked ? `aria-disabled="true"` : ""}><span class="key" aria-hidden="true">${key}</span><span class="label">${sayEsc(c.label)}</span><span class="mins">${locked ? `Too tired · needs ${c.minEnergy}` : `${c.duration} min`}</span></button>`;
+      return `<button class="block${locked ? " locked" : ""}" data-act="choose" data-i="${i}" ${locked ? `aria-disabled="true"` : ""}><span class="key" aria-hidden="true">${key}</span><span class="label">${sayEsc(c.label)}</span><span class="mins">${locked ? `Too tired · needs ${c.minEnergy} Bandwidth` : `${c.duration} min`}</span></button>`;
     }).join("")}
   </div>`;
 }
@@ -625,7 +629,7 @@ function shareText(g) {
   const e = g.ending;
   const m = g.state.meters;
   const verdict = e.kind === "win" ? "made it to date night" : "didn't make it to date night";
-  return `I ${verdict} in Bedtime or Bust: "${say(e.title)}". My style: ${say(g.style().title)}.\nEnergy ${m.energy} · Relationship ${m.rel} · House ${m.home} · Reputation ${m.rep}`;
+  return `I ${verdict} in Bedtime or Bust: "${say(e.title)}". My style: ${say(g.style().title)}.\nBandwidth ${m.energy} · Relationship ${m.rel} · Mood ${m.mood} · Sleep ${100 - m.debt}`;
 }
 
 function endingView(g) {

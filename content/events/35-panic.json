@@ -26,8 +26,7 @@
             "weight": 2,
             "text": "The trade clears. Bun-Bun comes home. The light stops. The man behind you mouths, \"nice.\" You'd put this one on a résumé.",
             "effects": {
-              "mood": 6,
-              "rep": 4
+              "mood": 6
             },
             "count": {
               "snacks": 1
@@ -36,7 +35,6 @@
           {
             "text": "They take the bar and set it in the bagging area, next to Bun-Bun. UNEXPECTED ITEM. UNEXPECTED ITEM. They're starting a collection.",
             "effects": {
-              "rep": -16,
               "mood": 4,
               "energy": -8
             },
@@ -53,7 +51,6 @@
           {
             "text": "Bun-Bun rings up as ORGANIC KALE, $4.99/lb. You pay it. Doreen, the attendant, 31 years in, bags Bun-Bun like a grandchild.",
             "effects": {
-              "rep": 10,
               "energy": 4
             },
             "stamp": "DOREEN APPROVES"
@@ -61,7 +58,6 @@
           {
             "text": "The scanner can't find Bun-Bun and calls for help. Nine people watch a teenager in a vest learn that the rabbit is not for sale.",
             "effects": {
-              "rep": -8,
               "mood": 6,
               "energy": -6
             }
@@ -76,7 +72,6 @@
           {
             "text": "The attendant arrives. \"Is this your item?\" {kid} rises in the cart: \"BUN-BUN IS NOT A ITEM.\" The line agrees. The line has never agreed on anything.",
             "effects": {
-              "rep": -16,
               "mood": 8,
               "energy": -10
             },
@@ -192,8 +187,7 @@
             "text": "You catch the keys. You also catch the bath mat, and finish the move sitting in the tub, fully clothed. {kid} flushes anyway, for closure.",
             "effects": {
               "energy": -6,
-              "mood": 10,
-              "rep": -2
+              "mood": 10
             }
           }
         ]
@@ -215,8 +209,7 @@
           {
             "text": "\"Keys are BRAVE,\" {kid} corrects you, and lets go.",
             "effects": {
-              "energy": -10,
-              "home": -12
+              "energy": -10
             }
           }
         ]
@@ -249,8 +242,6 @@
             "text": "Plunk. Flush. The keys don't go all the way. Somewhere in the pipe the fob gets squeezed, and out in the driveway your car honks. It honks every time anyone flushes, until Friday.",
             "effects": {
               "energy": -10,
-              "home": -12,
-              "rep": -8,
               "mood": 10
             },
             "stamp": "THE CAR KNOWS",
@@ -284,7 +275,6 @@
             "weight": 2,
             "text": "They say it straight into your neck, muffled past recognition. One teacher catches the word \"closet\" and nods slowly. It could be anything. It isn't anything.",
             "effects": {
-              "rep": -6,
               "mood": 6,
               "energy": -4
             }
@@ -292,7 +282,6 @@
           {
             "text": "They wriggle free, climb the cubbies for elevation and deliver it to the back row.",
             "effects": {
-              "rep": -16,
               "energy": -4
             },
             "fx": "shake"
@@ -307,7 +296,6 @@
             "weight": 2,
             "text": "Nine toddlers sprint to the fish tank, yours first, news forgotten. The teachers look at you with deep gratitude. The fish look at you with fear.",
             "effects": {
-              "rep": 8,
               "energy": 4
             },
             "stamp": "FISH DEPLOYED"
@@ -315,7 +303,6 @@
           {
             "text": "Nobody moves. {kid} waits politely for you to finish, then begins.",
             "effects": {
-              "rep": -14,
               "energy": -10
             }
           }
@@ -329,7 +316,6 @@
           {
             "text": "\"{ME} EATS COOKIES IN THE CLOSET SO I CAN'T SEE.\" Eight parents nod slowly. Three of them also have a closet.",
             "effects": {
-              "rep": -14,
               "mood": 8,
               "energy": -10
             },
@@ -383,7 +369,6 @@
             "weight": 2,
             "text": "They hadn't been going to lick it. They'd been going to rest their cheek on it. Now they've heard about licking.",
             "effects": {
-              "rep": -8,
               "mood": 6,
               "energy": -6
             }
@@ -405,7 +390,6 @@
           {
             "text": "One long, slow, thorough lick, end to end. \"It tastes like coins,\" {kid} reports, delighted, to the man with the cough.",
             "effects": {
-              "rep": -12,
               "mood": 8,
               "energy": -8
             },
@@ -443,7 +427,6 @@
             "text": "You lunge. They flinch. You catch the carton upside down and open. Catching it, it turns out, was not the problem.",
             "effects": {
               "energy": -6,
-              "home": -12,
               "mood": 4
             },
             "fx": "shake"
@@ -462,8 +445,7 @@
             "text": "They lower the carton like a sacred object and carry it to the counter, one step at a time. They crack two, mostly into the bowl. Best eggs you've ever eaten. Crunchy.",
             "effects": {
               "mood": 12,
-              "energy": -8,
-              "home": -4
+              "energy": -8
             }
           }
         ]
@@ -476,7 +458,6 @@
           {
             "text": "They keep eye contact the whole way down. Twelve eggs, one floor. \"Uh oh,\" they say, which is a lie. This was planned.",
             "effects": {
-              "home": -16,
               "energy": -6
             },
             "stamp": "PREMEDITATED",
@@ -510,7 +491,6 @@
             "weight": 2,
             "text": "Grandma's knee is a 20-minute topic, with diagrams. {kid} says the word twice, but nobody can hear it over the meniscus.",
             "effects": {
-              "rep": 6,
               "energy": -2
             },
             "stamp": "MENISCUS DEFENSE"
@@ -518,7 +498,6 @@
           {
             "text": "\"My knee's FINE.\" She turns back to {kid}, just in time.",
             "effects": {
-              "rep": -14,
               "energy": -10
             },
             "count": {
@@ -534,14 +513,12 @@
           {
             "text": "\"TRUCK!\" they announce, proudly. Grandma claps. Crisis averted by a vehicle.",
             "effects": {
-              "mood": 4,
-              "rep": 6
+              "mood": 4
             }
           },
           {
             "text": "\"[BLEEP],\" they announce, which rhymes with truck, but isn't truck.",
             "effects": {
-              "rep": -16,
               "mood": 4,
               "energy": -10
             },
@@ -559,7 +536,6 @@
           {
             "text": "\"[BLEEP],\" {kid} tells Grandma, crisply, in your exact voice. Grandma sets down her fork and looks at you, not them. She has waited 30 years for this.",
             "effects": {
-              "rep": -16,
               "mood": 6,
               "energy": -12
             },
@@ -599,7 +575,6 @@
           {
             "text": "You sprint for the car. {kid} says the word to the parking lot, which has heard worse.",
             "effects": {
-              "rep": 4,
               "energy": -6
             },
             "count": {
@@ -609,7 +584,6 @@
           {
             "text": "You aren't double-parked. You walked. Brynn knows you walked. Brynn watched you walk.",
             "effects": {
-              "rep": -10,
               "energy": -8
             }
           }
@@ -623,14 +597,12 @@
             "weight": 2,
             "text": "The word goes into your palm, where it belongs. Brynn talks on about Juniper's bow hold. You hear none of it, and it's wonderful.",
             "effects": {
-              "rep": 4,
               "mood": -6
             }
           },
           {
             "text": "It comes out muffled: \"Mmm-[BLEEP].\" Brynn hears every letter. Brynn's eyebrows go up and stay up.",
             "effects": {
-              "rep": -12,
               "mood": -4,
               "energy": -8
             },
@@ -652,7 +624,6 @@
           {
             "text": "\"About the lighthouse message—\" Brynn lights up. Brynn has waited days for this. In the long, delicious conversation that follows, {kid}'s word goes unheard.",
             "effects": {
-              "rep": -6,
               "energy": -10
             },
             "stamp": "BIGGER FIRE"
@@ -667,7 +638,6 @@
           {
             "text": "\"[BLEEP],\" {kid} tells Brynn, warmly. Brynn smiles the smile of someone who will mention this at the next three bake sales. \"Wherever did they hear THAT?\"",
             "effects": {
-              "rep": -18,
               "energy": -12,
               "mood": 6
             },

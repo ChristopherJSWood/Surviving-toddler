@@ -1,6 +1,6 @@
 # Bedtime or Bust
 
-A satirical iOS game about getting through a week with a toddler. You're a partnered parent. Make it from Monday's 5:58 AM monitor crackle to Friday's date night without collapsing, losing your partner, or getting removed from the group chat.
+A satirical iOS game about getting through a week with a toddler. You're a partnered parent. Make it from Monday's 5:58 AM monitor crackle to Friday's date night without collapsing or losing your partner.
 
 - **Platform:** iOS 17+ (iPhone and iPad), SwiftUI
 - **Play it in a browser:** open `prototype/index.html`. It runs the same rules and content as the iOS app.
@@ -9,13 +9,16 @@ A satirical iOS game about getting through a week with a toddler. You're a partn
 
 Each card is a moment of your day with two to four choices. Every choice costs time and moves your meters.
 
+Four meters:
+
 | Group | Meter | What it does |
 |---|---|---|
-| You | **Energy** | How much parent you have left. Engaged choices cost it and lock ("Too tired") below their minimum. Shortcuts give it back now and bill you later. 0 = you collapse. |
-| | **Relationship** | Drains when your Energy is low. Decides how much your partner helps. 0 = "We need to talk": the week ends. |
+| You | **Bandwidth** | How much parent you have left, mental load included. Engaged choices cost it and lock ("Too tired") below their minimum. Shortcuts give it back now and bill you later. At 0 you collapse; Grandma rescues one day a week. |
+| | **Relationship** | Slowly drifts unless you tend it, and drains fast when your Bandwidth is low. Decides how much your partner helps. 0 = "We need to talk": the week ends. |
 | Toddler | **Mood** | 0 = meltdown. |
-| | **Sleep** | Today's sleepiness (must reach the line at bedtime) and the week's **sleep debt**. High debt means earlier mornings, more hazards and faster meltdowns. |
-| Household | **House**, **Reputation** | 0 loses the day. Grandma rescues one day per week. |
+| | **Sleep** | How rested the toddler is this week. Bad nights and skipped naps cost it: earlier mornings, more hazards, faster meltdowns. |
+
+Plus a **bedtime word**: *Wired, Drowsy, Ready for bed* or *Overtired*. It's today's sleepiness against tonight's bar, so time the nap.
 
 Also in play:
 
@@ -24,7 +27,7 @@ Also in play:
 - **The mental-load list.** Tasks arrive each morning; forget one and it bites.
 - **The ledger.** It records who did the night wakings, baths and dishes, and it decides how blame plays out.
 - **Nights.** Two or three 2 AM cards set tomorrow's Energy and sleep debt.
-- **Friday's date night.** At 7:00 the toddler must be asleep (Sleepiness 67+) and you need 35+ Energy.
+- **Friday's date night.** At 7:00 the toddler must be Ready for bed (Friday's bar is higher) and you need 35+ Bandwidth.
 - **Endings.** The week closes with your parenting style and a weekly performance review.
 
 The week is about 100 cards long. Recurring situations (tantrums, food fights, bad naps, coffee) keep coming back, and each time it's a new card that knows it's a repeat. Other cards appear at most once a week.
