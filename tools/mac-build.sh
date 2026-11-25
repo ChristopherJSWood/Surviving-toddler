@@ -3,6 +3,8 @@
 #
 #   tools/mac-build.sh             check tools, test the engine, build, launch
 #   tools/mac-build.sh --no-launch stop after the build
+#   tools/mac-build.sh --playtest  also play a whole week automatically in the
+#                                  Simulator (UI test); screenshots go to build/shots
 #
 # Each step stops with the exact command to fix it. The full output goes to
 # build/mac-build.log; if a step fails, paste the error lines it prints.
@@ -11,7 +13,13 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 
 LAUNCH=1
-[ "${1:-}" = "--no-launch" ] && LAUNCH=0
+PLAYTEST=0
+for arg in "$@"; do
+  case "$arg" in
+    --no-launch) LAUNCH=0 ;;
+    --playtest) PLAYTEST=1 ;;
+  esac
+done
 
 BUNDLE_ID=com.example.bedtimeorbust # matches project.yml
 DERIVED=build/DerivedData
@@ -104,13 +112,32 @@ run "app build" xcodebuild build \
 grep -c "warning:" "$LOG" | sed 's/^/warnings: /' || true
 echo "BUILD SUCCEEDED: $APP"
 
-[ "$LAUNCH" = 1 ] || exit 0
+[ "$LAUNCH" = 1 ] || [ "$PLAYTEST" = 1 ] || exit 0
 
-step "Launch in the Simulator"
 # The newest runtime is listed last; take its last iPhone.
 UDID=$(xcrun simctl list devices available | grep -E '^ +iPhone' | tail -n 1 | grep -oE '[0-9A-F]{8}-([0-9A-F]{4}-){3}[0-9A-F]{12}' || true)
 [ -n "$UDID" ] || fail "no available iPhone simulator" "Xcode > Window > Devices and Simulators > Simulators > + (add an iPhone)"
 xcrun simctl list devices available | grep "$UDID" | sed 's/^ */device: /'
+
+if [ "$PLAYTEST" = 1 ]; then
+  step "Automated playthrough: a whole week in the Simulator (takes several minutes)"
+  mkdir -p build/shots
+  if ! TEST_RUNNER_SCREENSHOT_DIR="$PWD/build/shots" xcodebuild test \
+    -project BedtimeOrBust.xcodeproj \
+    -scheme BedtimeOrBust \
+    -destination "platform=iOS Simulator,id=$UDID" \
+    -derivedDataPath "$DERIVED" >>"$LOG" 2>&1; then
+    echo "--- error lines ---"
+    grep -E "error:|failed|Stuck|didn't end" "$LOG" | awk '!seen[$0]++' | tail -n 20 || true
+    fail "automated playthrough" "see build/mac-build.log and build/shots"
+  fi
+  grep -E "PLAYTHROUGH:" "$LOG" | tail -n 1 || true
+  echo "Screenshots: $PWD/build/shots"
+fi
+
+[ "$LAUNCH" = 1 ] || exit 0
+
+step "Launch in the Simulator"
 xcrun simctl boot "$UDID" >>"$LOG" 2>&1 || true # fails harmlessly if already booted
 open -a Simulator
 run "waiting for the simulator to boot" xcrun simctl bootstatus "$UDID" -b
