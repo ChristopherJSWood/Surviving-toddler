@@ -221,6 +221,7 @@ struct SleepWidget: View {
     }
 }
 
+@MainActor
 struct EventCard: View {
     @Environment(GameStore.self) private var store
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
@@ -261,7 +262,7 @@ struct EventCard: View {
                 Text(store.say(event.title)).font(.title2.bold())
                 if let chat = event.chat {
                     Text(store.say(event.text)).font(.footnote).foregroundStyle(.secondary)
-                    ChatThread(title: store.say(chat.with), lines: chat.messages.map(line)) {
+                    ChatThread(title: store.say(chat.with), lines: chat.messages.map { line($0) }) {
                         withAnimation(.snappy) { chatDone = true }
                     }
                 } else {
@@ -438,6 +439,7 @@ struct LightsOut: View {
 }
 
 /// Playtest buttons (😂 / 😴) and "send this to your partner".
+@MainActor
 struct ReactionRow: View {
     @Environment(GameStore.self) private var store
     let result: StepResult

@@ -1,5 +1,6 @@
 import SwiftUI
 
+@MainActor
 struct TitleView: View {
     @Environment(GameStore.self) private var store
     @Environment(\.accessibilityReduceMotion) private var reduceMotion

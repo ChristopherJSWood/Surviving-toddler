@@ -1,6 +1,7 @@
 import SwiftUI
 
 /// "Who's in your house?": the names the game uses, plus settings.
+@MainActor
 struct HouseholdSheet: View {
     @Environment(GameStore.self) private var store
     @Environment(\.dismiss) private var dismiss
