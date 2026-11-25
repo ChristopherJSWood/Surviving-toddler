@@ -37,7 +37,7 @@
         ]
       },
       {
-        "label": "Text {partner}: \"diapers. size 4. NOT the pull-on kind\"",
+        "label": "Text {partner}: \"diapers. size 4. NOT pull-ons\"",
         "duration": 2,
         "tags": [
           "tagteam"
@@ -49,7 +49,7 @@
                 "rel": 55
               }
             },
-            "text": "\"on it 👍\" You brace for the pull-on kind. At 6:12 PM a photo arrives: right size, right box, receipt. Who is this person?",
+            "text": "\"on it 👍\" You brace for pull-ons. At 6:12 PM a photo arrives: right size, right box, receipt. Who is this person?",
             "effects": {
               "rel": 6
             },
@@ -134,7 +134,7 @@
             "weight": 1,
             "text": "It goes through. Brynn texts: \"Just confirming!! 'No' for number of kids attending?\" You fix it. Your row has a comment on it now.",
             "effects": {
-              "energy": -2,
+              "energy": -6,
               "rep": -10
             },
             "completeTask": "rsvp"
@@ -143,7 +143,8 @@
             "weight": 1,
             "text": "It goes through clean. Nobody reads number 14 anyway, except Brynn, who reads every one of them twice.",
             "effects": {
-              "rep": -4
+              "rep": -4,
+              "energy": -2
             },
             "completeTask": "rsvp"
           }
@@ -248,7 +249,7 @@
             "weight": 2,
             "text": "The closest pen is a purple crayon. The second closest is the TV remote. You sign a three-page legal document in purple crayon. Daycare doesn't even blink.",
             "effects": {
-              "energy": -2,
+              "energy": -4,
               "rep": -6
             },
             "completeTask": "form"
@@ -560,7 +561,8 @@
             "text": "They have every size but yours. You buy the next one up. {kid} rides in the cart announcing \"DIAPERS\" to strangers, who agree: diapers.",
             "effects": {
               "energy": -22,
-              "rep": -8
+              "rep": -8,
+              "mood": 6
             },
             "ledger": {
               "errands": "you"
@@ -589,7 +591,7 @@
             "text": "Dale has diapers, left over from the grandkid's beach trip: swim diapers. Swim diapers are designed not to absorb anything. They don't. Your couch finds out first.",
             "effects": {
               "home": -20,
-              "energy": -4,
+              "energy": -14,
               "rep": -4
             },
             "stamp": "SWIM DIAPER",
@@ -600,7 +602,7 @@
             "text": "Dale comes back with one cloth diaper from 1987 and two safety pins. Neither of you knows how it works. You figure it out together, on Dale's porch, in silence.",
             "effects": {
               "home": -6,
-              "energy": -8,
+              "energy": -10,
               "rep": 6
             },
             "stamp": "DALE PROVIDES"
@@ -689,7 +691,8 @@
             "text": "A parent who comes along doesn't need a form. Tomorrow: four hours, eleven toddlers, eleven plastic fire hats and one real hose. You've done the math. You will be wet.",
             "effects": {
               "energy": -22,
-              "rep": 10
+              "rep": 10,
+              "mood": 10
             },
             "stamp": "CHAPERONE: DRAFTED"
           }
@@ -703,7 +706,8 @@
             "text": "It isn't just a truck. It's a truck, a bell and a hat, and Juniper got all three. Brynn sends you a photo of the hat, captioned \"next time!! 🙂\"",
             "effects": {
               "rep": -22,
-              "energy": 4
+              "energy": -6,
+              "mood": -8
             }
           }
         ]
@@ -757,7 +761,8 @@
             "weight": 1,
             "text": "Brynn will not see what Brynn can do. You can tell from the smiley, which has been through a lot today.",
             "effects": {
-              "rep": -16
+              "rep": -16,
+              "energy": -8
             },
             "chat": [
               {
@@ -775,7 +780,8 @@
           {
             "text": "Three smileys, each one a little colder than the last.",
             "effects": {
-              "rep": -24
+              "rep": -24,
+              "energy": -10
             },
             "chat": [
               {
@@ -795,7 +801,7 @@
             "text": "Brynn does not forget. Brynn has a spreadsheet with conditional formatting. Your row is red. Somehow, at the party, your row will still be red.",
             "effects": {
               "rep": -26,
-              "energy": 4
+              "energy": -11
             },
             "stamp": "ROW: RED",
             "fx": "flash"
@@ -819,7 +825,7 @@
             "weight": 2,
             "text": "Forty-six minutes on hold. Then a nurse with a voice like a warm blanket says eczema, fragrance-free cream, call Monday. You say thank you four times and mean every one.",
             "effects": {
-              "energy": -20,
+              "energy": -14,
               "mood": 4
             }
           },
@@ -827,7 +833,7 @@
             "weight": 1,
             "text": "The nurse wants them seen tonight, to be safe. Urgent care: eleven people ahead of you, nine of them coughing. A doctor looks for forty seconds. \"Eczema.\" Copay: $75.",
             "effects": {
-              "energy": -30,
+              "energy": -24,
               "mood": -8
             },
             "stamp": "$75 FOR ECZEMA",
@@ -843,7 +849,7 @@
             "weight": 1,
             "text": "Marcus's mom is a pediatric nurse. \"Eczema. Fragrance-free cream. Call Monday if it spreads.\" Right, kind, fast. And now 22 parents have seen your child's knee.",
             "effects": {
-              "energy": -4,
+              "energy": -12,
               "rep": -10
             }
           },
@@ -851,7 +857,7 @@
             "weight": 1,
             "text": "Forty replies in nine minutes: eczema, allergies, \"have you tried celery juice,\" a photo of somebody else's rash. You call the nurse line anyway, an hour behind.",
             "effects": {
-              "energy": -22,
+              "energy": -24,
               "rep": -10
             }
           }
@@ -891,7 +897,8 @@
             "text": "5:52 PM. You slide the books across the desk, panting. {kid} says \"thank you, library\" to the whole building. The librarian waives the fine. You act like you planned the timing.",
             "effects": {
               "energy": -14,
-              "rep": 6
+              "rep": 6,
+              "mood": 8
             }
           },
           {
@@ -899,7 +906,8 @@
             "text": "5:59 PM. The door locks as your hand touches it. Through the glass, a librarian points at the hours sign and mouths, \"Monday.\"",
             "effects": {
               "energy": -20,
-              "rep": -8
+              "rep": -8,
+              "mood": -6
             },
             "stamp": "SEE YOU MONDAY"
           }
@@ -913,7 +921,8 @@
             "text": "$16.80, plus a $2 fee for the convenience of paying it. The card stays frozen until the books come back, which they won't, because they're furniture now.",
             "effects": {
               "energy": -4,
-              "rep": -12
+              "rep": -12,
+              "mood": -6
             }
           }
         ]
@@ -926,7 +935,9 @@
             "text": "You declare the books part of the household's permanent collection. The library sends a $68 replacement bill. Your account has gone to collections, in both senses.",
             "effects": {
               "rep": -24,
-              "energy": 4
+              "energy": 4,
+              "mood": -8,
+              "rel": -6
             },
             "stamp": "COLLECTIONS",
             "fx": "flash"

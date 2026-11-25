@@ -106,7 +106,8 @@
             "text": "Forty minutes and a $3 melamine sponge, and it comes off. A cleaning product told the truth. For one moment you are a person in an ad.",
             "effects": {
               "energy": -12,
-              "home": 4
+              "home": 4,
+              "rel": 8
             },
             "set": [
               "hz:sharpie"
@@ -134,7 +135,9 @@
             "text": "You frame nine inches of it and add a little card: \"Untitled. Marker on drywall.\" Guests think it's charming. It's the only art in the house anyone asks about.",
             "effects": {
               "home": -8,
-              "rep": 6
+              "rep": 6,
+              "energy": -4,
+              "rel": 2
             },
             "set": [
               "hz:sharpie"
@@ -144,7 +147,9 @@
             "text": "A guest asks, sincerely, what you paid for it. You say $400. They nod: \"Worth it.\" {kid} is now the most commercially successful artist in your family.",
             "effects": {
               "home": -8,
-              "rep": 12
+              "rep": 12,
+              "energy": 2,
+              "rel": 4
             },
             "set": [
               "hz:sharpie"
@@ -160,7 +165,8 @@
             "text": "You walk past it eleven times today. By the eighth, you've started seeing things in it. A river. A horse. Your security deposit, leaving.",
             "effects": {
               "home": -14,
-              "energy": 3
+              "energy": 3,
+              "rel": -8
             },
             "set": [
               "hz:sharpie"
@@ -275,7 +281,8 @@
             "text": "You sweep before you wipe, like someone who's been here before. Twenty-five minutes. You'll find flour in your ear on Thursday.",
             "effects": {
               "energy": -10,
-              "home": -2
+              "home": -2,
+              "rel": 6
             },
             "set": [
               "hz:w_flour"
@@ -324,7 +331,8 @@
             "text": "You don't go back into your own kitchen for an hour. When you do, a trail of tiny white footprints leads out, across the couch and into your bed.",
             "effects": {
               "home": -16,
-              "energy": 4
+              "energy": 4,
+              "rel": -8
             },
             "set": [
               "hz:w_flour"
@@ -335,7 +343,8 @@
             "effects": {
               "home": -12,
               "mood": 8,
-              "energy": 4
+              "energy": 4,
+              "rel": -4
             },
             "set": [
               "hz:w_flour"
@@ -449,7 +458,8 @@
             "text": "Twenty minutes and a sponge. The bathroom is the cleanest it's been since you moved in, and it smells incredible. You'd never have done this on purpose.",
             "effects": {
               "energy": -10,
-              "home": 6
+              "home": 6,
+              "rel": 6
             },
             "set": [
               "hz:w_toothpaste"
@@ -476,7 +486,8 @@
             "text": "It is not basically soap. It dries into a white crust with the texture of a seashell. You'll be picking it off the faucet in March.",
             "effects": {
               "home": -12,
-              "energy": 4
+              "energy": 4,
+              "rel": -6
             },
             "set": [
               "hz:w_toothpaste"
@@ -577,7 +588,7 @@
             "text": "You even out the left. Then the right. Then the left again. {kid} now looks like a small accountant from 1974, and loves it.",
             "effects": {
               "rep": -10,
-              "energy": -4,
+              "energy": -8,
               "mood": 8
             },
             "set": [
@@ -588,7 +599,8 @@
             "text": "It's... good? It's genuinely good. You may have a gift. You tell no one, in case someone asks you to do it again.",
             "effects": {
               "rep": 10,
-              "energy": -4
+              "energy": -4,
+              "mood": 6
             },
             "set": [
               "hz:w_haircut"
@@ -604,7 +616,8 @@
           {
             "text": "Thirty-one laughing faces and four \"SAME\" replies, with photos. You've accidentally founded a support group.",
             "effects": {
-              "rep": 10
+              "rep": 10,
+              "energy": 8
             },
             "set": [
               "hz:w_haircut"
@@ -613,7 +626,8 @@
           {
             "text": "One parent replies, sincerely: \"Love it! Who do you go to?\" You can't tell if it's kindness or war.",
             "effects": {
-              "rep": -10
+              "rep": -10,
+              "energy": -10
             },
             "set": [
               "hz:w_haircut"
@@ -730,7 +744,7 @@
           {
             "text": "\"Please disregard the previous version.\" You delete 4,000 Js. Trent writes back, \"Thanks for the quick fix.\" Nobody mentions the Js. Everyone saw the Js.",
             "effects": {
-              "energy": -12,
+              "energy": -4,
               "rep": 4
             },
             "set": [
@@ -747,7 +761,7 @@
             "text": "Trent replies, \"😂 tell them the J section is the strongest part.\" Two people forward it home. For one afternoon, you are beloved.",
             "effects": {
               "rep": 10,
-              "energy": -2
+              "energy": 6
             },
             "set": [
               "hz:w_laptop_send"
@@ -758,7 +772,7 @@
             "text": "Trent replies, \"Ha.\" Just \"Ha.\" With a period. You spend the rest of the day decoding the period.",
             "effects": {
               "rep": -8,
-              "energy": -10
+              "energy": -14
             },
             "set": [
               "hz:w_laptop_send"
@@ -881,7 +895,8 @@
             "text": "Enzyme spray, a towel and your full body weight. It's mostly out. It will never be the good rug again, but it will be a rug.",
             "effects": {
               "energy": -12,
-              "home": -2
+              "home": -2,
+              "rel": 4
             },
             "set": [
               "hz:w_potty_rug"
@@ -909,7 +924,8 @@
             "effects": {
               "home": -10,
               "mood": 6,
-              "energy": -2
+              "energy": -2,
+              "rel": -6
             },
             "set": [
               "hz:w_potty_rug"
@@ -926,7 +942,8 @@
             "text": "The back is uglier, but dry. Nobody will ever know. {kid} will tell Grandma on Sunday, unprompted, with gestures.",
             "effects": {
               "home": -6,
-              "rep": -6
+              "rep": -6,
+              "energy": -6
             },
             "set": [
               "hz:w_potty_rug"
@@ -935,7 +952,8 @@
           {
             "text": "The back is a rubber grid that smells like a tire shop. You flip it again. Now it's a rug with two problems.",
             "effects": {
-              "home": -14
+              "home": -14,
+              "rel": -8
             },
             "set": [
               "hz:w_potty_rug"
@@ -1037,7 +1055,7 @@
           {
             "text": "The librarian waves it off. \"We'll call it wear.\" You would now vote for any bond measure this person proposes.",
             "effects": {
-              "energy": -6,
+              "energy": -2,
               "rep": 8
             },
             "set": [
@@ -1052,9 +1070,11 @@
         "duration": 5,
         "outcomes": [
           {
-            "text": "Tape, hope and a bookmark placed exactly over the bite. They'll find out. Libraries always find out. That's what the barcode is for.",
+            "text": "Tape, hope and a bookmark placed exactly over the bite. At bedtime {partner} opens it, lifts the bookmark and looks at you for a long, long time.",
             "effects": {
-              "rep": -12
+              "rep": -12,
+              "energy": 4,
+              "rel": -6
             },
             "set": [
               "hz:w_book_chewed"
@@ -1067,7 +1087,7 @@
   {
     "id": "lego",
     "title": "You Said the Word",
-    "text": "In the car, a minivan merged into your lane like it had always been there. You said a word. A [BLEEP] word. From the back seat, {kid} said it right back, in your exact intonation, and is now teaching it to the stuffed rabbit.",
+    "text": "A minivan merged into your lane like it had always been there. You said a word. A [BLEEP] word. From the back seat, {kid} said it right back, in your exact intonation, and is now teaching it to the stuffed rabbit.",
     "hazard": "sting",
     "weight": 2,
     "when": {
@@ -1176,7 +1196,8 @@
           {
             "text": "Fourteen laughing faces and one \"LEGEND.\" The sweater is the class mascot now.",
             "effects": {
-              "rep": 10
+              "rep": 10,
+              "energy": 8
             },
             "set": [
               "hz:w_pajama_day"
@@ -1191,7 +1212,8 @@
           {
             "text": "A pause. Then Brynn replies. You go back and count the reminders. There were three.",
             "effects": {
-              "rep": -12
+              "rep": -12,
+              "energy": -12
             },
             "set": [
               "hz:w_pajama_day"
@@ -1213,7 +1235,7 @@
             "text": "Someone replies, \"Aw, they looked so professional!\" with no emoji. You will think about that missing emoji in the shower for a week.",
             "effects": {
               "rep": -8,
-              "energy": 2
+              "energy": -2
             },
             "set": [
               "hz:w_pajama_day"
@@ -1246,7 +1268,8 @@
             "text": "She glows. You look for a spoon nine times today. The spoons are in a drawer labeled SPOONS. You never once think to look there.",
             "effects": {
               "energy": -10,
-              "rep": 4
+              "rep": 4,
+              "rel": 4
             },
             "set": [
               "hz:w_grandma_kitchen"
@@ -1257,7 +1280,8 @@
             "effects": {
               "energy": -6,
               "rep": 6,
-              "home": 4
+              "home": 4,
+              "rel": 6
             },
             "set": [
               "hz:w_grandma_kitchen"
@@ -1272,7 +1296,8 @@
           {
             "text": "She shows you. Then she tells the family group chat you were \"a little short\" with her. Your cousin reacts with 😬.",
             "effects": {
-              "rep": -10
+              "rep": -10,
+              "energy": -8
             },
             "set": [
               "hz:w_grandma_kitchen"
@@ -1301,8 +1326,9 @@
           {
             "text": "You move 140 items back to their wrong, correct places. In the morning she says nothing, beautifully. It will come up at Thanksgiving.",
             "effects": {
-              "energy": -14,
-              "home": 6
+              "energy": -12,
+              "home": 6,
+              "rel": 8
             },
             "set": [
               "hz:w_grandma_kitchen"
@@ -1333,7 +1359,8 @@
             "text": "Inside a rain boot by the door. Do not open it. You open it. Something in there has developed a culture, and a flag.",
             "effects": {
               "energy": -8,
-              "home": 6
+              "home": 6,
+              "rel": 6
             },
             "set": [
               "hz:hz_sippy"
@@ -1360,7 +1387,8 @@
             "text": "The house now smells like milk and \"Autumn Hearth.\" {kid} sniffs the air and says, \"Pancakes.\" Nobody in this house will eat pancakes again.",
             "effects": {
               "home": -10,
-              "energy": 2
+              "energy": 2,
+              "rel": -4
             },
             "set": [
               "hz:hz_sippy"
@@ -1390,7 +1418,8 @@
             "text": "They don't notice the smell. Nobody notices the smell. You start to wonder if you're the smell.",
             "effects": {
               "energy": 4,
-              "home": -10
+              "home": -10,
+              "rel": -4
             },
             "set": [
               "hz:hz_sippy"
@@ -1425,7 +1454,8 @@
             "text": "Four blocks back, someone has set it on top of a fence post, the way strangers do. A small public monument to your lapse. You collect it with dignity.",
             "effects": {
               "energy": -10,
-              "rep": 4
+              "rep": 4,
+              "mood": 6
             },
             "set": [
               "hz:hz_lost_shoe"
@@ -1453,7 +1483,8 @@
             "effects": {
               "mood": 12,
               "energy": -4,
-              "rep": -4
+              "rep": -4,
+              "debt": 4
             },
             "set": [
               "hz:hz_lost_shoe"
@@ -1853,7 +1884,8 @@
             "text": "Fine-tooth comb, every head, every pillowcase on hot. You find nothing. You keep looking. You will dream in combs.",
             "effects": {
               "energy": -24,
-              "home": 8
+              "home": 8,
+              "rel": 4
             },
             "set": [
               "hz:w_lice_notice"
@@ -1933,7 +1965,7 @@
           {
             "text": "A calm professional with a magnifying lamp combs {kid} during cartoons. $180. A daycare parent recognizes your car in the lot and waves, slowly, from theirs.",
             "effects": {
-              "energy": -6,
+              "energy": -12,
               "rep": -20
             },
             "set": [
@@ -1966,7 +1998,7 @@
           {
             "text": "Dale jogs over in a bathrobe and one slipper, holding the spare key aloft. {kid} is thrilled to have company. This story will be told at every block party, forever.",
             "effects": {
-              "energy": -6,
+              "energy": -10,
               "rep": -12,
               "home": -8,
               "mood": 6
@@ -1989,8 +2021,8 @@
           {
             "text": "\"Turn the little thing. The LITTLE thing.\" Ninth try: click. You cheer. They cheer. They lock it again, beaming, so you can both do that part again.",
             "effects": {
-              "energy": -18,
-              "mood": 12,
+              "energy": -14,
+              "mood": 16,
               "home": -4
             },
             "set": [
@@ -2079,7 +2111,7 @@
             "text": "Deleted. Twenty-two people saw it. Nine took screenshots. One screenshot is already in a different group chat, captioned with a skull.",
             "effects": {
               "rep": -28,
-              "energy": -6
+              "energy": -10
             },
             "set": [
               "chat:brynn",
@@ -2089,10 +2121,10 @@
             "fx": "flash"
           },
           {
-            "text": "You delete it. You can't delete Brynn's reply, so you delete the whole app. It solves nothing. Your phone has never been so peaceful.",
+            "text": "You delete it. You can't delete Brynn's reply, so you delete the whole app. Your phone has never been so peaceful. You reinstall it at 11:40 PM to check.",
             "effects": {
               "rep": -20,
-              "energy": 8
+              "energy": -4
             },
             "set": [
               "chat:brynn",
@@ -2109,7 +2141,7 @@
             "text": "Silence. Then a private text from Marcus. Then four more, from four other parents. You've started a movement. It doesn't have a name yet.",
             "effects": {
               "rep": 12,
-              "energy": -4
+              "energy": 6
             },
             "set": [
               "chat:brynn",
@@ -2152,7 +2184,8 @@
           {
             "text": "Brynn replies, \"Wow, they spell so well for two!\" Eleven people like Brynn's reply. Nobody likes yours.",
             "effects": {
-              "rep": -22
+              "rep": -22,
+              "energy": -12
             },
             "set": [
               "chat:brynn",
@@ -2163,7 +2196,8 @@
             "text": "It works. Everyone believes it. {kid} now has a reputation as a toddler with strong views on bake sales. Brynn now addresses them directly.",
             "effects": {
               "rep": -6,
-              "mood": 4
+              "mood": 4,
+              "energy": -4
             },
             "set": [
               "chat:brynn",
@@ -2198,7 +2232,8 @@
             "text": "An hour, two vacuum bags and a lint roller. You get 90%. The other 10% will turn up for years: in the butter, in your eyebrow, at a funeral.",
             "effects": {
               "energy": -22,
-              "home": 8
+              "home": 8,
+              "rel": 10
             },
             "set": [
               "hz:hz_glitter"
@@ -2209,7 +2244,8 @@
             "text": "The vacuum, it turns out, was already full. For one hour it exhales everything back into the room, in a long purple sigh.",
             "effects": {
               "energy": -22,
-              "home": -22
+              "home": -22,
+              "rel": -4
             },
             "set": [
               "hz:hz_glitter"
@@ -2229,7 +2265,8 @@
             "effects": {
               "home": -28,
               "mood": 10,
-              "energy": 4
+              "energy": 4,
+              "rel": -12
             },
             "set": [
               "hz:hz_glitter"
@@ -2263,7 +2300,8 @@
               "mood": 18,
               "energy": -10,
               "home": -24,
-              "sleepy": 8
+              "sleepy": 8,
+              "rel": -6
             },
             "set": [
               "hz:hz_glitter"

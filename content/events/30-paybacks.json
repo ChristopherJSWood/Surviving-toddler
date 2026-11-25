@@ -74,7 +74,8 @@
             "text": "\"Weekend food,\" they repeat, filing it with the other laws. They will enforce it on you Saturday at 7 AM.",
             "effects": {
               "mood": -6,
-              "rep": 4
+              "rep": 4,
+              "energy": 4
             }
           },
           {
@@ -220,7 +221,8 @@
             "text": "You wash. You stack. You narrate your own sacrifice in your head, in the voice of a nature documentary.",
             "effects": {
               "energy": -8,
-              "home": 10
+              "home": 10,
+              "rel": 8
             },
             "ledger": {
               "dishes": "you"
@@ -409,7 +411,8 @@
             "text": "They drop the shoes and wander off to bother a block tower. You suspect a trap. There is no trap. You fold an entire load of laundry, stunned.",
             "effects": {
               "mood": -4,
-              "home": 8
+              "home": 8,
+              "energy": 4
             }
           },
           {
@@ -719,7 +722,8 @@
             "text": "You hold out your hand. They hand it over. Just like that. A stranger looks at you like you're a wizard. You will never understand them.",
             "effects": {
               "mood": -2,
-              "rep": 8
+              "rep": 8,
+              "energy": 6
             },
             "count": {
               "paybacks": 1
@@ -812,7 +816,8 @@
             "effects": {
               "mood": -22,
               "energy": -8,
-              "rep": -2
+              "rep": -2,
+              "debt": -4
             },
             "count": {
               "paybacks": 1,
@@ -824,7 +829,9 @@
             "text": "They hand it over with a heavy sigh and say, \"Thank you for the time.\" You are both changed.",
             "effects": {
               "mood": -4,
-              "rep": 10
+              "rep": 10,
+              "energy": 6,
+              "debt": -4
             },
             "count": {
               "paybacks": 1
@@ -999,7 +1006,7 @@
           {
             "text": "Cold water, a head shake, a long look in the mirror. Something clicks. Second wind. You fold two loads of laundry in record time and decide not to question it.",
             "effects": {
-              "energy": -4,
+              "energy": 6,
               "home": 10
             }
           }
@@ -1033,7 +1040,8 @@
             "text": "You lie back down. {kid} narrates the living room's destruction like a sports announcer. The cushions are gone. You hear the word \"marker.\"",
             "effects": {
               "energy": 6,
-              "home": -16
+              "home": -16,
+              "rel": -6
             }
           },
           {
@@ -1104,7 +1112,8 @@
             "text": "They put all 48 on one sheet of paper in a single, furious layer, glaring at you. It's a protest piece. It's honestly strong.",
             "effects": {
               "mood": -8,
-              "rep": 4
+              "rep": 4,
+              "energy": 4
             }
           },
           {
@@ -1112,7 +1121,8 @@
             "text": "They put all 48 on the TV screen instead. It's paper-adjacent. You don't have the energy to argue the definition.",
             "effects": {
               "mood": 4,
-              "home": -10
+              "home": -10,
+              "rel": -6
             }
           }
         ]
@@ -1164,7 +1174,8 @@
             "text": "You wear them to pickup. Two parents compliment your \"look.\" One asks where you got the pickle. You have never been more respected.",
             "effects": {
               "rep": 8,
-              "mood": 8
+              "mood": 8,
+              "energy": 4
             }
           },
           {
@@ -1172,7 +1183,8 @@
             "text": "You wear them to pickup. Brynn looks at the POTTY STAR, then at you, then types something into a phone.",
             "effects": {
               "rep": -18,
-              "mood": 6
+              "mood": 6,
+              "energy": -10
             }
           }
         ]

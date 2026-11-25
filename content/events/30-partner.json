@@ -107,8 +107,8 @@
     "when": { "notFlags": ["d:home"] },
     "choices": [
       { "label": "Repack it. Silently. Perfectly.", "duration": 10, "minEnergy": 20, "tags": ["martyr"], "outcomes": [
-        { "weight": 2, "text": "Diapers, wipes, a spare outfit, a snack that doesn't need a knife. You hand {partner} their badge without comment, which is a comment.", "effects": { "energy": -8, "rep": 10, "rel": -4 } },
-        { "weight": 1, "text": "In the side pocket: the bag you packed last Tuesday. Two left shoes and a yogurt that is now mostly cheese. You both have a style.", "effects": { "energy": -8, "rep": 6, "rel": 8 } } ] },
+        { "weight": 2, "text": "Diapers, wipes, a spare outfit, a snack that doesn't need a knife. You hand {partner} their badge without comment, which is a comment.", "effects": { "energy": -8, "rep": 10, "rel": -4, "mood": 6 } },
+        { "weight": 1, "text": "In the side pocket: the bag you packed last Tuesday. Two left shoes and a yogurt that is now mostly cheese. You both have a style.", "effects": { "energy": -8, "rep": 6, "rel": 8, "mood": 6 } } ] },
       { "label": "Send it as is. Let daycare see.", "duration": 1, "outcomes": [
         { "text": "Off it goes, cucumber and all. Daycare will see. Daycare sees everything. You feel a deep calm that will last until around lunch.", "effects": { "energy": 10 }, "schedule": [ { "event": "w_pt_bag_report", "in": 300 } ] } ] },
       { "label": "Text {partner}: \"cucumber??\"", "duration": 2, "outcomes": [
@@ -127,7 +127,7 @@
       { "from": "Ms. Patty", "text": "Also we found a work badge? 🙂" } ] },
     "choices": [
       { "label": "\"{partner} packed it 🙂\"", "duration": 1, "outcomes": [
-        { "weight": 1, "text": "Ms. Patty replies \"Ha! 🙂\" and has told the other teachers by lunch. In the staff room, {partner} is now known as Cucumber.", "effects": { "rep": 10, "rel": -10 }, "count": { "blames": 1 }, "set": ["pt:sniped"] },
+        { "weight": 1, "text": "Ms. Patty replies \"Ha! 🙂\" and has told the other teachers by lunch. In the staff room, {partner} is now known as Cucumber.", "effects": { "rep": 10, "rel": -10, "energy": 4 }, "count": { "blames": 1 }, "set": ["pt:sniped"] },
         { "weight": 1, "text": "There was a pumpkin in October. Nobody told you about the pumpkin.", "effects": { "rep": -6, "rel": -4 }, "chat": [ { "from": "Ms. Patty", "text": "Ha! 🙂 like the pumpkin in October" } ] } ] },
       { "label": "\"Thank you!! Restocking tomorrow!\"", "duration": 2, "outcomes": [
         { "text": "Tomorrow you send 40 diapers, two packs of wipes and an apology granola bar. The badge goes home in a sandwich bag, labeled BADGE.", "effects": { "rep": 6, "energy": -8 } } ] }
@@ -180,7 +180,7 @@
         { "weight": 1, "text": "You are not fine. You make pasta anyway. They watch you salt the water three times and say nothing, which is its own kindness.", "effects": { "energy": -6, "rel": 6, "home": 6 }, "set": ["d:handoff"], "ledger": { "dinner": "you" } },
         { "weight": 1, "text": "You salt the water a third time. They take the spoon out of your hand. \"Sit.\" You sit back down on the floor, which isn't what they meant.", "effects": { "energy": 6, "rel": 10 }, "set": ["d:handoff"], "ledger": { "dinner": "partner" } } ] },
       { "label": "Say it into the floor: \"I'm running on fumes.\"", "duration": 10, "outcomes": [
-        { "text": "They lie down on the floor next to you. {kid} drives the truck over both of you. Nobody gets up for a while.", "effects": { "energy": 8, "rel": 10, "home": -4 }, "set": ["d:handoff"] } ] }
+        { "text": "They lie down on the floor next to you. {kid} drives the truck over both of you. Nobody gets up for a while.", "effects": { "energy": 8, "rel": 10, "home": -4, "debt": 4 }, "set": ["d:handoff"] } ] }
     ]
   },
   {

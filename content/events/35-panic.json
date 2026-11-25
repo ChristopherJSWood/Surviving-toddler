@@ -37,7 +37,8 @@
             "text": "They take the bar and set it in the bagging area, next to Bun-Bun. UNEXPECTED ITEM. UNEXPECTED ITEM. They're starting a collection.",
             "effects": {
               "rep": -16,
-              "mood": 4
+              "mood": 4,
+              "energy": -8
             },
             "count": {
               "snacks": 1
@@ -53,7 +54,7 @@
             "text": "Bun-Bun rings up as ORGANIC KALE, $4.99/lb. You pay it. Doreen, the attendant, 31 years in, bags Bun-Bun like a grandchild.",
             "effects": {
               "rep": 10,
-              "energy": -2
+              "energy": 4
             },
             "stamp": "DOREEN APPROVES"
           },
@@ -61,7 +62,8 @@
             "text": "The scanner can't find Bun-Bun and calls for help. Nine people watch a teenager in a vest learn that the rabbit is not for sale.",
             "effects": {
               "rep": -8,
-              "mood": 6
+              "mood": 6,
+              "energy": -6
             }
           }
         ]
@@ -75,7 +77,8 @@
             "text": "The attendant arrives. \"Is this your item?\" {kid} rises in the cart: \"BUN-BUN IS NOT A ITEM.\" The line agrees. The line has never agreed on anything.",
             "effects": {
               "rep": -16,
-              "mood": 8
+              "mood": 8,
+              "energy": -10
             },
             "stamp": "NOT A ITEM",
             "fx": "shake"
@@ -282,7 +285,8 @@
             "text": "They say it straight into your neck, muffled past recognition. One teacher catches the word \"closet\" and nods slowly. It could be anything. It isn't anything.",
             "effects": {
               "rep": -6,
-              "mood": 6
+              "mood": 6,
+              "energy": -4
             }
           },
           {
@@ -304,14 +308,15 @@
             "text": "Nine toddlers sprint to the fish tank, yours first, news forgotten. The teachers look at you with deep gratitude. The fish look at you with fear.",
             "effects": {
               "rep": 8,
-              "energy": -4
+              "energy": 4
             },
             "stamp": "FISH DEPLOYED"
           },
           {
             "text": "Nobody moves. {kid} waits politely for you to finish, then begins.",
             "effects": {
-              "rep": -14
+              "rep": -14,
+              "energy": -10
             }
           }
         ]
@@ -325,7 +330,8 @@
             "text": "\"{ME} EATS COOKIES IN THE CLOSET SO I CAN'T SEE.\" Eight parents nod slowly. Three of them also have a closet.",
             "effects": {
               "rep": -14,
-              "mood": 8
+              "mood": 8,
+              "energy": -10
             },
             "stamp": "PUBLIC RECORD"
           }
@@ -378,7 +384,8 @@
             "text": "They hadn't been going to lick it. They'd been going to rest their cheek on it. Now they've heard about licking.",
             "effects": {
               "rep": -8,
-              "mood": 6
+              "mood": 6,
+              "energy": -6
             }
           },
           {
@@ -399,7 +406,8 @@
             "text": "One long, slow, thorough lick, end to end. \"It tastes like coins,\" {kid} reports, delighted, to the man with the cough.",
             "effects": {
               "rep": -12,
-              "mood": 8
+              "mood": 8,
+              "energy": -8
             },
             "stamp": "TASTES LIKE COINS"
           }
@@ -503,14 +511,15 @@
             "text": "Grandma's knee is a 20-minute topic, with diagrams. {kid} says the word twice, but nobody can hear it over the meniscus.",
             "effects": {
               "rep": 6,
-              "energy": -8
+              "energy": -2
             },
             "stamp": "MENISCUS DEFENSE"
           },
           {
             "text": "\"My knee's FINE.\" She turns back to {kid}, just in time.",
             "effects": {
-              "rep": -14
+              "rep": -14,
+              "energy": -10
             },
             "count": {
               "bleeps": 1
@@ -533,7 +542,8 @@
             "text": "\"[BLEEP],\" they announce, which rhymes with truck, but isn't truck.",
             "effects": {
               "rep": -16,
-              "mood": 4
+              "mood": 4,
+              "energy": -10
             },
             "count": {
               "bleeps": 1
@@ -550,7 +560,8 @@
             "text": "\"[BLEEP],\" {kid} tells Grandma, crisply, in your exact voice. Grandma sets down her fork and looks at you, not them. She has waited 30 years for this.",
             "effects": {
               "rep": -16,
-              "mood": 6
+              "mood": 6,
+              "energy": -12
             },
             "count": {
               "bleeps": 1
@@ -599,7 +610,7 @@
             "text": "You aren't double-parked. You walked. Brynn knows you walked. Brynn watched you walk.",
             "effects": {
               "rep": -10,
-              "energy": -2
+              "energy": -8
             }
           }
         ]
@@ -620,7 +631,8 @@
             "text": "It comes out muffled: \"Mmm-[BLEEP].\" Brynn hears every letter. Brynn's eyebrows go up and stay up.",
             "effects": {
               "rep": -12,
-              "mood": -4
+              "mood": -4,
+              "energy": -8
             },
             "count": {
               "bleeps": 1
@@ -655,7 +667,9 @@
           {
             "text": "\"[BLEEP],\" {kid} tells Brynn, warmly. Brynn smiles the smile of someone who will mention this at the next three bake sales. \"Wherever did they hear THAT?\"",
             "effects": {
-              "rep": -18
+              "rep": -18,
+              "energy": -12,
+              "mood": 6
             },
             "count": {
               "bleeps": 1
