@@ -243,7 +243,7 @@
                 "ledger": 2
               }
             },
-            "text": "{partner} opens their mouth to say \"I did it last night,\" runs the ledger in their head and closes it again. Sleeves up. Silent. Correct.",
+            "text": "{partner} does the math, finds it unflattering and rolls up their sleeves without a speech. You hear \"rubber ducky\" through the door, sung with real resentment.",
             "effects": {
               "sleepy": 10,
               "energy": 8
@@ -326,8 +326,8 @@
             },
             "text": "{partner} nods around the keys. A verbal contract, witnessed by {kid}, who is sitting in the laundry basket wearing a sock as a glove.",
             "effects": {
-              "energy": 6,
-              "rel": 2
+              "energy": 12,
+              "rel": 4
             },
             "set": [
               "d:partnerBath"
@@ -342,8 +342,8 @@
             },
             "text": "\"Mmf,\" says {partner}, through the keys. It could mean \"yes.\" It could mean \"I did it Sunday.\" The door closes on the ambiguity.",
             "effects": {
-              "energy": 2,
-              "rel": -4
+              "energy": 4,
+              "rel": -8
             }
           }
         ]
@@ -359,8 +359,8 @@
             "weight": 2,
             "text": "Their phone buzzes at the car door. They read it, turn and give you a thumbs-up through the window. You screenshot the thumbs-up. It's admissible.",
             "effects": {
-              "energy": 6,
-              "rel": -2
+              "energy": 12,
+              "rel": -4
             },
             "set": [
               "d:partnerBath"
@@ -370,8 +370,8 @@
             "weight": 1,
             "text": "They read it at a red light and reply \"k.\" One letter. Legally sufficient. Emotionally, you'll be thinking about that \"k\" until lunch.",
             "effects": {
-              "energy": 4,
-              "rel": -6
+              "energy": 8,
+              "rel": -12
             },
             "set": [
               "d:partnerBath"
@@ -389,8 +389,8 @@
           {
             "text": "\"Deal.\" They take bath tonight; you take the 5 AM. Tomorrow-you will hate today-you, but tomorrow-you isn't here.",
             "effects": {
-              "rel": 8,
-              "energy": -8
+              "rel": 12,
+              "energy": -12
             },
             "set": [
               "d:partnerBath"
@@ -406,20 +406,21 @@
             "weight": 2,
             "text": "They don't offer. Nobody offers. Bath tonight goes to whoever is slower to sit down after dinner.",
             "effects": {
-              "energy": 4,
-              "rel": -4
+              "energy": 8,
+              "rel": -8
             }
           },
           {
             "weight": 1,
             "text": "At the door, unprompted: \"I'll do bath tonight.\" You stare at them like they've started speaking Latin. You say nothing, in case it breaks.",
             "effects": {
-              "energy": 4,
-              "rel": 6
+              "energy": 8,
+              "rel": 12
             },
             "set": [
               "d:partnerBath"
-            ]
+            ],
+            "fx": "confetti"
           }
         ]
       }
@@ -526,8 +527,8 @@
             },
             "text": "{partner} calls from the restaurant hallway to apologize. {kid} grabs the phone and hangs up on them, which is the strongest statement anyone makes all day.",
             "effects": {
-              "rel": 4,
-              "energy": 4
+              "rel": 8,
+              "energy": 8
             },
             "set": [
               "d:handoff",
@@ -566,8 +567,8 @@
             "weight": 2,
             "text": "Three words. Accurate, and you both know it. They send back a paragraph. You don't read the paragraph. You feel fantastic for almost a full minute.",
             "effects": {
-              "rel": -12,
-              "energy": 8
+              "rel": -18,
+              "energy": 10
             },
             "set": [
               "d:handoff",
@@ -585,8 +586,8 @@
             "weight": 1,
             "text": "Three dots. Then the truth. Suddenly the fish sticks look pretty good. You both feel better, and slightly worse about crypto.",
             "effects": {
-              "rel": -2,
-              "energy": 8
+              "rel": -3,
+              "energy": 12
             },
             "set": [
               "d:handoff",
@@ -617,7 +618,7 @@
         },
         "outcomes": [
           {
-            "text": "A long pause. Then an offer you didn't even have to ask for. You've never been so happy to be wronged.",
+            "text": "A long pause. Then an offer you didn't even have to ask for. Being wronged has never paid this well.",
             "effects": {
               "rel": -2,
               "energy": 10
@@ -685,7 +686,7 @@
             "effects": {
               "energy": -10,
               "rel": 6,
-              "rep": -10
+              "rep": -18
             },
             "stamp": "BROADCAST LIVE",
             "fx": "shake"
@@ -707,9 +708,9 @@
             },
             "text": "{partner} does the ledger math and takes the helmet. Their stand-up gets a status update from a pantsless toddler: \"Truck.\" Best update of the sprint.",
             "effects": {
-              "energy": 6,
-              "rel": -4,
-              "rep": 6
+              "energy": 12,
+              "rel": -8,
+              "rep": 12
             }
           },
           {
@@ -735,9 +736,9 @@
             "weight": 1,
             "text": "You present the Q3 roadmap while a figure in a bike helmet does laps behind you. Nobody mentions it. Your manager says, \"Love the energy in this one.\"",
             "effects": {
-              "rep": 8,
-              "energy": -6,
-              "mood": -8
+              "rep": 12,
+              "energy": -9,
+              "mood": -12
             }
           },
           {
@@ -762,9 +763,9 @@
           {
             "text": "Mute. Unmute: \"great point.\" Mute. {kid} eats crackers in your doorway and drops every fourth one into your keyboard, as a tip.",
             "effects": {
-              "mood": 8,
-              "home": -8,
-              "energy": -2
+              "mood": 12,
+              "home": -12,
+              "energy": -3
             },
             "count": {
               "snacks": 1
@@ -820,9 +821,9 @@
             "weight": 1,
             "text": "Nine ducks: wrong, wrong, \"NO,\" wrong. Episode ten has no duck in it at all. \"DUCK ONE,\" says {kid}, satisfied. You will never understand the duck.",
             "effects": {
-              "energy": 8,
-              "mood": 6,
-              "rep": -6
+              "energy": 12,
+              "mood": 9,
+              "rep": -9
             },
             "set": [
               "d:screen"
@@ -880,8 +881,8 @@
             "weight": 1,
             "text": "{kid} puts an ear to the screen and listens. \"He sleeping,\" they whisper, and tiptoe off to bother something else. You've invented a religion.",
             "effects": {
-              "energy": 6,
-              "mood": -4
+              "energy": 12,
+              "mood": -8
             },
             "stamp": "THE TV IS SLEEPING"
           },
@@ -924,7 +925,7 @@
         "outcomes": [
           {
             "weight": 2,
-            "text": "Diaper. Left. Right. Shirt. Pants. Each stage is inspected and approved. Liftoff at 7:52. You have never been so on time for anything.",
+            "text": "Diaper. Left. Right. Shirt. Pants. Each stage is inspected and approved. Liftoff at 7:52. Eight minutes early. Mission control weeps quietly into its coffee.",
             "effects": {
               "mood": 12,
               "energy": -8
@@ -953,8 +954,8 @@
             "weight": 1,
             "text": "{kid} walks around to your side, studies the sock from your angle and accepts this. You've won a case on a technicality.",
             "effects": {
-              "mood": 8,
-              "energy": 4
+              "mood": 12,
+              "energy": 6
             },
             "stamp": "OBJECTION SUSTAINED"
           },
@@ -974,7 +975,7 @@
         "outcomes": [
           {
             "weight": 1,
-            "text": "The teacher says, \"Cozy!\" in the voice teachers use for things they'll be mentioning to the director.",
+            "text": "Ms. Patty says, \"Cozy!\" in the voice teachers use for things they'll be mentioning to the director.",
             "effects": {
               "energy": 8,
               "mood": 6,
@@ -985,9 +986,9 @@
             "weight": 1,
             "text": "Nobody notices. Two other kids are in pajamas. One is wearing a parent's sweater as a dress. You are among your people.",
             "effects": {
-              "energy": 8,
-              "mood": 6,
-              "rep": 4
+              "energy": 12,
+              "mood": 9,
+              "rep": 6
             }
           }
         ]
@@ -1051,7 +1052,8 @@
               "home": -14,
               "energy": 4
             },
-            "stamp": "CUP HOLDER: COMPROMISED"
+            "stamp": "CUP HOLDER: COMPROMISED",
+            "fx": "flash"
           }
         ]
       },
@@ -1073,7 +1075,7 @@
                 "rel": 50
               }
             },
-            "text": "\"oh no.\" Then \"on it.\" At 8:40 PM, a photo of perfectly re-threaded straps, captioned \"never speak of this.\" You'd marry them again.",
+            "text": "\"oh no.\" Then \"on it.\" At 8:40 PM, a photo of perfectly re-threaded straps, captioned \"never speak of this.\" It's basically a love letter.",
             "effects": {
               "energy": 10,
               "rel": 4,
@@ -1091,9 +1093,9 @@
             },
             "text": "\"lol.\" Just \"lol.\" The car seat is still yours. So is the \"lol,\" forever.",
             "effects": {
-              "energy": -2,
-              "rel": -8,
-              "home": -4
+              "energy": -3,
+              "rel": -12,
+              "home": -6
             }
           }
         ]
@@ -1124,8 +1126,8 @@
             "weight": 1,
             "text": "The narrator nods, impressed. {kid}, unnerved at being narrated, spits out the wood chip. It worked by accident, which is how most things work.",
             "effects": {
-              "rep": 8,
-              "mood": -4,
+              "rep": 12,
+              "mood": -6,
               "sleepy": 8
             }
           },
@@ -1133,8 +1135,8 @@
             "weight": 1,
             "text": "{kid} eats a second wood chip to hear what you'll say next. You've created an audience, and the audience wants more.",
             "effects": {
-              "rep": -8,
-              "mood": 8,
+              "rep": -12,
+              "mood": 12,
               "sleepy": 8
             }
           }
@@ -1149,11 +1151,11 @@
         ],
         "outcomes": [
           {
-            "text": "Your emergency apple has been in the bag since Sunday and is bruised in the shape of Ohio. The narrator says \"ooh, an APPLE\" with real effort. Still: an apple.",
+            "text": "Your emergency apple has been in the bag since Sunday. It has more bruise than apple. The narrator says \"ooh, an APPLE\" with real effort. Still: an apple.",
             "effects": {
-              "rep": 6,
-              "mood": -4,
-              "energy": -8,
+              "rep": 9,
+              "mood": -6,
+              "energy": -12,
               "sleepy": 10
             },
             "count": {
@@ -1170,7 +1172,7 @@
             "weight": 1,
             "text": "The narrator narrates you: \"Some grown-ups need a little break, don't they?\" Everyone hears it. Everyone.",
             "effects": {
-              "rep": -12,
+              "rep": -18,
               "energy": 10,
               "sleepy": 8
             },
@@ -1180,8 +1182,8 @@
             "weight": 1,
             "text": "The narrator sits beside you, drops the voice and says, \"I hate this. Do you hate this?\" You trade numbers. You'll never text. It helps anyway.",
             "effects": {
-              "rep": 6,
-              "energy": 8,
+              "rep": 9,
+              "energy": 12,
               "sleepy": 8
             },
             "stamp": "UNLIKELY ALLIANCE"
@@ -1248,8 +1250,8 @@
             "weight": 1,
             "text": "\"Broken?\" {kid} accepts this, gravely, and walks over to pat the race car on the hood. You've never felt worse about getting your way.",
             "effects": {
-              "mood": -4,
-              "energy": 6
+              "mood": -8,
+              "energy": 12
             },
             "ledger": {
               "errands": "you"
@@ -1259,7 +1261,7 @@
             "weight": 1,
             "text": "A child rolls past in the race car, honking. It is not broken. {kid} looks at you the way a jury looks at a witness who just lied.",
             "effects": {
-              "mood": -14,
+              "mood": -20,
               "rep": -6,
               "energy": 2
             },
@@ -1345,9 +1347,9 @@
             "weight": 1,
             "text": "You tickle. {kid} laughs. {kid} stays perfectly rigid while laughing, which you didn't know the human body could do. The SUV turns its wipers on, pointedly.",
             "effects": {
-              "mood": 8,
-              "energy": -8,
-              "rep": -8
+              "mood": 12,
+              "energy": -12,
+              "rep": -12
             }
           }
         ]
@@ -1369,9 +1371,9 @@
             "weight": 1,
             "text": "The SUV gives up and leaves. The moment the audience is gone, {kid} relaxes and climbs in. It was never about the car seat. It was about the crowd.",
             "effects": {
-              "rep": 6,
-              "energy": 2,
-              "mood": 6
+              "rep": 12,
+              "energy": 4,
+              "mood": 12
             }
           }
         ]
@@ -1386,9 +1388,9 @@
           {
             "text": "The fruit snack appears. The plank bends instantly. They were never rigid. They were negotiating.",
             "effects": {
-              "mood": 8,
-              "energy": 6,
-              "rep": -6
+              "mood": 12,
+              "energy": 9,
+              "rep": -9
             },
             "count": {
               "snacks": 1
@@ -1416,7 +1418,7 @@
     },
     "choices": [
       {
-        "label": "Deploy the kit: stickers, spoon, straw-wrapper worm",
+        "label": "Deploy the kit: stickers, spoon, straw worm",
         "duration": 40,
         "minEnergy": 25,
         "tags": [
@@ -1484,9 +1486,9 @@
             "weight": 1,
             "text": "The waiter crouches to say hi. {kid} looks them dead in the eye: \"No.\" Then, to be sure: \"NO.\" The waiter backs away slowly. Service is slower now.",
             "effects": {
-              "mood": -8,
-              "energy": 2,
-              "rep": -8
+              "mood": -12,
+              "energy": 3,
+              "rep": -12
             }
           }
         ]
@@ -1494,45 +1496,237 @@
     ]
   },
   {
-    "id": "cl_report",
-    "title": "The Daily Report",
-    "text": "The daycare report sheet: \"Ate all of lunch. Asked for more broccoli. Napped 2 hours, 10 minutes. Mood: a joy!\" You have never met this child.",
+    "id": "climber",
+    "title": "The Summit",
+    "text": "{kid} is standing on top of the bookshelf, arms raised, summit pose. You did anchor that bookshelf. Right? You picture the bag of wall anchors in the junk drawer. Unopened.",
     "window": [
-      900,
-      1050
+      480,
+      1100
     ],
     "weight": 2,
     "oncePerWeek": true,
     "when": {
       "notFlags": [
-        "d:home"
+        "anchored"
       ]
     },
     "choices": [
       {
-        "label": "Ask the teacher, quietly, how",
-        "duration": 10,
+        "label": "Get them down. Calm voice, fast hands.",
+        "duration": 3,
         "outcomes": [
           {
             "weight": 1,
-            "text": "\"Oh, we just put them on the cot and they go right down.\" Said kindly. You'll hear it at every nap time for the rest of your life.",
+            "text": "Down in four seconds. {kid} immediately starts up the couch, the next-highest peak in the region. This is their sport now, and you're the unpaid spotter.",
             "effects": {
-              "energy": -6,
-              "rep": 6
+              "mood": -12,
+              "energy": -9,
+              "sleepy": 4
             }
           },
           {
             "weight": 1,
-            "text": "The teacher leans in. \"Honestly? They're an angel here. They save it all for you. It means they feel safe.\" You don't know whether to cry or file a complaint. You cry in the car.",
+            "text": "Down safely. \"AGAIN!\" You say no. For once they accept it: the summit has been conquered, and there is nothing left to prove.",
             "effects": {
-              "energy": 8,
-              "mood": 4
+              "mood": 12,
+              "energy": -6
             }
           }
         ]
       },
       {
-        "label": "Read the sheet to {kid}, as evidence",
+        "label": "Get them down. Anchor every dresser in the house.",
+        "duration": 60,
+        "minEnergy": 30,
+        "tags": [
+          "martyr"
+        ],
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "An hour of drilling into studs while {kid} \"helps\" with a toy hammer. Everything tall is now bolted to a wall. Your lower back has filed a grievance.",
+            "effects": {
+              "home": 14,
+              "energy": -16,
+              "rep": 6,
+              "mood": 6
+            },
+            "set": [
+              "anchored"
+            ],
+            "stamp": "UP TO CODE"
+          },
+          {
+            "weight": 1,
+            "text": "You find the stud on the ninth hole. The wall looks like it lost an argument. Everything's anchored. You'll patch the eight extra holes never.",
+            "effects": {
+              "home": 6,
+              "energy": -16,
+              "mood": 6
+            },
+            "set": [
+              "anchored"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Get them down. Build a legal mountain of cushions.",
+        "duration": 20,
+        "minEnergy": 20,
+        "tags": [
+          "present"
+        ],
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "The couch becomes a mountain range with a soft landing zone. {kid} summits it 40 times and gets sleepy. The cushions will never go back in the right order.",
+            "effects": {
+              "mood": 14,
+              "home": -10,
+              "sleepy": 8,
+              "energy": -8
+            }
+          },
+          {
+            "weight": 1,
+            "text": "{kid} climbs the cushion mountain once, politely, then walks back to the bookshelf. Better views. You take the books down and go get the anchors after all.",
+            "effects": {
+              "mood": 6,
+              "home": -8,
+              "energy": -16
+            },
+            "set": [
+              "anchored"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "content",
+    "title": "Say Cheese",
+    "text": "{kid} is doing something genuinely adorable with a wooden spoon. You open the camera. They stop, turn to face you and say \"cheese\" with the flat eyes of someone who has done this before.",
+    "window": [
+      480,
+      1080
+    ],
+    "weight": 2,
+    "oncePerWeek": true,
+    "choices": [
+      {
+        "label": "Hide behind the fridge. Film from cover.",
+        "duration": 15,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "Eleven seconds of pure magic before they spot you and say \"cheese\" again. You post the eleven seconds. 312 likes. You watch it 40 times yourself.",
+            "effects": {
+              "rep": 12,
+              "energy": -6
+            }
+          },
+          {
+            "weight": 1,
+            "text": "They spot the lens. Now it's a show: fall down, laugh, fall down, check the camera. Twenty minutes of material. None of it is the spoon.",
+            "effects": {
+              "rep": -6,
+              "energy": -8,
+              "mood": 12
+            }
+          }
+        ]
+      },
+      {
+        "label": "Put the phone down. Just watch.",
+        "duration": 5,
+        "tags": [
+          "present"
+        ],
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "You watch. You don't post. It's lovely, and nobody will ever know it happened, which bothers you more than it should.",
+            "effects": {
+              "energy": 12,
+              "mood": 12,
+              "rep": -6
+            }
+          },
+          {
+            "weight": 1,
+            "text": "Free of the lens, {kid} goes right back to the spoon. It's the best show in town, and you have the only seat.",
+            "effects": {
+              "energy": 10,
+              "mood": 10
+            }
+          }
+        ]
+      },
+      {
+        "label": "Post a long caption about being present",
+        "duration": 10,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "\"I put my phone away to be present,\" you type, on your phone. 214 likes. You check all 214.",
+            "effects": {
+              "rep": 10,
+              "energy": -8
+            }
+          },
+          {
+            "weight": 1,
+            "text": "Top comment: \"is that spoon bamboo?\" You spend nine minutes drafting a reply. You delete it. You draft another.",
+            "effects": {
+              "rep": -8,
+              "energy": -12
+            },
+            "stamp": "COMMENTS: OFF"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "cl_doctor",
+    "title": "Dr. {kid} Will See You Now",
+    "text": "{kid} has a toy doctor kit and a patient: you. You're told to lie down on the couch. Lie down. On the couch. A medical professional is ordering you to lie down.",
+    "window": [
+      540,
+      1100
+    ],
+    "weight": 2,
+    "oncePerWeek": true,
+    "choices": [
+      {
+        "label": "Comply with all medical advice",
+        "duration": 20,
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "Stethoscope. Reflex hammer. A shot (it's a crayon). Diagnosis: \"tired.\" Prescription: \"more lie down.\" You follow doctor's orders for 14 minutes. Best care you've ever had.",
+            "effects": {
+              "energy": 16,
+              "mood": 10
+            },
+            "stamp": "DOCTOR'S ORDERS",
+            "fx": "confetti"
+          },
+          {
+            "weight": 1,
+            "text": "Diagnosis: \"broken.\" Treatment: 41 bandages, real ones, from the good box, all on one knee. You're healed. The bandage budget is not.",
+            "effects": {
+              "energy": 10,
+              "mood": 12,
+              "home": -8
+            }
+          }
+        ]
+      },
+      {
+        "label": "Ask for a second opinion",
         "duration": 5,
         "tags": [
           "negotiate"
@@ -1540,32 +1734,44 @@
         "outcomes": [
           {
             "weight": 1,
-            "text": "\"It says here you ate broccoli.\" {kid} hears the charges and says, calmly, \"No.\" The sheet is a forgery. They'd like a lawyer and a cracker.",
+            "text": "{kid} leaves the room and comes back in a different hat. \"Still broken.\" The second opinion agrees with the first.",
             "effects": {
-              "energy": 4,
-              "mood": -2
+              "energy": 6,
+              "mood": 10
             },
-            "stamp": "DENIES ALL CHARGES"
+            "stamp": "SECOND OPINION: BROKEN"
           },
           {
             "weight": 1,
-            "text": "\"You napped for two hours at school.\" {kid} looks at you with pity. \"School naps are for school.\" The defense rests.",
+            "text": "The second opinion is Bun-Bun, who examines you closely and says nothing. {kid} interprets this as \"surgery.\" Surgery is sitting on your stomach.",
             "effects": {
-              "energy": -2,
-              "mood": 6
-            }
+              "energy": -10,
+              "mood": 12
+            },
+            "fx": "shake"
           }
         ]
       },
       {
-        "label": "Frame it. Fridge. Next to the wedding photo.",
-        "duration": 3,
+        "label": "\"Sorry, Doctor, I have another appointment.\"",
+        "duration": 2,
         "outcomes": [
           {
-            "text": "{partner} gets home, reads it twice and asks, \"Who is this?\" \"I don't know,\" you say. \"But I want them.\"",
+            "weight": 1,
+            "text": "\"Okay,\" says Dr. {kid}, \"but you have to pay.\" The bill is your phone. You get it back in 25 minutes, with 300 photos of the ceiling.",
             "effects": {
-              "rel": 8,
-              "energy": 2
+              "energy": 12,
+              "mood": 9,
+              "rep": -9
+            }
+          },
+          {
+            "weight": 1,
+            "text": "Dr. {kid} nods, writes something on your arm in marker and says, \"Come back Tuesday.\" It's not washable. You'll be wearing the appointment all week.",
+            "effects": {
+              "energy": 4,
+              "mood": 8,
+              "rep": -10
             }
           }
         ]
@@ -1690,7 +1896,7 @@
             "weight": 1,
             "text": "\"You put it.\" They saw you. They were there. They're presenting the evidence now, one painting at a time.",
             "effects": {
-              "mood": -14,
+              "mood": -22,
               "energy": -4
             },
             "stamp": "EXHIBITS A THROUGH BB",
@@ -1700,8 +1906,8 @@
             "weight": 1,
             "text": "{kid} accepts your story and blames the recycling bin. They kick it, then apologize to it. You've framed a bin.",
             "effects": {
-              "mood": -2,
-              "energy": 4
+              "mood": -4,
+              "energy": 8
             }
           }
         ]
@@ -1718,7 +1924,7 @@
             "weight": 2,
             "text": "The hallway is a gallery now. You walk through it to the bathroom eleven times a day. Every painting is a bird. Every bird is watching.",
             "effects": {
-              "mood": 14,
+              "mood": 20,
               "home": -8,
               "energy": -8
             }
@@ -1745,8 +1951,8 @@
           {
             "text": "{kid} thinks about this, nods, takes your phone off the counter and puts it in the recycling. \"Can't keep everything.\" Fair is fair.",
             "effects": {
-              "mood": 6,
-              "energy": -6
+              "mood": 12,
+              "energy": -12
             },
             "stamp": "FAIR IS FAIR"
           }
@@ -1782,9 +1988,9 @@
             "weight": 2,
             "text": "Seated, eventually, arms folded. {kid} glares at the bear for the full 25 minutes. The bear avoids eye contact.",
             "effects": {
-              "rep": 6,
-              "mood": -8,
-              "energy": -6,
+              "rep": 9,
+              "mood": -12,
+              "energy": -9,
               "sleepy": 6
             }
           },
@@ -1792,9 +1998,9 @@
             "weight": 1,
             "text": "Seated. Silent. Then, during the quietest page, a very loud whisper: \"IT'S STILL A HAND.\" Two parents nod. They've known for years.",
             "effects": {
-              "rep": -4,
-              "mood": -4,
-              "energy": -6,
+              "rep": -8,
+              "mood": -8,
+              "energy": -12,
               "sleepy": 6
             }
           }
@@ -1818,8 +2024,8 @@
             "weight": 1,
             "text": "The librarian, a professional, turns the bear to face {kid}: \"Yes. I'm a hand. I'm also a bear.\" {kid} sits down slowly, shaken. Theology has come to story time.",
             "effects": {
-              "rep": 4,
-              "mood": 6,
+              "rep": 8,
+              "mood": 12,
               "sleepy": 6
             }
           }
@@ -1833,8 +2039,8 @@
             "weight": 2,
             "text": "You say \"oh no, the dentist\" to no one and speed-walk out. {kid} waves goodbye to the bear's hand, specifically.",
             "effects": {
-              "rep": -6,
-              "energy": 6,
+              "rep": -12,
+              "energy": 12,
               "sleepy": 2
             }
           },
@@ -1842,114 +2048,12 @@
             "weight": 1,
             "text": "Mid-fake, your phone actually rings. It's the dentist. You do have an appointment. It was 20 minutes ago.",
             "effects": {
-              "rep": -8,
-              "energy": -4,
+              "rep": -12,
+              "energy": -6,
               "sleepy": 2
             },
-            "stamp": "IT WAS THE DENTIST"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "party",
-    "title": "Organic Woodland Minimalism",
-    "text": "A two-year-old's birthday party. Theme: \"Organic Woodland Minimalism.\" The invitation had a QR code. The gift registry had a $140 rug on it.",
-    "window": [
-      600,
-      960
-    ],
-    "weight": 1,
-    "oncePerWeek": true,
-    "when": {
-      "notFlags": [
-        "d:home"
-      ]
-    },
-    "choices": [
-      {
-        "label": "Go, bearing the rug from the registry",
-        "duration": 60,
-        "minEnergy": 30,
-        "tags": [
-          "martyr"
-        ],
-        "outcomes": [
-          {
-            "weight": 2,
-            "text": "Balloon arch. A \"wellness magician.\" A cake made of dates. {kid} spends the whole party face-down on the rug you bought, which is the only review that counts.",
-            "effects": {
-              "rep": 12,
-              "energy": -14,
-              "mood": 4,
-              "sleepy": 10
-            }
-          },
-          {
-            "weight": 1,
-            "text": "The registry glitched. Four families bring the same $140 rug. The rugs lean against the balloon arch, still rolled, saying nothing. The parents also say nothing.",
-            "effects": {
-              "rep": 4,
-              "energy": -14,
-              "mood": 4,
-              "sleepy": 10
-            }
-          }
-        ]
-      },
-      {
-        "label": "Go, bearing a grocery-store sheet cake (blue)",
-        "duration": 60,
-        "outcomes": [
-          {
-            "weight": 1,
-            "text": "Your sheet cake is placed at the far end of the table, like a cousin nobody invited. Every kid eats it anyway. Every kid is blue in the photos.",
-            "effects": {
-              "rep": -8,
-              "mood": 10,
-              "energy": -8,
-              "sleepy": 10
-            },
-            "count": {
-              "snacks": 1
-            }
-          },
-          {
-            "weight": 1,
-            "text": "The kids mob your cake. Then the parents do, behind the balloon arch, in total silence. Nobody mentions the dates again.",
-            "effects": {
-              "rep": 10,
-              "mood": 10,
-              "energy": -8,
-              "sleepy": 10
-            },
-            "count": {
-              "snacks": 1
-            },
-            "stamp": "THE PEOPLE'S CAKE"
-          }
-        ]
-      },
-      {
-        "label": "\"So sorry, nap conflict! 😩\"",
-        "duration": 2,
-        "outcomes": [
-          {
-            "weight": 2,
-            "text": "Technically true: the nap is yours. You take it on the couch while the party photos arrive, one balloon arch at a time.",
-            "effects": {
-              "rep": -10,
-              "energy": 12
-            }
-          },
-          {
-            "weight": 1,
-            "text": "The host replies at once: \"Totally! We've moved it to 4 PM for nappers 🙂.\" There is no escape. There was never an escape.",
-            "effects": {
-              "rep": 6,
-              "energy": -6
-            }
+            "stamp": "IT WAS THE DENTIST",
+            "fx": "flash"
           }
         ]
       }
@@ -1988,9 +2092,9 @@
             "weight": 1,
             "text": "They love it. They ask for \"the green muffin\" by name. You'll be baking twice a week until they leave for college. You did this.",
             "effects": {
-              "mood": 14,
-              "energy": -14,
-              "rep": 10
+              "mood": 20,
+              "energy": -20,
+              "rep": 12
             },
             "stamp": "SUCCESS (UNFORTUNATELY)"
           }
@@ -2031,9 +2135,9 @@
           {
             "text": "Broccoli is now a sometimes food. \"Sometimes\" is a legal term meaning \"when they're 30.\" Dinner goes great.",
             "effects": {
-              "energy": 6,
-              "mood": 8,
-              "rep": -8
+              "energy": 9,
+              "mood": 12,
+              "rep": -12
             }
           }
         ]
@@ -2059,8 +2163,8 @@
             "weight": 1,
             "text": "It's in the toilet. It's \"water-resistant.\" You learn exactly what that word was hiding. You say a word. The word is [BLEEP].",
             "effects": {
-              "home": -6,
-              "energy": -8
+              "home": -9,
+              "energy": -12
             },
             "count": {
               "bleeps": 1
@@ -2071,8 +2175,8 @@
             "weight": 1,
             "text": "Not the toilet. It's in the oven. The oven is off. You order an oven lock before you even pick up the phone.",
             "effects": {
-              "home": 6,
-              "energy": 4
+              "home": 12,
+              "energy": 8
             }
           }
         ]
@@ -2083,20 +2187,20 @@
         "outcomes": [
           {
             "weight": 2,
-            "text": "It rings inside the toy box. A small voice answers: \"Hello?\" It was your work call. {kid} said \"yes\" to everything. You now owe someone a deck by Thursday.",
+            "text": "It rings inside the toy box. A small voice answers: \"Hello?\" It was your work call. {kid} said \"yes\" to everything. You are on a committee now.",
             "effects": {
               "mood": 10,
               "energy": -6,
               "rep": -6
             },
-            "stamp": "DEADLINE ACCEPTED"
+            "stamp": "COMMITTEE: JOINED"
           },
           {
             "weight": 1,
             "text": "It rings. It's coming from you. Your back pocket. It's been there the whole time. {kid} watches you find it with something like pity.",
             "effects": {
-              "energy": -4,
-              "mood": 6
+              "energy": -8,
+              "mood": 12
             }
           }
         ]
@@ -2108,8 +2212,8 @@
           {
             "text": "For forty minutes you're unreachable, like it's 1997. It's wonderful. Then the group chat assumes you're dead and someone calls your mother.",
             "effects": {
-              "energy": 10,
-              "rep": -10
+              "energy": 14,
+              "rep": -16
             }
           }
         ]
@@ -2149,9 +2253,9 @@
             "weight": 1,
             "text": "Play one: joy. Play two: joy. Play three: the wrong song, apparently, although it is the same song. Party over.",
             "effects": {
-              "mood": -6,
+              "mood": -9,
               "sleepy": 4,
-              "energy": -8
+              "energy": -12
             },
             "fx": "shake"
           }
@@ -2165,17 +2269,17 @@
             "weight": 2,
             "text": "You sit on the closed lid. One by one, crackers slide under the door. {kid} is feeding you through the gap. Ninety seconds in, and you've been adopted.",
             "effects": {
-              "energy": 8,
-              "mood": 6,
-              "home": -6
+              "energy": 12,
+              "mood": 9,
+              "home": -9
             }
           },
           {
             "weight": 1,
             "text": "Through the door, {kid} begins reading you the truck book, loudly, from memory, with several new trucks. You stay for the whole thing.",
             "effects": {
-              "energy": 6,
-              "mood": 8
+              "energy": 9,
+              "mood": 12
             }
           }
         ]
@@ -2272,8 +2376,8 @@
             "weight": 2,
             "text": "A cow, a pig, a duck and, by verse nine, a moose you made up. {kid} stays awake to inform you there are no moose on a farm. You'll take it.",
             "effects": {
-              "mood": 6,
-              "energy": -8,
+              "mood": 9,
+              "energy": -12,
               "sleepy": 4
             }
           },
@@ -2282,8 +2386,8 @@
             "text": "You sing so loudly the man at the light stares. {kid} sleeps through all of it with a small smile. Your singing has never been so soothing. It was not supposed to be soothing.",
             "effects": {
               "sleepy": -25,
-              "mood": 6,
-              "energy": -6
+              "mood": 12,
+              "energy": -12
             },
             "stamp": "LULLABY: ACCIDENTAL",
             "fx": "flash"
@@ -2322,7 +2426,7 @@
             "text": "{kid} sneaks a four-minute nap between boops and wakes with the energy of someone who has slept, which is more than you can say.",
             "effects": {
               "sleepy": -10,
-              "mood": 6
+              "mood": 12
             }
           }
         ]
@@ -2405,7 +2509,8 @@
               "mood": -12,
               "sleepy": -4
             },
-            "stamp": "IMPOSTOR DETECTED"
+            "stamp": "IMPOSTOR DETECTED",
+            "fx": "flash"
           }
         ]
       },
@@ -2428,8 +2533,8 @@
             "weight": 1,
             "text": "{kid} sniffs it and says, \"That's {me}.\" They hug it anyway, and fall asleep holding the rabbit that smells like you.",
             "effects": {
-              "mood": 8,
-              "energy": -4,
+              "mood": 12,
+              "energy": -6,
               "sleepy": 4
             }
           }
@@ -2471,9 +2576,9 @@
             },
             "text": "\"Where did YOU last have it?\" Bun-Bun stays missing for another hour, and so does the warmth in this house.",
             "effects": {
-              "rel": -8,
-              "mood": -6,
-              "energy": 2
+              "rel": -12,
+              "mood": -9,
+              "energy": 3
             },
             "count": {
               "blames": 1

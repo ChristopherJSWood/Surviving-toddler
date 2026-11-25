@@ -5,9 +5,9 @@
     "text": "Your deadlines today: the report, due at 5 PM. Also a snack, due now. A diaper, overdue. A hug, due immediately, with interest. Only one of these was assigned by an adult.",
     "window": [
       420,
-      660
+      690
     ],
-    "weight": 5,
+    "weight": 6,
     "oncePerWeek": true,
     "when": {
       "flags": [
@@ -32,7 +32,8 @@
             },
             "set": [
               "d:tueAhead"
-            ]
+            ],
+            "fx": "confetti"
           },
           {
             "weight": 1,
@@ -62,8 +63,8 @@
             "weight": 1,
             "text": "Somehow, they wait. They sit beside you \"working\" on a closed calculator for 25 minutes. You hit 30%. They hit nothing. You both feel productive.",
             "effects": {
-              "mood": 4,
-              "energy": 4
+              "mood": 8,
+              "energy": 8
             },
             "set": [
               "d:tueAhead"
@@ -87,8 +88,8 @@
             },
             "text": "{partner} closes their laptop and leaves with {kid} and a sippy cup. They don't say \"you owe me.\" Their posture says it for them.",
             "effects": {
-              "energy": 8,
-              "rel": -4
+              "energy": 12,
+              "rel": -6
             },
             "set": [
               "d:tueAhead"
@@ -105,8 +106,8 @@
             },
             "text": "\"I have the all-hands at 10.\" They do. They've mentioned it four times this week. You both stand in the hallway, holding opposite ends of the same tiredness.",
             "effects": {
-              "energy": -4,
-              "rel": -6
+              "energy": -8,
+              "rel": -12
             }
           }
         ]
@@ -114,184 +115,14 @@
     ]
   },
   {
-    "id": "d_tue_manager",
-    "title": "\"Quick Check-In 🙂\"",
-    "text": "Your manager has a quick question.",
-    "chat": {
-      "with": "Priya (Work)",
-      "messages": [
-        {
-          "from": "Priya",
-          "text": "hey! quick q"
-        },
-        {
-          "from": "Priya",
-          "text": "still on track for 5? 🙂"
-        },
-        {
-          "from": "Priya",
-          "text": "also could you add a quick slide on Q4"
-        }
-      ]
-    },
-    "window": [
-      630,
-      840
-    ],
-    "weight": 5,
-    "oncePerWeek": true,
-    "when": {
-      "flags": [
-        "d:deadline"
-      ]
-    },
-    "choices": [
-      {
-        "label": "\"Yep! Just polishing.\" (It's 12% done.)",
-        "duration": 2,
-        "outcomes": [
-          {
-            "weight": 1,
-            "text": "Sent, received, believed. You now have five hours to polish something that doesn't exist, plus a slide about a quarter that hasn't happened.",
-            "effects": {
-              "rep": 6,
-              "energy": -10
-            },
-            "chat": [
-              {
-                "from": "Priya",
-                "text": "amazing!! can't wait"
-              }
-            ]
-          },
-          {
-            "weight": 1,
-            "text": "Your 12% is going to a VP now. The VP has a reputation for reading the whole thing.",
-            "effects": {
-              "rep": 6,
-              "energy": -14
-            },
-            "stamp": "VP CC'D",
-            "fx": "flash",
-            "chat": [
-              {
-                "from": "Priya",
-                "text": "amazing!! sharing with the VP 🙂"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "label": "Send the honest percentage",
-        "duration": 2,
-        "outcomes": [
-          {
-            "weight": 1,
-            "text": "Priya is a person. You never knew. You'll never be able to un-know it.",
-            "effects": {
-              "rep": 8,
-              "energy": 6
-            },
-            "stamp": "PRIYA IS A PERSON",
-            "chat": [
-              {
-                "from": "you",
-                "text": "12%. toddler home. will make it"
-              },
-              {
-                "from": "Priya",
-                "text": "honestly respect"
-              },
-              {
-                "from": "Priya",
-                "text": "mine put my laptop in the bath last week"
-              }
-            ]
-          },
-          {
-            "weight": 1,
-            "text": "\"ok!\" Just \"ok!\" That exclamation point is doing the work of a performance review.",
-            "effects": {
-              "rep": -10,
-              "energy": 2
-            },
-            "chat": [
-              {
-                "from": "you",
-                "text": "12%. toddler home. will make it"
-              },
-              {
-                "from": "Priya",
-                "text": "ok!"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "label": "Let {kid} reply. They have opinions.",
-        "duration": 1,
-        "outcomes": [
-          {
-            "weight": 1,
-            "text": "{kid} sends four frogs with their whole palm. You add \"yes.\" Priya sends a thumbs-up. Nobody knows what was agreed, and you'd like to keep it that way.",
-            "effects": {
-              "rep": -4,
-              "energy": 6,
-              "mood": 8
-            },
-            "chat": [
-              {
-                "from": "you",
-                "text": "🐸🐸🐸🐸"
-              },
-              {
-                "from": "you",
-                "text": "yes"
-              },
-              {
-                "from": "Priya",
-                "text": "👍"
-              }
-            ]
-          },
-          {
-            "weight": 1,
-            "text": "{kid} has typed \"NO\" and pressed send. A toddler just pushed back on scope. You've been trying to do that for six years.",
-            "effects": {
-              "rep": 4,
-              "energy": 10,
-              "mood": 8
-            },
-            "set": [
-              "d:tueAhead"
-            ],
-            "stamp": "SCOPE: REJECTED",
-            "chat": [
-              {
-                "from": "you",
-                "text": "NO"
-              },
-              {
-                "from": "Priya",
-                "text": "oh! totally, skip the Q4 slide 👍"
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  },
-  {
     "id": "d_tue_wall",
-    "title": "2:50 PM: Last Call",
-    "text": "The report needs two more hours of brain. You have about twenty minutes of brain left. It's 2:50 PM, which is last call for coffee.",
+    "title": "Last Call for Coffee",
+    "text": "The report needs two more hours of brain. You have about twenty minutes left. It's mid-afternoon: last call for coffee, if you'd like to sleep tonight.",
     "window": [
       780,
-      930
+      960
     ],
-    "weight": 5,
+    "weight": 8,
     "oncePerWeek": true,
     "when": {
       "flags": [
@@ -350,9 +181,9 @@
             },
             "text": "They take {kid} to the park. You write in a silent house, then sit very still for six minutes, listening to the fridge hum. It sounds like the ocean.",
             "effects": {
-              "energy": 8,
-              "rel": -4,
-              "rep": 4
+              "energy": 12,
+              "rel": -6,
+              "rep": 6
             },
             "set": [
               "d:tueAhead"
@@ -369,8 +200,8 @@
             },
             "text": "\"I've got a 3:30.\" It's on the shared calendar, in the color you agreed was theirs. You finish the report with {kid} on your shoulders, steering your head.",
             "effects": {
-              "energy": -6,
-              "rel": -6
+              "energy": -12,
+              "rel": -12
             }
           }
         ]
@@ -400,12 +231,12 @@
   {
     "id": "d_tue_due",
     "title": "Due at 5",
-    "text": "4:38 PM. The report is 80% done and due at 5. {kid} has gone behind the curtain to poop and needs you to hold their hand. They have never been in less of a hurry.",
+    "text": "The report is 80% done and due at 5, which is suddenly very soon. {kid} has gone behind the curtain to poop and needs you to hold their hand. They have never been in less of a hurry.",
     "window": [
       900,
-      1015
+      1020
     ],
-    "weight": 8,
+    "weight": 20,
     "oncePerWeek": true,
     "when": {
       "flags": [
@@ -445,7 +276,7 @@
         "outcomes": [
           {
             "weight": 2,
-            "text": "The man in corduroy sings about patience. {kid} takes the advice. You write like the building is on fire and send it at 4:56. You'll take the meltdown. You'd take ten.",
+            "text": "The man in corduroy sings about patience. {kid} takes the advice. You write like the building is on fire and hit send as the credits roll. You'll take the meltdown. You'd take ten.",
             "effects": {
               "energy": 4,
               "mood": 6,
@@ -463,15 +294,15 @@
                 "in": 22
               }
             ],
-            "stamp": "SUBMITTED 4:56 PM"
+            "stamp": "SUBMITTED, SOMEHOW"
           },
           {
             "weight": 1,
-            "text": "{kid} finishes, emerges and wants to watch the rest on your lap, holding your typing hand. The report goes in at 4:59, typed with one finger.",
+            "text": "{kid} finishes, emerges and wants to watch the rest on your lap, holding your typing hand. The last paragraph goes in typed with one finger.",
             "effects": {
-              "energy": 2,
-              "mood": 8,
-              "rep": 6
+              "energy": 3,
+              "mood": 12,
+              "rep": 9
             },
             "set": [
               "d:screen"
@@ -494,19 +325,16 @@
         "outcomes": [
           {
             "weight": 2,
-            "text": "\"Happy to discuss!\" is corporate for \"I know.\" Priya replies with a thumbs-up and nothing else. A thumbs-up can mean anything. This one means Monday.",
+            "text": "\"Happy to discuss!\" is corporate for \"I know.\" Trent replies with a thumbs-up and nothing else. A thumbs-up can mean anything. This one means Monday.",
             "effects": {
-              "energy": 10,
-              "rep": -12
+              "energy": 12,
+              "rep": -20
             },
-            "set": [
-              "report:late"
-            ],
             "fx": "flash"
           },
           {
             "weight": 1,
-            "text": "Priya replies at once: \"honestly the first 80% is the part people read.\" You've been doing the last 20% for nothing your entire career.",
+            "text": "Trent replies at once: \"honestly the first 80% is the part people read.\" You've been doing the last 20% for nothing your entire career.",
             "effects": {
               "energy": 10,
               "rep": 4
@@ -524,10 +352,10 @@
         },
         "outcomes": [
           {
-            "text": "Sent at 4:33. Early. You sit there for a full minute, unsure what people do with 27 minutes. {kid} shows you: you build a tower and knock it down 27 times.",
+            "text": "Sent. Early. You sit there for a full minute, unsure what people do with spare time. {kid} shows you: you build a tower and knock it down until five o'clock.",
             "effects": {
-              "rep": 12,
-              "energy": 6,
+              "rep": 22,
+              "energy": 8,
               "mood": 10
             },
             "stamp": "SUBMITTED EARLY",
@@ -539,8 +367,8 @@
   },
   {
     "id": "d_tue_send",
-    "title": "4:57 PM: Send or Wipe",
-    "text": "Your cursor is on Send. From behind the curtain: \"{ME}! I'm DONE! WIPE!\" You have one free hand, two jobs and about five seconds.",
+    "title": "Send or Change",
+    "text": "Your cursor is on Send. From behind the curtain: \"{ME}! I'm DONE! CHANGE ME!\" This is a two-hand diaper. You have one free hand, two jobs and about five seconds.",
     "forced": true,
     "timer": 5,
     "choices": [
@@ -550,7 +378,7 @@
         "outcomes": [
           {
             "weight": 2,
-            "text": "Click. Sent, 4:57 PM. You sprint. Behind the curtain, {kid} has wiped themselves for the first time ever, using an entire roll. You've never been prouder, or more out of toilet paper.",
+            "text": "Click. Sent. You sprint. Behind the curtain, {kid} has attempted to change their own diaper. The attempt was ambitious. The curtain is involved.",
             "effects": {
               "rep": 10,
               "home": -8,
@@ -561,9 +389,9 @@
             "weight": 1,
             "text": "Click. Wrong button. The report goes to 31 people, on time, with your draft text to {partner} still in the body: \"brb, wiping.\"",
             "effects": {
-              "rep": -8,
-              "home": -4,
-              "energy": 4
+              "rep": -12,
+              "home": -6,
+              "energy": 6
             },
             "stamp": "REPLY ALL",
             "fx": "flash"
@@ -571,12 +399,12 @@
         ]
       },
       {
-        "label": "Wipe first. The report can wait 90 seconds.",
+        "label": "Change first. The report can wait 90 seconds.",
         "duration": 5,
         "outcomes": [
           {
             "weight": 1,
-            "text": "Wipe, wash, back at 4:59. Sent with 40 seconds to spare. You stand in the kitchen with clean hands and a pounding heart: a person who did two jobs at once.",
+            "text": "Change, wash, back at the laptop with 40 seconds to spare. Sent. You stand in the kitchen with clean hands and a pounding heart: a person who did two jobs at once.",
             "effects": {
               "rep": 10,
               "mood": 8,
@@ -587,15 +415,12 @@
           },
           {
             "weight": 1,
-            "text": "Wipe, wash, back at 5:01. Four minutes late. Priya replies \"no worries!\" with an exclamation point that will keep you up tonight.",
+            "text": "Change, wash, back at the laptop one minute too late. Trent replies \"no worries!\" with an exclamation point that will keep you up tonight.",
             "effects": {
-              "rep": -6,
-              "mood": 8,
-              "energy": -4
-            },
-            "set": [
-              "report:late"
-            ]
+              "rep": -9,
+              "mood": 12,
+              "energy": -6
+            }
           }
         ]
       },
@@ -605,133 +430,15 @@
         "timeout": true,
         "outcomes": [
           {
-            "text": "You stand frozen between the laptop and the curtain. {kid} waddles out, pants at the ankles, and presses Send for you. With their hand. That hand. Sent: 4:58 PM.",
+            "text": "You stand frozen between the laptop and the curtain. {kid} waddles out, diaper at the ankles, and presses Send for you. With their hand. That hand. Sent, on time, technically.",
             "effects": {
               "rep": 6,
-              "home": -12,
+              "home": -20,
               "energy": -10,
               "mood": 10
             },
             "stamp": "SENT. DON'T ASK.",
             "fx": "shake"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "d_wed_patientzero",
-    "title": "Patient Zero",
-    "text": "The daycare group chat has opened an investigation. You know exactly whose kid was rubbing their eyes at pickup Monday.",
-    "chat": {
-      "with": "Caterpillar Room Parents 🐛 (23)",
-      "messages": [
-        {
-          "from": "Brynn",
-          "text": "Quick question for the group! Does anyone know who it started with? 🙂"
-        },
-        {
-          "from": "Marcus",
-          "text": "daycare just says \"a child in the Caterpillar Room\""
-        },
-        {
-          "from": "Marcus",
-          "text": "there are 9 children in the Caterpillar Room"
-        },
-        {
-          "from": "Brynn",
-          "text": "Who was rubbing their eyes at pickup Monday? Just curious! 🙂"
-        }
-      ]
-    },
-    "window": [
-      420,
-      780
-    ],
-    "weight": 5,
-    "oncePerWeek": true,
-    "when": {
-      "flags": [
-        "d:home"
-      ]
-    },
-    "choices": [
-      {
-        "label": "Post a close-up of {kid}'s clear eyes. Alibi.",
-        "duration": 5,
-        "outcomes": [
-          {
-            "weight": 1,
-            "text": "Three parents post close-ups of their own kids' eyes. The chat is 40 eyeballs now. Yours are the whitest.",
-            "effects": {
-              "rep": 12,
-              "energy": -2
-            },
-            "stamp": "ALIBI ACCEPTED",
-            "chat": [
-              {
-                "from": "Brynn",
-                "text": "Cleared! ✅🙂"
-              }
-            ]
-          },
-          {
-            "weight": 1,
-            "text": "Your child's eyeballs are now evidence in an open case.",
-            "effects": {
-              "rep": -8,
-              "energy": -2
-            },
-            "chat": [
-              {
-                "from": "Dana",
-                "text": "tbf the goop comes later"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "label": "\"Honestly, could've been anyone 🤷\"",
-        "duration": 2,
-        "outcomes": [
-          {
-            "text": "Diplomacy. A thumbs-up from Brynn. Then a private message. You reply \"maybe.\" You have started a war.",
-            "effects": {
-              "rep": -2,
-              "energy": 6
-            },
-            "stamp": "UNNAMED SOURCE",
-            "chat": [
-              {
-                "from": "Marcus",
-                "text": "(private) it was the hendersons right"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "label": "Mute the chat for the day",
-        "duration": 1,
-        "outcomes": [
-          {
-            "weight": 1,
-            "text": "Peace. At 9 PM you unmute to 186 messages, a spreadsheet and a theory with your child's name in it.",
-            "effects": {
-              "rep": -14,
-              "energy": 10
-            },
-            "stamp": "NAMED IN A SPREADSHEET",
-            "fx": "flash"
-          },
-          {
-            "weight": 1,
-            "text": "You miss the accusations, the verdict and the apology. You are the only parent in the Caterpillar Room still on speaking terms with everyone.",
-            "effects": {
-              "rep": 8,
-              "energy": 10
-            }
           }
         ]
       }
@@ -786,17 +493,17 @@
             "weight": 1,
             "text": "{kid} pokes the elbow, satisfied, and wanders off to touch the TV with the same finger. The TV is part of this now.",
             "effects": {
-              "mood": 4,
-              "home": -8,
-              "energy": 4
+              "mood": 6,
+              "home": -12,
+              "energy": 6
             }
           },
           {
             "weight": 1,
             "text": "{kid} pokes the elbow, considers it and, unsatisfied, goes for your ear.",
             "effects": {
-              "mood": 8,
-              "energy": -6
+              "mood": 12,
+              "energy": -9
             }
           }
         ]
@@ -937,8 +644,8 @@
             "weight": 1,
             "text": "Quiet time lasts 90 seconds. Then it becomes loud time, on your stomach, with a drum.",
             "effects": {
-              "energy": -6,
-              "mood": 6
+              "energy": -12,
+              "mood": 12
             }
           }
         ]
@@ -1037,9 +744,9 @@
             },
             "text": "\"I did laundry Sunday.\" It was one load, of their gym clothes. You don't say that. You think it, at a volume they can probably hear.",
             "effects": {
-              "rel": -8,
-              "home": -4,
-              "energy": 2
+              "rel": -12,
+              "home": -6,
+              "energy": 3
             },
             "count": {
               "blames": 1
@@ -1054,12 +761,110 @@
           {
             "text": "Sheets on hot. Bun-Bun stays fragrant and untouched. If daycare asks, Bun-Bun was washed, and you will lie to a teacher's face.",
             "effects": {
-              "energy": -4,
-              "home": 6,
-              "rep": -8
+              "energy": -6,
+              "home": 9,
+              "rep": -12
             },
             "ledger": {
               "laundry": "you"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "snot",
+    "title": "The Snot Straw",
+    "text": "{kid} doesn't have pink eye. {kid} has a bonus cold. You own the mouth-powered nasal aspirator: one end goes in their nose, the other end goes in your mouth. There's a filter. You've read about it four times.",
+    "window": [
+      420,
+      1080
+    ],
+    "weight": 5,
+    "oncePerWeek": true,
+    "when": {
+      "flags": [
+        "d:home"
+      ]
+    },
+    "choices": [
+      {
+        "label": "Use the snot straw. Trust the filter.",
+        "duration": 5,
+        "minEnergy": 20,
+        "tags": [
+          "present"
+        ],
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "It works. It's horrifying. It works. {kid} won't forgive you until dinner, but they'll breathe through their nose tonight, which means you might sleep.",
+            "effects": {
+              "mood": -12,
+              "debt": -12,
+              "energy": -6
+            },
+            "stamp": "THE FILTER HELD"
+          },
+          {
+            "weight": 1,
+            "text": "It works so well you can hear it working. You'll hear it again at 3 AM, in your memory, uninvited.",
+            "effects": {
+              "mood": -10,
+              "debt": -12,
+              "energy": -10
+            }
+          }
+        ]
+      },
+      {
+        "label": "Let it run. Embrace the glaze.",
+        "duration": 2,
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "By lunch, every surface in the house has been personally initialed.",
+            "effects": {
+              "home": -14,
+              "energy": 8,
+              "debt": 4
+            }
+          },
+          {
+            "weight": 1,
+            "text": "{kid} discovers that a sleeve works as well as a tissue. Your sleeve. You're wearing it. They're very polite about it.",
+            "effects": {
+              "home": -9,
+              "energy": 12,
+              "mood": 12
+            }
+          }
+        ]
+      },
+      {
+        "label": "Tissues, a song and enormous patience",
+        "duration": 10,
+        "minEnergy": 20,
+        "tags": [
+          "present"
+        ],
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "You invent a song about noses. It has four verses. They let you wipe on verse three. Partial credit.",
+            "effects": {
+              "mood": 10,
+              "energy": -10,
+              "home": -4
+            }
+          },
+          {
+            "weight": 1,
+            "text": "You invent a nose song. {kid} loves it so much they won't let you wipe until you've sung it nine more times. The nose is still running. So is the song.",
+            "effects": {
+              "mood": 14,
+              "energy": -14
             }
           }
         ]
@@ -1145,8 +950,8 @@
             "weight": 1,
             "text": "You both sit with that, in separate buildings, for a long time.",
             "effects": {
-              "rel": 4,
-              "energy": -6
+              "rel": 8,
+              "energy": -12
             },
             "chat": [
               {
@@ -1159,8 +964,8 @@
             "weight": 1,
             "text": "That's not teething. That's slander. It's also accurate. You eat a granola bar and reconsider everything.",
             "effects": {
-              "rel": -2,
-              "energy": 8
+              "rel": -3,
+              "energy": 12
             },
             "stamp": "SLANDER (ACCURATE)",
             "chat": [
@@ -1240,16 +1045,16 @@
             "weight": 2,
             "text": "You swap your shoulder for a cold teether and say it in the voice of a flight attendant during turbulence. They chomp the teether instead. Lesson received, for about ten minutes.",
             "effects": {
-              "mood": 6,
-              "energy": -4
+              "mood": 12,
+              "energy": -8
             }
           },
           {
             "weight": 1,
             "text": "They bite the teether, then you, then the teether, as if comparing. You come second. It stings in a whole new way.",
             "effects": {
-              "mood": 4,
-              "energy": -8
+              "mood": 6,
+              "energy": -12
             },
             "stamp": "RUNNER-UP"
           }
@@ -1270,6 +1075,14 @@
               "bleeps": 1
             },
             "fx": "shake"
+          },
+          {
+            "weight": 1,
+            "text": "Your noise is so big that {kid} pats your shoulder, very gently, to apologize. Then bites it again, very gently. It's an apology. It's also a bite.",
+            "effects": {
+              "mood": 8,
+              "energy": -10
+            }
           }
         ]
       },
@@ -1343,9 +1156,9 @@
             },
             "text": "They come home with a 10-pack of bibs and the good balm, the one in the tin, bought without a single follow-up question. You consider proposing again.",
             "effects": {
-              "mood": 8,
-              "rel": 6,
-              "energy": 4
+              "mood": 12,
+              "rel": 9,
+              "energy": 6
             },
             "ledger": {
               "errands": "partner"
@@ -1359,9 +1172,9 @@
             },
             "text": "\"What kind of bibs?\" \"The bib kind.\" They come home with one bib. It has a lobster on it and says SHELL YEAH. Technically, a bib.",
             "effects": {
-              "mood": -2,
-              "rel": -6,
-              "energy": 2
+              "mood": -4,
+              "rel": -12,
+              "energy": 4
             }
           }
         ]
@@ -1421,17 +1234,17 @@
             "weight": 1,
             "text": "You explain, calmly, that nobody puts whiskey on a toddler now. Grandma nods. \"Oh, I know. I'm not going to DO it. I'm just saying it worked.\" The bottle stays shut. The point stays on the table.",
             "effects": {
-              "rep": 6,
-              "energy": -8
+              "rep": 9,
+              "energy": -12
             }
           },
           {
             "weight": 1,
             "text": "You cite the pediatrician, the guidelines and a pamphlet. Grandma reads the entire pamphlet, then hands it back: \"Lovely font.\" {partner} has to leave the room.",
             "effects": {
-              "rep": -4,
-              "energy": -6,
-              "rel": 6
+              "rep": -8,
+              "energy": -12,
+              "rel": 12
             }
           }
         ]
@@ -1444,8 +1257,8 @@
             "weight": 2,
             "text": "\"Oh, no,\" says Grandma. \"You screamed for two years.\" A sip of tea. \"But we slept.\"",
             "effects": {
-              "energy": 6,
-              "rep": 4
+              "energy": 12,
+              "rep": 8
             },
             "stamp": "WHISKEY: GRANDMA'S"
           },
@@ -1453,9 +1266,9 @@
             "weight": 1,
             "text": "\"Like a charm.\" A sip of tea. \"Of course, you also didn't talk until you were four.\" From the doorway, {partner}: \"That explains a lot.\"",
             "effects": {
-              "rel": 4,
-              "energy": 4,
-              "rep": -4
+              "rel": 8,
+              "energy": 8,
+              "rep": -8
             }
           }
         ]
@@ -1471,25 +1284,27 @@
             "weight": 2,
             "text": "You sleep 58 minutes. You wake to a toddler who has eaten three cookies and learned a new word. You don't know which word. Daycare will tell you.",
             "effects": {
-              "energy": 18,
+              "energy": 22,
               "mood": 8,
               "home": -6,
-              "rep": -8
+              "rep": -12
             },
             "count": {
               "snacks": 3
-            }
+            },
+            "fx": "flash"
           },
           {
             "weight": 1,
             "text": "You wake in a panic. The house is silent. {kid} is asleep in the crib. Grandma, from the couch: \"I just put them down, dear.\" Just put them down. You've never been so rested or so insulted.",
             "effects": {
-              "energy": 18,
+              "energy": 24,
               "sleepy": -15,
               "debt": -10,
               "mood": 8
             },
-            "stamp": "JUST PUT THEM DOWN"
+            "stamp": "JUST PUT THEM DOWN",
+            "fx": "confetti"
           }
         ]
       }
@@ -1523,17 +1338,17 @@
             "weight": 1,
             "text": "It comes down. A new post goes up: \"Not allowed to share the spaghetti one 🙄.\" It has more likes than the spaghetti.",
             "effects": {
-              "rep": -8,
-              "energy": -4,
-              "rel": 4
+              "rep": -12,
+              "energy": -6,
+              "rel": 6
             }
           },
           {
             "weight": 1,
             "text": "\"Of course, sweetheart,\" says Grandma, and takes it down, in a voice so sincere you check it for traps. There are no traps. You're too tired to trust that.",
             "effects": {
-              "rep": 8,
-              "energy": -4
+              "rep": 12,
+              "energy": -6
             }
           }
         ]
@@ -1546,15 +1361,15 @@
             "weight": 1,
             "text": "Spin control. Two parents like your comment. One replies \"lol the spaghetti 😂.\" You've made it a thread. Threads are forever.",
             "effects": {
-              "rep": -6,
-              "energy": 2
+              "rep": -12,
+              "energy": 4
             }
           },
           {
             "weight": 1,
             "text": "Grandma replies: \"Best day ever because GRANDMA was here!! 😘\" The likes double. You've been out-posted by someone who types with one finger.",
             "effects": {
-              "rep": 4,
+              "rep": 10,
               "energy": 2
             },
             "stamp": "OUT-POSTED"
@@ -1573,9 +1388,9 @@
             },
             "text": "\"LOL. Honestly, the spaghetti looks great.\" A small, private laugh between the two people who actually run this place.",
             "effects": {
-              "rel": 8,
-              "rep": -4,
-              "energy": 4
+              "rel": 12,
+              "rep": -6,
+              "energy": 6
             }
           },
           {
@@ -1586,9 +1401,9 @@
             },
             "text": "\"Well, DID you let them eat like that?\" You did. They know you did. You set the phone face-down, very gently, like it might go off.",
             "effects": {
-              "rel": -8,
-              "rep": -4,
-              "energy": -2
+              "rel": -12,
+              "rep": -6,
+              "energy": -3
             },
             "count": {
               "blames": 1
@@ -1634,11 +1449,11 @@
           },
           {
             "weight": 1,
-            "text": "\"Oh, I'm sure they do,\" says Grandma, warmly, which is somehow worse. The knife resumes. The tone does not.",
+            "text": "\"Oh, I'm sure they do,\" says Grandma, with a warmth that has teeth. The knife resumes. The tone does not.",
             "effects": {
-              "rel": 8,
-              "rep": -4,
-              "energy": -4
+              "rel": 12,
+              "rep": -6,
+              "energy": -6
             }
           }
         ]
@@ -1651,8 +1466,8 @@
             "weight": 2,
             "text": "Grandma beams. The knife stays very still. You'll hear about this at 10:40 PM, in a whisper, in the dark.",
             "effects": {
-              "rel": -12,
-              "rep": 6,
+              "rel": -18,
+              "rep": 8,
               "energy": 4
             },
             "count": {
@@ -1663,9 +1478,9 @@
             "weight": 1,
             "text": "Everyone laughs. {partner} laughs a little too long, then cuts the next noodle into one enormous piece, while maintaining eye contact with you.",
             "effects": {
-              "rel": -8,
-              "rep": 6,
-              "energy": 4
+              "rel": -12,
+              "rep": 9,
+              "energy": 6
             },
             "count": {
               "blames": 1
@@ -1760,8 +1575,8 @@
             "weight": 1,
             "text": "Batteries out. Silence. Then you learn it has a backup battery, for memory. At 2 AM it plays the eight notes once, softly. Just once. To let you know.",
             "effects": {
-              "mood": -4,
-              "energy": 6
+              "mood": -8,
+              "energy": 12
             }
           }
         ]
@@ -1774,9 +1589,9 @@
             "weight": 2,
             "text": "Two days later, a text: \"Found the saxophone in my bag! Silly me! Bringing it back next visit 🎷\" It's coming back. It always comes back.",
             "effects": {
-              "rep": 4,
-              "energy": 6,
-              "mood": -6
+              "rep": 8,
+              "energy": 12,
+              "mood": -12
             },
             "stamp": "RETURN TO SENDER"
           },
@@ -1784,9 +1599,9 @@
             "weight": 1,
             "text": "Grandma finds it while packing and hands it back with a wink. \"You almost lost this!\" Grandma knows. Grandma has always known.",
             "effects": {
-              "rep": -6,
-              "energy": 4,
-              "mood": 6
+              "rep": -12,
+              "energy": 8,
+              "mood": 12
             }
           }
         ]
@@ -1847,7 +1662,7 @@
             "weight": 1,
             "text": "They were sure.",
             "effects": {
-              "home": -14,
+              "home": -22,
               "energy": 4
             },
             "fx": "shake"
@@ -1907,8 +1722,8 @@
             "weight": 1,
             "text": "They accept the terms, sulk and go anyway. One sticker. You feel like a central banker who did the hard thing.",
             "effects": {
-              "home": 6,
-              "mood": -4
+              "home": 12,
+              "mood": -8
             },
             "stamp": "RATES HELD"
           },
@@ -1934,10 +1749,10 @@
           {
             "text": "It works too well. They now go in tiny installments, for maximum stickers. Nine before lunch. You're out of dinosaurs and down to the dentist's smiley faces.",
             "effects": {
-              "mood": 8,
-              "home": 8,
-              "energy": -4,
-              "rep": -6
+              "mood": 12,
+              "home": 12,
+              "energy": -6,
+              "rep": -9
             },
             "count": {
               "snacks": 1
@@ -2062,8 +1877,8 @@
             "weight": 2,
             "text": "Fourteen towels. The living room looks like a spa that's given up. It works: everything lands on terry cloth. You now have fourteen towels to wash.",
             "effects": {
-              "home": 4,
-              "energy": -6
+              "home": 8,
+              "energy": -12
             },
             "ledger": {
               "laundry": "you"
@@ -2073,8 +1888,8 @@
             "weight": 1,
             "text": "Fourteen towels. {kid} finds the one square foot with no towel on it and uses it, precisely, as if aiming.",
             "effects": {
-              "home": -8,
-              "energy": -6
+              "home": -12,
+              "energy": -9
             },
             "ledger": {
               "laundry": "you"
@@ -2159,117 +1974,12 @@
           {
             "text": "WHOOSH. {kid} is off the toilet and out of the stall in one motion, pantsless, telling the whole restroom \"THE POTTY TRIED TO EAT ME.\" Potty training has been pushed to spring.",
             "effects": {
-              "mood": -20,
-              "rep": -10,
-              "energy": -6
+              "mood": -24,
+              "rep": -12,
+              "energy": 4
             },
             "stamp": "POSTPONED TO SPRING",
             "fx": "shake"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "d_fri_sitter",
-    "title": "The Sitter Has Questions",
-    "text": "The sitter texts: \"Hi!! Few q's for tonight 😊\" Then eleven questions, numbered. Number 3: \"is the dog friendly.\" Number 7: \"do u have snacks for me.\" Number 11: \"Anything else I should know?\" There is so much else.",
-    "window": [
-      540,
-      1000
-    ],
-    "weight": 5,
-    "oncePerWeek": true,
-    "when": {
-      "flags": [
-        "d:friday"
-      ]
-    },
-    "choices": [
-      {
-        "label": "Write the full guide. Two pages. Bullets.",
-        "duration": 30,
-        "minEnergy": 25,
-        "tags": [
-          "martyr"
-        ],
-        "outcomes": [
-          {
-            "weight": 2,
-            "text": "Routine, snacks, the Song (lyrics attached), where Backup Bun-Bun lives, what \"the blue thing\" means. The sitter replies, \"omg ur so organized.\" You aren't. You're terrified.",
-            "effects": {
-              "energy": -12,
-              "rep": 8
-            }
-          },
-          {
-            "weight": 1,
-            "text": "Two pages, bulleted. The sitter replies \"ok!\" A minute later: \"wait what's the Song.\" The Song is on page one. In bold.",
-            "effects": {
-              "energy": -12,
-              "rep": 4
-            }
-          }
-        ]
-      },
-      {
-        "label": "Answer number 7. The rest is vibes.",
-        "duration": 2,
-        "outcomes": [
-          {
-            "weight": 1,
-            "text": "\"Snacks in pantry. They'll be asleep. They may tell you about a bird.\" The sitter replies \"ok!\" with an energy you'll think about during dessert.",
-            "effects": {
-              "energy": 6,
-              "rep": -8
-            }
-          },
-          {
-            "weight": 1,
-            "text": "The sitter replies, \"ok and the dog?\" You don't have a dog. The sitter has you mixed up with another family. Now you're worried about the other family.",
-            "effects": {
-              "energy": 4,
-              "rep": -4
-            }
-          }
-        ]
-      },
-      {
-        "label": "Ask {partner} to call the sitter",
-        "duration": 3,
-        "tags": [
-          "tagteam"
-        ],
-        "outcomes": [
-          {
-            "when": {
-              "min": {
-                "rel": 55
-              }
-            },
-            "text": "They call. They go through all eleven and add a twelfth, about the nightlight. You hear them say \"we\" a lot. You like hearing them say it.",
-            "effects": {
-              "energy": 8,
-              "rel": 4
-            },
-            "ledger": {
-              "errands": "partner"
-            }
-          },
-          {
-            "when": {
-              "max": {
-                "rel": 54
-              }
-            },
-            "text": "\"Can you? You know the routine.\" They're not wrong. That's the trap with the routine: you're the one who knows it. You answer all eleven, plus a twelfth nobody asked.",
-            "effects": {
-              "energy": -8,
-              "rel": -4
-            },
-            "ledger": {
-              "errands": "you"
-            }
           }
         ]
       }
@@ -2332,17 +2042,17 @@
             "weight": 1,
             "text": "The crease is 60% gone. The stain is now baked in, permanently. You'll keep an arm over it all night like a nervous senator.",
             "effects": {
-              "energy": 2,
-              "rep": -4
+              "energy": 4,
+              "rep": -8
             }
           },
           {
             "weight": 1,
             "text": "The crease is gone. So are two sizes. It's a crop top now. You're wearing it anyway. It's a choice.",
             "effects": {
-              "energy": 2,
-              "rep": -8,
-              "rel": 6
+              "energy": 3,
+              "rep": -12,
+              "rel": 9
             },
             "stamp": "IT'S A CHOICE"
           }
@@ -2356,9 +2066,9 @@
             "weight": 2,
             "text": "The sweater has seen four Fridays like this one. {partner} says, \"The sweater, huh?\" in a voice that's either fond or not. You don't ask which.",
             "effects": {
-              "energy": 6,
-              "rep": -4,
-              "rel": -4
+              "energy": 12,
+              "rep": -8,
+              "rel": -8
             }
           },
           {
@@ -2422,9 +2132,9 @@
             },
             "text": "They're home at 4:40 and back on the laptop by 4:45. \"I'm here, though!\" they say, from behind a screen. Technically, they are.",
             "effects": {
-              "energy": 4,
-              "rel": -6,
-              "home": -2
+              "energy": 8,
+              "rel": -12,
+              "home": -4
             }
           }
         ]
@@ -2447,10 +2157,10 @@
           },
           {
             "weight": 1,
-            "text": "You have it until 4:52, when you text \"actually.\" They're home by 5:10 with a pizza and zero questions. You've never loved anyone more. Or pizza.",
+            "text": "You have it until 4:52, when you text \"actually.\" They're home by 5:10 with a pizza and zero questions. The date hasn't started, and it's already the most romantic thing that will happen tonight.",
             "effects": {
-              "rel": 8,
-              "energy": 4
+              "rel": 12,
+              "energy": 6
             },
             "stamp": "ACTUALLY."
           }
@@ -2467,18 +2177,18 @@
             "weight": 1,
             "text": "They arrive at 3:50 with the expensive cheese and the crackers that come in a box with a window. You eat it standing up in the kitchen, together: an appetizer for the appetizer.",
             "effects": {
-              "rel": 6,
-              "energy": 8,
-              "home": -4
+              "rel": 9,
+              "energy": 12,
+              "home": -6
             }
           },
           {
             "weight": 1,
             "text": "They arrive at 3:50 with \"cheese\": a family-size bag of string cheese. It's the thought that counts. The thought was \"string cheese.\"",
             "effects": {
-              "rel": -2,
-              "energy": 6,
-              "home": -2
+              "rel": -4,
+              "energy": 12,
+              "home": -4
             }
           }
         ]
@@ -2488,7 +2198,7 @@
   {
     "id": "d_fri_clean",
     "title": "Cleaning for a Teenager",
-    "text": "The sitter arrives in five hours. The sitter is 17 and will notice nothing. You are, nonetheless, about to clean the entire house for a 17-year-old.",
+    "text": "The sitter arrives in five hours. The sitter is 16 and will notice nothing. You are, nonetheless, about to clean the entire house for a 16-year-old.",
     "window": [
       660,
       1000
@@ -2538,8 +2248,8 @@
             "weight": 1,
             "text": "Bedroom: closed. Laundry room: closed. Office: closed. The sitter will think you live in a kitchen with a couch. You basically do.",
             "effects": {
-              "energy": 6,
-              "home": 4
+              "energy": 12,
+              "home": 8
             }
           },
           {
@@ -2563,122 +2273,6 @@
               "energy": 16,
               "home": -10
             }
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "d_fri_sync",
-    "title": "\"Quick Sync\" (No Agenda)",
-    "text": "An invite from Priya lands on Friday afternoon, which is when the bad ones land: \"Quick sync re: report.\" Monday, 8:00 AM. No agenda. It settles into your chest, right where date night was going to go.",
-    "window": [
-      600,
-      1000
-    ],
-    "weight": 8,
-    "oncePerWeek": true,
-    "when": {
-      "flags": [
-        "d:friday",
-        "report:late"
-      ]
-    },
-    "choices": [
-      {
-        "label": "Accept. Never think about it again. (You will.)",
-        "duration": 2,
-        "outcomes": [
-          {
-            "weight": 1,
-            "text": "Accepted. You think about it during the sitter handoff, during the appetizer and once, hard, during dessert.",
-            "effects": {
-              "energy": -10,
-              "rel": -4
-            }
-          },
-          {
-            "weight": 1,
-            "text": "Accepted. Then you see the note: \"just want to say thanks for pulling it together on a tight deadline!\" You read it nine times. Date night is back on.",
-            "effects": {
-              "energy": 12,
-              "rep": 6
-            },
-            "stamp": "FALSE ALARM",
-            "fx": "confetti"
-          }
-        ]
-      },
-      {
-        "label": "\"Could we do 10 instead?\"",
-        "duration": 2,
-        "tags": [
-          "negotiate"
-        ],
-        "outcomes": [
-          {
-            "weight": 1,
-            "text": "\"sure!\" Two extra hours. You negotiated with management and won. You'll tell {partner} about it at dinner like you closed a merger.",
-            "effects": {
-              "energy": 6,
-              "rel": 6
-            }
-          },
-          {
-            "weight": 1,
-            "text": "\"sure! and can you bring the Q4 numbers?\" You bought two hours and paid for them with a new task.",
-            "effects": {
-              "energy": -6,
-              "rep": 4
-            }
-          }
-        ]
-      },
-      {
-        "label": "Forward it to {partner}: \"should I worry\"",
-        "duration": 2,
-        "tags": [
-          "tagteam"
-        ],
-        "outcomes": [
-          {
-            "when": {
-              "min": {
-                "rel": 50
-              }
-            },
-            "text": "A rule, made by someone who loves you. The phone goes in a drawer.",
-            "effects": {
-              "rel": 8,
-              "energy": 8
-            },
-            "chat": [
-              {
-                "from": "{partner}",
-                "text": "no. also you're not allowed to say \"Priya\" tonight"
-              }
-            ]
-          },
-          {
-            "when": {
-              "max": {
-                "rel": 49
-              }
-            },
-            "text": "You both know how Tuesday went. The question was rhetorical, and so is your silence.",
-            "effects": {
-              "rel": -8,
-              "energy": -4
-            },
-            "count": {
-              "blames": 1
-            },
-            "chat": [
-              {
-                "from": "{partner}",
-                "text": "idk. how did tuesday go?"
-              }
-            ]
           }
         ]
       }
