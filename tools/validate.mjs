@@ -15,7 +15,7 @@ const PLACEHOLDERS = new Set(["{kid}", "{KID}", "{partner}", "{me}", "{ME}"]);
 const FX = new Set(["shake", "flash", "confetti"]);
 // Worn-out phrases (docs/VOICE.md). The first playtest found the game boring;
 // these were part of why.
-const BANNED = /\b(small mob boss|hostage|war hero|crime scene|boneless|the forums|a single tear|peak living|briefly human|adulting|mommy juice|wine o'clock|we've all been there|it's giving|no thoughts)\b/i;
+const BANNED = /\b(small mob boss|hostage|war hero|crime scene|boneless|the forums|a single tear|peak living|briefly human|adulting|mommy juice|wine o'clock|we've all been there|it's giving|no thoughts|walk(?:s|ing|ed)? into the sea|kill myself|end it all|jump(?:ing)? off a bridge|unalive)\b/i;
 // "like a sleepy accountant" -> the simile, for spotting reuse across cards.
 const SIMILE = /\blike (?:a|an|the) ([a-z'-]+(?: [a-z'-]+){0,2})/gi;
 const COND_VARS = new Set([...METERS, "day", "ledger"]);

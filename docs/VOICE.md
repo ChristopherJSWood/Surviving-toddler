@@ -95,6 +95,7 @@ Field details are in [CONTENT_GUIDE.md](CONTENT_GUIDE.md).
 - **Your partner is never the villain.** Blame is mutual, petty, recognizable and repairable.
 - **Swearing:** mild words only. Strong words are written `[BLEEP]`, and the bleep can be the joke.
 - **Drinking jokes** are about exhaustion, never about being impaired while in charge of the child.
+- **No self-harm idioms.** No "walking into the sea", "kill myself" or "end it all", even as hyperbole. This is a game about burnout, and some of the people playing it are in it.
 - **Snapping is never a win.**
 - **Small moments are sincere.** No punchline undercuts them: no stamp, no fx except `confetti` on the rare big one.
 - **No real brands, shows, products or people.** Use parody types.
