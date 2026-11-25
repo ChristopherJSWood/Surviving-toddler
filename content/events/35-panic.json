@@ -75,7 +75,7 @@
             "text": "\"{ME} SAYS THIS LANE IS WHERE TIME GOES TO DIE.\" The cashier, 31 years in, stops, looks at you, then resumes scanning. Slower. Out of principle.",
             "effects": {
               "rep": -16,
-              "energy": -4
+              "mood": 8
             },
             "stamp": "SLOWER, ON PURPOSE",
             "fx": "shake"
@@ -247,7 +247,8 @@
             "effects": {
               "energy": -10,
               "home": -12,
-              "rep": -8
+              "rep": -8,
+              "mood": 10
             },
             "stamp": "THE CAR KNOWS",
             "fx": "shake"
@@ -323,8 +324,8 @@
           {
             "text": "\"{ME} EATS COOKIES IN THE CLOSET SO I CAN'T SEE.\" Eight parents nod slowly. Three of them also have a closet.",
             "effects": {
-              "rep": -12,
-              "energy": -2
+              "rep": -14,
+              "mood": 8
             },
             "stamp": "PUBLIC RECORD"
           }
@@ -549,7 +550,7 @@
             "text": "\"[BLEEP],\" {kid} tells Grandma, crisply, in your exact voice. Grandma sets down her fork and looks at you, not them. She has waited 30 years for this.",
             "effects": {
               "rep": -16,
-              "energy": -4
+              "mood": 6
             },
             "count": {
               "bleeps": 1

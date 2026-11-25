@@ -812,7 +812,7 @@
             "effects": {
               "mood": -22,
               "energy": -8,
-              "rep": -6
+              "rep": -2
             },
             "count": {
               "paybacks": 1,
@@ -824,7 +824,7 @@
             "text": "They hand it over with a heavy sigh and say, \"Thank you for the time.\" You are both changed.",
             "effects": {
               "mood": -4,
-              "rep": 8
+              "rep": 10
             },
             "count": {
               "paybacks": 1
@@ -852,7 +852,7 @@
           {
             "text": "\"That's a REMOTE,\" they say, with total contempt. Negotiations collapse. The scream is in Finnish.",
             "effects": {
-              "mood": -16,
+              "mood": -18,
               "energy": -4
             },
             "count": {
