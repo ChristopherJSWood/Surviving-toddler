@@ -33,7 +33,7 @@
         { "when": { "min": { "ledger": 1 } }, "text": "\"Go. Write.\" {partner} gets up. You don't write. You lie there composing a thank-you you'll never send. Still: fourteen minutes.", "effects": { "energy": 12 }, "ledger": { "morning": "partner" } },
         { "when": { "max": { "ledger": 0 } }, "text": "\"I ALSO have a deadline,\" says {partner}, into the pillow. News to you. You're now in a deadline-off, at dawn, in whispers. You lose.", "effects": { "rel": -8, "energy": -4 }, "ledger": { "morning": "you" }, "stamp": "DEADLINE-OFF: LOST" } ] },
       { "label": "Answer emails from bed. They can narrate.", "duration": 10, "outcomes": [
-        { "weight": 2, "text": "You answer four emails while {kid} shouts the owl's position through the monitor. One of your replies now contains the word \"owl.\" It's been sent.", "effects": { "energy": 8, "mood": -10, "rep": -10 }, "stamp": "REPLY-ALL: OWL" },
+        { "weight": 2, "text": "You answer four emails while {kid} shouts the owl's position through the monitor. One of your replies now contains the word \"owl.\" It's been sent.", "effects": { "energy": 8, "mood": -10, "rep": -10 }, "stamp": "REPLY-ALL: OWL", "fx": "flash" },
         { "weight": 1, "text": "Nine quiet minutes. You write the best paragraph of your career. It's in your Notes app, titled \"aaaa.\" You will never find it again.", "effects": { "energy": 6, "mood": -10 } } ] }
     ]
   },
@@ -67,10 +67,10 @@
       { "label": "Go in. Reinstate the owl.", "duration": 10, "minEnergy": 30, "tags": ["present"], "outcomes": [
         { "weight": 2, "text": "You put the owl back on the shelf. {kid} watches with the calm of someone who knows where the shelf is. The owl will never be in charge again.", "effects": { "mood": 12, "energy": -8 }, "ledger": { "morning": "you" } },
         { "weight": 1, "text": "The owl is back, glowing a color you've never seen: a sort of furious purple. Nobody knows what purple means. {kid} decides it means \"cookies.\"", "effects": { "mood": 14, "energy": -10 }, "ledger": { "morning": "you" }, "stamp": "PURPLE MEANS COOKIES" } ] },
-      { "label": "Nudge {partner}. Neither of you knows whose turn it is.", "duration": 5, "tags": ["tagteam"], "outcomes": [
+      { "label": "Nudge {partner}. Whose turn is it? Nobody knows.", "duration": 5, "tags": ["tagteam"], "outcomes": [
         { "when": { "min": { "ledger": 1 } }, "text": "{partner} gets up. Neither of you knows whose turn it was; they blinked first. You'll take it. You'll take anything.", "effects": { "energy": 12 }, "ledger": { "morning": "partner" } },
         { "when": { "max": { "ledger": 0 } }, "text": "\"Pretty sure it's you,\" says {partner}. \"Pretty sure it's you,\" you say. By Thursday, turns are a matter of faith. You go.", "effects": { "rel": -8, "energy": -4 }, "ledger": { "morning": "you" } } ] },
-      { "label": "Stay down. The owl's on the floor. So are standards.", "duration": 10, "outcomes": [
+      { "label": "Stay down. The owl fell. So did standards.", "duration": 10, "outcomes": [
         { "text": "You lie there while {kid} explains to the owl, on the floor, why it's morning now. The owl takes it well. You get nine minutes.", "effects": { "energy": 8, "mood": -12 } } ] },
       { "label": "Pass a frozen washcloth through the bars", "duration": 5, "when": { "flags": ["d:teething"] }, "outcomes": [
         { "weight": 2, "text": "{kid} takes the frozen washcloth and gnaws it with the focus of a beaver on deadline. Twelve quiet minutes. Wet, but quiet.", "effects": { "mood": 12, "energy": -4 } },
@@ -105,7 +105,7 @@
     "choices": [
       { "label": "Scramble it. Close its eye.", "duration": 10, "minEnergy": 20, "tags": ["negotiate"], "outcomes": [
         { "weight": 2, "text": "You scramble it in front of them. {kid} watches in silence, then eats every bite. Noted: eggs are fine once they can't see you.", "effects": { "mood": 12, "energy": -6, "home": -2 } },
-        { "weight": 1, "text": "You scramble it. {kid} bursts into tears: \"YOU HURT HIM.\" You've made breakfast and a villain, and the villain is you.", "effects": { "mood": -10, "energy": -6 }, "stamp": "VILLAIN ORIGIN STORY" } ] },
+        { "weight": 1, "text": "You scramble it. {kid} bursts into tears: \"YOU HURT HIM.\" You've made breakfast and a villain, and the villain is you.", "effects": { "mood": -10, "energy": -6 }, "stamp": "VILLAIN ORIGIN STORY", "fx": "shake" } ] },
       { "label": "\"Eggs don't have eyes.\" Stand firm.", "duration": 5, "tags": ["boundary"], "snapRisk": true, "outcomes": [
         { "weight": 1, "text": "{kid} eats around the yolk with enormous care, never breaking eye contact with it. Respect, on both sides.", "effects": { "mood": -4 } },
         { "weight": 2, "text": "\"THEN WHY IS HE WATCHING.\" The egg goes on the floor, face down, so it can't see what happens next.", "effects": { "mood": -12, "home": -6 }, "stamp": "WITNESS REMOVED", "fx": "shake" } ] },
@@ -288,10 +288,10 @@
     "choices": [
       { "label": "Full ritual, flawlessly. The report depends on it.", "duration": 25, "minEnergy": 20, "tags": ["present"], "outcomes": [
         { "weight": 7, "text": "Down by 12:52. You open the laptop on the hallway floor, because the hallway is where the Wi-Fi and your courage overlap.", "effects": { "sleepy": -40, "debt": -15, "mood": 18, "energy": -6 }, "set": ["d:napDone"], "schedule": [{ "event": "nap_window_tue", "in": 25 }] },
-        { "weight": 3, "text": "They wake at 1:19, as you type \"In summary,\". You'll be summarizing with a toddler on your lap who reads every number aloud as \"poop.\"", "effects": { "sleepy": -15, "debt": 5, "mood": -14, "energy": -8 }, "set": ["d:napDone"], "stamp": "MOTION TO WAKE: GRANTED", "fx": "shake" } ] },
+        { "weight": 3, "text": "They wake at 1:19, as you type \"In summary,\". You'll be summarizing with a toddler on your lap who reads every number aloud as \"poop.\"", "effects": { "sleepy": -15, "debt": 5, "mood": -14, "energy": -8 }, "set": ["d:napDone"], "stamp": "MOTION TO WAKE: GRANTED", "fx": "flash" } ] },
       { "label": "Car nap. Bring the laptop. Work from the driveway.", "duration": 45, "outcomes": [
         { "weight": 4, "text": "Out by the second light. You write two pages in the driveway with your thumbs, engine running, like a teenager with a term paper.", "effects": { "sleepy": -35, "debt": -10, "mood": 12, "energy": 8 }, "set": ["d:napDone"] },
-        { "weight": 1, "text": "Asleep at the light, awake in the driveway. You've spent 45 minutes of deadline driving a toddler in a circle and returning them, unchanged.", "effects": { "sleepy": -10, "debt": 8, "mood": -12, "energy": -10 }, "set": ["d:napDone"] } ] },
+        { "weight": 1, "text": "Asleep at the first light, awake at the second, thanks to a motorcycle. You've spent 45 minutes of deadline driving a toddler in a circle and returning them, unchanged.", "effects": { "sleepy": -10, "debt": 8, "mood": -12, "energy": -10 }, "set": ["d:napDone"] } ] },
       { "label": "Skip it. No time for the ritual today.", "duration": 5, "outcomes": [
         { "text": "You skip the nap to save time, which is like skipping lunch to save money. At 3:30 {kid} lies face-down in the hallway and sobs at the carpet.", "effects": { "mood": -10, "debt": 15, "energy": 6 }, "set": ["d:napDone", "d:napSkipped"] } ] }
     ]
@@ -308,7 +308,7 @@
         { "weight": 7, "text": "1:04 PM to... still going. You write \"1:04 –\" on the log and leave the dash open. It's the most hopeful thing you've written in years.", "effects": { "sleepy": -40, "debt": -15, "mood": 18, "energy": -6 }, "set": ["d:napDone"], "schedule": [{ "event": "nap_window_wed", "in": 25 }] },
         { "weight": 3, "text": "Up at 1:26. Under WHY, you write: \"the neighbor's dog, the ice maker, or God.\"", "effects": { "sleepy": -15, "debt": 5, "mood": -14, "energy": -8 }, "set": ["d:napDone"], "stamp": "LOGGED." } ] },
       { "label": "Car nap. Drive past daycare. Wave at it.", "duration": 45, "outcomes": [
-        { "weight": 4, "text": "Daycare is dark, with a taped sign: PINK EYE. {kid} is out by the second lap of the parking lot. You eat crackers in the car, a ghost haunting your old routine.", "effects": { "sleepy": -35, "debt": -10, "mood": 12, "energy": 8 }, "set": ["d:napDone"] },
+        { "weight": 4, "text": "Daycare is dark, with a taped sign: PINK EYE. {kid} is out by the second lap of the parking lot. You sit outside it with the engine running, a ghost haunting your old routine.", "effects": { "sleepy": -35, "debt": -10, "mood": 12, "energy": 8 }, "set": ["d:napDone"] },
         { "weight": 1, "text": "Asleep at 1:12. Awake at 1:13, when you sneeze. You haven't sneezed in months. You chose today.", "effects": { "sleepy": -10, "debt": 8, "mood": -12, "energy": -10 }, "set": ["d:napDone"] } ] },
       { "label": "Skip it. Today has no shape anyway.", "duration": 5, "outcomes": [
         { "text": "No daycare, no nap: the afternoon has no edges. At 4:10 you find {kid} asleep standing up against the couch, horse-style. At 4:12 they're awake and furious.", "effects": { "mood": -10, "debt": 15, "energy": 6 }, "set": ["d:napDone", "d:napSkipped"] } ] }
@@ -322,7 +322,7 @@
     "priority": 60,
     "when": { "min": { "day": 3 }, "max": { "day": 3 } },
     "choices": [
-      { "label": "Full ritual. Blinds taped. Dishwasher off. Mind blank.", "duration": 25, "minEnergy": 20, "tags": ["present"], "outcomes": [
+      { "label": "Full ritual. Tape the blinds. Think of nothing.", "duration": 25, "minEnergy": 20, "tags": ["present"], "outcomes": [
         { "weight": 6, "text": "Blinds taped, dishwasher off, mind blank. They sleep. You'll never know which theory did it, so you'll do all three forever.", "effects": { "sleepy": -40, "debt": -15, "mood": 18, "energy": -6 }, "set": ["d:napDone"], "schedule": [{ "event": "nap_window_thu", "in": 25 }], "stamp": "PEER REVIEW PENDING" },
         { "weight": 2, "text": "Minute 24. Blinds: taped. Dishwasher: off. You were thinking about a sandwich. Theory 3 is confirmed.", "effects": { "sleepy": -15, "debt": 5, "mood": -14, "energy": -8 }, "set": ["d:napDone"], "stamp": "THEORY 3: CONFIRMED", "fx": "shake" },
         { "weight": 2, "when": { "flags": ["d:teething"] }, "text": "Minute 19: the molar files a grievance. You hold {kid} in the dark while they cry into your collarbone. The theories get a fourth column: TEETH.", "effects": { "sleepy": -15, "debt": 5, "mood": -14, "energy": -8 }, "set": ["d:napDone"] },
@@ -330,7 +330,7 @@
         { "weight": 2, "when": { "flags": ["d:grandma"] }, "text": "Grandma \"just peeks in.\" Grandma's peek has the volume of a dropped tray. \"Oh, look who's awake!\" she says, as if it's good news.", "effects": { "sleepy": -15, "debt": 5, "mood": -14, "energy": -8 }, "set": ["d:napDone"], "stamp": "PEEKED" },
         { "weight": 2, "when": { "notFlags": ["d:teething", "d:grandma", "d:potty"] }, "text": "Nineteen minutes in, they wake up giggling, still on 2 AM time. The regression has reached daylight.", "effects": { "sleepy": -15, "debt": 5, "mood": -14, "energy": -8 }, "set": ["d:napDone"] } ] },
       { "label": "Car nap. Test Theory 4: it was always the car.", "duration": 45, "outcomes": [
-        { "weight": 4, "text": "Theory 4 holds. You sit in the driveway, engine on, eating crackers and mentally drafting the paper.", "effects": { "sleepy": -35, "debt": -10, "mood": 12, "energy": 8 }, "set": ["d:napDone"] },
+        { "weight": 4, "text": "Theory 4 holds. You recline the seat two notches, the furthest you've reclined since spring, and mentally draft the paper.", "effects": { "sleepy": -35, "debt": -10, "mood": 12, "energy": 8 }, "set": ["d:napDone"] },
         { "weight": 1, "text": "Engine off, eyes open. New note for the fridge: \"Theory 5: they can hear the engine NOT running.\"", "effects": { "sleepy": -10, "debt": 8, "mood": -12, "energy": -10 }, "set": ["d:napDone"] } ] },
       { "label": "Skip it. Science needs a control group.", "duration": 5, "outcomes": [
         { "text": "Control group established. Findings: at 3:15 {kid} is crying because their shadow keeps \"following.\" Science is hard.", "effects": { "mood": -10, "debt": 15, "energy": 6 }, "set": ["d:napDone", "d:napSkipped"] } ] }
@@ -348,7 +348,7 @@
         { "weight": 7, "text": "Out by 12:58. The board holds: every string, every pin. You stand in the hallway and allow yourself one silent fist pump, the first of the night.", "effects": { "sleepy": -40, "debt": -15, "mood": 18, "energy": -6 }, "set": ["d:napDone"], "schedule": [{ "event": "nap_window_fri", "in": 25 }], "stamp": "THE BOARD WAS RIGHT", "fx": "confetti" },
         { "weight": 3, "text": "Minute 26: a leaf blower, two streets over. It wasn't on the board. You pin up a new card that just says LEAF GUY and connect it to everything.", "effects": { "sleepy": -15, "debt": 5, "mood": -14, "energy": -8 }, "set": ["d:napDone"], "stamp": "IT'S ALL CONNECTED", "fx": "flash" } ] },
       { "label": "Car nap. Avoid the whistler's route.", "duration": 45, "outcomes": [
-        { "weight": 4, "text": "You take the long way around the whistler. Seventy minutes asleep in the driveway. You eat crackers and add a gold star to the board in your mind.", "effects": { "sleepy": -35, "debt": -10, "mood": 12, "energy": 8 }, "set": ["d:napDone"] },
+        { "weight": 4, "text": "You take the long way around the whistler. Seventy minutes asleep in the driveway. You don't celebrate. The board might be listening.", "effects": { "sleepy": -35, "debt": -10, "mood": 12, "energy": 8 }, "set": ["d:napDone"] },
         { "weight": 1, "text": "The garbage truck. On a FRIDAY. It isn't even garbage day. Someone sent that truck.", "effects": { "sleepy": -10, "debt": 8, "mood": -12, "energy": -10 }, "set": ["d:napDone"], "fx": "shake" } ] },
       { "label": "Skip it. Gamble on a 6 PM crash.", "duration": 5, "outcomes": [
         { "weight": 2, "text": "No nap. By 4, a storm front. By 5:15, glassy-eyed and swaying. The gamble is working, and you hate how well it's working.", "effects": { "mood": -10, "debt": 15, "energy": 6 }, "set": ["d:napDone", "d:napSkipped"] },
@@ -385,7 +385,7 @@
         { "weight": 1, "text": "You write 900 words, delete 700, then hear a small voice. You now have 200 words and a very strong title.", "effects": { "energy": -10, "rep": 4 } } ] },
       { "label": "Sleep. The report can be mediocre.", "duration": 45, "outcomes": [
         { "text": "You sleep for 44 minutes and dream about the report, which in the dream is a horse. You wake up refreshed and behind.", "effects": { "energy": 22, "rep": -8 } } ] },
-      { "label": "Knock out the oldest thing on your list", "duration": 20, "outcomes": [
+      { "label": "Do one thing on your list that isn't the report", "duration": 20, "outcomes": [
         { "text": "Done: one thing that isn't the report. The most productive way there is to avoid the report.", "effects": { "energy": -4 }, "completeTask": "oldest" } ] }
     ]
   },
@@ -401,7 +401,7 @@
         { "weight": 1, "text": "You lie in the hallway listening to them breathe, too alert to sleep, like a night guard at a very small museum.", "effects": { "energy": 8 } } ] },
       { "label": "Disinfect everything they've touched", "duration": 40, "tags": ["martyr"], "outcomes": [
         { "text": "Forty-one surfaces wiped, including the dog. The house smells like a hospital that's really trying.", "effects": { "home": 18, "energy": -8 }, "ledger": { "dishes": "you" } } ] },
-      { "label": "Knock out the oldest thing on your list", "duration": 20, "outcomes": [
+      { "label": "Cross one thing off. Anything. Prove time exists.", "duration": 20, "outcomes": [
         { "text": "Done. You crossed something off on a day with no other edges. It's the only thing today that's finished.", "effects": { "energy": -4 }, "completeTask": "oldest" } ] },
       { "label": "Eat a hot lunch. Sitting down. With a fork.", "duration": 20, "outcomes": [
         { "text": "A hot lunch, eaten sitting down, that nobody touched first. You almost cry. You eat instead.", "effects": { "energy": 12 } } ] }
@@ -419,15 +419,15 @@
         { "weight": 1, "text": "You lie down and spend 45 minutes reviewing the theories instead of sleeping. Theory 6 is: you.", "effects": { "energy": 8 } } ] },
       { "label": "Eat the leftovers standing at the open fridge", "duration": 15, "outcomes": [
         { "text": "Monday's noodles, Tuesday's taco meat and something from Wednesday in a jar, eaten cold, standing, lit by the fridge. Perfect. Dinner is a future-you problem.", "effects": { "energy": 10, "home": -4 } } ] },
-      { "label": "Knock out the oldest thing on your list", "duration": 20, "outcomes": [
-        { "text": "Done. Crossed off. You look at the list and allow yourself to feel briefly in charge.", "effects": { "energy": -4 }, "completeTask": "oldest" } ] },
+      { "label": "Tackle the oldest, scariest thing on the list", "duration": 20, "outcomes": [
+        { "text": "Done. Crossed off. You look at the list and let yourself feel, for one moment, in charge.", "effects": { "energy": -4 }, "completeTask": "oldest" } ] },
       { "label": "Leave Grandma on monitor duty. Go anywhere.", "duration": 40, "when": { "flags": ["d:grandma"] }, "outcomes": [
-        { "text": "You go to the grocery store alone. You walk every aisle. You buy one lemon. It's the best date you've been on all week.", "effects": { "energy": 16, "rep": -4 } } ] }
+        { "text": "You go to the grocery store alone. You walk every aisle. You buy one fancy cheese. It's the best date you've been on all week.", "effects": { "energy": 16, "rep": -4 } } ] }
     ]
   },
   {
     "id": "nap_window_fri",
-    "title": "Ninety Minutes to Become a Person",
+    "title": "Ninety Minutes to Be a Person",
     "text": "They're down. The sitter comes at 7. You have ninety minutes to turn back into someone who goes to restaurants.",
     "priority": 70,
     "forced": true,
@@ -439,8 +439,8 @@
         { "text": "A real shower, conditioner and all, with the full wait. You come out a different species. {partner} will notice. {partner} had better notice.", "effects": { "energy": 6, "rel": 8 } } ] },
       { "label": "Write the sitter a binder", "duration": 20, "tags": ["martyr"], "outcomes": [
         { "text": "Four pages. Page 3 is about the owl. Page 4 is just the word \"PLEASE.\"", "effects": { "rep": 10, "energy": -6 } } ] },
-      { "label": "Knock out the oldest thing on your list", "duration": 20, "outcomes": [
-        { "text": "Done. Crossed off. Tonight, you'll be a person with nothing on their list. For about three hours.", "effects": { "energy": -4 }, "completeTask": "oldest" } ] }
+      { "label": "Clear the list so tonight is clean", "duration": 20, "outcomes": [
+        { "text": "Done. Crossed off. Tonight you'll be a person with nothing on their list, for about three hours.", "effects": { "energy": -4 }, "completeTask": "oldest" } ] }
     ]
   },
   {
@@ -501,7 +501,7 @@
         { "text": "You agree, out loud, that the tablet is the problem. It's the healthiest conversation you've had all week. The tablet says nothing. It knows what it did.", "effects": { "energy": 2, "rel": 6, "rep": -6 }, "set": ["d:handoff"], "count": { "blames": 1 }, "stamp": "SCAPEGOAT ACQUIRED" } ] },
       { "label": "Show them the ledger", "duration": 5, "outcomes": [
         { "when": { "min": { "ledger": 3 } }, "text": "The ledger, the screen-time report and the look on your face. {partner} reads all three. \"Bedtime's mine,\" they say. \"And tomorrow's.\" You'll hold them to one.", "effects": { "energy": 12, "rel": -6 }, "set": ["d:handoff", "d:partnerBedtime"], "count": { "blames": 1 } },
-        { "when": { "max": { "ledger": 2 } }, "text": "The ledger is closer than the screen-time report. {partner} points this out. You point out that's worse. Nobody wins. The tablet charges.", "effects": { "rel": -10, "energy": -4 }, "set": ["d:handoff"], "count": { "blames": 1 } } ] }
+        { "when": { "max": { "ledger": 2 } }, "text": "The ledger is surprisingly even. The screen-time report is not. {partner} reads the second one out loud again, slowly, for the people in the back.", "effects": { "rel": -10, "energy": -4 }, "set": ["d:handoff"], "count": { "blames": 1 } } ] }
     ]
   },
   {
@@ -569,7 +569,7 @@
       { "label": "Tag out. Shower until the hot water gives up.", "duration": 10, "tags": ["tagteam"], "outcomes": [
         { "weight": 2, "text": "A shower so long the water heater files a complaint. You come out pink, damp and a stranger to all of your problems.", "effects": { "energy": 14, "rel": -4 }, "set": ["d:handoff"], "ledger": { "evening": "partner" } },
         { "weight": 1, "text": "Ninety seconds in, a small fist knocks on the door. \"{ME}? Are you in the shower?\" Yes. \"Why?\" You have no good answer. You get out.", "effects": { "energy": 6, "rel": -2 }, "set": ["d:handoff"], "ledger": { "evening": "partner" } } ] },
-      { "label": "Ask about their day", "duration": 10, "minEnergy": 25, "outcomes": [
+      { "label": "Let them go first. Ask about their day.", "duration": 10, "minEnergy": 25, "outcomes": [
         { "text": "They tell you about their day. It was hard, in a way that sounds restful. You keep that to yourself. Growth.", "effects": { "rel": 10, "energy": -6 }, "set": ["d:handoff"], "stamp": "GROWTH" } ] },
       { "label": "Read the whole briefing out loud. All three parts.", "duration": 10, "outcomes": [
         { "weight": 1, "text": "Part three runs nine minutes. {partner} takes notes, actual notes, on their hand. You feel deeply seen. One note just says \"bath??\"", "effects": { "rel": 4, "energy": 4 }, "set": ["d:handoff"] },
@@ -592,7 +592,7 @@
       { "label": "Buttered noodles. Sunday-you isn't here.", "duration": 10, "outcomes": [
         { "text": "Buttered noodles: the national dish of being two. {kid} eats a full bowl. The salmon stays in the fridge, in its paper, judging.", "effects": { "mood": 12, "rep": -6 }, "set": ["mealplan:salmon"] } ] },
       { "label": "Order takeout. Blame the plan.", "duration": 10, "tags": ["tagteam"], "outcomes": [
-        { "text": "Dumplings from the place on the corner. Everyone eats. The salmon goes back in the fridge, a problem for Thursday.", "effects": { "energy": 8, "mood": 4, "rep": -4 }, "set": ["mealplan:salmon"] } ] }
+        { "text": "Dumplings from the corner place. {kid} eats the outside of one and hands you the inside, like a tip. The salmon stays in the fridge. It'll keep until Thursday. It won't.", "effects": { "energy": 8, "mood": 4, "rep": -4 }, "set": ["mealplan:salmon"] } ] }
     ]
   },
   {
@@ -625,8 +625,8 @@
         { "weight": 1, "text": "A real stir-fry. {kid} eats one piece of chicken and feeds the bok choy, leaf by leaf, to the dog, who also doesn't want it.", "effects": { "energy": -12, "mood": 4, "rep": 6 }, "ledger": { "dinner": "you" } },
         { "weight": 1, "text": "You cook. They eat. They eat everything. You don't know why. You'll never know why. You'll spend years trying to make it happen again.", "effects": { "energy": -12, "mood": 10, "rep": 8 }, "ledger": { "dinner": "you" }, "stamp": "UNREPEATABLE RESULT" } ] },
       { "label": "Declare snack dinner. Call it a board.", "duration": 10, "outcomes": [
-        { "text": "A cheese stick, six crackers, nine blueberries and a pickle, arranged in a circle. You call it a \"board.\" A board is just snacks that went to college.", "effects": { "mood": 12, "rep": -6 } } ] },
-      { "label": "Takeout. You haven't left the house in thirteen hours.", "duration": 10, "tags": ["tagteam"], "outcomes": [
+        { "text": "Six crackers, nine blueberries, a slice of turkey and a pickle, arranged in a circle. You call it a \"board.\" A board is just snacks that went to college.", "effects": { "mood": 12, "rep": -6 } } ] },
+      { "label": "Takeout. You haven't been outside since 7 AM.", "duration": 10, "tags": ["tagteam"], "outcomes": [
         { "text": "You wait for the delivery on the porch. It's your first time outside since 7 AM. The air is incredible. You tip forty percent, out of gratitude for the air.", "effects": { "energy": 8, "mood": 4, "rep": -4 } } ] }
     ]
   },
@@ -667,7 +667,7 @@
         { "when": { "max": { "rel": 49 } }, "text": "\"You're closer,\" says {partner}. You are, by about four feet. You go. The four feet feel personal.", "effects": { "sleepy": 4, "rel": -6, "energy": -6 }, "ledger": { "dinner": "you" } } ] },
       { "label": "Pretend the house is empty", "duration": 10, "outcomes": [
         { "weight": 1, "text": "Nine minutes of muffled lobbying. Then silence. Either they're asleep or they've started a union.", "effects": { "sleepy": 4, "mood": -8 } },
-        { "weight": 1, "text": "The lobbying becomes a song. It's about dinner. It's about you. It's a protest song, and it's catchy.", "effects": { "sleepy": -6, "mood": -10 }, "stamp": "PROTEST SONG" } ] }
+        { "weight": 1, "text": "The lobbying becomes a song. It's about dinner. It's about you. It's a protest song, and it's catchy.", "effects": { "sleepy": -6, "mood": -10 }, "stamp": "PROTEST SONG", "fx": "flash" } ] }
     ]
   },
   {
@@ -701,15 +701,15 @@
     "endsDay": true,
     "when": { "min": { "day": 1 }, "max": { "day": 1 } },
     "choices": [
-      { "label": "Full routine: three books, two songs", "duration": 30, "minEnergy": 20, "tags": ["present"], "outcomes": [
+      { "label": "Answer the sun question. Thoroughly.", "duration": 30, "minEnergy": 20, "tags": ["present"], "outcomes": [
         { "weight": 2, "text": "You explain the sun with a flashlight and an orange. The orange gets peeled. The sun gets eaten. They fall asleep satisfied, which is more than science ever gave you.", "effects": { "sleepy": 14, "energy": -8, "rel": 2 }, "ledger": { "bedtime": "you" } },
         { "weight": 1, "text": "Where the sun goes. Where it goes after that. Eleven \"after that\"s later, you're softly describing the heat death of the universe to someone in dinosaur pajamas.", "effects": { "sleepy": 12, "energy": -12, "mood": 6 }, "ledger": { "bedtime": "you" }, "stamp": "COSMOLOGY 101" } ] },
       { "label": "{partner}'s turn", "duration": 5, "when": { "notFlags": ["d:partnerBedtime"] }, "tags": ["tagteam"], "outcomes": [
         { "when": { "min": { "rel": 45 } }, "text": "{partner} takes bedtime and the sun question. Through the door: \"It goes to Australia.\" Close enough. This is why you picked them.", "effects": { "sleepy": 10, "energy": 10 }, "ledger": { "bedtime": "partner" } },
         { "when": { "max": { "rel": 44 } }, "text": "\"I've been at work all day,\" says {partner}. So have you, and also here. You don't say it. You say it with your eyebrows. You go.", "effects": { "sleepy": 10, "energy": -8, "rel": -6 }, "ledger": { "bedtime": "you" } } ] },
-      { "label": "{partner} promised. Collect.", "duration": 5, "when": { "flags": ["d:partnerBedtime"] }, "tags": ["tagteam"], "outcomes": [
+      { "label": "Call in {partner}'s bedtime IOU", "duration": 5, "when": { "flags": ["d:partnerBedtime"] }, "tags": ["tagteam"], "outcomes": [
         { "text": "{partner} goes in. \"Where does the sun go?\" A pause. \"To bed. Like you.\" It works, instantly, and you're furious it works.", "effects": { "sleepy": 10, "energy": 12 }, "ledger": { "bedtime": "partner" }, "stamp": "PAID IN FULL" } ] },
-      { "label": "Speedrun: kiss, lights out, door", "duration": 5, "outcomes": [
+      { "label": "Speedrun: \"The sun goes to bed.\" Door.", "duration": 5, "outcomes": [
         { "weight": 1, "text": "Kiss, lights, door. Silence. You load the dishwasher in the dark, by feel, like a safecracker with a sponge.", "effects": { "home": 10 } },
         { "weight": 1, "text": "The door clicks. \"Where does the MOON go?\" The sun was just the opener.", "effects": { "sleepy": -8, "energy": -6 } } ] }
     ]
@@ -723,15 +723,15 @@
     "endsDay": true,
     "when": { "min": { "day": 2 }, "max": { "day": 2 } },
     "choices": [
-      { "label": "Full routine: three books, two songs", "duration": 30, "minEnergy": 20, "tags": ["present"], "outcomes": [
+      { "label": "Read until the eyes win", "duration": 30, "minEnergy": 20, "tags": ["present"], "outcomes": [
         { "weight": 2, "text": "You read to the eyes. The eyes win, 2–1. The rest of {kid} files a dissent, mid-yawn, and is asleep before it's entered into the record.", "effects": { "sleepy": 14, "energy": -8, "rel": 2 }, "ledger": { "bedtime": "you" }, "stamp": "THE EYES HAVE IT" },
         { "weight": 1, "text": "The eyes close at book three. The mouth keeps going: \"and then... the truck... and then...\" A filibuster, delivered by someone who's asleep.", "effects": { "sleepy": 12, "energy": -12, "mood": 6 }, "ledger": { "bedtime": "you" } } ] },
       { "label": "{partner}'s turn", "duration": 5, "when": { "notFlags": ["d:partnerBedtime"] }, "tags": ["tagteam"], "outcomes": [
         { "when": { "min": { "rel": 45 } }, "text": "{partner} takes it without being asked. They saw your face at 5:15. You lie on the bedroom floor in the dark and it's basically a spa.", "effects": { "sleepy": 10, "energy": 10 }, "ledger": { "bedtime": "partner" } },
         { "when": { "max": { "rel": 44 } }, "text": "\"They've been with you all day. They want YOU.\" A compliment, weaponized. You go.", "effects": { "sleepy": 10, "energy": -8, "rel": -6 }, "ledger": { "bedtime": "you" } } ] },
-      { "label": "{partner} promised. Collect.", "duration": 5, "when": { "flags": ["d:partnerBedtime"] }, "tags": ["tagteam"], "outcomes": [
+      { "label": "{partner} owes you a bedtime. Invoice them.", "duration": 5, "when": { "flags": ["d:partnerBedtime"] }, "tags": ["tagteam"], "outcomes": [
         { "text": "{partner} goes in with the authority of someone who owes you. One book, one song, one \"goodnight, eyes.\" It works. Of course it works.", "effects": { "sleepy": 10, "energy": 12 }, "ledger": { "bedtime": "partner" }, "stamp": "COLLECTIONS DEPT." } ] },
-      { "label": "Speedrun: kiss, lights out, door", "duration": 5, "outcomes": [
+      { "label": "Speedrun: rule for the eyes. Door.", "duration": 5, "outcomes": [
         { "weight": 1, "text": "Door, click, silence. The house is quiet for the first time in thirteen hours, and it's so loud you have to sit down.", "effects": { "energy": 8, "home": 4 } },
         { "weight": 1, "text": "\"{ME}, my eyes are open again.\" They report it like weather.", "effects": { "sleepy": -8, "energy": -6 } } ] }
     ]
@@ -745,16 +745,16 @@
     "endsDay": true,
     "when": { "min": { "day": 3 }, "max": { "day": 3 } },
     "choices": [
-      { "label": "Full routine: three books, two songs", "duration": 30, "minEnergy": 20, "tags": ["present"], "outcomes": [
+      { "label": "Sit through the full review. Then books.", "duration": 30, "minEnergy": 20, "tags": ["present"], "outcomes": [
         { "weight": 2, "text": "Three books, two songs and the feedback session, which ends mid-yawn with \"good job, {me}.\" Best review you've had in years.", "effects": { "sleepy": 14, "energy": -8, "rel": 2 }, "ledger": { "bedtime": "you" } },
         { "weight": 1, "text": "The feedback runs long. Concerns include the egg, the owl and \"your face when you're tired.\" It's fair. It's 8:05.", "effects": { "sleepy": 12, "energy": -12, "mood": 6 }, "ledger": { "bedtime": "you" } },
         { "weight": 3, "when": { "flags": ["d:teething"] }, "text": "Infant pain reliever, measured exactly as the label directs, then two books and a cold washcloth. The molar eases. {kid} falls asleep holding your thumb.", "effects": { "sleepy": 16, "mood": 10, "energy": -8 }, "ledger": { "bedtime": "you" } } ] },
       { "label": "{partner}'s turn", "duration": 5, "when": { "notFlags": ["d:partnerBedtime"] }, "tags": ["tagteam"], "outcomes": [
         { "when": { "min": { "rel": 45 } }, "text": "{partner} takes it. Through the wall, the feedback starts over, from the top, for them. They get a better review. You'll ask about it later. You won't like it.", "effects": { "sleepy": 10, "energy": 10 }, "ledger": { "bedtime": "partner" } },
         { "when": { "max": { "rel": 44 } }, "text": "\"You know the routine,\" says {partner}. You do. That's the trouble with knowing the routine.", "effects": { "sleepy": 10, "energy": -8, "rel": -6 }, "ledger": { "bedtime": "you" } } ] },
-      { "label": "{partner} promised. Collect.", "duration": 5, "when": { "flags": ["d:partnerBedtime"] }, "tags": ["tagteam"], "outcomes": [
+      { "label": "Cash in {partner}'s promise", "duration": 5, "when": { "flags": ["d:partnerBedtime"] }, "tags": ["tagteam"], "outcomes": [
         { "text": "{partner} goes in and gets the full review: \"good job\" in every category except singing. You listen from the hall, vindicated.", "effects": { "sleepy": 10, "energy": 12 }, "ledger": { "bedtime": "partner" }, "stamp": "ACCOUNT SETTLED" } ] },
-      { "label": "Speedrun: kiss, lights out, door", "duration": 5, "outcomes": [
+      { "label": "Speedrun: \"Noted.\" Kiss. Door.", "duration": 5, "outcomes": [
         { "weight": 2, "text": "Kiss, lights, door. Silence. You tiptoe away from the door the way people leave a museum after closing.", "effects": { "home": 10 } },
         { "weight": 1, "text": "Door, click, then: \"I have one more note.\" It's about your singing. It's fair.", "effects": { "sleepy": -8, "energy": -6 } },
         { "weight": 2, "when": { "flags": ["d:potty"] }, "text": "The door clicks. \"I need to TRY.\" You can't say no to trying. You've praised trying all day. It's 8:20 before they're done trying.", "effects": { "sleepy": -10, "energy": -8 } } ] }
@@ -779,14 +779,14 @@
         { "weight": 3, "text": "Two laps of the neighborhood. Out cold. The transfer from car seat to crib takes four minutes, two adults and zero breathing.", "effects": { "sleepy": 14, "energy": -4 }, "stamp": "TRANSFER COMPLETE" },
         { "weight": 1, "text": "Asleep at lap two, awake in the driveway: refreshed, at 6:12 PM, the single worst time in human history to be refreshed.", "effects": { "sleepy": 6, "mood": -6, "energy": -6 }, "fx": "flash" } ] },
       { "label": "Throw a four-minute party. Then bed.", "duration": 15, "minEnergy": 25, "when": { "flags": ["d:party"] }, "tags": ["present"], "outcomes": [
-        { "weight": 2, "text": "Flashlight disco, one song, one lap of the hallway. \"That was the party,\" you announce. Sweaty and thrilled, {kid} accepts, and is asleep in nine minutes.", "effects": { "sleepy": 18, "mood": 12, "energy": -12 }, "stamp": "BEST PARTY EVER" },
+        { "weight": 2, "text": "Flashlight disco, one song, one lap of the hallway. \"That was the party,\" you announce. Sweaty and thrilled, {kid} accepts, and is asleep in nine minutes.", "effects": { "sleepy": 18, "mood": 12, "energy": -12 }, "stamp": "BEST PARTY EVER", "fx": "confetti" },
         { "weight": 1, "text": "The party goes great. Too great. {kid} wants an encore, then a second party, then to know where the cake is. There was no cake. That's a problem now.", "effects": { "sleepy": 6, "mood": 6, "energy": -12 } } ] }
     ]
   },
   {
     "id": "date_check",
     "title": "7:00 PM: The Doorbell",
-    "text": "7:00. The doorbell. The sitter is sixteen and holding a phone charger with the confidence of someone who has never been awake at 4 AM. The reservation is at 7:30. Your going-out shirt has a stain you've decided is a pattern.",
+    "text": "7:00. The doorbell. The sitter is sixteen, holding a phone charger with the confidence of someone who has never been up at 4 AM. The reservation's at 7:30. Your going-out shirt has a stain you've decided is a pattern.",
     "window": [1140, 1440],
     "priority": 100,
     "noHazard": true,
@@ -814,10 +814,10 @@
         { "when": { "min": { "rel": 60 } }, "text": "You last eleven minutes. Then {partner} slides their phone over: a video of {kid} at breakfast, eating a normal egg, eyes open. You watch it four times. Then {partner} says, \"Hey. I missed you.\"", "effects": { "rel": 16, "energy": -6 }, "stamp": "DATE NIGHT: ACHIEVED", "fx": "confetti" },
         { "when": { "max": { "rel": 59 } }, "text": "The silences are long. Then the couple at the next table starts arguing about whose turn it was to book the sitter, and you laugh so hard the waiter comes over. It's almost like before.", "effects": { "rel": 8, "energy": -6 }, "stamp": "STILL GOT IT", "fx": "confetti" } ] },
       { "label": "Order dessert. Stay out until 9:15.", "duration": 90, "outcomes": [
-        { "weight": 2, "text": "Dessert. A second glass. A walk home the long way, holding hands, past the playground, which you don't look at. You will be destroyed tomorrow. Tomorrow is Saturday.", "effects": { "rel": 12, "energy": -12 }, "stamp": "TOMORROW IS SATURDAY", "fx": "confetti" },
-        { "weight": 1, "text": "Two desserts, because neither of you will finish one. At 9:10 {partner} raises a glass: \"To the party.\" {kid} was right all along. It's a party.", "effects": { "rel": 12, "energy": -10 }, "stamp": "IT WAS A PARTY", "fx": "confetti" } ] },
+        { "weight": 2, "text": "Dessert. A second glass. A walk home the long way, holding hands, past the playground, which you don't look at. You will be destroyed tomorrow. Tomorrow is Saturday.", "effects": { "rel": 14, "energy": -12 }, "stamp": "TOMORROW IS SATURDAY", "fx": "confetti" },
+        { "weight": 1, "text": "Two desserts, because neither of you will finish one. At 9:10 {partner} raises a glass: \"To the party.\" {kid} was right all along. It's a party.", "effects": { "rel": 14, "energy": -10 }, "stamp": "IT WAS A PARTY", "fx": "confetti" } ] },
       { "label": "Text the sitter. Once. Just once.", "duration": 60, "outcomes": [
-        { "text": "The reply comes instantly. You read it together, heads touching, and laugh until the waiter brings water nobody asked for.", "effects": { "rel": 12, "energy": -4 }, "stamp": "OWL STATUS: GREEN", "fx": "confetti", "chat": [{ "from": "Sitter", "text": "all good!! 😊 asleep at 7:04" }, { "from": "Sitter", "text": "quick q is the owl supposed to be green" }] } ] }
+        { "text": "The reply comes instantly. You read it together, heads touching, and laugh until the waiter brings water nobody asked for.", "effects": { "rel": 10, "energy": -4 }, "stamp": "OWL STATUS: GREEN", "fx": "confetti", "chat": [{ "from": "Sitter", "text": "all good!! 😊 asleep at 7:04" }, { "from": "Sitter", "text": "quick q is the owl supposed to be green" }] } ] }
     ]
   },
   {
@@ -832,11 +832,11 @@
         { "weight": 1, "text": "Behind their back: your lip balm, fully deployed. Every doorknob in the hallway is now moisturized.", "effects": { "home": -8, "energy": -4 } },
         { "weight": 1, "text": "Behind their back: nothing. Empty hands. They just wanted to see your face do that.", "effects": { "mood": 8, "energy": -2 }, "stamp": "GOTCHA" },
         { "weight": 1, "text": "They've been posting your socks through the heating vent, one at a time. Five are in. The vent will give them back in March, warm.", "effects": { "home": -10, "energy": -4 } } ] },
-      { "label": "Don't ask questions you can't afford the answers to", "duration": 10, "outcomes": [
+      { "label": "Don't ask questions you can't afford answers to", "duration": 10, "outcomes": [
         { "weight": 1, "text": "You walk away. Later, behind the couch, you find forty crackers stacked by size. You'll never know if it was a gift or a warning.", "effects": { "home": -6, "energy": 6 } },
         { "weight": 1, "text": "You walk away. It involves the toilet. You'll find out later, in the loudest possible way.", "effects": { "home": -10, "energy": 6 } } ] },
       { "label": "\"Thank you for telling me.\"", "duration": 2, "outcomes": [
-        { "text": "{kid} beams, accepts the praise and walks off. You've rewarded something. You'll find out what at bath time.", "effects": { "mood": 10, "home": -6 } } ] }
+        { "text": "{kid} beams, accepts the praise and walks off. You've rewarded something. You'll find out what at bath time.", "effects": { "mood": 10, "home": -12 } } ] }
     ]
   }
 ]
