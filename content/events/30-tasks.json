@@ -37,7 +37,7 @@
         ]
       },
       {
-        "label": "Text {partner}: \"diapers. size 4. NOT pull-ups\"",
+        "label": "Text {partner}: \"diapers. size 4. NOT the pull-on kind\"",
         "duration": 2,
         "tags": [
           "tagteam"
@@ -49,7 +49,7 @@
                 "rel": 55
               }
             },
-            "text": "\"on it 👍\" You brace for pull-ups. At 6:12 PM a photo arrives: right size, right box, receipt. Who is this person?",
+            "text": "\"on it 👍\" You brace for the pull-on kind. At 6:12 PM a photo arrives: right size, right box, receipt. Who is this person?",
             "effects": {
               "rel": 6
             },
@@ -116,7 +116,7 @@
           },
           {
             "weight": 1,
-            "text": "You hit submit. A second form arrives: \"Volunteer Sign-Up (optional!!).\" It is not optional. You're on cupcakes.",
+            "text": "You hit submit. A second form arrives: \"Volunteer Sign-Up (optional!!).\" It is not optional. You're on cupcakes: no sugar, no honey, no fruit, \"no workarounds 🙂.\" You're on two dozen small breads.",
             "effects": {
               "energy": -12,
               "rep": 14
@@ -205,7 +205,7 @@
   {
     "id": "task_form",
     "title": "Three Pages",
-    "text": "The fire station field-trip form is due tomorrow at 9. It's three pages. It wants a signature, two emergency contacts, and your child's \"comfort item and backup comfort item.\"",
+    "text": "The fire station field-trip form is due Wednesday at 9 AM. It's three pages. It wants a signature, two emergency contacts, and your child's \"comfort item and backup comfort item.\"",
     "window": [
       420,
       1140
@@ -432,7 +432,7 @@
   {
     "id": "task_library",
     "title": "Possession Is Nine-Tenths",
-    "text": "The library books are due tomorrow. {kid} has seen you looking at them and is now lying face down on the stack, saying \"MY books\" into the carpet.",
+    "text": "The library books are due Friday. {kid} has seen you looking at them and is now lying face down on the stack, saying \"MY books\" into the carpet.",
     "window": [
       540,
       1050
@@ -532,7 +532,7 @@
         "duration": 1,
         "outcomes": [
           {
-            "text": "{kid} wins the property dispute by lying on it. The books stay. You'll deal with it tomorrow, which is also the deadline.",
+            "text": "{kid} wins the property dispute by lying on it. The books stay. You'll deal with it later. Later is getting crowded.",
             "effects": {
               "energy": 4
             },
@@ -586,13 +586,13 @@
         "outcomes": [
           {
             "weight": 1,
-            "text": "Dale has diapers. Dale's grandkid is four months old. You walk home with six size 1s, each the size of a sandwich. On {kid}, they're more of a suggestion.",
+            "text": "Dale has diapers, left over from the grandkid's beach trip: swim diapers. Swim diapers are designed not to absorb anything. They don't. Your couch finds out first.",
             "effects": {
               "home": -20,
               "energy": -4,
               "rep": -4
             },
-            "stamp": "SIZE 1",
+            "stamp": "SWIM DIAPER",
             "fx": "shake"
           },
           {
@@ -679,14 +679,14 @@
         ]
       },
       {
-        "label": "Chaperone: eleven toddlers, four hours",
+        "label": "Chaperone. Trade one signature for four hours.",
         "duration": 5,
         "tags": [
           "martyr"
         ],
         "outcomes": [
           {
-            "text": "A parent who comes along doesn't need a form. So tomorrow you'll spend four hours with eleven toddlers in plastic fire hats. That's the price of one signature.",
+            "text": "A parent who comes along doesn't need a form. Tomorrow: four hours, eleven toddlers, eleven plastic fire hats and one real hose. You've done the math. You will be wet.",
             "effects": {
               "energy": -22,
               "rep": 10
@@ -700,7 +700,7 @@
         "duration": 2,
         "outcomes": [
           {
-            "text": "It isn't just a truck. Tomorrow the group chat will post 23 photos of other people's toddlers in fire hats. You'll scroll through every one, slowly, as penance.",
+            "text": "It isn't just a truck. It's a truck, a bell and a hat, and Juniper got all three. Brynn sends you a photo of the hat, captioned \"next time!! 🙂\"",
             "effects": {
               "rep": -22,
               "energy": 4
@@ -812,7 +812,7 @@
     "priority": 85,
     "choices": [
       {
-        "label": "Call the after-hours line. Settle in.",
+        "label": "Call the after-hours line. Pack a lunch.",
         "duration": 50,
         "outcomes": [
           {
@@ -836,12 +836,12 @@
         ]
       },
       {
-        "label": "Post a photo in the group chat",
+        "label": "Crowdsource it. Post the knee to the class chat.",
         "duration": 5,
         "outcomes": [
           {
             "weight": 1,
-            "text": "Dev's mom is a pediatric nurse. \"Eczema. Fragrance-free cream. Call Monday if it spreads.\" Right, kind, fast. And now 22 parents have seen your child's knee.",
+            "text": "Marcus's mom is a pediatric nurse. \"Eczema. Fragrance-free cream. Call Monday if it spreads.\" Right, kind, fast. And now 22 parents have seen your child's knee.",
             "effects": {
               "energy": -4,
               "rep": -10
@@ -883,12 +883,12 @@
     "priority": 85,
     "choices": [
       {
-        "label": "Race them over before the 6 PM close",
+        "label": "Run. The library closes at 6.",
         "duration": 40,
         "outcomes": [
           {
             "weight": 1,
-            "text": "5:52 PM. You slide the books across the desk, panting. {kid} says \"thank you, library.\" The librarian waives the fine and unfreezes the card. Worth every step.",
+            "text": "5:52 PM. You slide the books across the desk, panting. {kid} says \"thank you, library\" to the whole building. The librarian waives the fine. You act like you planned the timing.",
             "effects": {
               "energy": -14,
               "rep": 6
@@ -906,7 +906,7 @@
         ]
       },
       {
-        "label": "Pay the fine online and call it even",
+        "label": "Pay the fine. Buy your freedom.",
         "duration": 5,
         "outcomes": [
           {

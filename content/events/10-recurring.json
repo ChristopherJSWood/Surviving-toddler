@@ -151,7 +151,7 @@
         "outcomes": [
           {
             "weight": 2,
-            "text": "You stand at the microwave for the full 90 seconds, arms crossed, like a nightclub bouncer. Beep. You drink it hot, in front of a witness. The witness asks for some.",
+            "text": "You stand at the microwave for the full 90 seconds, arms crossed, daring it. Beep. You drink it hot, in front of a witness. The witness asks for some.",
             "effects": {
               "energy": 12
             },
@@ -296,7 +296,7 @@
         "outcomes": [
           {
             "weight": 1,
-            "text": "You find three socks, the remote, a crayon in the butter and a banana peel in a rain boot. No mug. The house gives you everything except what you asked for.",
+            "text": "You find three socks, the remote, a crayon in the butter and a shoelace tied, tightly, to a chair. No mug. The house gives you everything except what you asked for.",
             "effects": {
               "home": 12,
               "energy": -10
@@ -342,7 +342,7 @@
           },
           {
             "weight": 1,
-            "text": "{kid} leads you, very seriously, to the toy kitchen and serves you a plastic cup of bathwater. \"Coffee.\" You fake a long sip. They refill it. Best café in town. No coffee.",
+            "text": "{kid} leads you, very seriously, to the toy kitchen and hands you an empty plastic cup. \"Careful. Hot.\" You blow on it. You fake a long sip. They refill it. Best café in town. No coffee.",
             "effects": {
               "mood": 14,
               "energy": -4
@@ -401,7 +401,7 @@
         "outcomes": [
           {
             "weight": 2,
-            "text": "It hits in six minutes. Within twelve, you've emptied the dishwasher, reloaded it better and alphabetized the spices. Twice.",
+            "text": "It hits in six minutes. By minute twelve you've emptied the dishwasher, reloaded it correctly and given the junk drawer a theme. The theme is \"batteries?\"",
             "effects": {
               "energy": 20,
               "home": 6
@@ -416,7 +416,7 @@
           },
           {
             "weight": 1,
-            "text": "It works too well. You talk at 1.5x speed until dinner, and {kid} starts talking at 1.5x back. Nobody in this house is calmer.",
+            "text": "It works too well. You start talking at 1.5x speed, and by dinner {kid} is talking at 1.5x back. You're both narrating the same snack, faster and faster.",
             "effects": {
               "energy": 16,
               "mood": -10
@@ -888,7 +888,7 @@
           },
           {
             "weight": 1,
-            "text": "\"That's a DIFFERENT leaf.\" It is. They can tell. They will always be able to tell. The crying resumes at a higher altitude.",
+            "text": "{kid} holds it up to the light like a jeweler, then hands it back. \"This one is from the GROUND.\" The crying resumes at a higher altitude.",
             "effects": {
               "mood": -16
             },
@@ -1184,7 +1184,7 @@
           },
           {
             "weight": 1,
-            "text": "You can't tell if it's support or a bit. It's both. It's why you married them.",
+            "text": "You can't tell if it's support or a bit. It's both. With them it's always both.",
             "effects": {
               "rel": 12,
               "mood": -6
@@ -1657,7 +1657,7 @@
       560,
       920
     ],
-    "weight": 4,
+    "weight": 6,
     "oncePerWeek": true,
     "when": {
       "notFlags": [
@@ -1761,7 +1761,7 @@
       700,
       1040
     ],
-    "weight": 4,
+    "weight": 6,
     "oncePerWeek": true,
     "when": {
       "flags": [
@@ -1826,7 +1826,7 @@
           },
           {
             "weight": 1,
-            "text": "\"Serving suggestion,\" you read. {kid} considers this, then suggests serving them to you. You eat four nuggets standing up. It's the first lunch you've had this week.",
+            "text": "\"Serving suggestion,\" you read. {kid} considers this, then suggests serving them to you. You eat four nuggets over the sink. It's the first lunch you've had this week.",
             "effects": {
               "energy": 10,
               "mood": -6
@@ -1891,7 +1891,7 @@
       560,
       920
     ],
-    "weight": 4,
+    "weight": 6,
     "oncePerWeek": true,
     "when": {
       "flags": [
@@ -2159,7 +2159,7 @@
         "outcomes": [
           {
             "weight": 2,
-            "text": "A small bowl where unwanted food can go, politely. It works. Peas go in the bowl, not on the floor. {kid} even eats two, as a tip.",
+            "text": "A small bowl where unwanted food can go, politely. It works. Peas go in the bowl, not on the floor. {kid} even eats two, out of professional courtesy.",
             "effects": {
               "mood": 12,
               "home": 8,
@@ -2189,7 +2189,7 @@
         "duration": 2,
         "outcomes": [
           {
-            "text": "Pea after pea, each with a \"No thank you.\" You stop hearing the thank-yous around pea 40. You'll be finding peas until March.",
+            "text": "Pea after pea, each with a \"No thank you.\" Around pea 40 you stop hearing the thank-yous. The last pea will surface in July, in the dryer.",
             "effects": {
               "home": -14,
               "energy": 6
@@ -2223,7 +2223,7 @@
     },
     "choices": [
       {
-        "label": "Swap plates. Same pasta. Same plates.",
+        "label": "Swap plates. Same pasta, new jurisdiction.",
         "duration": 3,
         "tags": [
           "negotiate"
@@ -2343,7 +2343,7 @@
     },
     "choices": [
       {
-        "label": "\"It's spicy.\" Use their own precedent.",
+        "label": "\"It's spicy.\" (It's oats.)",
         "duration": 1,
         "outcomes": [
           {
@@ -2412,7 +2412,7 @@
           },
           {
             "weight": 1,
-            "text": "You get the whole bar in. They arrive. You smile with your mouth shut. They study your cheeks for a long time, then leave without a word, which means daycare will hear about it.",
+            "text": "You get the whole bar in. They arrive. You smile with your mouth shut. They study your cheeks, then leave without a word. Days later, Ms. Patty asks, very gently, what a \"mouth bar\" is.",
             "effects": {
               "energy": 10,
               "rep": -8
@@ -2677,7 +2677,7 @@
         "outcomes": [
           {
             "weight": 2,
-            "text": "\"Thank you for the update,\" you say, in the voice of a press secretary. The teller laughs. The man ahead of you laughs. \"DONE POOPING,\" {kid} announces, to applause.",
+            "text": "\"Thank you for the update,\" you say, like a press secretary. \"We'll have more at the top of the hour.\" The teller laughs. The man ahead laughs. \"DONE POOPING,\" {kid} announces, and takes no questions.",
             "effects": {
               "rep": 8,
               "mood": 10
@@ -2689,7 +2689,7 @@
           },
           {
             "weight": 1,
-            "text": "\"Thank you for the update.\" Nobody laughs. Someone in a blazer moves one place further away. \"MORE POOPING,\" {kid} adds.",
+            "text": "\"Thank you for the update.\" Nobody laughs. Someone in a blazer moves one place further away. \"MORE POOPING,\" {kid} adds, as a correction.",
             "effects": {
               "rep": -12,
               "mood": 6
@@ -2832,7 +2832,7 @@
           },
           {
             "weight": 1,
-            "text": "Perfectly still. Change done. When you get the phone back, they've ordered 40 pounds of birdseed. {partner} gets the confirmation email.",
+            "text": "Perfectly still. Change done. When you get the phone back, there's a new alarm, labeled GOOSE, set for 4:10 AM. You can't find it to delete it. You'll both find it at 4:10.",
             "effects": {
               "energy": 6,
               "rel": -8
@@ -2844,7 +2844,7 @@
             "count": {
               "screen": 5
             },
-            "stamp": "ORDER CONFIRMED",
+            "stamp": "ALARM: GOOSE, 4:10 AM",
             "fx": "flash"
           }
         ]
@@ -3099,7 +3099,7 @@
         "outcomes": [
           {
             "weight": 1,
-            "text": "They do it tonight, holding their breath so long they see colors. You watch from the doorway with deep, unspoken love.",
+            "text": "They do it tonight, gagging twice in the driveway, quietly, so the neighbors won't know. You watch from the window with deep, unspoken love.",
             "effects": {
               "rel": 6,
               "home": 14
@@ -3318,7 +3318,7 @@
         ]
       },
       {
-        "label": "Orbits. Flashlight. An orange and a cracker.",
+        "label": "Pull over. Prove the moon isn't following.",
         "duration": 15,
         "minEnergy": 25,
         "tags": [
@@ -3326,7 +3326,7 @@
         ],
         "outcomes": [
           {
-            "text": "The full lesson: orange for Earth, cracker for moon, flashlight for sun. {kid} watches the moon go around twice, gravely. Then eats the moon. Lesson over.",
+            "text": "You pull into a parking lot to prove it. The car stops. The moon stops. \"{ME},\" {kid} whispers. \"It's WAITING for us.\" You've proved the opposite, with science.",
             "effects": {
               "mood": 14,
               "energy": -10
@@ -3334,7 +3334,7 @@
             "set": [
               "why:2"
             ],
-            "stamp": "MOON: EATEN"
+            "stamp": "EXPERIMENT BACKFIRED"
           }
         ]
       },
@@ -3343,7 +3343,8 @@
         "duration": 1,
         "outcomes": [
           {
-            "text": "\"It's nosy.\" This is accepted at once. You've installed a nosy moon in their worldview, permanently. Daycare will hear about it.",
+            "weight": 2,
+            "text": "\"It's nosy.\" This is accepted at once. You've installed a nosy moon in their worldview. It will come up at every parent-teacher conference until fifth grade.",
             "effects": {
               "mood": 10,
               "rep": -6
@@ -3351,6 +3352,17 @@
             "set": [
               "why:2",
               "why:nosyMoon"
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "\"It's lost,\" you say. {kid} gasps and spends the drive shouting directions out the window. \"LEFT, MOON. LEFT.\" The moon misses the turn. So do you.",
+            "effects": {
+              "mood": 10,
+              "energy": -4
+            },
+            "set": [
+              "why:2"
             ]
           }
         ]

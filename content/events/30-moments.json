@@ -444,7 +444,7 @@
   {
     "id": "moment_how_you_met",
     "title": "How You Met",
-    "text": "From the hallway you hear {partner} telling {kid} how you two met. They're leaving out the parking ticket and your haircut. {kid} keeps asking, \"Then what?\"",
+    "text": "From the hallway you hear {partner} telling {kid} how you met: the wrong train, the shared umbrella, two coffees gone cold. They skip the parking ticket. {kid} keeps asking, \"Then what?\"",
     "window": [
       1020,
       1165
@@ -463,7 +463,7 @@
         "outcomes": [
           {
             "weight": 1,
-            "text": "You tell the parking ticket. {partner} tells the haircut, which is unfair. {kid} laughs at all of it without understanding any of it, because you're both laughing.",
+            "text": "You tell the parking ticket. {partner} tells how long you argued with the meter. {kid} laughs at all of it without understanding any of it, because you're both laughing.",
             "effects": {
               "rel": 12,
               "mood": 8,

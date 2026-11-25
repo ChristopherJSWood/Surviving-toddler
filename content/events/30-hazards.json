@@ -1,8 +1,8 @@
 [
   {
     "id": "quiet_tell",
-    "title": "\"I'm Not Drawing!\"",
-    "text": "From the hallway, unprompted, a small voice calls out: \"I'm not drawing!\" Nobody asked. Nobody has said the word \"drawing\" all day.",
+    "title": "A Whiff of Fourth Grade",
+    "text": "A smell drifts in from the hallway: sharp, chemical, faintly like the first day of fourth grade. Somewhere, a permanent marker has lost its cap. You own one permanent marker. You hid it.",
     "forced": true,
     "priority": 86,
     "choices": [
@@ -12,7 +12,7 @@
         "outcomes": [
           {
             "weight": 2,
-            "text": "{kid} is holding a permanent marker, cap in their teeth, an inch from the white wall. \"I'm not drawing,\" they repeat, accurately. You take the marker. They report it stolen.",
+            "text": "{kid} is an inch from the white wall, marker raised, cap in their teeth. You take the marker. They file a stolen-property report with the stuffed rabbit.",
             "effects": {
               "energy": -6,
               "mood": -6
@@ -103,7 +103,7 @@
         "outcomes": [
           {
             "weight": 2,
-            "text": "Forty minutes and a magic eraser, and it comes off. A cleaning product told the truth. For one moment you are a person in an ad.",
+            "text": "Forty minutes and a $3 melamine sponge, and it comes off. A cleaning product told the truth. For one moment you are a person in an ad.",
             "effects": {
               "energy": -12,
               "home": 4
@@ -348,12 +348,12 @@
   {
     "id": "w_bathroom_tell",
     "title": "The Bathroom Door Is Closed",
-    "text": "The bathroom door, which you left open, is closed. From the inside. Someone in there is humming. That someone has never closed a door in their life.",
+    "text": "The bathroom door, which you left open, is closed. From the inside. Someone in there is humming the toothbrush song. That someone has never closed a door in their life.",
     "forced": true,
     "priority": 86,
     "choices": [
       {
-        "label": "Open the door",
+        "label": "Open it. You pay the mortgage.",
         "duration": 2,
         "outcomes": [
           {
@@ -437,7 +437,7 @@
     },
     "choices": [
       {
-        "label": "Scrub it all now",
+        "label": "Scrub. The ceiling is for the next owners.",
         "duration": 20,
         "minEnergy": 20,
         "tags": [
@@ -457,7 +457,7 @@
             "stamp": "ACCIDENTAL DEEP CLEAN"
           },
           {
-            "text": "You scrub. {kid} helps, with a second tube you didn't know you owned.",
+            "text": "You scrub. {kid} helps, with a second tube of unknown origin.",
             "effects": {
               "energy": -12,
               "home": -6
@@ -553,7 +553,7 @@
     },
     "choices": [
       {
-        "label": "Kids' salon. Fix it.",
+        "label": "Kids' salon. Pay a professional to lie.",
         "duration": 45,
         "outcomes": [
           {
@@ -626,7 +626,7 @@
   {
     "id": "w_laptop_tell",
     "title": "The Shark and the Laptop",
-    "text": "Your laptop is open on the coffee table, the report on the screen, unsaved. {kid} is circling it slowly, like a shark that has read about laptops.",
+    "text": "Your laptop is open on the coffee table, the report on the screen, last saved at 11:14. {kid} is circling it slowly, like a shark that has read about laptops.",
     "forced": true,
     "priority": 86,
     "when": {
@@ -636,7 +636,7 @@
     },
     "choices": [
       {
-        "label": "Close the laptop",
+        "label": "Slam the lid. Ask questions later.",
         "duration": 1,
         "outcomes": [
           {
@@ -674,7 +674,7 @@
         "outcomes": [
           {
             "weight": 2,
-            "text": "Save, then click. The report is safe. You feel like someone who defuses bombs for a living.",
+            "text": "Save. Click. The report survives. You'll save it 40 more times today, out of fear.",
             "effects": {
               "energy": -4,
               "mood": -4
@@ -699,7 +699,7 @@
         "duration": 2,
         "outcomes": [
           {
-            "text": "You use the time to stare into the open fridge. It's lovely in there. Cold, quiet and full of things that can't type.",
+            "text": "A pop-up on your phone suggests backing up your files. You swipe it away. You'll think about that swipe.",
             "effects": {
               "energy": 10
             }
@@ -711,7 +711,7 @@
   {
     "id": "w_laptop_send",
     "title": "Report Submitted",
-    "text": "{kid} has added nine pages of the letter J and one winky face to the report, then found the key combination that sends it to your whole team. And, somehow, to Gary in Legal.",
+    "text": "{kid} has added nine pages of the letter J and one winky face to the report, then found the key combination that sends it to your whole team. And, somehow, to Bev in Legal.",
     "hazard": "sting",
     "tell": "w_laptop_tell",
     "when": {
@@ -728,7 +728,7 @@
         "duration": 25,
         "outcomes": [
           {
-            "text": "\"Please disregard the previous version.\" You delete 4,000 Js. Your manager writes back, \"Thanks for the quick fix.\" Nobody mentions the Js. Everyone saw the Js.",
+            "text": "\"Please disregard the previous version.\" You delete 4,000 Js. Trent writes back, \"Thanks for the quick fix.\" Nobody mentions the Js. Everyone saw the Js.",
             "effects": {
               "energy": -12,
               "rep": 4
@@ -744,7 +744,7 @@
         "duration": 2,
         "outcomes": [
           {
-            "text": "Your manager replies, \"😂 tell them the J section is the strongest part.\" Two people forward it home. For one afternoon, you are beloved.",
+            "text": "Trent replies, \"😂 tell them the J section is the strongest part.\" Two people forward it home. For one afternoon, you are beloved.",
             "effects": {
               "rep": 10,
               "energy": -2
@@ -755,7 +755,7 @@
             "stamp": "CROWD FAVORITE"
           },
           {
-            "text": "Your manager replies, \"Ha.\" Just \"Ha.\" With a period. You spend the rest of the day decoding the period.",
+            "text": "Trent replies, \"Ha.\" Just \"Ha.\" With a period. You spend the rest of the day decoding the period.",
             "effects": {
               "rep": -8,
               "energy": -10
@@ -948,7 +948,7 @@
   {
     "id": "w_chew_tell",
     "title": "A Soft, Papery Crunch",
-    "text": "{kid} has gone quiet in the corner and is chewing something with deep dedication. You hear a soft, papery crunch, then a satisfied hum.",
+    "text": "{kid} has gone quiet in the corner and is chewing something thoughtfully, like a critic. You hear a soft, papery crunch, then a hum of approval.",
     "forced": true,
     "priority": 86,
     "when": {
@@ -958,7 +958,7 @@
     },
     "choices": [
       {
-        "label": "Investigate the crunch",
+        "label": "Investigate the crunch. Pray it's a cracker.",
         "duration": 2,
         "outcomes": [
           {
@@ -976,7 +976,7 @@
             ]
           },
           {
-            "text": "It's the TV remote. The 4 is gone. You will never again watch channel 4. The library book, at least, is safe.",
+            "text": "It's not the library book. It's the TV remote. The volume-down button is gone. From now on, the TV only gets louder.",
             "effects": {
               "energy": -4,
               "home": -6
@@ -1067,7 +1067,7 @@
   {
     "id": "lego",
     "title": "You Said the Word",
-    "text": "Bare foot, one plastic brick, the flat kind. You said a word. A [BLEEP] word. {kid} said it right back, with your exact intonation, and is now teaching it to the stuffed rabbit.",
+    "text": "In the car, a minivan merged into your lane like it had always been there. You said a word. A [BLEEP] word. From the back seat, {kid} said it right back, in your exact intonation, and is now teaching it to the stuffed rabbit.",
     "hazard": "sting",
     "weight": 2,
     "when": {
@@ -1140,7 +1140,7 @@
   {
     "id": "w_pajama_day",
     "title": "Pajama Day Was Today",
-    "text": "The daycare group chat has posted 31 photos.",
+    "text": "It was Pajama Day. You found out the way you find out everything: 31 photos in the class chat at 3:12 PM.",
     "chat": {
       "with": "Caterpillar Room Parents 🐛 (23)",
       "messages": [
@@ -1206,7 +1206,7 @@
         ]
       },
       {
-        "label": "Leave it on read",
+        "label": "Leave it on read. Let the sweater speak.",
         "duration": 1,
         "outcomes": [
           {
@@ -1746,7 +1746,7 @@
             ]
           },
           {
-            "text": "You leave mid-word. Your boss texts, \"Go. We've got it.\" They do have it. It turns out you were never essential, which is hurtful and freeing.",
+            "text": "You leave mid-word. Trent texts, \"Go. We've got it.\" They do have it. It turns out you were never essential, which is hurtful and freeing.",
             "effects": {
               "energy": -12,
               "rep": -2,
@@ -1835,7 +1835,8 @@
     "hazard": "catastrophe",
     "when": {
       "notFlags": [
-        "hz:w_lice_notice"
+        "hz:w_lice_notice",
+        "lice:1"
       ]
     },
     "choices": [
@@ -1862,7 +1863,7 @@
             }
           },
           {
-            "text": "You find one! You put it under a lamp. It's a poppy seed. You have never been so relieved by a bagel.",
+            "text": "You find one! Under the lamp, with tweezers, heart pounding: it's glitter. It's always glitter.",
             "effects": {
               "energy": -20,
               "home": 8,
@@ -1891,7 +1892,7 @@
                 "rel": 55
               }
             },
-            "text": "You comb, they wash. Two adults in headlamps at 8 PM, whispering \"anything?\" It's almost romantic. It isn't. But it's almost.",
+            "text": "You comb, they wash. Two adults bent over one small head under the good lamp at 8 PM, whispering \"anything?\" It's almost romantic. It isn't. But it's almost.",
             "effects": {
               "energy": -12,
               "home": 4,
@@ -1959,11 +1960,11 @@
     },
     "choices": [
       {
-        "label": "Yell for the neighbor with the spare key",
+        "label": "Yell for Dale. Dale has the spare key.",
         "duration": 15,
         "outcomes": [
           {
-            "text": "The neighbor jogs over in a bathrobe and one slipper, with the spare key. {kid} is thrilled to have company. This story will be told at every block party, forever.",
+            "text": "Dale jogs over in a bathrobe and one slipper, holding the spare key aloft. {kid} is thrilled to have company. This story will be told at every block party, forever.",
             "effects": {
               "energy": -6,
               "rep": -12,
@@ -1997,7 +1998,7 @@
             ]
           },
           {
-            "text": "They wave. They blow you a kiss. They wander off toward the snack drawer. Twenty minutes in, you yell for the neighbor anyway, now hoarse.",
+            "text": "They wave. They blow you a kiss. They wander off toward the snack drawer. Twenty minutes in, you yell for Dale anyway, now hoarse.",
             "effects": {
               "energy": -18,
               "rep": -14,
@@ -2027,7 +2028,7 @@
           },
           {
             "weight": 2,
-            "text": "Locked. You fixed that habit last week. You're so proud of yourself. You're so locked out. You yell for the neighbor.",
+            "text": "Locked. You fixed that habit last week. You're so proud of yourself. You're so locked out. You yell for Dale.",
             "effects": {
               "energy": -10,
               "rep": -16,
@@ -2372,7 +2373,7 @@
   {
     "id": "hz_bug_sequel",
     "title": "The Bug Is on Tour",
-    "text": "Your stomach makes a sound like a garage door. {kid}, fully recovered, eats a waffle and watches you with professional interest. The bug is on tour. Next stop: you.",
+    "text": "6:40 AM. Your stomach makes a sound like a garage door. {kid}, fully recovered, eats a waffle and watches you like a headliner watching the opener. The bug is on tour. Tonight: you.",
     "window": [
       300,
       720
@@ -2397,7 +2398,7 @@
                 "rel": 55
               }
             },
-            "text": "{partner} calls in, takes {kid} to the duck pond and texts you photos of the ducks. You lie on the cool bathroom tile, which asks nothing of you. You've never loved anyone more.",
+            "text": "{partner} calls in, takes {kid} to the duck pond and texts you a photo of every duck. Eleven ducks. You rate each one from the bathroom floor. All tens.",
             "effects": {
               "energy": 8,
               "rel": 8,
@@ -2422,7 +2423,7 @@
         ]
       },
       {
-        "label": "Parent from the floor",
+        "label": "Lie down. Let {kid} run the clinic.",
         "duration": 30,
         "outcomes": [
           {

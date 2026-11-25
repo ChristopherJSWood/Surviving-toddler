@@ -168,7 +168,7 @@
   {
     "id": "w_lie_down",
     "title": "Just Lie Down for a Minute",
-    "text": "Dinner's over. The dishes are a tower. {partner} is scrubbing the high chair tray. The couch is right there, humming a song only you can hear.",
+    "text": "6:20 PM. The dishes are a tower with a pot on top, like a hat. {partner} is chiseling rice off the high chair tray. The couch is right there, humming a song only you can hear.",
     "window": [
       1050,
       1125
@@ -208,7 +208,7 @@
         ]
       },
       {
-        "label": "Do the dishes yourself",
+        "label": "Do every dish. Suffer where they can see.",
         "duration": 20,
         "minEnergy": 20,
         "tags": [
@@ -240,7 +240,7 @@
         ]
       },
       {
-        "label": "Do them together",
+        "label": "Do them together. Hip to hip.",
         "duration": 15,
         "minEnergy": 20,
         "tags": [
@@ -398,7 +398,7 @@
         ]
       },
       {
-        "label": "\"Not today.\"",
+        "label": "\"Not today.\" Hold the line in one sock.",
         "duration": 5,
         "tags": [
           "boundary"
@@ -690,7 +690,7 @@
   {
     "id": "w_phone_off",
     "title": "You Need Your Phone Back",
-    "text": "In 15 minutes they've changed your phone's language to Finnish, taken 212 photos of their own nostril and texted your boss a single \"p.\" They will not be returning it.",
+    "text": "In 15 minutes they've changed your phone's language to Finnish, set a 4:45 AM alarm called BUS and texted your boss a single \"p.\" They will not be returning it.",
     "forced": true,
     "choices": [
       {
@@ -917,7 +917,7 @@
         ]
       },
       {
-        "label": "Get up. Walk around the block together.",
+        "label": "Get up. Fresh air. Pretend it works.",
         "duration": 25,
         "minEnergy": 25,
         "tags": [
@@ -944,7 +944,7 @@
         ]
       },
       {
-        "label": "A third coffee",
+        "label": "A third coffee. Sign the waiver.",
         "duration": 3,
         "outcomes": [
           {
@@ -961,7 +961,7 @@
             }
           },
           {
-            "text": "You make the third coffee, set it down to deal with a sock and find it at 6 PM, cold, on the bookshelf. You drink it anyway. It's still a decision.",
+            "text": "The third coffee works. You feel unstoppable. You feel so unstoppable you reply \"happy to help!!\" to the bake sale thread. Brynn hearts it before you've put the mug down.",
             "effects": {
               "energy": 5,
               "home": 4
@@ -984,7 +984,7 @@
     "forced": true,
     "choices": [
       {
-        "label": "Cold water on your face. Push through.",
+        "label": "Cold water on the face. Be an athlete about it.",
         "duration": 10,
         "minEnergy": 20,
         "outcomes": [
@@ -1006,7 +1006,7 @@
         ]
       },
       {
-        "label": "Coffee. Immediately.",
+        "label": "Coffee. Fight fire with fire.",
         "duration": 3,
         "outcomes": [
           {
@@ -1025,7 +1025,7 @@
         ]
       },
       {
-        "label": "Lie back down",
+        "label": "Lie back down. Negotiate with the couch.",
         "duration": 15,
         "outcomes": [
           {
@@ -1037,12 +1037,12 @@
             }
           },
           {
-            "text": "You wake at 5:15 with {kid} asleep on your chest, which is lovely, and a disaster. Bedtime just moved to 10 PM.",
+            "text": "You wake at 5:15 with {kid} asleep on your chest, warm and heavy. It's lovely. It's also a 5 PM nap, which means tonight there's a late show, live from the crib.",
             "effects": {
               "energy": 10,
               "sleepy": -24
             },
-            "stamp": "DANGER NAP ACHIEVED",
+            "stamp": "LATE SHOW BOOKED",
             "fx": "flash"
           }
         ]

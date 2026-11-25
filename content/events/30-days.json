@@ -16,7 +16,7 @@
     },
     "choices": [
       {
-        "label": "Clear the toddler queue first: snack, diaper, hug",
+        "label": "Clear the toddler queue first. They're the client.",
         "duration": 20,
         "minEnergy": 25,
         "tags": [
@@ -25,7 +25,7 @@
         "outcomes": [
           {
             "weight": 2,
-            "text": "Snack: delivered. Diaper: resolved. Hug: received, reviewed, approved. {kid} lets you work for 51 straight minutes. You get more done than you did all of Monday.",
+            "text": "Snack: delivered. Diaper: resolved. Hug: received, reviewed, approved. {kid} lets you work for 51 straight minutes, a new company record.",
             "effects": {
               "mood": 12,
               "energy": -10
@@ -116,8 +116,8 @@
   },
   {
     "id": "d_tue_wall",
-    "title": "Last Call for Coffee",
-    "text": "The report needs two more hours of brain. You have about twenty minutes left. It's mid-afternoon: last call for coffee, if you'd like to sleep tonight.",
+    "title": "The Same Sentence, Four Times",
+    "text": "The report needs two more hours of brain. You have about twenty minutes left. You've just read the same sentence four times, and you wrote the sentence.",
     "window": [
       760,
       960
@@ -136,7 +136,7 @@
         "outcomes": [
           {
             "weight": 1,
-            "text": "You type with the focus of a jewel thief. The report jumps to 70%. At 11 PM you'll be wide awake, narrating it to {partner}, who is asleep.",
+            "text": "The report jumps to 70%. At 11 PM you'll be wide awake explaining it to {partner}, who is asleep, and the ceiling, which isn't.",
             "effects": {
               "energy": 14,
               "rel": -4
@@ -179,7 +179,7 @@
                 "rel": 50
               }
             },
-            "text": "They take {kid} to the park. You write in a silent house, then sit very still for six minutes, listening to the fridge hum. It sounds like the ocean.",
+            "text": "They take {kid} to the park. You write in a silent house, finish at 4:10 and spend the rest of the hour lying on the office floor, telling no one.",
             "effects": {
               "energy": 12,
               "rel": -6,
@@ -207,7 +207,7 @@
         ]
       },
       {
-        "label": "Splash your face. Finish it on willpower.",
+        "label": "Cold water, face. Finish it on spite.",
         "duration": 40,
         "minEnergy": 25,
         "tags": [
@@ -276,7 +276,7 @@
         "outcomes": [
           {
             "weight": 2,
-            "text": "The man in corduroy sings about patience. {kid} takes the advice. You write like the building is on fire and hit send as the credits roll. You'll take the meltdown. You'd take ten.",
+            "text": "The man in corduroy sings about taking your time. {kid} takes theirs. You write like the building is on fire and hit send as the credits roll. You'll take the meltdown. You'd take ten.",
             "effects": {
               "energy": 4,
               "mood": 6,
@@ -387,13 +387,13 @@
           },
           {
             "weight": 1,
-            "text": "Click. Wrong button. The report goes to 31 people, on time, with your draft text to {partner} still in the body: \"brb, wiping.\"",
+            "text": "Click. Sent. Then you see the subject line you typed at 6 AM and never fixed: \"report v4 FINAL (cry).\" It has gone to 31 people.",
             "effects": {
               "rep": -12,
               "home": -6,
               "energy": 6
             },
-            "stamp": "REPLY ALL",
+            "stamp": "SUBJECT: (CRY)",
             "fx": "flash"
           }
         ]
@@ -500,7 +500,7 @@
           },
           {
             "weight": 1,
-            "text": "{kid} pokes the elbow, considers it and, unsatisfied, goes for your ear.",
+            "text": "{kid} pokes the elbow, considers it and says, \"No. Mouth.\" They've read the policy. They don't agree with it.",
             "effects": {
               "mood": 12,
               "energy": -9
@@ -577,7 +577,7 @@
         ],
         "outcomes": [
           {
-            "text": "The man in corduroy sings about rainy days. You sit on the kitchen floor eating cold pasta out of the container, which is your version of a spa.",
+            "text": "The man in corduroy sings about a lost mitten. You sit on the kitchen floor eating cold pasta out of the container. It's 2:15. It's lunch. It's also, technically, breakfast.",
             "effects": {
               "energy": 12,
               "mood": 8,
@@ -634,7 +634,7 @@
         "outcomes": [
           {
             "weight": 1,
-            "text": "They play beside you, narrating, for 14 whole minutes. You stare at the ceiling. It's the best meeting you've had all week.",
+            "text": "They play beside you, narrating, for 14 whole minutes. In that time you've been described as \"a mountain,\" \"a bridge\" and, once, \"the bad guy.\"",
             "effects": {
               "energy": 10,
               "mood": -4
@@ -1154,7 +1154,7 @@
                 "rel": 50
               }
             },
-            "text": "They come home with a 10-pack of bibs and the good balm, the one in the tin, bought without a single follow-up question. You consider proposing again.",
+            "text": "They come home with a 10-pack of bibs and the good balm, the one in the tin, bought without a single follow-up question. Competence is very attractive at 6 PM.",
             "effects": {
               "mood": 12,
               "rel": 9,
@@ -1194,7 +1194,7 @@
           },
           {
             "weight": 1,
-            "text": "{kid} discovers that drool will stick a cracker to a window. There are nine crackers on the window. You leave them up. It's a gallery.",
+            "text": "{kid} discovers that drool will stick a cracker to a window. There are nine crackers on the window. You leave them up. You're too tired to be someone who takes crackers off windows.",
             "effects": {
               "home": -14,
               "energy": 6,

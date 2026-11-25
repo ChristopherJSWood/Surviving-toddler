@@ -439,7 +439,7 @@
         "outcomes": [
           {
             "weight": 2,
-            "text": "\"...and then the bus,\" they explain to someone. \"NO. The BIG bus.\" Then snoring. You'll think about the big bus all day.",
+            "text": "\"...and THEN the duck,\" they explain to someone. \"NO. The OTHER duck.\" Then snoring. You'll think about the other duck all day.",
             "effects": {
               "energy": 6
             },
@@ -464,7 +464,7 @@
         ]
       },
       {
-        "label": "Wake {partner} so they can hear it too",
+        "label": "Wake {partner}. Nobody should hear this alone.",
         "duration": 3,
         "outcomes": [
           {
@@ -846,7 +846,7 @@
                 "ledger": 3
               }
             },
-            "text": "{partner} goes without a word. At 5:01 you hear them downstairs, whispering a book about diggers. You have never loved anyone more.",
+            "text": "{partner} goes without a word. At 5:01 you hear them downstairs, whispering a book about diggers, doing every digger's voice. You fall asleep to the excavator.",
             "effects": {
               "energy": 6
             },
@@ -1231,7 +1231,7 @@
     },
     "choices": [
       {
-        "label": "Cold washcloth, rocking chair, the long haul",
+        "label": "Rocking chair. Cold washcloth. The long haul.",
         "duration": 40,
         "minEnergy": 20,
         "tags": [
@@ -1240,7 +1240,7 @@
         "outcomes": [
           {
             "weight": 1,
-            "text": "Forty minutes in the chair. They chew the washcloth, then your sleeve, then fall asleep mid-chew. Your arm is dead. Your heart is weirdly full.",
+            "text": "Forty minutes in the chair. They chew the washcloth, then your sleeve, then your thumb, then fall asleep mid-chew. You know exactly where the molar is now. So does your thumb.",
             "effects": {
               "energy": -6,
               "debt": -5
@@ -1263,7 +1263,7 @@
         ]
       },
       {
-        "label": "Give the dose on the pediatrician's chart",
+        "label": "Read the dose chart twice. Measure once.",
         "duration": 10,
         "outcomes": [
           {
@@ -1279,7 +1279,7 @@
         ]
       },
       {
-        "label": "Tag {partner} in for the tooth shift",
+        "label": "Tag {partner}: \"Tooth shift's yours.\"",
         "duration": 3,
         "tags": [
           "tagteam"
@@ -1320,7 +1320,7 @@
   {
     "id": "night_earworm",
     "title": "3 AM: Key Change",
-    "text": "3:02 AM. Nobody is crying. Nobody needs anything. You're awake because the theme song from this afternoon's TV is playing in your head at full volume, key change and all.",
+    "text": "3:02 AM. Nobody is crying. Nobody needs anything. You're awake because the Sunshine Sing-Along theme is playing in your head at full volume, key change and all.",
     "phase": "night",
     "weight": 4,
     "oncePerWeek": true,
@@ -1334,7 +1334,7 @@
     },
     "choices": [
       {
-        "label": "Hum it once, quietly, to get it out",
+        "label": "Hum it once. Exorcise it.",
         "duration": 5,
         "outcomes": [
           {
@@ -1380,11 +1380,11 @@
           },
           {
             "weight": 1,
-            "text": "The rain video opens with an ad. The ad is for the show. The theme song plays, directly into your ear, at 3:05 AM.",
+            "text": "The rain is lovely for four minutes. Then your brain finds the beat and lays the theme song over it. It's a remix now. It's better. That's the problem.",
             "effects": {
               "energy": -8
             },
-            "stamp": "SPONSORED",
+            "stamp": "REMIXED",
             "set": [
               "night:earworm"
             ]
@@ -1513,7 +1513,7 @@
     },
     "choices": [
       {
-        "label": "Let Grandma have this one",
+        "label": "Let Grandma win this one",
         "duration": 2,
         "outcomes": [
           {
@@ -1527,7 +1527,7 @@
         ]
       },
       {
-        "label": "Stand outside the door and listen",
+        "label": "Sit in the hallway. Be four again.",
         "duration": 10,
         "outcomes": [
           {

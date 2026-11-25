@@ -682,7 +682,7 @@
           },
           {
             "weight": 1,
-            "text": "Audio-only works until {kid} finds unmute. \"I DID A POOP\" goes out to 14 people and a client in Denver. The client says, \"Congratulations.\"",
+            "text": "Audio-only works until {kid} finds unmute and tells 14 people and a client in Denver, \"{ME} DOESN'T HAVE PANTS ON EITHER.\" You do. Nobody will ever believe that now.",
             "effects": {
               "energy": -10,
               "rel": 6,
@@ -761,7 +761,7 @@
         ],
         "outcomes": [
           {
-            "text": "Mute. Unmute: \"great point.\" Mute. {kid} eats crackers in your doorway and drops every fourth one into your keyboard, as a tip.",
+            "text": "Mute. Unmute: \"great point.\" Mute. {kid} eats crackers in your doorway and drops every fourth one into your keyboard. The Q key will crunch until you retire.",
             "effects": {
               "mood": 12,
               "home": -12,
@@ -870,7 +870,7 @@
         ]
       },
       {
-        "label": "\"The TV is sleeping.\"",
+        "label": "\"Ducks are a weekend show.\" Invent a policy.",
         "duration": 5,
         "tags": [
           "boundary"
@@ -879,16 +879,16 @@
         "outcomes": [
           {
             "weight": 1,
-            "text": "{kid} puts an ear to the screen and listens. \"He sleeping,\" they whisper, and tiptoe off to bother something else. You've invented a religion.",
+            "text": "{kid} accepts the policy, gravely, and goes to explain it to the duck book. You get eleven minutes of quiet and a reputation as a lawmaker.",
             "effects": {
               "energy": 12,
               "mood": -8
             },
-            "stamp": "THE TV IS SLEEPING"
+            "stamp": "POLICY ENACTED"
           },
           {
             "weight": 1,
-            "text": "\"WAKE HIM UP.\" They knock on the screen. Then on your forehead. Then the screen again, harder.",
+            "text": "\"MAKE IT THE WEEKEND.\" You can't. They know you can't. They lie face-down on the remote until somebody does.",
             "effects": {
               "energy": -4,
               "mood": -14
@@ -1016,7 +1016,7 @@
         "outcomes": [
           {
             "weight": 2,
-            "text": "The video man has a different car seat and a calm you'll never have. Forty minutes later the straps are in. You check them twice, because that part matters. You're a mechanic now.",
+            "text": "The video is 19 minutes. The first six are the man's personal journey with car seats. Forty minutes later the straps are in. You check them twice, because that part matters. You're a mechanic now.",
             "effects": {
               "home": 12,
               "energy": -12,
@@ -1209,7 +1209,7 @@
     },
     "choices": [
       {
-        "label": "Take the car cart. Captain it like a cruise ship.",
+        "label": "Take the race car. All 11 feet of it.",
         "duration": 30,
         "outcomes": [
           {
@@ -1526,7 +1526,7 @@
           },
           {
             "weight": 1,
-            "text": "Down safely. \"AGAIN!\" You say no. For once they accept it: the summit has been conquered, and there is nothing left to prove.",
+            "text": "Down safely. On the way, {kid} leaves a crayon on top of the bookshelf, so the next climber will know they were here.",
             "effects": {
               "mood": 12,
               "energy": -6
@@ -1535,7 +1535,7 @@
         ]
       },
       {
-        "label": "Get them down. Anchor every dresser in the house.",
+        "label": "Get them down. Anchor everything taller than you.",
         "duration": 60,
         "minEnergy": 30,
         "tags": [
@@ -1544,7 +1544,7 @@
         "outcomes": [
           {
             "weight": 2,
-            "text": "An hour of drilling into studs while {kid} \"helps\" with a toy hammer. Everything tall is now bolted to a wall. Your lower back has filed a grievance.",
+            "text": "An hour of drilling into studs while {kid} \"helps\" with a toy hammer. Everything tall is now bolted to a wall. Your lower back will be bringing this up all week.",
             "effects": {
               "home": 14,
               "energy": -16,
@@ -1571,7 +1571,7 @@
         ]
       },
       {
-        "label": "Get them down. Build a legal mountain of cushions.",
+        "label": "Get them down. Then build a legal mountain.",
         "duration": 20,
         "minEnergy": 20,
         "tags": [
@@ -1621,7 +1621,7 @@
         "outcomes": [
           {
             "weight": 1,
-            "text": "Eleven seconds of pure magic before they spot you and say \"cheese\" again. You post the eleven seconds. 312 likes. You watch it 40 times yourself.",
+            "text": "Eleven seconds of pure magic before they spot you and say \"cheese\" again. You post it. 312 likes. It's the most you've heard from other adults since Sunday.",
             "effects": {
               "rep": 12,
               "energy": -6
@@ -1656,7 +1656,7 @@
           },
           {
             "weight": 1,
-            "text": "Free of the lens, {kid} goes right back to the spoon. It's the best show in town, and you have the only seat.",
+            "text": "Free of the lens, {kid} goes right back to the spoon: a drum, a phone, a microphone, a spoon again. Four acts. No recording exists.",
             "effects": {
               "energy": 6,
               "mood": 12,
@@ -1923,7 +1923,7 @@
         "outcomes": [
           {
             "weight": 2,
-            "text": "The hallway is a gallery now. You walk through it to the bathroom eleven times a day. Every painting is a bird. Every bird is watching.",
+            "text": "The hallway is lined, floor to ceiling, with brown. You walk through it to the bathroom eleven times a day. Every painting is a bird. Every bird is watching.",
             "effects": {
               "mood": 20,
               "home": -8,
@@ -1978,7 +1978,7 @@
     },
     "choices": [
       {
-        "label": "Lap. Shush. Become furniture.",
+        "label": "Lap. Shush. Side with the bear.",
         "duration": 30,
         "tags": [
           "boundary"
@@ -2072,7 +2072,7 @@
     "oncePerWeek": true,
     "choices": [
       {
-        "label": "Sneak it into a muffin",
+        "label": "Sneak it into a muffin. Lie, but baked.",
         "duration": 25,
         "minEnergy": 25,
         "tags": [
@@ -2081,7 +2081,7 @@
         "outcomes": [
           {
             "weight": 2,
-            "text": "You blend broccoli into a muffin. {kid} eats the top, leaves the bottom and looks at you like they know. They know.",
+            "text": "{kid} eats the top, leaves the bottom and hands it back to you, green side up. They know. They'd like you to know they know.",
             "effects": {
               "mood": 6,
               "energy": -10,
@@ -2286,18 +2286,18 @@
         ]
       },
       {
-        "label": "Snack plate. Call it \"tapas.\"",
+        "label": "Cheese stick. Pay it out one string at a time.",
         "duration": 10,
         "tags": [
           "bribe"
         ],
         "outcomes": [
           {
-            "text": "Cheese, crackers, grapes quartered lengthwise, one pickle. You call it tapas. Everyone calms down. Nobody will eat dinner now, and you'll cook it anyway.",
+            "text": "One cheese stick, peeled into strings, paid out one string every ninety seconds. Everyone calms down. It's not a snack. It's a payment plan.",
             "effects": {
               "mood": 10,
               "energy": -2,
-              "rep": -8
+              "rep": -6
             },
             "count": {
               "snacks": 1
@@ -2400,7 +2400,7 @@
         "duration": 25,
         "outcomes": [
           {
-            "text": "Twenty-five minutes of silence in a parked car. You eat a granola bar from 2023. You will pay for this at 9:30 PM, with interest.",
+            "text": "Twenty-five minutes of silence in a parked car. You eat a granola bar from the glovebox, vintage unknown. You will pay for this at 9:30 PM, with interest.",
             "effects": {
               "sleepy": -25,
               "mood": 6,
@@ -2415,7 +2415,7 @@
         "outcomes": [
           {
             "weight": 1,
-            "text": "They stay awake, deeply offended. You can feel the offense radiating from the back seat, like heat off a grill.",
+            "text": "They stay awake, deeply offended, and start booping their own foot every 30 seconds so you can see how it feels. It feels terrible.",
             "effects": {
               "mood": -10,
               "sleepy": 2,
@@ -2424,7 +2424,7 @@
           },
           {
             "weight": 1,
-            "text": "{kid} sneaks a four-minute nap between boops and wakes with the energy of someone who has slept, which is more than you can say.",
+            "text": "Between boop 19 and boop 20, {kid} sneaks a four-minute nap. They wake up in the driveway, fully charged. It's 4:58. You can feel bedtime moving.",
             "effects": {
               "sleepy": -10,
               "mood": 12

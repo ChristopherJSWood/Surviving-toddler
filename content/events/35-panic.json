@@ -1,8 +1,8 @@
 [
   {
     "id": "panic_checkout",
-    "title": "Lane 4",
-    "text": "Checkout lane 4. The cashier is moving at the speed of a glacier with a pension. In the car, you said something about this lane. {kid} remembers. {kid} is inhaling.",
+    "title": "Unexpected Item",
+    "text": "Self-checkout. {kid} has put Bun-Bun in the bagging area. A red light is spinning. A voice keeps saying UNEXPECTED ITEM. Nine people are in line behind you, and they've all picked a side.",
     "window": [
       540,
       1080
@@ -16,7 +16,7 @@
     },
     "choices": [
       {
-        "label": "Plug their mouth with a granola bar",
+        "label": "Trade Bun-Bun for a granola bar",
         "duration": 1,
         "tags": [
           "bribe"
@@ -24,7 +24,7 @@
         "outcomes": [
           {
             "weight": 2,
-            "text": "Mouth: plugged. They chew, glaring, holding the sentence in reserve. You've only moved it to the parking lot.",
+            "text": "The trade clears. Bun-Bun comes home. The light stops. The man behind you mouths, \"nice.\" You've never been prouder of a granola bar.",
             "effects": {
               "mood": 6,
               "rep": 4
@@ -34,7 +34,7 @@
             }
           },
           {
-            "text": "They take the bar, point it at the cashier and say it anyway, now with crumbs and a new verse.",
+            "text": "They take the bar and set it in the bagging area, next to Bun-Bun. UNEXPECTED ITEM. UNEXPECTED ITEM. They're starting a collection.",
             "effects": {
               "rep": -16,
               "mood": 4
@@ -46,11 +46,11 @@
         ]
       },
       {
-        "label": "Confess: \"I was mean about this lane!\"",
+        "label": "Scan Bun-Bun. Pay whatever Bun-Bun costs.",
         "duration": 1,
         "outcomes": [
           {
-            "text": "The cashier looks up. \"This lane IS slow,\" says Doreen. \"Thirty-one years. I like it slow.\" Doreen bags your eggs like they're grandchildren.",
+            "text": "Bun-Bun rings up as ORGANIC KALE, $4.99/lb. You pay it. Doreen, the attendant, 31 years in, bags Bun-Bun like a grandchild.",
             "effects": {
               "rep": 10,
               "energy": -2
@@ -58,7 +58,7 @@
             "stamp": "DOREEN APPROVES"
           },
           {
-            "text": "The whole line turns to look at you. {kid} closes their mouth, satisfied. They didn't have to say anything. You did it for them.",
+            "text": "The scanner can't find Bun-Bun and calls for help. Nine people watch a teenager in a vest learn that the rabbit is not for sale.",
             "effects": {
               "rep": -8,
               "mood": 6
@@ -72,12 +72,12 @@
         "timeout": true,
         "outcomes": [
           {
-            "text": "\"{ME} SAYS THIS LANE IS WHERE TIME GOES TO DIE.\" The cashier, 31 years in, stops, looks at you, then resumes scanning. Slower. Out of principle.",
+            "text": "The attendant arrives. \"Is this your item?\" {kid} rises in the cart: \"BUN-BUN IS NOT A ITEM.\" The line agrees. The line has never agreed on anything.",
             "effects": {
               "rep": -16,
               "mood": 8
             },
-            "stamp": "SLOWER, ON PURPOSE",
+            "stamp": "NOT A ITEM",
             "fx": "shake"
           }
         ]
@@ -336,7 +336,7 @@
   {
     "id": "panic_cart_lick",
     "title": "The Handle",
-    "text": "Grocery store. {kid} is in the cart seat, mouth open, face lowering slowly toward the handle, which has been touched today by 400 strangers and one man who coughed into his fist.",
+    "text": "Grocery store. {kid} is in the cart seat, mouth open, face lowering slowly toward the handle, which has been touched today by 400 strangers and one man with a cough.",
     "window": [
       540,
       1080
@@ -396,7 +396,7 @@
         "timeout": true,
         "outcomes": [
           {
-            "text": "One long, slow, thorough lick, end to end. \"It tastes like coins,\" {kid} reports, delighted, to the man who coughed.",
+            "text": "One long, slow, thorough lick, end to end. \"It tastes like coins,\" {kid} reports, delighted, to the man with the cough.",
             "effects": {
               "rep": -12,
               "mood": 8
@@ -638,7 +638,7 @@
         },
         "outcomes": [
           {
-            "text": "\"About the walking-into-the-sea message—\" Brynn lights up. Brynn has waited days for this. In the long, delicious conversation that follows, {kid}'s word goes unheard.",
+            "text": "\"About the lighthouse message—\" Brynn lights up. Brynn has waited days for this. In the long, delicious conversation that follows, {kid}'s word goes unheard.",
             "effects": {
               "rep": -6,
               "energy": -10
