@@ -429,7 +429,7 @@
   {
     "id": "buffet",
     "title": "\"Did I Not Mention the Dinner?\"",
-    "text": "A text from {partner}, at 4:12 PM.",
+    "text": "A text from {partner}, late in the afternoon.",
     "chat": {
       "with": "{partner}",
       "messages": [
@@ -925,7 +925,7 @@
         "outcomes": [
           {
             "weight": 2,
-            "text": "Diaper. Left. Right. Shirt. Pants. Each stage is inspected and approved. Liftoff at 7:52. Eight minutes early. Mission control weeps quietly into its coffee.",
+            "text": "Diaper. Left. Right. Shirt. Pants. Each stage is inspected and approved. Liftoff, eight minutes ahead of schedule. Mission control weeps quietly into its coffee.",
             "effects": {
               "mood": 12,
               "energy": -8
@@ -1404,7 +1404,7 @@
   {
     "id": "cl_check",
     "title": "Check, Please (With the Food)",
-    "text": "A family restaurant, 12:10 PM. You order in 40 seconds, and you order the check with the food. The waiter doesn't blink. {kid} has two crayons. One is broken. The clock is running.",
+    "text": "A family restaurant, lunch rush. You order in 40 seconds, and you order the check with the food. The waiter doesn't blink. {kid} has two crayons. One is broken. The clock is running.",
     "window": [
       660,
       840
@@ -1649,17 +1649,18 @@
             "weight": 2,
             "text": "You watch. You don't post. It's lovely, and nobody will ever know it happened, which bothers you more than it should.",
             "effects": {
-              "energy": 12,
-              "mood": 12,
-              "rep": -6
+              "energy": 4,
+              "mood": 10,
+              "rep": -8
             }
           },
           {
             "weight": 1,
             "text": "Free of the lens, {kid} goes right back to the spoon. It's the best show in town, and you have the only seat.",
             "effects": {
-              "energy": 10,
-              "mood": 10
+              "energy": 6,
+              "mood": 12,
+              "rep": -4
             }
           }
         ]
@@ -2182,7 +2183,7 @@
         ]
       },
       {
-        "label": "Call it from your laptop",
+        "label": "Call it. Follow the ringing.",
         "duration": 10,
         "outcomes": [
           {
@@ -2222,8 +2223,8 @@
   },
   {
     "id": "witching",
-    "title": "The 4:45",
-    "text": "4:45 PM. Dinner is 45 minutes away and everyone in the house, including you, has become a different, worse person. {kid} is sobbing because the cat on their shirt is looking at them.",
+    "title": "Dinner Minus 45",
+    "text": "Dinner is 45 minutes away and everyone in the house, including you, has become a different, worse person. {kid} is sobbing because the cat on their shirt is looking at them.",
     "window": [
       960,
       1110
@@ -2356,7 +2357,7 @@
   {
     "id": "danger_nap",
     "title": "The Danger Nap",
-    "text": "4:20 PM, driving home. In the mirror, {kid}'s eyelids are losing a fight. Sleep now, and bedtime moves to 10 PM. You have 12 minutes of road and one weapon: your singing voice.",
+    "text": "Late afternoon, driving home. In the mirror, {kid}'s eyelids are losing a fight. Sleep now, and bedtime moves to 10 PM. You have 12 minutes of road and one weapon: your singing voice.",
     "window": [
       960,
       1030

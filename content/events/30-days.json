@@ -167,7 +167,7 @@
         ]
       },
       {
-        "label": "Ask {partner} to take {kid} for an hour",
+        "label": "Beg {partner} for one (1) hour",
         "duration": 5,
         "tags": [
           "tagteam"
@@ -711,7 +711,7 @@
         ]
       },
       {
-        "label": "Text {partner}: laundry tonight is theirs",
+        "label": "Text {partner}: \"Laundry is your love language now\"",
         "duration": 3,
         "tags": [
           "tagteam"
@@ -1125,7 +1125,7 @@
     },
     "choices": [
       {
-        "label": "Chin balm after every single wipe",
+        "label": "Chin balm after every wipe. Every. Single. Wipe.",
         "duration": 15,
         "minEnergy": 20,
         "tags": [
@@ -1377,7 +1377,7 @@
         ]
       },
       {
-        "label": "Screenshot it to {partner}",
+        "label": "Screenshot it to {partner}. No caption.",
         "duration": 2,
         "outcomes": [
           {
@@ -1808,7 +1808,7 @@
     },
     "choices": [
       {
-        "label": "Keep watching. Potty every 20 minutes.",
+        "label": "Stare at the bottom. Potty every 20 minutes.",
         "duration": 40,
         "minEnergy": 25,
         "tags": [
@@ -2011,7 +2011,7 @@
         "outcomes": [
           {
             "weight": 2,
-            "text": "Stain stick, steam, a second pass. It looks almost new in low light, which the restaurant will provide. You hold it up like a trophy you ironed yourself.",
+            "text": "Stain stick, steam, a second pass. The crease surrenders. The stain fades into something you could call a pattern, in low light, which the restaurant will provide.",
             "effects": {
               "energy": -10,
               "rep": 8
@@ -2198,7 +2198,7 @@
   {
     "id": "d_fri_clean",
     "title": "Cleaning for a Teenager",
-    "text": "The sitter arrives in five hours. The sitter is 16 and will notice nothing. You are, nonetheless, about to clean the entire house for a 16-year-old.",
+    "text": "The sitter arrives at 7. The sitter is 16 and will notice nothing. You are, nonetheless, about to clean the entire house for a 16-year-old.",
     "window": [
       660,
       1000
