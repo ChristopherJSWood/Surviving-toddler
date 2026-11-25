@@ -50,6 +50,25 @@ public struct ScheduledEvent: Decodable, Equatable, Sendable {
     }
 }
 
+/// One chat bubble. `from == "you"` is the player's own message.
+public struct ChatMessage: Decodable, Equatable, Sendable {
+    public var from: String
+    public var text: String
+    public var isMine: Bool { from == "you" }
+}
+
+/// A card that plays out as a text thread (your partner, the group chat...).
+/// Presentation only: the rules engine never reads it.
+public struct Chat: Decodable, Equatable, Sendable {
+    public var with: String
+    public var messages: [ChatMessage]
+}
+
+/// Screen effect for an outcome. Presentation only.
+public enum OutcomeFX: String, Decodable, Sendable {
+    case shake, flash, confetti
+}
+
 public struct Outcome: Decodable, Sendable {
     public var text: String
     public var weight: Int
@@ -62,9 +81,13 @@ public struct Outcome: Decodable, Sendable {
     public var schedule: [ScheduledEvent]
     public var cancel: [String]
     public var completeTask: String?
+    /// Presentation only: reply bubbles, a verdict badge and a screen effect.
+    public var chat: [ChatMessage]
+    public var stamp: String?
+    public var fx: OutcomeFX?
 
     enum CodingKeys: String, CodingKey {
-        case text, weight, effects, ledger, schedule, cancel, completeTask
+        case text, weight, effects, ledger, schedule, cancel, completeTask, chat, stamp, fx
         case condition = "when"
         case setFlags = "set"
         case clearFlags = "clear"
@@ -84,6 +107,9 @@ public struct Outcome: Decodable, Sendable {
         schedule = try c.decodeIfPresent([ScheduledEvent].self, forKey: .schedule) ?? []
         cancel = try c.decodeIfPresent([String].self, forKey: .cancel) ?? []
         completeTask = try c.decodeIfPresent(String.self, forKey: .completeTask)
+        chat = try c.decodeIfPresent([ChatMessage].self, forKey: .chat) ?? []
+        stamp = try c.decodeIfPresent(String.self, forKey: .stamp)
+        fx = try c.decodeIfPresent(OutcomeFX.self, forKey: .fx)
     }
 
     init(text: String, effects: [Meter: Int], setFlags: [String]) {
@@ -98,6 +124,9 @@ public struct Outcome: Decodable, Sendable {
         schedule = []
         cancel = []
         completeTask = nil
+        chat = []
+        stamp = nil
+        fx = nil
     }
 }
 
@@ -112,9 +141,12 @@ public struct Choice: Decodable, Sendable {
     public var snapRisk: Bool
     public var tags: [String]
     public var outcomes: [Outcome]
+    /// On a timed card: what happens if the timer runs out. Not shown as a
+    /// button; the UI chooses it when time is up.
+    public var timeout: Bool
 
     enum CodingKeys: String, CodingKey {
-        case label, duration, minEnergy, snapRisk, tags, outcomes
+        case label, duration, minEnergy, snapRisk, tags, outcomes, timeout
         case condition = "when"
     }
 
@@ -127,6 +159,7 @@ public struct Choice: Decodable, Sendable {
         snapRisk = try c.decodeIfPresent(Bool.self, forKey: .snapRisk) ?? false
         tags = try c.decodeIfPresent([String].self, forKey: .tags) ?? []
         outcomes = try c.decode([Outcome].self, forKey: .outcomes)
+        timeout = try c.decodeIfPresent(Bool.self, forKey: .timeout) ?? false
     }
 }
 
@@ -170,10 +203,17 @@ public struct GameEvent: Decodable, Identifiable, Sendable {
     public var condition: Condition?
     public var checks: [Check]
     public var choices: [Choice]
+    /// Presentation only: the card plays out as a text thread.
+    public var chat: Chat?
+    /// Presentation only: seconds to choose before the `timeout` choice is taken.
+    public var timer: Int?
+    /// Recurring situation this card belongs to (tantrum, food, nap...).
+    public var family: String?
 
     enum CodingKeys: String, CodingKey {
         case id, title, text, phase, window, weight, weightBy, priority, repeatable, oncePerWeek
         case forced, noHazard, hazard, tell, task, moment, endsDay, endsWeek, checks, choices
+        case chat, timer, family
         case isFiller = "filler"
         case condition = "when"
     }
@@ -209,6 +249,9 @@ public struct GameEvent: Decodable, Identifiable, Sendable {
         condition = try c.decodeIfPresent(Condition.self, forKey: .condition)
         checks = try c.decodeIfPresent([Check].self, forKey: .checks) ?? []
         choices = try c.decode([Choice].self, forKey: .choices)
+        chat = try c.decodeIfPresent(Chat.self, forKey: .chat)
+        timer = try c.decodeIfPresent(Int.self, forKey: .timer)
+        family = try c.decodeIfPresent(String.self, forKey: .family)
     }
 }
 

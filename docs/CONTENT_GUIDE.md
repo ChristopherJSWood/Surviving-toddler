@@ -1,9 +1,20 @@
-# Writing Content (v2: the week)
+# Writing Content (v3)
+
+**Read [VOICE.md](VOICE.md) first.** It covers how the game should sound and how to be funny. This file covers the fields.
 
 All words and numbers live in `content/`:
 
-- `content/base.json`: config, tables (days, modifiers, tasks, styles, endings, lifeline) and the anchor cards (wake, breakfast, nap, handoff, dinner, bedtime, Friday, date night).
-- `content/events/*.json`: each file is a JSON **array** of events. Files merge in filename order.
+- `content/base.json`: config and tables (days, modifiers, tasks, styles, endings, lifeline). Its `events` is empty.
+- `content/events/*.json`: each file is a JSON **array** of events. Files merge in filename order, which also breaks ties between same-priority anchors.
+
+| File | Holds |
+|---|---|
+| `00-anchors.json` | the day's skeleton: wake, breakfast, nap, handoff, dinner, bedtime, Friday, date night, meltdown, filler |
+| `10-recurring.json` | recurring situations with escalating variants: tantrums, food refusal, coffee, snacks, diapers |
+| `20-classics.json`, `30-days.json` | one-off day cards; day- and modifier-specific cards |
+| `30-hazards.json`, `30-paybacks.json` | hazards with their warning cards, and shortcut paybacks |
+| `30-partner.json`, `40-chats.json`, `40-storylines.json` | partner and blame cards, text threads, week-long running gags |
+| `30-moments.json`, `30-nights.json`, `30-tasks.json` | small good moments, 2 AM cards, mental-load tasks |
 
 Build and check:
 
@@ -26,7 +37,7 @@ The rules themselves are in `docs/RULES.md`.
 | `home` | House | 0 = condemned. |
 | `rep` | Reputation | What other parents think. 0 = removed from the group chat. |
 
-Typical effect sizes: small ±2–5, medium ±6–12, big ±15–25. Catastrophes go up to −35 total across meters.
+Typical effect sizes (v3): small ±4–8, medium ±10–18, big ±20–35. A week is about 100 cards, so each one has to matter.
 
 ## An event
 
@@ -67,6 +78,9 @@ Typical effect sizes: small ±2–5, medium ±6–12, big ±15–25. Catastrophe
 | `tell: "event_id"` | For a hazard: the warning card shown first. The tell must be `forced`, and its attentive choice should `cancel` the hazard. |
 | `task: "task_id"` | Only eligible while that mental-load task is open. Its "do it now" outcome uses `completeTask`. |
 | `moment: true` | Marks a small good moment (styling only). |
+| `family` | Recurring situation (`tantrum`, `food`, `nap`, `coffee`...). Variants of one family chain with week-long flags so each repeat is a new card. |
+| `chat` | `{ "with": "{partner}", "messages": [ { "from": "{partner}", "text": "..." }, { "from": "you", "text": "..." } ] }`: the card plays out as a text thread (1–8 messages, each ≤ 160 characters). `text` is still required, as a one-line caption. |
+| `timer` | 3–10 seconds to choose (panic cards). Needs exactly one choice with `"timeout": true`, which isn't shown as a button and happens if time runs out. Players can turn timers off, and they're off with VoiceOver. |
 
 ### Choice fields
 
@@ -77,6 +91,7 @@ Typical effect sizes: small ±2–5, medium ±6–12, big ±15–25. Catastrophe
 | `when` | Hides the choice unless met. |
 | `tags` | Style tallies: `tagteam`, `negotiate`, `screen`, `martyr`, `bribe`, `boundary`, plus `present` (engaged; makes small moments likelier). |
 | `snapRisk` | Calm or boundary-holding choices. Below 20 Energy there's a 30% chance you snap instead. |
+| `timeout` | On a timed card only: what happens if you freeze. No `when` or `minEnergy`. |
 
 Every event needs at least one choice with no `when` and no `minEnergy`.
 
@@ -94,6 +109,13 @@ Every event needs at least one choice with no `when` and no `minEnergy`.
 | `schedule` | `[{ "event": "id", "in": minutes }]`: queue a forced event (the payback for a shortcut). |
 | `cancel` | `["id"]`: remove queued events (an attentive tell response cancels its hazard). |
 | `completeTask` | A task id, or `"oldest"`. |
+| `stamp` | A verdict badge slammed onto the outcome, ALL CAPS, ≤ 24 characters (`BOUNDARY: HELD`). |
+| `fx` | `shake`, `flash` (red alert) or `confetti` (a real win). |
+| `chat` | Reply bubbles shown with the outcome, `[ { "from": "{partner}", "text": "lol" } ]` (≤ 4). |
+
+### Names
+
+Any text may use `{kid}`, `{KID}`, `{partner}`, `{me}` and `{ME}` (what the toddler calls you). The UI fills them in from the title screen, and the linter rejects any other `{...}`. The toddler and your partner are always they/them.
 
 ### Conditions
 

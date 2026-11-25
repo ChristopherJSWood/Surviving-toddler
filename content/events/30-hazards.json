@@ -1,13 +1,193 @@
 [
   {
+    "id": "quiet_tell",
+    "title": "It's Quiet. Too Quiet.",
+    "text": "The living room has been silent for six minutes. Silence, in this house, is never good news.",
+    "forced": true,
+    "priority": 86,
+    "choices": [
+      {
+        "label": "Go look. Now.",
+        "duration": 5,
+        "outcomes": [
+          {
+            "text": "You catch them uncapping a permanent marker, eyes locked on a fresh white wall. You confiscate it. Crisis averted. This time.",
+            "effects": {
+              "energy": -3
+            },
+            "cancel": [
+              "sharpie"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Finish your coffee first",
+        "duration": 5,
+        "outcomes": [
+          {
+            "text": "You finish your coffee. It's lovely. It's the last lovely thing for a while.",
+            "effects": {
+              "energy": 3
+            },
+            "count": {
+              "coffee": 1
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "sharpie",
+    "title": "The Sharpie Incident",
+    "text": "The hallway is now a mural titled \"Untitled (Permanent).\"",
+    "hazard": "sting",
+    "tell": "quiet_tell",
+    "weight": 2,
+    "choices": [
+      {
+        "label": "Scrub it now",
+        "duration": 20,
+        "tags": [
+          "martyr"
+        ],
+        "outcomes": [
+          {
+            "text": "Magic eraser, elbow grease, and words you bleep in your head. It's mostly gone. Mostly.",
+            "effects": {
+              "home": -4,
+              "energy": -8
+            }
+          }
+        ]
+      },
+      {
+        "label": "Post it as \"art\"",
+        "duration": 5,
+        "outcomes": [
+          {
+            "text": "\"Our little Basquiat 🎨\" Forty likes. One comment asking if it's washable. It is not.",
+            "effects": {
+              "home": -10,
+              "rep": -6
+            }
+          }
+        ]
+      },
+      {
+        "label": "Leave it. Deal with it Friday.",
+        "duration": 1,
+        "outcomes": [
+          {
+            "text": "It's a feature wall now. You walk past it eleven times today. It looks at you every time.",
+            "effects": {
+              "home": -12
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "lego",
+    "title": "You Said the Word",
+    "text": "Lego, bare foot, 3 PM. You said a word. A [BLEEP] word. Your toddler said it back, perfectly, and is now saying it to the dog. You don't have a dog.",
+    "hazard": "sting",
+    "weight": 2,
+    "choices": [
+      {
+        "label": "Continue",
+        "duration": 2,
+        "outcomes": [
+          {
+            "text": "It will come up again. At daycare. To the director. You know this the way you know the sun will rise.",
+            "effects": {
+              "rep": -6,
+              "energy": -4
+            },
+            "count": {
+              "bleeps": 1
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "stomach_bug",
+    "title": "The Stomach Bug Has Entered the Chat",
+    "text": "It started with one ominous burp. It ended with you holding a mixing bowl like a goalie. It is coming for you next.",
+    "hazard": "catastrophe",
+    "weight": 2,
+    "choices": [
+      {
+        "label": "Bleach everything",
+        "duration": 45,
+        "tags": [
+          "martyr"
+        ],
+        "outcomes": [
+          {
+            "text": "Every surface, every toy, every doorknob. You smell like a public pool. It might not be enough.",
+            "effects": {
+              "energy": -20,
+              "home": -5,
+              "debt": 10
+            }
+          }
+        ]
+      },
+      {
+        "label": "Towels. So many towels.",
+        "duration": 15,
+        "outcomes": [
+          {
+            "text": "You lay towels like a field medic. The laundry pile reaches a height that requires a permit.",
+            "effects": {
+              "energy": -12,
+              "home": -18,
+              "debt": 10
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
     "id": "w_chair_tell",
     "title": "The Chair Is Moving",
     "text": "From the kitchen comes the scrape of a chair being dragged, slowly and with purpose, toward the counter. Like a very small mover with a plan.",
     "forced": true,
     "priority": 86,
     "choices": [
-      { "label": "Go see. Now.", "duration": 5, "outcomes": [ { "text": "You arrive as a small hand reaches the flour. You lift them down mid-reach. They look at you like you've cancelled their show.", "effects": { "energy": -3 }, "cancel": ["w_flour"] } ] },
-      { "label": "Five more minutes on the couch", "duration": 5, "outcomes": [ { "text": "The scraping stops. Peace. Wonderful, suspicious peace.", "effects": { "energy": 3 } } ] }
+      {
+        "label": "Go see. Now.",
+        "duration": 5,
+        "outcomes": [
+          {
+            "text": "You arrive as a small hand reaches the flour. You lift them down mid-reach. They look at you like you've cancelled their show.",
+            "effects": {
+              "energy": -3
+            },
+            "cancel": [
+              "w_flour"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Five more minutes on the couch",
+        "duration": 5,
+        "outcomes": [
+          {
+            "text": "The scraping stops. Peace. Wonderful, suspicious peace.",
+            "effects": {
+              "energy": 3
+            }
+          }
+        ]
+      }
     ]
   },
   {
@@ -17,9 +197,52 @@
     "hazard": "sting",
     "tell": "w_chair_tell",
     "choices": [
-      { "label": "Clean it now", "duration": 25, "tags": ["martyr"], "outcomes": [ { "text": "You sweep, then wipe, then sweep the wipe. Flour is in places flour has never been. You'll find it in your ear on Thursday.", "effects": { "energy": -8, "home": -2 } } ] },
-      { "label": "Call it a sensory bin, officially", "duration": 20, "minEnergy": 20, "tags": ["present"], "outcomes": [ { "text": "You add measuring cups and lean in. A craft board would call this \"open-ended play.\" It is mostly open-ended flour.", "effects": { "mood": 5, "energy": -5, "home": -6 } } ] },
-      { "label": "Close the kitchen door. Future you's problem.", "duration": 2, "outcomes": [ { "text": "Future you is going to be so annoyed. Future you should have thought of that.", "effects": { "home": -9 } } ] }
+      {
+        "label": "Clean it now",
+        "duration": 25,
+        "tags": [
+          "martyr"
+        ],
+        "outcomes": [
+          {
+            "text": "You sweep, then wipe, then sweep the wipe. Flour is in places flour has never been. You'll find it in your ear on Thursday.",
+            "effects": {
+              "energy": -8,
+              "home": -2
+            }
+          }
+        ]
+      },
+      {
+        "label": "Call it a sensory bin, officially",
+        "duration": 20,
+        "minEnergy": 20,
+        "tags": [
+          "present"
+        ],
+        "outcomes": [
+          {
+            "text": "You add measuring cups and lean in. A craft board would call this \"open-ended play.\" It is mostly open-ended flour.",
+            "effects": {
+              "mood": 5,
+              "energy": -5,
+              "home": -6
+            }
+          }
+        ]
+      },
+      {
+        "label": "Close the kitchen door. Future you's problem.",
+        "duration": 2,
+        "outcomes": [
+          {
+            "text": "Future you is going to be so annoyed. Future you should have thought of that.",
+            "effects": {
+              "home": -9
+            }
+          }
+        ]
+      }
     ]
   },
   {
@@ -29,8 +252,33 @@
     "forced": true,
     "priority": 86,
     "choices": [
-      { "label": "Open the door", "duration": 3, "outcomes": [ { "text": "Inside: a toddler holding the toothpaste like a microphone, cap already off. You take it. They give a small, professional bow.", "effects": { "energy": -2 }, "cancel": ["w_toothpaste"] } ] },
-      { "label": "Let them have their privacy", "duration": 5, "outcomes": [ { "text": "Everyone deserves a little alone time. You get some too. It lasts four minutes.", "effects": { "energy": 3 } } ] }
+      {
+        "label": "Open the door",
+        "duration": 3,
+        "outcomes": [
+          {
+            "text": "Inside: a toddler holding the toothpaste like a microphone, cap already off. You take it. They give a small, professional bow.",
+            "effects": {
+              "energy": -2
+            },
+            "cancel": [
+              "w_toothpaste"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Let them have their privacy",
+        "duration": 5,
+        "outcomes": [
+          {
+            "text": "Everyone deserves a little alone time. You get some too. It lasts four minutes.",
+            "effects": {
+              "energy": 3
+            }
+          }
+        ]
+      }
     ]
   },
   {
@@ -40,8 +288,34 @@
     "hazard": "sting",
     "tell": "w_bathroom_tell",
     "choices": [
-      { "label": "Scrub it now", "duration": 20, "tags": ["martyr"], "outcomes": [ { "text": "Twenty minutes with a sponge. The bathroom has never been cleaner, or mintier. The ceiling remains a mystery.", "effects": { "energy": -7, "home": -2 } } ] },
-      { "label": "Leave it. It's basically soap.", "duration": 2, "outcomes": [ { "text": "It is not basically soap. It dries into a crust that will outlive you both.", "effects": { "home": -8 } } ] }
+      {
+        "label": "Scrub it now",
+        "duration": 20,
+        "tags": [
+          "martyr"
+        ],
+        "outcomes": [
+          {
+            "text": "Twenty minutes with a sponge. The bathroom has never been cleaner, or mintier. The ceiling remains a mystery.",
+            "effects": {
+              "energy": -7,
+              "home": -2
+            }
+          }
+        ]
+      },
+      {
+        "label": "Leave it. It's basically soap.",
+        "duration": 2,
+        "outcomes": [
+          {
+            "text": "It is not basically soap. It dries into a crust that will outlive you both.",
+            "effects": {
+              "home": -8
+            }
+          }
+        ]
+      }
     ]
   },
   {
@@ -51,8 +325,33 @@
     "forced": true,
     "priority": 86,
     "choices": [
-      { "label": "Find them. Fast.", "duration": 5, "outcomes": [ { "text": "Under the dining table: scissors open, a fistful of their own bangs, not yet cut. You trade the scissors for a crayon. Close one.", "effects": { "energy": -3 }, "cancel": ["w_haircut"] } ] },
-      { "label": "They're safety scissors. How bad can it be?", "duration": 2, "outcomes": [ { "text": "You finish your email. From under the dining table: one distant, satisfied snip.", "effects": { "energy": 3 } } ] }
+      {
+        "label": "Find them. Fast.",
+        "duration": 5,
+        "outcomes": [
+          {
+            "text": "Under the dining table: scissors open, a fistful of their own bangs, not yet cut. You trade the scissors for a crayon. Close one.",
+            "effects": {
+              "energy": -3
+            },
+            "cancel": [
+              "w_haircut"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "They're safety scissors. How bad can it be?",
+        "duration": 2,
+        "outcomes": [
+          {
+            "text": "You finish your email. From under the dining table: one distant, satisfied snip.",
+            "effects": {
+              "energy": 3
+            }
+          }
+        ]
+      }
     ]
   },
   {
@@ -62,8 +361,31 @@
     "hazard": "sting",
     "tell": "w_scissors_tell",
     "choices": [
-      { "label": "Take them to a kids' salon to even it out", "duration": 45, "outcomes": [ { "text": "The stylist sighs, \"Happens every week,\" and evens it out. It's even now. Even shorter. $28 and a lollipop.", "effects": { "energy": -8 } } ] },
-      { "label": "Post it before anyone else can", "duration": 5, "outcomes": [ { "text": "\"Our little stylist ✂️\" Thirty-one laughing faces. One parent asks, sincerely, who you went to.", "effects": { "rep": -7, "energy": -1 } } ] }
+      {
+        "label": "Take them to a kids' salon to even it out",
+        "duration": 45,
+        "outcomes": [
+          {
+            "text": "The stylist sighs, \"Happens every week,\" and evens it out. It's even now. Even shorter. $28 and a lollipop.",
+            "effects": {
+              "energy": -8
+            }
+          }
+        ]
+      },
+      {
+        "label": "Post it before anyone else can",
+        "duration": 5,
+        "outcomes": [
+          {
+            "text": "\"Our little stylist ✂️\" Thirty-one laughing faces. One parent asks, sincerely, who you went to.",
+            "effects": {
+              "rep": -7,
+              "energy": -1
+            }
+          }
+        ]
+      }
     ]
   },
   {
@@ -72,10 +394,39 @@
     "text": "Your laptop is open on the coffee table with the report on screen. Your toddler is circling it slowly, like a shark that has read about laptops.",
     "forced": true,
     "priority": 86,
-    "when": { "flags": ["d:deadline"] },
+    "when": {
+      "flags": [
+        "d:deadline"
+      ]
+    },
     "choices": [
-      { "label": "Close the laptop", "duration": 2, "outcomes": [ { "text": "Click. The shark looks at you, then at the closed laptop, then swims off in search of a softer target.", "effects": { "energy": -2 }, "cancel": ["w_laptop_send"] } ] },
-      { "label": "They can't reach the keyboard. Probably.", "duration": 2, "outcomes": [ { "text": "You use the time to stare into the open fridge. It's lovely in there. Cold and quiet.", "effects": { "energy": 3 } } ] }
+      {
+        "label": "Close the laptop",
+        "duration": 2,
+        "outcomes": [
+          {
+            "text": "Click. The shark looks at you, then at the closed laptop, then swims off in search of a softer target.",
+            "effects": {
+              "energy": -2
+            },
+            "cancel": [
+              "w_laptop_send"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "They can't reach the keyboard. Probably.",
+        "duration": 2,
+        "outcomes": [
+          {
+            "text": "You use the time to stare into the open fridge. It's lovely in there. Cold and quiet.",
+            "effects": {
+              "energy": 3
+            }
+          }
+        ]
+      }
     ]
   },
   {
@@ -84,10 +435,37 @@
     "text": "Your toddler has added nine pages of the letter J and a winky face to the report, then pressed every key, including the one that sends it to your whole team.",
     "hazard": "sting",
     "tell": "w_laptop_tell",
-    "when": { "flags": ["d:deadline"] },
+    "when": {
+      "flags": [
+        "d:deadline"
+      ]
+    },
     "choices": [
-      { "label": "Redo the edits. Send a sheepish v2.", "duration": 25, "outcomes": [ { "text": "\"Please disregard the previous version.\" You delete 4,000 Js one by one, like a monk with a grudge.", "effects": { "energy": -9 } } ] },
-      { "label": "Reply-all: \"My co-author has notes.\"", "duration": 3, "outcomes": [ { "text": "Two coworkers laugh. Two coworkers also have kids at your daycare. It's in the group chat by lunch.", "effects": { "rep": -6, "energy": -2 } } ] }
+      {
+        "label": "Redo the edits. Send a sheepish v2.",
+        "duration": 25,
+        "outcomes": [
+          {
+            "text": "\"Please disregard the previous version.\" You delete 4,000 Js one by one, like a monk with a grudge.",
+            "effects": {
+              "energy": -9
+            }
+          }
+        ]
+      },
+      {
+        "label": "Reply-all: \"My co-author has notes.\"",
+        "duration": 3,
+        "outcomes": [
+          {
+            "text": "Two coworkers laugh. Two coworkers also have kids at your daycare. It's in the group chat by lunch.",
+            "effects": {
+              "rep": -6,
+              "energy": -2
+            }
+          }
+        ]
+      }
     ]
   },
   {
@@ -96,10 +474,39 @@
     "text": "\"I don't need to go,\" your toddler says, doing a small, urgent dance. \"I don't need to go,\" they repeat, crossing their legs.",
     "forced": true,
     "priority": 86,
-    "when": { "flags": ["d:potty"] },
+    "when": {
+      "flags": [
+        "d:potty"
+      ]
+    },
     "choices": [
-      { "label": "Potty. Now. Run.", "duration": 5, "outcomes": [ { "text": "You make it with two seconds to spare. A success! You both cheer. You cheer harder.", "effects": { "energy": -3 }, "cancel": ["w_potty_rug"] } ] },
-      { "label": "Take them at their word", "duration": 2, "outcomes": [ { "text": "They're a person. They know their own body. You respect that, and sit down for the first time since 6.", "effects": { "energy": 3 } } ] }
+      {
+        "label": "Potty. Now. Run.",
+        "duration": 5,
+        "outcomes": [
+          {
+            "text": "You make it with two seconds to spare. A success! You both cheer. You cheer harder.",
+            "effects": {
+              "energy": -3
+            },
+            "cancel": [
+              "w_potty_rug"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Take them at their word",
+        "duration": 2,
+        "outcomes": [
+          {
+            "text": "They're a person. They know their own body. You respect that, and sit down for the first time since 6.",
+            "effects": {
+              "energy": 3
+            }
+          }
+        ]
+      }
     ]
   },
   {
@@ -108,10 +515,40 @@
     "text": "The good rug. The rug from before you had a toddler, back when you had opinions about rugs. The rug has been christened.",
     "hazard": "sting",
     "tell": "w_potty_tell",
-    "when": { "flags": ["d:potty"] },
+    "when": {
+      "flags": [
+        "d:potty"
+      ]
+    },
     "choices": [
-      { "label": "Scrub, spray, blot, despair", "duration": 20, "tags": ["martyr"], "outcomes": [ { "text": "Enzyme spray, a towel, your whole body weight. It's mostly out. The rug will never be the good rug again, but it'll be a rug.", "effects": { "energy": -7, "home": -3 } } ] },
-      { "label": "Roll it up. Garage. Forever.", "duration": 10, "outcomes": [ { "text": "The living room is a bare, echoing floor now. It looks like a dance studio. Your toddler takes this as a challenge.", "effects": { "home": -8 } } ] }
+      {
+        "label": "Scrub, spray, blot, despair",
+        "duration": 20,
+        "tags": [
+          "martyr"
+        ],
+        "outcomes": [
+          {
+            "text": "Enzyme spray, a towel, your whole body weight. It's mostly out. The rug will never be the good rug again, but it'll be a rug.",
+            "effects": {
+              "energy": -7,
+              "home": -3
+            }
+          }
+        ]
+      },
+      {
+        "label": "Roll it up. Garage. Forever.",
+        "duration": 10,
+        "outcomes": [
+          {
+            "text": "The living room is a bare, echoing floor now. It looks like a dance studio. Your toddler takes this as a challenge.",
+            "effects": {
+              "home": -8
+            }
+          }
+        ]
+      }
     ]
   },
   {
@@ -120,10 +557,39 @@
     "text": "Your toddler has gone quiet in the corner and is chewing something with real dedication. You hear a soft, papery crunch.",
     "forced": true,
     "priority": 86,
-    "when": { "flags": ["d:teething"] },
+    "when": {
+      "flags": [
+        "d:teething"
+      ]
+    },
     "choices": [
-      { "label": "Investigate the crunch", "duration": 3, "outcomes": [ { "text": "It's the library book. You swap it for a frozen teether. They accept the trade like a fair businessperson.", "effects": { "energy": -2 }, "cancel": ["w_book_chewed"] } ] },
-      { "label": "Whatever it is, it's helping", "duration": 2, "outcomes": [ { "text": "The whimpering stops. Something is working. You decide not to know what.", "effects": { "energy": 3 } } ] }
+      {
+        "label": "Investigate the crunch",
+        "duration": 3,
+        "outcomes": [
+          {
+            "text": "It's the library book. You swap it for a frozen teether. They accept the trade like a fair businessperson.",
+            "effects": {
+              "energy": -2
+            },
+            "cancel": [
+              "w_book_chewed"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Whatever it is, it's helping",
+        "duration": 2,
+        "outcomes": [
+          {
+            "text": "The whimpering stops. Something is working. You decide not to know what.",
+            "effects": {
+              "energy": 3
+            }
+          }
+        ]
+      }
     ]
   },
   {
@@ -132,10 +598,37 @@
     "text": "The library book about a tired bear now has a bite-shaped bay where the bear used to be. The sticker on the back says \"Damaged items will be billed.\"",
     "hazard": "sting",
     "tell": "w_chew_tell",
-    "when": { "flags": ["d:teething"] },
+    "when": {
+      "flags": [
+        "d:teething"
+      ]
+    },
     "choices": [
-      { "label": "Confess at the library desk", "duration": 20, "outcomes": [ { "text": "The librarian has seen worse. The librarian has a form for this. You fill out the form while your toddler chews the pen.", "effects": { "energy": -5, "rep": -3 } } ] },
-      { "label": "Clear tape. Say nothing.", "duration": 5, "outcomes": [ { "text": "Tape, hope and a strategic bookmark. They will find out. Libraries always find out.", "effects": { "rep": -8 } } ] }
+      {
+        "label": "Confess at the library desk",
+        "duration": 20,
+        "outcomes": [
+          {
+            "text": "The librarian has seen worse. The librarian has a form for this. You fill out the form while your toddler chews the pen.",
+            "effects": {
+              "energy": -5,
+              "rep": -3
+            }
+          }
+        ]
+      },
+      {
+        "label": "Clear tape. Say nothing.",
+        "duration": 5,
+        "outcomes": [
+          {
+            "text": "Tape, hope and a strategic bookmark. They will find out. Libraries always find out.",
+            "effects": {
+              "rep": -8
+            }
+          }
+        ]
+      }
     ]
   },
   {
@@ -143,32 +636,103 @@
     "title": "The Chirp",
     "text": "Somewhere in the house, a smoke detector is chirping for a new battery, once every forty seconds. You can't tell which one. Your toddler starts chirping back.",
     "hazard": "sting",
-    "choices": [ { "label": "Continue", "duration": 15, "outcomes": [ { "text": "You find it on the fourth ladder climb and change the battery, because that part matters. Your toddler keeps chirping for two days.", "effects": { "energy": -7 } } ] } ]
+    "choices": [
+      {
+        "label": "Continue",
+        "duration": 15,
+        "outcomes": [
+          {
+            "text": "You find it on the fourth ladder climb and change the battery, because that part matters. Your toddler keeps chirping for two days.",
+            "effects": {
+              "energy": -7
+            }
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "w_pajama_day",
     "title": "Pajama Day Was Today",
     "text": "The group chat posts 31 photos of tiny pajamas. Today was pajama day at daycare. Your toddler was the only one in jeans and a very serious sweater.",
     "hazard": "sting",
-    "when": { "notFlags": ["d:home"] },
-    "choices": [ { "label": "Continue", "duration": 2, "outcomes": [ { "text": "Someone replies, \"Aw, they looked so professional!\" with no emoji. You will think about it in the shower for a week.", "effects": { "rep": -8 } } ] } ]
+    "when": {
+      "notFlags": [
+        "d:home"
+      ]
+    },
+    "choices": [
+      {
+        "label": "Continue",
+        "duration": 2,
+        "outcomes": [
+          {
+            "text": "Someone replies, \"Aw, they looked so professional!\" with no emoji. You will think about it in the shower for a week.",
+            "effects": {
+              "rep": -8
+            }
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "w_yogurt_hair",
     "title": "Since Breakfast",
     "text": "You catch your reflection in a shop window. There's yogurt in your hair. Judging by the crust, it's been there since breakfast. You've talked to six people today.",
     "hazard": "sting",
-    "choices": [ { "label": "Continue", "duration": 2, "outcomes": [ { "text": "Six people. Nobody said anything. That's either kindness or a group decision.", "effects": { "rep": -5, "energy": -2 } } ] } ]
+    "choices": [
+      {
+        "label": "Continue",
+        "duration": 2,
+        "outcomes": [
+          {
+            "text": "Six people. Nobody said anything. That's either kindness or a group decision.",
+            "effects": {
+              "rep": -5,
+              "energy": -2
+            }
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "w_grandma_kitchen",
     "title": "The Kitchen Has Been Improved",
     "text": "Grandma has reorganized your kitchen. It's efficient. It's logical. It has labels. You will never find the colander again.",
     "hazard": "sting",
-    "when": { "flags": ["d:grandma"] },
+    "when": {
+      "flags": [
+        "d:grandma"
+      ]
+    },
     "choices": [
-      { "label": "\"Wow. Thank you.\"", "duration": 2, "outcomes": [ { "text": "She glows. You look for a spoon nine times today. The spoons are in a drawer labeled \"SPOONS.\" You never once think to look there.", "effects": { "energy": -7 } } ] },
-      { "label": "\"Where's the colander, though?\"", "duration": 5, "outcomes": [ { "text": "She shows you. Then she tells the family group chat you were \"a little short\" with her. Your cousin reacts with a 😬.", "effects": { "rep": -6, "energy": -2 } } ] }
+      {
+        "label": "\"Wow. Thank you.\"",
+        "duration": 2,
+        "outcomes": [
+          {
+            "text": "She glows. You look for a spoon nine times today. The spoons are in a drawer labeled \"SPOONS.\" You never once think to look there.",
+            "effects": {
+              "energy": -7
+            }
+          }
+        ]
+      },
+      {
+        "label": "\"Where's the colander, though?\"",
+        "duration": 5,
+        "outcomes": [
+          {
+            "text": "She shows you. Then she tells the family group chat you were \"a little short\" with her. Your cousin reacts with a 😬.",
+            "effects": {
+              "rep": -6,
+              "energy": -2
+            }
+          }
+        ]
+      }
     ]
   },
   {
@@ -176,10 +740,37 @@
     "title": "Your Eye Itches",
     "text": "Your toddler is fine. Your eye, however, has itched for an hour and is now the color of a stop sign. Daycare's pink eye has found a new host: you.",
     "hazard": "sting",
-    "when": { "flags": ["d:home"] },
+    "when": {
+      "flags": [
+        "d:home"
+      ]
+    },
     "choices": [
-      { "label": "Call the doctor, get drops", "duration": 30, "outcomes": [ { "text": "A video visit, a prescription, a pharmacy run with a toddler. Drops twice a day. Wash your hands. Wash them again.", "effects": { "energy": -8 } } ] },
-      { "label": "Sunglasses, indoors, like a celebrity in hiding", "duration": 2, "outcomes": [ { "text": "You wear sunglasses to the mailbox. A neighbor asks if you're okay, in a voice that has already decided.", "effects": { "rep": -6, "energy": -3 } } ] }
+      {
+        "label": "Call the doctor, get drops",
+        "duration": 30,
+        "outcomes": [
+          {
+            "text": "A video visit, a prescription, a pharmacy run with a toddler. Drops twice a day. Wash your hands. Wash them again.",
+            "effects": {
+              "energy": -8
+            }
+          }
+        ]
+      },
+      {
+        "label": "Sunglasses, indoors, like a celebrity in hiding",
+        "duration": 2,
+        "outcomes": [
+          {
+            "text": "You wear sunglasses to the mailbox. A neighbor asks if you're okay, in a voice that has already decided.",
+            "effects": {
+              "rep": -6,
+              "energy": -3
+            }
+          }
+        ]
+      }
     ]
   },
   {
@@ -188,9 +779,52 @@
     "text": "You turned your back for the length of one sneeze. The fridge is open. The egg carton is open. The floor is a breakfast you didn't make.",
     "hazard": "sting",
     "choices": [
-      { "label": "Clean it up now", "duration": 15, "tags": ["martyr"], "outcomes": [ { "text": "Raw egg does not wipe. Raw egg relocates. Fifteen minutes later the floor is clean and you are not.", "effects": { "energy": -6, "home": -2 } } ] },
-      { "label": "Let them \"help\" with the paper towels", "duration": 20, "minEnergy": 20, "tags": ["present"], "outcomes": [ { "text": "They help. They are so proud. The egg is now spread across a wider, more ambitious area.", "effects": { "mood": 4, "energy": -4, "home": -6 } } ] },
-      { "label": "Towel over it. Deal with it after nap.", "duration": 2, "outcomes": [ { "text": "The towel is a lid on a problem. By 3 PM the kitchen has a smell with a personality.", "effects": { "home": -9 } } ] }
+      {
+        "label": "Clean it up now",
+        "duration": 15,
+        "tags": [
+          "martyr"
+        ],
+        "outcomes": [
+          {
+            "text": "Raw egg does not wipe. Raw egg relocates. Fifteen minutes later the floor is clean and you are not.",
+            "effects": {
+              "energy": -6,
+              "home": -2
+            }
+          }
+        ]
+      },
+      {
+        "label": "Let them \"help\" with the paper towels",
+        "duration": 20,
+        "minEnergy": 20,
+        "tags": [
+          "present"
+        ],
+        "outcomes": [
+          {
+            "text": "They help. They are so proud. The egg is now spread across a wider, more ambitious area.",
+            "effects": {
+              "mood": 4,
+              "energy": -4,
+              "home": -6
+            }
+          }
+        ]
+      },
+      {
+        "label": "Towel over it. Deal with it after nap.",
+        "duration": 2,
+        "outcomes": [
+          {
+            "text": "The towel is a lid on a problem. By 3 PM the kitchen has a smell with a personality.",
+            "effects": {
+              "home": -9
+            }
+          }
+        ]
+      }
     ]
   },
   {
@@ -199,11 +833,60 @@
     "text": "A flush. A gurgle. A small voice: \"Rex went swimming.\" Rex is a plastic dinosaur. The toilet is now a tide pool, and the tide is coming in.",
     "hazard": "catastrophe",
     "choices": [
-      { "label": "Call the emergency plumber", "duration": 60, "outcomes": [ { "text": "The plumber fishes Rex out with a tool like a robot arm and charges $240. Rex is fine. The bathroom floor is not. Your wallet is in intensive care.", "effects": { "energy": -10, "home": -10, "mood": -4 } } ] },
-      { "label": "Plunger, gloves and a video tutorial", "duration": 45, "minEnergy": 30, "tags": ["martyr"], "outcomes": [
-        { "text": "Forty minutes, one snake from the hardware store and a noise you'll never forget. Rex emerges. Your toddler greets Rex like a returning astronaut.", "effects": { "energy": -16, "home": -6, "mood": 4 } },
-        { "text": "The tutorial man made it look easy. The tutorial man had a different toilet. You call the plumber anyway, now with wet sleeves.", "effects": { "energy": -16, "home": -12, "mood": -4 } } ] },
-      { "label": "Close the lid. Sign on the door. Later.", "duration": 5, "outcomes": [ { "text": "\"CLOSED FOR RENOVATIONS.\" You are a one-toilet household now, like pioneers. Rex is lost at sea, and your toddler is in mourning.", "effects": { "home": -18, "mood": -8, "rep": -3 } } ] }
+      {
+        "label": "Call the emergency plumber",
+        "duration": 60,
+        "outcomes": [
+          {
+            "text": "The plumber fishes Rex out with a tool like a robot arm and charges $240. Rex is fine. The bathroom floor is not. Your wallet is in intensive care.",
+            "effects": {
+              "energy": -10,
+              "home": -10,
+              "mood": -4
+            }
+          }
+        ]
+      },
+      {
+        "label": "Plunger, gloves and a video tutorial",
+        "duration": 45,
+        "minEnergy": 30,
+        "tags": [
+          "martyr"
+        ],
+        "outcomes": [
+          {
+            "text": "Forty minutes, one snake from the hardware store and a noise you'll never forget. Rex emerges. Your toddler greets Rex like a returning astronaut.",
+            "effects": {
+              "energy": -16,
+              "home": -6,
+              "mood": 4
+            }
+          },
+          {
+            "text": "The tutorial man made it look easy. The tutorial man had a different toilet. You call the plumber anyway, now with wet sleeves.",
+            "effects": {
+              "energy": -16,
+              "home": -12,
+              "mood": -4
+            }
+          }
+        ]
+      },
+      {
+        "label": "Close the lid. Sign on the door. Later.",
+        "duration": 5,
+        "outcomes": [
+          {
+            "text": "\"CLOSED FOR RENOVATIONS.\" You are a one-toilet household now, like pioneers. Rex is lost at sea, and your toddler is in mourning.",
+            "effects": {
+              "home": -18,
+              "mood": -8,
+              "rep": -3
+            }
+          }
+        ]
+      }
     ]
   },
   {
@@ -211,13 +894,84 @@
     "title": "Daycare Is Calling",
     "text": "Daycare: \"They're running a fever of 101. Can you come within the hour?\" You are, at this exact moment, unmuting yourself to present the numbers.",
     "hazard": "catastrophe",
-    "when": { "flags": ["d:deadline"], "notFlags": ["d:home"] },
+    "when": {
+      "flags": [
+        "d:deadline"
+      ],
+      "notFlags": [
+        "d:home"
+      ]
+    },
     "choices": [
-      { "label": "Leave the meeting. Go now.", "duration": 40, "outcomes": [ { "text": "You leave mid-slide. Your toddler is flushed, floppy and very glad to see you. Fluids, rest, the dose on the fridge. The numbers will have to wait.", "effects": { "energy": -12, "mood": -8, "debt": 8 } } ] },
-      { "label": "Ask your partner to get them", "duration": 5, "tags": ["tagteam"], "outcomes": [
-        { "when": { "min": { "rel": 55 } }, "text": "\"Leaving now.\" Your partner gets there in twenty minutes. You present to a room of nodding faces while texting \"thank you\" under the table.", "effects": { "energy": -6, "rel": -2, "mood": -8, "debt": 8 }, "ledger": { "errands": "partner" } },
-        { "when": { "max": { "rel": 54 } }, "text": "\"I'm in a thing too.\" Of course they are. You both leave your things. You both resent it. You both drive.", "effects": { "energy": -12, "rel": -6, "mood": -6, "debt": 6 } } ] },
-      { "label": "Present first. Then sprint.", "duration": 25, "outcomes": [ { "text": "Nine minutes of slides, then a dash. You make it in fifty-eight minutes. The director's face says \"fifty-eight\" back to you.", "effects": { "energy": -14, "mood": -10, "debt": 4, "rep": -6 } } ] }
+      {
+        "label": "Leave the meeting. Go now.",
+        "duration": 40,
+        "outcomes": [
+          {
+            "text": "You leave mid-slide. Your toddler is flushed, floppy and very glad to see you. Fluids, rest, the dose on the fridge. The numbers will have to wait.",
+            "effects": {
+              "energy": -12,
+              "mood": -8,
+              "debt": 8
+            }
+          }
+        ]
+      },
+      {
+        "label": "Ask your partner to get them",
+        "duration": 5,
+        "tags": [
+          "tagteam"
+        ],
+        "outcomes": [
+          {
+            "when": {
+              "min": {
+                "rel": 55
+              }
+            },
+            "text": "\"Leaving now.\" Your partner gets there in twenty minutes. You present to a room of nodding faces while texting \"thank you\" under the table.",
+            "effects": {
+              "energy": -6,
+              "rel": -2,
+              "mood": -8,
+              "debt": 8
+            },
+            "ledger": {
+              "errands": "partner"
+            }
+          },
+          {
+            "when": {
+              "max": {
+                "rel": 54
+              }
+            },
+            "text": "\"I'm in a thing too.\" Of course they are. You both leave your things. You both resent it. You both drive.",
+            "effects": {
+              "energy": -12,
+              "rel": -6,
+              "mood": -6,
+              "debt": 6
+            }
+          }
+        ]
+      },
+      {
+        "label": "Present first. Then sprint.",
+        "duration": 25,
+        "outcomes": [
+          {
+            "text": "Nine minutes of slides, then a dash. You make it in fifty-eight minutes. The director's face says \"fifty-eight\" back to you.",
+            "effects": {
+              "energy": -14,
+              "mood": -10,
+              "debt": 4,
+              "rep": -6
+            }
+          }
+        ]
+      }
     ]
   },
   {
@@ -226,11 +980,80 @@
     "text": "\"A case of head lice has been reported in the Caterpillar Room.\" You read it twice. Your scalp begins to itch immediately and will not stop until Sunday.",
     "hazard": "catastrophe",
     "choices": [
-      { "label": "Comb everyone. Wash everything.", "duration": 90, "tags": ["martyr"], "outcomes": [ { "text": "The fine-tooth comb, every head, every pillowcase on hot. You find nothing. You keep looking. You will dream about combs.", "effects": { "energy": -20, "home": -6 }, "ledger": { "laundry": "you" } } ] },
-      { "label": "Split it with your partner tonight", "duration": 10, "tags": ["tagteam"], "outcomes": [
-        { "when": { "min": { "rel": 55 } }, "text": "You comb, they wash. Two adults in headlamps at 8 PM, whispering \"anything?\" It's almost romantic. It isn't. But almost.", "effects": { "energy": -10, "home": -8, "rel": -2 }, "ledger": { "laundry": "partner" } },
-        { "when": { "max": { "rel": 54 } }, "text": "\"Can't it wait till the weekend?\" It cannot. You do it alone, loudly, so they can hear the combing.", "effects": { "energy": -14, "home": -8, "rel": -8 }, "ledger": { "laundry": "you" } } ] },
-      { "label": "Book the lice clinic", "duration": 60, "outcomes": [ { "text": "A calm professional with a magnifying lamp combs your toddler while they watch cartoons. $180. Someone from daycare recognizes your car in the lot.", "effects": { "energy": -8, "rep": -10, "home": -4 } } ] }
+      {
+        "label": "Comb everyone. Wash everything.",
+        "duration": 90,
+        "tags": [
+          "martyr"
+        ],
+        "outcomes": [
+          {
+            "text": "The fine-tooth comb, every head, every pillowcase on hot. You find nothing. You keep looking. You will dream about combs.",
+            "effects": {
+              "energy": -20,
+              "home": -6
+            },
+            "ledger": {
+              "laundry": "you"
+            }
+          }
+        ]
+      },
+      {
+        "label": "Split it with your partner tonight",
+        "duration": 10,
+        "tags": [
+          "tagteam"
+        ],
+        "outcomes": [
+          {
+            "when": {
+              "min": {
+                "rel": 55
+              }
+            },
+            "text": "You comb, they wash. Two adults in headlamps at 8 PM, whispering \"anything?\" It's almost romantic. It isn't. But almost.",
+            "effects": {
+              "energy": -10,
+              "home": -8,
+              "rel": -2
+            },
+            "ledger": {
+              "laundry": "partner"
+            }
+          },
+          {
+            "when": {
+              "max": {
+                "rel": 54
+              }
+            },
+            "text": "\"Can't it wait till the weekend?\" It cannot. You do it alone, loudly, so they can hear the combing.",
+            "effects": {
+              "energy": -14,
+              "home": -8,
+              "rel": -8
+            },
+            "ledger": {
+              "laundry": "you"
+            }
+          }
+        ]
+      },
+      {
+        "label": "Book the lice clinic",
+        "duration": 60,
+        "outcomes": [
+          {
+            "text": "A calm professional with a magnifying lamp combs your toddler while they watch cartoons. $180. Someone from daycare recognizes your car in the lot.",
+            "effects": {
+              "energy": -8,
+              "rep": -10,
+              "home": -4
+            }
+          }
+        ]
+      }
     ]
   },
   {
@@ -238,12 +1061,52 @@
     "title": "Locked Out",
     "text": "You step onto the porch for the package. Behind you: click. Through the glass, your toddler waves, safe inside and thrilled, one hand still on the lock.",
     "hazard": "catastrophe",
-    "when": { "flags": ["d:home"] },
+    "when": {
+      "flags": [
+        "d:home"
+      ]
+    },
     "choices": [
-      { "label": "Yell for the neighbor with the spare key", "duration": 15, "outcomes": [ { "text": "You stay at the window making faces while the neighbor jogs over in a bathrobe with the spare key. They will tell this at every block party, forever. Inside, the snack drawer has been emptied.", "effects": { "energy": -8, "rep": -10, "home": -6 } } ] },
-      { "label": "Coach them through unlocking it", "duration": 20, "minEnergy": 25, "tags": ["present"], "outcomes": [
-        { "text": "\"Turn the little thing. The LITTLE thing.\" Ninth try: click. You cheer. They cheer. They lock it again, then unlock it, beaming.", "effects": { "energy": -14, "home": -8, "mood": 4 } },
-        { "text": "They wave. They blow a kiss. They wander off to empty the snack drawer. Twenty minutes in, you yell for the neighbor anyway.", "effects": { "energy": -14, "home": -8, "rep": -10 } } ] }
+      {
+        "label": "Yell for the neighbor with the spare key",
+        "duration": 15,
+        "outcomes": [
+          {
+            "text": "You stay at the window making faces while the neighbor jogs over in a bathrobe with the spare key. They will tell this at every block party, forever. Inside, the snack drawer has been emptied.",
+            "effects": {
+              "energy": -8,
+              "rep": -10,
+              "home": -6
+            }
+          }
+        ]
+      },
+      {
+        "label": "Coach them through unlocking it",
+        "duration": 20,
+        "minEnergy": 25,
+        "tags": [
+          "present"
+        ],
+        "outcomes": [
+          {
+            "text": "\"Turn the little thing. The LITTLE thing.\" Ninth try: click. You cheer. They cheer. They lock it again, then unlock it, beaming.",
+            "effects": {
+              "energy": -14,
+              "home": -8,
+              "mood": 4
+            }
+          },
+          {
+            "text": "They wave. They blow a kiss. They wander off to empty the snack drawer. Twenty minutes in, you yell for the neighbor anyway.",
+            "effects": {
+              "energy": -14,
+              "home": -8,
+              "rep": -10
+            }
+          }
+        ]
+      }
     ]
   },
   {
@@ -252,11 +1115,78 @@
     "text": "Your in-laws' weekly video call. Grandpa is describing his gutters when your toddler leans into frame and projectile-vomits directly onto the laptop.",
     "hazard": "catastrophe",
     "choices": [
-      { "label": "Hang up. Towels. Bath.", "duration": 30, "outcomes": [ { "text": "You hang up mid-gutter. Towels, bath, clean pajamas, a cool cloth. Your toddler perks up at once. The laptop does not.", "effects": { "energy": -10, "home": -8, "rel": -4, "debt": 6 } } ] },
-      { "label": "Point the camera at the ceiling: \"Bad connection!\"", "duration": 20, "outcomes": [ { "text": "Grandpa finishes the gutter story to your ceiling fan while you clean one-handed. You hear him say \"Hello?\" eleven times.", "effects": { "energy": -6, "home": -14, "rel": -6, "debt": 6 } } ] },
-      { "label": "Pass the call to your partner", "duration": 20, "tags": ["tagteam"], "outcomes": [
-        { "when": { "min": { "rel": 50 } }, "text": "Your partner takes the laptop and the parents; you take the toddler. A pit crew. A disgusting, efficient pit crew.", "effects": { "energy": -8, "home": -10, "debt": 6 }, "ledger": { "bath": "you" } },
-        { "when": { "max": { "rel": 49 } }, "text": "Your partner is in the shower and stays there. You do both, badly. Grandpa sees things.", "effects": { "energy": -12, "home": -10, "rel": -6, "debt": 6 }, "ledger": { "bath": "you" } } ] }
+      {
+        "label": "Hang up. Towels. Bath.",
+        "duration": 30,
+        "outcomes": [
+          {
+            "text": "You hang up mid-gutter. Towels, bath, clean pajamas, a cool cloth. Your toddler perks up at once. The laptop does not.",
+            "effects": {
+              "energy": -10,
+              "home": -8,
+              "rel": -4,
+              "debt": 6
+            }
+          }
+        ]
+      },
+      {
+        "label": "Point the camera at the ceiling: \"Bad connection!\"",
+        "duration": 20,
+        "outcomes": [
+          {
+            "text": "Grandpa finishes the gutter story to your ceiling fan while you clean one-handed. You hear him say \"Hello?\" eleven times.",
+            "effects": {
+              "energy": -6,
+              "home": -14,
+              "rel": -6,
+              "debt": 6
+            }
+          }
+        ]
+      },
+      {
+        "label": "Pass the call to your partner",
+        "duration": 20,
+        "tags": [
+          "tagteam"
+        ],
+        "outcomes": [
+          {
+            "when": {
+              "min": {
+                "rel": 50
+              }
+            },
+            "text": "Your partner takes the laptop and the parents; you take the toddler. A pit crew. A disgusting, efficient pit crew.",
+            "effects": {
+              "energy": -8,
+              "home": -10,
+              "debt": 6
+            },
+            "ledger": {
+              "bath": "you"
+            }
+          },
+          {
+            "when": {
+              "max": {
+                "rel": 49
+              }
+            },
+            "text": "Your partner is in the shower and stays there. You do both, badly. Grandpa sees things.",
+            "effects": {
+              "energy": -12,
+              "home": -10,
+              "rel": -6,
+              "debt": 6
+            },
+            "ledger": {
+              "bath": "you"
+            }
+          }
+        ]
+      }
     ]
   },
   {
@@ -265,9 +1195,50 @@
     "text": "Toddler buckled. Bag packed. Snacks loaded. You turn the key. Click. Click. Nothing. In the back seat, a shoe comes off, then the other shoe, then a sock.",
     "hazard": "catastrophe",
     "choices": [
-      { "label": "Call roadside assistance and wait", "duration": 60, "outcomes": [ { "text": "You unbuckle them first, obviously, and wait inside. \"About an hour\" is two. You play I spy at the window until you've spied everything twice.", "effects": { "energy": -12, "mood": -10, "rep": -4 } } ] },
-      { "label": "Flag down a neighbor for a jump", "duration": 30, "minEnergy": 20, "outcomes": [ { "text": "A neighbor with jumper cables and a lot of confidence. It works on the fourth try. They explain alternators to you for twenty minutes.", "effects": { "energy": -14, "rep": -6, "mood": -4 } } ] },
-      { "label": "Unbuckle. Walk wherever you were going.", "duration": 45, "outcomes": [ { "text": "You walk. They ride on your shoulders, then walk, then insist on carrying the bag. You arrive late, sweaty and somehow closer.", "effects": { "energy": -18, "mood": -4, "rep": -2, "sleepy": 8 } } ] }
+      {
+        "label": "Call roadside assistance and wait",
+        "duration": 60,
+        "outcomes": [
+          {
+            "text": "You unbuckle them first, obviously, and wait inside. \"About an hour\" is two. You play I spy at the window until you've spied everything twice.",
+            "effects": {
+              "energy": -12,
+              "mood": -10,
+              "rep": -4
+            }
+          }
+        ]
+      },
+      {
+        "label": "Flag down a neighbor for a jump",
+        "duration": 30,
+        "minEnergy": 20,
+        "outcomes": [
+          {
+            "text": "A neighbor with jumper cables and a lot of confidence. It works on the fourth try. They explain alternators to you for twenty minutes.",
+            "effects": {
+              "energy": -14,
+              "rep": -6,
+              "mood": -4
+            }
+          }
+        ]
+      },
+      {
+        "label": "Unbuckle. Walk wherever you were going.",
+        "duration": 45,
+        "outcomes": [
+          {
+            "text": "You walk. They ride on your shoulders, then walk, then insist on carrying the bag. You arrive late, sweaty and somehow closer.",
+            "effects": {
+              "energy": -18,
+              "mood": -4,
+              "rep": -2,
+              "sleepy": 8
+            }
+          }
+        ]
+      }
     ]
   }
 ]

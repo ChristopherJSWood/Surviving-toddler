@@ -1,0 +1,60 @@
+[
+  {
+    "id": "coffee",
+    "title": "Coffee, Attempt #3",
+    "text": "You've reheated this coffee so many times it's legally a soup.",
+    "window": [
+      380,
+      1080
+    ],
+    "weight": 3,
+    "repeatable": true,
+    "choices": [
+      {
+        "label": "Reheat it again",
+        "duration": 5,
+        "outcomes": [
+          {
+            "text": "You drink it hot. A single tear rolls down your cheek.",
+            "effects": {
+              "energy": 8
+            },
+            "count": {
+              "coffee": 1
+            }
+          }
+        ]
+      },
+      {
+        "label": "Fresh pot",
+        "duration": 10,
+        "outcomes": [
+          {
+            "text": "A fresh pot. You smell it. You feel briefly human.",
+            "effects": {
+              "energy": 12
+            },
+            "set": [
+              "d:lateCoffee"
+            ],
+            "count": {
+              "coffee": 1
+            }
+          }
+        ]
+      },
+      {
+        "label": "Skip it. Hydrate like an adult.",
+        "duration": 2,
+        "outcomes": [
+          {
+            "text": "Water. How novel. Your body doesn't know what to do with it.",
+            "effects": {
+              "energy": 2
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

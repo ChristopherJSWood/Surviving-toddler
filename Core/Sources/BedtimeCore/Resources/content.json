@@ -1543,398 +1543,38 @@
    ]
   },
   {
-   "id": "buy_diapers",
-   "title": "Diaper Math",
-   "text": "You open the box. There are four diapers left. You do the math. The math is bad.",
+   "id": "filler",
+   "title": "A Quiet Moment",
+   "text": "Your toddler is sitting calmly in a corner. When they see you, they say, \"I didn't do it.\" You don't know what \"it\" is.",
    "window": [
-    420,
-    1100
+    0,
+    1440
    ],
-   "task": "diapers",
-   "weight": 3,
+   "filler": true,
+   "repeatable": true,
    "choices": [
     {
-     "label": "Order them now",
-     "duration": 5,
-     "outcomes": [
-      {
-       "text": "Subscribe and save. Arriving tomorrow. You are an adult who handles things.",
-       "effects": {
-        "energy": -2
-       },
-       "completeTask": "diapers"
-      }
-     ]
-    },
-    {
-     "label": "Text your partner to grab some",
-     "duration": 2,
-     "tags": [
-      "tagteam"
-     ],
-     "outcomes": [
-      {
-       "when": {
-        "min": {
-         "rel": 55
-        }
-       },
-       "text": "\"On it 👍\" They will absolutely forget. Wait, no. They send a photo of the receipt. Who is this person?",
-       "effects": {
-        "rel": 2
-       },
-       "completeTask": "diapers",
-       "ledger": {
-        "errands": "partner"
-       }
-      },
-      {
-       "when": {
-        "max": {
-         "rel": 54
-        }
-       },
-       "text": "Read at 2:14 PM. No reply. The diapers remain theoretical.",
-       "effects": {
-        "rel": -2
-       }
-      }
-     ]
-    },
-    {
-     "label": "Later. There are four.",
-     "duration": 1,
-     "outcomes": [
-      {
-       "text": "Four is plenty. Four is a number. Nothing bad has ever happened with four.",
-       "effects": {}
-      }
-     ]
-    }
-   ]
-  },
-  {
-   "id": "no_diapers",
-   "title": "There Are No Diapers",
-   "text": "\"Buy diapers\" expired. It's evening. There is one diaper left and the toddler has plans for it.",
-   "forced": true,
-   "priority": 85,
-   "choices": [
-    {
-     "label": "Drive to the 24-hour pharmacy",
-     "duration": 40,
-     "outcomes": [
-      {
-       "text": "You buy diapers in slippers under fluorescent lights. The cashier has seen this before. The cashier has seen everything.",
-       "effects": {
-        "energy": -12
-       }
-      }
-     ]
-    },
-    {
-     "label": "\"Whose turn was it to buy them?\"",
+     "label": "Investigate",
      "duration": 10,
      "outcomes": [
       {
-       "text": "It was yours. It was on your list. You both know it. The argument is about something else, as they always are.",
+       "text": "It was the lipstick. It was always going to be the lipstick.",
        "effects": {
-        "rel": -10,
-        "energy": -4
-       },
-       "count": {
-        "blames": 1
-       }
-      }
-     ]
-    }
-   ]
-  },
-  {
-   "id": "rsvp_missed",
-   "title": "\"Did You RSVP?\"",
-   "text": "Theo's mom texts the group chat: \"Still waiting on a few RSVPs 🙂\". The smiley face is doing a lot of work.",
-   "forced": true,
-   "priority": 85,
-   "choices": [
-    {
-     "label": "Apologize profusely",
-     "duration": 5,
-     "outcomes": [
-      {
-       "text": "\"So sorry!! Crazy week!!\" Two exclamation points. The universal sign of a parent drowning politely.",
-       "effects": {
-        "rep": -10
-       }
-      }
-     ]
-    }
-   ]
-  },
-  {
-   "id": "form_missed",
-   "title": "The Form",
-   "text": "Daycare calls. The form was due this morning. Your child cannot go on the field trip to the pumpkin patch without it, and will be told why.",
-   "forced": true,
-   "priority": 85,
-   "choices": [
-    {
-     "label": "Drive it over now",
-     "duration": 30,
-     "outcomes": [
-      {
-       "text": "You hand-deliver a form like it's a subpoena. The teacher's smile is very patient.",
-       "effects": {
-        "energy": -8,
-        "rep": -4
-       }
-      }
-     ]
-    }
-   ]
-  },
-  {
-   "id": "rash_missed",
-   "title": "The Rash, Revisited",
-   "text": "You never called about the rash. The rash has opinions now.",
-   "forced": true,
-   "priority": 85,
-   "choices": [
-    {
-     "label": "Call the after-hours nurse line",
-     "duration": 25,
-     "outcomes": [
-      {
-       "text": "The nurse is calm and kind and says it's probably eczema. You feel a rush of gratitude so big it's embarrassing.",
-       "effects": {
-        "energy": -8,
-        "mood": 4
-       }
-      }
-     ]
-    }
-   ]
-  },
-  {
-   "id": "library_missed",
-   "title": "Overdue",
-   "text": "The library emails. The books are overdue. One of them is now partially eaten.",
-   "forced": true,
-   "priority": 85,
-   "choices": [
-    {
-     "label": "Pay the fine. Accept your shame.",
-     "duration": 5,
-     "outcomes": [
-      {
-       "text": "$11.40 for a book about a bear who is also tired. You get it, bear.",
-       "effects": {
-        "rep": -4,
+        "home": -5,
         "energy": -2
        }
       }
      ]
-    }
-   ]
-  },
-  {
-   "id": "quiet_tell",
-   "title": "It's Quiet. Too Quiet.",
-   "text": "The living room has been silent for six minutes. Silence, in this house, is never good news.",
-   "forced": true,
-   "priority": 86,
-   "choices": [
-    {
-     "label": "Go look. Now.",
-     "duration": 5,
-     "outcomes": [
-      {
-       "text": "You catch them uncapping a permanent marker, eyes locked on a fresh white wall. You confiscate it. Crisis averted. This time.",
-       "effects": {
-        "energy": -3
-       },
-       "cancel": [
-        "sharpie"
-       ]
-      }
-     ]
     },
     {
-     "label": "Finish your coffee first",
-     "duration": 5,
+     "label": "Don't ask questions you don't want answered",
+     "duration": 10,
      "outcomes": [
       {
-       "text": "You finish your coffee. It's lovely. It's the last lovely thing for a while.",
+       "text": "You'll find out at 4 PM. It involves the toilet.",
        "effects": {
-        "energy": 3
-       },
-       "count": {
-        "coffee": 1
-       }
-      }
-     ]
-    }
-   ]
-  },
-  {
-   "id": "sharpie",
-   "title": "The Sharpie Incident",
-   "text": "The hallway is now a mural titled \"Untitled (Permanent).\"",
-   "hazard": "sting",
-   "tell": "quiet_tell",
-   "weight": 2,
-   "choices": [
-    {
-     "label": "Scrub it now",
-     "duration": 20,
-     "tags": [
-      "martyr"
-     ],
-     "outcomes": [
-      {
-       "text": "Magic eraser, elbow grease, and words you bleep in your head. It's mostly gone. Mostly.",
-       "effects": {
-        "home": -4,
-        "energy": -8
-       }
-      }
-     ]
-    },
-    {
-     "label": "Post it as \"art\"",
-     "duration": 5,
-     "outcomes": [
-      {
-       "text": "\"Our little Basquiat 🎨\" Forty likes. One comment asking if it's washable. It is not.",
-       "effects": {
-        "home": -10,
-        "rep": -6
-       }
-      }
-     ]
-    },
-    {
-     "label": "Leave it. Deal with it Friday.",
-     "duration": 1,
-     "outcomes": [
-      {
-       "text": "It's a feature wall now. You walk past it eleven times today. It looks at you every time.",
-       "effects": {
-        "home": -12
-       }
-      }
-     ]
-    }
-   ]
-  },
-  {
-   "id": "lego",
-   "title": "You Said the Word",
-   "text": "Lego, bare foot, 3 PM. You said a word. A [BLEEP] word. Your toddler said it back, perfectly, and is now saying it to the dog. You don't have a dog.",
-   "hazard": "sting",
-   "weight": 2,
-   "choices": [
-    {
-     "label": "Continue",
-     "duration": 2,
-     "outcomes": [
-      {
-       "text": "It will come up again. At daycare. To the director. You know this the way you know the sun will rise.",
-       "effects": {
-        "rep": -6,
-        "energy": -4
-       },
-       "count": {
-        "bleeps": 1
-       }
-      }
-     ]
-    }
-   ]
-  },
-  {
-   "id": "stomach_bug",
-   "title": "The Stomach Bug Has Entered the Chat",
-   "text": "It started with one ominous burp. It ended with you holding a mixing bowl like a goalie. It is coming for you next.",
-   "hazard": "catastrophe",
-   "weight": 2,
-   "choices": [
-    {
-     "label": "Bleach everything",
-     "duration": 45,
-     "tags": [
-      "martyr"
-     ],
-     "outcomes": [
-      {
-       "text": "Every surface, every toy, every doorknob. You smell like a public pool. It might not be enough.",
-       "effects": {
-        "energy": -20,
-        "home": -5,
-        "debt": 10
-       }
-      }
-     ]
-    },
-    {
-     "label": "Towels. So many towels.",
-     "duration": 15,
-     "outcomes": [
-      {
-       "text": "You lay towels like a field medic. The laundry pile reaches a height that requires a permit.",
-       "effects": {
-        "energy": -12,
-        "home": -18,
-        "debt": 10
-       }
-      }
-     ]
-    }
-   ]
-  },
-  {
-   "id": "best_friend",
-   "title": "\"You're My Best Friend.\"",
-   "text": "Out of nowhere, mid-snack, they pat your face with a hand covered in hummus and say it. Then they go back to the snack like nothing happened.",
-   "window": [
-    480,
-    1140
-   ],
-   "weight": 1,
-   "weightBy": {
-    "counter": "style.present",
-    "every": 3
-   },
-   "oncePerWeek": true,
-   "moment": true,
-   "choices": [
-    {
-     "label": "Text your partner about it",
-     "duration": 3,
-     "outcomes": [
-      {
-       "text": "\"!!!!!\" they reply, from a meeting. Then a heart. Then: \"I'm so jealous.\"",
-       "effects": {
-        "energy": 12,
-        "rel": 6
-       },
-       "count": {
-        "moments": 1
-       }
-      }
-     ]
-    },
-    {
-     "label": "Just sit with it",
-     "duration": 5,
-     "outcomes": [
-      {
-       "text": "You don't post it. You don't tell anyone. You just keep it.",
-       "effects": {
-        "energy": 18
-       },
-       "count": {
-        "moments": 1
+        "energy": 3,
+        "home": -8
        }
       }
      ]
@@ -1994,180 +1634,6 @@
        "effects": {
         "energy": 2
        }
-      }
-     ]
-    }
-   ]
-  },
-  {
-   "id": "filler",
-   "title": "A Quiet Moment",
-   "text": "Your toddler is sitting calmly in a corner. When they see you, they say, \"I didn't do it.\" You don't know what \"it\" is.",
-   "window": [
-    0,
-    1440
-   ],
-   "filler": true,
-   "repeatable": true,
-   "choices": [
-    {
-     "label": "Investigate",
-     "duration": 10,
-     "outcomes": [
-      {
-       "text": "It was the lipstick. It was always going to be the lipstick.",
-       "effects": {
-        "home": -5,
-        "energy": -2
-       }
-      }
-     ]
-    },
-    {
-     "label": "Don't ask questions you don't want answered",
-     "duration": 10,
-     "outcomes": [
-      {
-       "text": "You'll find out at 4 PM. It involves the toilet.",
-       "effects": {
-        "energy": 3,
-        "home": -8
-       }
-      }
-     ]
-    }
-   ]
-  },
-  {
-   "id": "night_whisper",
-   "title": "The Crib Whisper",
-   "text": "2:47 AM. A small figure is standing in the crib whispering your name at the wall. You're about 70% sure this isn't a ghost.",
-   "phase": "night",
-   "weight": 3,
-   "choices": [
-    {
-     "label": "Go in. Shush. Pat. Leave.",
-     "duration": 20,
-     "outcomes": [
-      {
-       "text": "Twenty minutes of the shush-pat. They go down. You lie awake for forty more, because your body thinks it's a job now.",
-       "effects": {
-        "energy": -4
-       },
-       "ledger": {
-        "night": "you"
-       }
-      }
-     ]
-    },
-    {
-     "label": "Nudge your partner",
-     "duration": 5,
-     "outcomes": [
-      {
-       "when": {
-        "min": {
-         "ledger": 2
-        }
-       },
-       "text": "Your partner gets up without a word. The ledger is a powerful document.",
-       "effects": {},
-       "ledger": {
-        "night": "partner"
-       }
-      },
-      {
-       "when": {
-        "max": {
-         "ledger": 1
-        }
-       },
-       "text": "\"I got the last two,\" they whisper. They did. You get up.",
-       "effects": {
-        "rel": -3
-       },
-       "ledger": {
-        "night": "you"
-       }
-      }
-     ]
-    },
-    {
-     "label": "Wait it out from bed",
-     "duration": 5,
-     "outcomes": [
-      {
-       "weight": 1,
-       "text": "The whispering stops. You listen to the silence like it's a symphony.",
-       "effects": {}
-      },
-      {
-       "weight": 1,
-       "text": "The whispering becomes yelling. You both get up. Nobody wins.",
-       "effects": {
-        "rel": -2
-       },
-       "ledger": {
-        "night": "you"
-       }
-      }
-     ]
-    }
-   ]
-  },
-  {
-   "id": "night_regret",
-   "title": "You Replay It. Again.",
-   "text": "3:12 AM. You're replaying the moment you snapped today. In the replay you are calm and wise. In real life you were not.",
-   "phase": "night",
-   "weight": 5,
-   "when": {
-    "flags": [
-     "d:snapped"
-    ]
-   },
-   "choices": [
-    {
-     "label": "Wake your partner to talk about it",
-     "duration": 15,
-     "outcomes": [
-      {
-       "text": "They listen, half asleep. \"You're a good parent,\" they mumble. \"Everyone yells.\" It helps more than it should. Now you're both awake.",
-       "effects": {
-        "rel": 4,
-        "energy": -7
-       }
-      }
-     ]
-    },
-    {
-     "label": "Look up how to repair it",
-     "duration": 20,
-     "outcomes": [
-      {
-       "text": "The article says repair matters more than perfection. Tomorrow you'll say sorry. They'll say \"OK\" and ask for a snack.",
-       "effects": {
-        "energy": -3
-       }
-      }
-     ]
-    }
-   ]
-  },
-  {
-   "id": "night_quiet",
-   "title": "Nothing",
-   "text": "2 AM, 3 AM, 4 AM. Nothing. The monitor is silent. You wake up every hour anyway, to check that the nothing is still happening.",
-   "phase": "night",
-   "weight": 2,
-   "choices": [
-    {
-     "label": "Sleep like a person",
-     "duration": 1,
-     "outcomes": [
-      {
-       "text": "You almost don't trust it. Almost.",
-       "effects": {}
       }
      ]
     }
@@ -6360,6 +5826,161 @@
    ]
   },
   {
+   "id": "quiet_tell",
+   "title": "It's Quiet. Too Quiet.",
+   "text": "The living room has been silent for six minutes. Silence, in this house, is never good news.",
+   "forced": true,
+   "priority": 86,
+   "choices": [
+    {
+     "label": "Go look. Now.",
+     "duration": 5,
+     "outcomes": [
+      {
+       "text": "You catch them uncapping a permanent marker, eyes locked on a fresh white wall. You confiscate it. Crisis averted. This time.",
+       "effects": {
+        "energy": -3
+       },
+       "cancel": [
+        "sharpie"
+       ]
+      }
+     ]
+    },
+    {
+     "label": "Finish your coffee first",
+     "duration": 5,
+     "outcomes": [
+      {
+       "text": "You finish your coffee. It's lovely. It's the last lovely thing for a while.",
+       "effects": {
+        "energy": 3
+       },
+       "count": {
+        "coffee": 1
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "sharpie",
+   "title": "The Sharpie Incident",
+   "text": "The hallway is now a mural titled \"Untitled (Permanent).\"",
+   "hazard": "sting",
+   "tell": "quiet_tell",
+   "weight": 2,
+   "choices": [
+    {
+     "label": "Scrub it now",
+     "duration": 20,
+     "tags": [
+      "martyr"
+     ],
+     "outcomes": [
+      {
+       "text": "Magic eraser, elbow grease, and words you bleep in your head. It's mostly gone. Mostly.",
+       "effects": {
+        "home": -4,
+        "energy": -8
+       }
+      }
+     ]
+    },
+    {
+     "label": "Post it as \"art\"",
+     "duration": 5,
+     "outcomes": [
+      {
+       "text": "\"Our little Basquiat 🎨\" Forty likes. One comment asking if it's washable. It is not.",
+       "effects": {
+        "home": -10,
+        "rep": -6
+       }
+      }
+     ]
+    },
+    {
+     "label": "Leave it. Deal with it Friday.",
+     "duration": 1,
+     "outcomes": [
+      {
+       "text": "It's a feature wall now. You walk past it eleven times today. It looks at you every time.",
+       "effects": {
+        "home": -12
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lego",
+   "title": "You Said the Word",
+   "text": "Lego, bare foot, 3 PM. You said a word. A [BLEEP] word. Your toddler said it back, perfectly, and is now saying it to the dog. You don't have a dog.",
+   "hazard": "sting",
+   "weight": 2,
+   "choices": [
+    {
+     "label": "Continue",
+     "duration": 2,
+     "outcomes": [
+      {
+       "text": "It will come up again. At daycare. To the director. You know this the way you know the sun will rise.",
+       "effects": {
+        "rep": -6,
+        "energy": -4
+       },
+       "count": {
+        "bleeps": 1
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "stomach_bug",
+   "title": "The Stomach Bug Has Entered the Chat",
+   "text": "It started with one ominous burp. It ended with you holding a mixing bowl like a goalie. It is coming for you next.",
+   "hazard": "catastrophe",
+   "weight": 2,
+   "choices": [
+    {
+     "label": "Bleach everything",
+     "duration": 45,
+     "tags": [
+      "martyr"
+     ],
+     "outcomes": [
+      {
+       "text": "Every surface, every toy, every doorknob. You smell like a public pool. It might not be enough.",
+       "effects": {
+        "energy": -20,
+        "home": -5,
+        "debt": 10
+       }
+      }
+     ]
+    },
+    {
+     "label": "Towels. So many towels.",
+     "duration": 15,
+     "outcomes": [
+      {
+       "text": "You lay towels like a field medic. The laundry pile reaches a height that requires a permit.",
+       "effects": {
+        "energy": -12,
+        "home": -18,
+        "debt": 10
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
    "id": "w_chair_tell",
    "title": "The Chair Is Moving",
    "text": "From the kitchen comes the scrape of a chair being dragged, slowly and with purpose, toward the counter. Like a very small mover with a plan.",
@@ -7447,6 +7068,55 @@
    ]
   },
   {
+   "id": "best_friend",
+   "title": "\"You're My Best Friend.\"",
+   "text": "Out of nowhere, mid-snack, they pat your face with a hand covered in hummus and say it. Then they go back to the snack like nothing happened.",
+   "window": [
+    480,
+    1140
+   ],
+   "weight": 1,
+   "weightBy": {
+    "counter": "style.present",
+    "every": 3
+   },
+   "oncePerWeek": true,
+   "moment": true,
+   "choices": [
+    {
+     "label": "Text your partner about it",
+     "duration": 3,
+     "outcomes": [
+      {
+       "text": "\"!!!!!\" they reply, from a meeting. Then a heart. Then: \"I'm so jealous.\"",
+       "effects": {
+        "energy": 12,
+        "rel": 6
+       },
+       "count": {
+        "moments": 1
+       }
+      }
+     ]
+    },
+    {
+     "label": "Just sit with it",
+     "duration": 5,
+     "outcomes": [
+      {
+       "text": "You don't post it. You don't tell anyone. You just keep it.",
+       "effects": {
+        "energy": 18
+       },
+       "count": {
+        "moments": 1
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
    "id": "w_moment_hand",
    "title": "A Small Hand",
    "text": "Halfway down the block, without being asked, your toddler reaches up and takes your hand. Not for the crossing. Not for anything. Just to hold it.",
@@ -7739,6 +7409,141 @@
        "count": {
         "moments": 1
        }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "night_whisper",
+   "title": "The Crib Whisper",
+   "text": "2:47 AM. A small figure is standing in the crib whispering your name at the wall. You're about 70% sure this isn't a ghost.",
+   "phase": "night",
+   "weight": 3,
+   "choices": [
+    {
+     "label": "Go in. Shush. Pat. Leave.",
+     "duration": 20,
+     "outcomes": [
+      {
+       "text": "Twenty minutes of the shush-pat. They go down. You lie awake for forty more, because your body thinks it's a job now.",
+       "effects": {
+        "energy": -4
+       },
+       "ledger": {
+        "night": "you"
+       }
+      }
+     ]
+    },
+    {
+     "label": "Nudge your partner",
+     "duration": 5,
+     "outcomes": [
+      {
+       "when": {
+        "min": {
+         "ledger": 2
+        }
+       },
+       "text": "Your partner gets up without a word. The ledger is a powerful document.",
+       "effects": {},
+       "ledger": {
+        "night": "partner"
+       }
+      },
+      {
+       "when": {
+        "max": {
+         "ledger": 1
+        }
+       },
+       "text": "\"I got the last two,\" they whisper. They did. You get up.",
+       "effects": {
+        "rel": -3
+       },
+       "ledger": {
+        "night": "you"
+       }
+      }
+     ]
+    },
+    {
+     "label": "Wait it out from bed",
+     "duration": 5,
+     "outcomes": [
+      {
+       "weight": 1,
+       "text": "The whispering stops. You listen to the silence like it's a symphony.",
+       "effects": {}
+      },
+      {
+       "weight": 1,
+       "text": "The whispering becomes yelling. You both get up. Nobody wins.",
+       "effects": {
+        "rel": -2
+       },
+       "ledger": {
+        "night": "you"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "night_regret",
+   "title": "You Replay It. Again.",
+   "text": "3:12 AM. You're replaying the moment you snapped today. In the replay you are calm and wise. In real life you were not.",
+   "phase": "night",
+   "weight": 5,
+   "when": {
+    "flags": [
+     "d:snapped"
+    ]
+   },
+   "choices": [
+    {
+     "label": "Wake your partner to talk about it",
+     "duration": 15,
+     "outcomes": [
+      {
+       "text": "They listen, half asleep. \"You're a good parent,\" they mumble. \"Everyone yells.\" It helps more than it should. Now you're both awake.",
+       "effects": {
+        "rel": 4,
+        "energy": -7
+       }
+      }
+     ]
+    },
+    {
+     "label": "Look up how to repair it",
+     "duration": 20,
+     "outcomes": [
+      {
+       "text": "The article says repair matters more than perfection. Tomorrow you'll say sorry. They'll say \"OK\" and ask for a snack.",
+       "effects": {
+        "energy": -3
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "night_quiet",
+   "title": "Nothing",
+   "text": "2 AM, 3 AM, 4 AM. Nothing. The monitor is silent. You wake up every hour anyway, to check that the nothing is still happening.",
+   "phase": "night",
+   "weight": 2,
+   "choices": [
+    {
+     "label": "Sleep like a person",
+     "duration": 1,
+     "outcomes": [
+      {
+       "text": "You almost don't trust it. Almost.",
+       "effects": {}
       }
      ]
     }
@@ -10247,6 +10052,201 @@
        "set": [
         "d:lateCoffee"
        ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "buy_diapers",
+   "title": "Diaper Math",
+   "text": "You open the box. There are four diapers left. You do the math. The math is bad.",
+   "window": [
+    420,
+    1100
+   ],
+   "task": "diapers",
+   "weight": 3,
+   "choices": [
+    {
+     "label": "Order them now",
+     "duration": 5,
+     "outcomes": [
+      {
+       "text": "Subscribe and save. Arriving tomorrow. You are an adult who handles things.",
+       "effects": {
+        "energy": -2
+       },
+       "completeTask": "diapers"
+      }
+     ]
+    },
+    {
+     "label": "Text your partner to grab some",
+     "duration": 2,
+     "tags": [
+      "tagteam"
+     ],
+     "outcomes": [
+      {
+       "when": {
+        "min": {
+         "rel": 55
+        }
+       },
+       "text": "\"On it 👍\" They will absolutely forget. Wait, no. They send a photo of the receipt. Who is this person?",
+       "effects": {
+        "rel": 2
+       },
+       "completeTask": "diapers",
+       "ledger": {
+        "errands": "partner"
+       }
+      },
+      {
+       "when": {
+        "max": {
+         "rel": 54
+        }
+       },
+       "text": "Read at 2:14 PM. No reply. The diapers remain theoretical.",
+       "effects": {
+        "rel": -2
+       }
+      }
+     ]
+    },
+    {
+     "label": "Later. There are four.",
+     "duration": 1,
+     "outcomes": [
+      {
+       "text": "Four is plenty. Four is a number. Nothing bad has ever happened with four.",
+       "effects": {}
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "no_diapers",
+   "title": "There Are No Diapers",
+   "text": "\"Buy diapers\" expired. It's evening. There is one diaper left and the toddler has plans for it.",
+   "forced": true,
+   "priority": 85,
+   "choices": [
+    {
+     "label": "Drive to the 24-hour pharmacy",
+     "duration": 40,
+     "outcomes": [
+      {
+       "text": "You buy diapers in slippers under fluorescent lights. The cashier has seen this before. The cashier has seen everything.",
+       "effects": {
+        "energy": -12
+       }
+      }
+     ]
+    },
+    {
+     "label": "\"Whose turn was it to buy them?\"",
+     "duration": 10,
+     "outcomes": [
+      {
+       "text": "It was yours. It was on your list. You both know it. The argument is about something else, as they always are.",
+       "effects": {
+        "rel": -10,
+        "energy": -4
+       },
+       "count": {
+        "blames": 1
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "rsvp_missed",
+   "title": "\"Did You RSVP?\"",
+   "text": "Theo's mom texts the group chat: \"Still waiting on a few RSVPs 🙂\". The smiley face is doing a lot of work.",
+   "forced": true,
+   "priority": 85,
+   "choices": [
+    {
+     "label": "Apologize profusely",
+     "duration": 5,
+     "outcomes": [
+      {
+       "text": "\"So sorry!! Crazy week!!\" Two exclamation points. The universal sign of a parent drowning politely.",
+       "effects": {
+        "rep": -10
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "form_missed",
+   "title": "The Form",
+   "text": "Daycare calls. The form was due this morning. Your child cannot go on the field trip to the pumpkin patch without it, and will be told why.",
+   "forced": true,
+   "priority": 85,
+   "choices": [
+    {
+     "label": "Drive it over now",
+     "duration": 30,
+     "outcomes": [
+      {
+       "text": "You hand-deliver a form like it's a subpoena. The teacher's smile is very patient.",
+       "effects": {
+        "energy": -8,
+        "rep": -4
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "rash_missed",
+   "title": "The Rash, Revisited",
+   "text": "You never called about the rash. The rash has opinions now.",
+   "forced": true,
+   "priority": 85,
+   "choices": [
+    {
+     "label": "Call the after-hours nurse line",
+     "duration": 25,
+     "outcomes": [
+      {
+       "text": "The nurse is calm and kind and says it's probably eczema. You feel a rush of gratitude so big it's embarrassing.",
+       "effects": {
+        "energy": -8,
+        "mood": 4
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "library_missed",
+   "title": "Overdue",
+   "text": "The library emails. The books are overdue. One of them is now partially eaten.",
+   "forced": true,
+   "priority": 85,
+   "choices": [
+    {
+     "label": "Pay the fine. Accept your shame.",
+     "duration": 5,
+     "outcomes": [
+      {
+       "text": "$11.40 for a book about a bear who is also tired. You get it, bear.",
+       "effects": {
+        "rep": -4,
+        "energy": -2
+       }
       }
      ]
     }

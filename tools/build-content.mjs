@@ -1,5 +1,5 @@
 // Builds the shipped content.json from its sources:
-//   content/base.json        config, tables (days, tasks, endings...) and anchor events
+//   content/base.json        config and tables (days, tasks, endings...); events: []
 //   content/events/*.json    arrays of extra events, merged in filename order
 // Usage: node tools/build-content.mjs             (write Core/.../Resources/content.json)
 //        node tools/build-content.mjs --validate  (merge in memory and lint; writes nothing)

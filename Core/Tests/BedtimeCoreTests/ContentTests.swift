@@ -51,6 +51,38 @@ final class ContentTests: XCTestCase {
         XCTAssertEqual(event.choices[0].minEnergy, 0)
         XCTAssertFalse(event.choices[0].snapRisk)
         XCTAssertTrue(event.choices[0].outcomes[0].schedule.isEmpty)
+        XCTAssertNil(event.chat)
+        XCTAssertNil(event.timer)
+        XCTAssertNil(event.family)
+        XCTAssertFalse(event.choices[0].timeout)
+        XCTAssertTrue(event.choices[0].outcomes[0].chat.isEmpty)
+        XCTAssertNil(event.choices[0].outcomes[0].stamp)
+        XCTAssertNil(event.choices[0].outcomes[0].fx)
+    }
+
+    func testPresentationFieldsDecode() throws {
+        let json = #"""
+        { "id": "e", "title": "T", "text": "X", "window": [360, 400], "timer": 5, "family": "tantrum",
+          "chat": { "with": "{partner}", "messages": [ { "from": "{partner}", "text": "how's it going" }, { "from": "you", "text": "[photo]" } ] },
+          "choices": [
+            { "label": "L", "duration": 5, "outcomes": [ { "text": "O", "stamp": "NAP: FAILED", "fx": "shake", "chat": [ { "from": "{partner}", "text": "lol" } ] } ] },
+            { "label": "Freeze", "duration": 1, "timeout": true, "outcomes": [ { "text": "{KID} decides." } ] } ] }
+        """#
+        let event = try JSONDecoder().decode(GameEvent.self, from: Data(json.utf8))
+        XCTAssertEqual(event.timer, 5)
+        XCTAssertEqual(event.family, "tantrum")
+        XCTAssertEqual(event.chat?.with, "{partner}")
+        XCTAssertEqual(event.chat?.messages.map(\.isMine), [false, true])
+        XCTAssertEqual(event.choices.map(\.timeout), [false, true])
+        let outcome = event.choices[0].outcomes[0]
+        XCTAssertEqual(outcome.stamp, "NAP: FAILED")
+        XCTAssertEqual(outcome.fx, .shake)
+        XCTAssertEqual(outcome.chat, [ChatMessage(from: "{partner}", text: "lol")])
+    }
+
+    func testUnknownScreenEffectIsRejected() {
+        let json = #"{ "text": "x", "fx": "explode" }"#
+        XCTAssertThrowsError(try JSONDecoder().decode(Outcome.self, from: Data(json.utf8)))
     }
 
     func testScheduleUsesInKey() throws {

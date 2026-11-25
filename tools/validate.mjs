@@ -8,7 +8,11 @@ import { METERS } from "./engine.mjs";
 const here = dirname(fileURLToPath(import.meta.url));
 export const DEFAULT_CONTENT = resolve(here, "../Core/Sources/BedtimeCore/Resources/content.json");
 
-const LIMITS = { title: 44, text: 300, label: 64, outcome: 300 };
+const LIMITS = { title: 44, text: 300, label: 64, outcome: 300, message: 160, stamp: 24, chatWith: 40 };
+// Name placeholders, filled in by the UI: the toddler, your partner, and what
+// the toddler calls you (Mama, Dada, ...). Upper-case forms are for shouting.
+const PLACEHOLDERS = new Set(["{kid}", "{KID}", "{partner}", "{me}", "{ME}"]);
+const FX = new Set(["shake", "flash", "confetti"]);
 const COND_VARS = new Set([...METERS, "day", "ledger"]);
 const RANGES = { day: [0, 4], ledger: [-200, 200] };
 const STRONG_PROFANITY = /\b(fuck\w*|shit\w*|cunt\w*|motherf\w*|bitch\w*)\b/i;
@@ -53,6 +57,15 @@ export function validate(content) {
     if (s.length > LIMITS[kind]) warn(`${where}: ${kind} is ${s.length} chars (limit ${LIMITS[kind]})`);
     if (STRONG_PROFANITY.test(s)) err(`${where}: strong profanity must be bleeped ("[BLEEP]")`);
     if (GENDERED_PARTNER.test(s)) warn(`${where}: the partner is never gendered ("your partner")`);
+    for (const tok of s.match(/\{[^{}]*\}/g) ?? []) if (!PLACEHOLDERS.has(tok)) err(`${where}: unknown placeholder ${tok} (use {kid} {KID} {partner} {me} {ME})`);
+  };
+  const messages = (where, list, max) => {
+    if (!Array.isArray(list) || list.length < 1 || list.length > max) return err(`${where}: needs 1-${max} messages`);
+    list.forEach((m, i) => {
+      if (typeof m.from !== "string" || !m.from) err(`${where}[${i}]: "from" is required ("you" for your own messages)`);
+      else len(`${where}[${i}].from`, "chatWith", m.from);
+      len(`${where}[${i}]`, "message", m.text);
+    });
   };
   const eventRef = (where, id, mustBeForced = true) => {
     const ev = eventIds.get(id);
@@ -116,6 +129,7 @@ export function validate(content) {
     meterMap(`modifier "${m.id}".effects`, m.effects);
     for (const f of m.set ?? []) flagsSet.add(f);
     len(`modifier "${m.id}"`, "text", m.text);
+    len(`modifier "${m.id}"`, "title", m.title);
   }
   for (const t of content.tasks ?? []) {
     if (!(t.dueDay >= 0 && t.dueDay <= 4) || !isInt(t.dueClock)) err(`task "${t.id}": dueDay 0-4 and integer dueClock required`);
@@ -144,6 +158,18 @@ export function validate(content) {
       if (!Array.isArray(e.window) || e.window.length !== 2 || !(e.window[0] <= e.window[1])) err(`${w}: day events need window [from, to] (minutes since midnight)`);
     }
     if (e.weight !== undefined && !isPosInt(e.weight)) err(`${w}: weight must be a positive integer`);
+    if (e.chat !== undefined) {
+      len(`${w}.chat.with`, "chatWith", e.chat.with);
+      messages(`${w}.chat.messages`, e.chat.messages, 8);
+    }
+    if (e.family !== undefined && !(typeof e.family === "string" && /^[a-z][a-z0-9_]*$/.test(e.family))) err(`${w}: family must be a lower_snake_case string`);
+    const timeouts = (e.choices ?? []).filter((c) => c.timeout);
+    if (e.timer !== undefined) {
+      if (!(isInt(e.timer) && e.timer >= 3 && e.timer <= 10)) err(`${w}: timer must be 3-10 seconds`);
+      if (timeouts.length !== 1) err(`${w}: a timed card needs exactly one choice with "timeout": true (what happens if you freeze)`);
+      else if (timeouts[0].when || timeouts[0].minEnergy) err(`${w}: the timeout choice can't have "when" or "minEnergy"`);
+      if (!(e.choices ?? []).some((c) => !c.timeout && !c.when && !c.minEnergy)) err(`${w}: a timed card needs a non-timeout choice with no "when" and no "minEnergy"`);
+    } else if (timeouts.length) err(`${w}: "timeout" choices only make sense on a card with "timer"`);
     if (e.weightBy && (!e.weightBy.counter || !isPosInt(e.weightBy.every))) err(`${w}: weightBy needs counter and every`);
     if (e.filler) fillers++;
     cond(`${w}.when`, e.when);
@@ -166,6 +192,12 @@ export function validate(content) {
       (c.outcomes ?? []).forEach((o, oi) => {
         const ow = `${cw} outcome ${oi}`;
         len(ow, "outcome", o.text);
+        if (o.chat !== undefined) messages(`${ow}.chat`, o.chat, 4);
+        if (o.stamp !== undefined) {
+          len(`${ow}.stamp`, "stamp", o.stamp);
+          if (typeof o.stamp === "string" && o.stamp.length > LIMITS.stamp) err(`${ow}: stamp is ${o.stamp.length} chars (max ${LIMITS.stamp}: it's a badge)`);
+        }
+        if (o.fx !== undefined && !FX.has(o.fx)) err(`${ow}: fx must be one of ${[...FX].join(", ")}`);
         if (o.weight !== undefined && !isPosInt(o.weight)) err(`${ow}: weight must be a positive integer`);
         cond(`${ow}.when`, o.when);
         meterMap(`${ow}.effects`, o.effects);
@@ -184,6 +216,13 @@ export function validate(content) {
       });
     });
   }
+  // Every string anywhere (endings, styles, tasks, lifeline...) may only use known placeholders.
+  const walk = (v, where) => {
+    if (typeof v === "string") { for (const tok of v.match(/\{[^{}]*\}/g) ?? []) if (!PLACEHOLDERS.has(tok)) err(`${where}: unknown placeholder ${tok}`); }
+    else if (Array.isArray(v)) v.forEach((x, i) => walk(x, `${where}[${i}]`));
+    else if (v && typeof v === "object") for (const [k, x] of Object.entries(v)) if (k !== "events") walk(x, where ? `${where}.${k}` : k);
+  };
+  walk(content, "");
   if (fillers !== 1) err(`exactly one filler event required (found ${fillers})`);
   if (!events.some((e) => e.endsDay)) err("need an endsDay (bedtime) event");
   if (!events.some((e) => e.endsWeek)) err("need an endsWeek (date night) event");
