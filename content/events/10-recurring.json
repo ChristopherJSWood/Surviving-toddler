@@ -36,7 +36,7 @@
           },
           {
             "weight": 1,
-            "text": "Four laps of hand-switching. On lap five, {kid} wins. The coffee goes on the rug. The mug lands upright, unharmed, still saying CRUSH IT. The mug always survives.",
+            "text": "Four laps of hand-switching. By lap five the coffee is lukewarm, {kid} wins, and it all goes on the rug. The mug lands upright, unharmed, still saying CRUSH IT. The mug always survives.",
             "effects": {
               "home": -12,
               "mood": 8,
@@ -239,7 +239,7 @@
         "outcomes": [
           {
             "weight": 2,
-            "text": "{kid} serves your coffee back to you in a teacup the size of a thimble, eleven times, in eleven accents. \"Your grown-up soup.\" You get about a tablespoon in total. Five stars.",
+            "text": "{kid} serves your cold coffee back to you in a teacup the size of a thimble, eleven times, in eleven accents. \"Your grown-up soup.\" You get about a tablespoon in total. Five stars.",
             "effects": {
               "mood": 18,
               "energy": -6
@@ -329,7 +329,7 @@
         "outcomes": [
           {
             "weight": 1,
-            "text": "\"Where's {me}'s coffee?\" \"It's sleeping.\" \"Where?\" \"In its house.\" \"Where's its house?\" A finger goes to their lips. The witness has been advised not to answer.",
+            "text": "\"Where's my coffee?\" \"It's sleeping.\" \"Where?\" \"In its house.\" \"Where's its house?\" A finger goes to their lips. The witness has been advised not to answer.",
             "effects": {
               "mood": 6,
               "energy": -4
@@ -574,7 +574,7 @@
         "outcomes": [
           {
             "weight": 1,
-            "text": "Down the sink. Fresh cup. You stick a note on the microwave: \"CHECK FOR COFFEE.\" By Friday you've stopped seeing the note. That's how it starts.",
+            "text": "Down the sink. Fresh cup. You stick a note on the microwave: \"CHECK FOR COFFEE.\" By tomorrow you'll have stopped seeing the note. That's how it starts.",
             "effects": {
               "energy": 12
             },
@@ -606,8 +606,172 @@
   {
     "id": "tantrum_1",
     "family": "tantrum",
-    "title": "Tantrum #1: Put It Back",
-    "text": "A leaf fell off the tree in the front yard. {kid} saw it happen. They want it put back. Not near the tree. ON the tree. They are watching your hands.",
+    "title": "Tantrum #1: Garbage Day",
+    "text": "The garbage truck came, took the garbage and left without honking. {kid} is face-down on the front step. You start a tally on the fridge. You leave room.",
+    "window": [
+      450,
+      900
+    ],
+    "weight": 4,
+    "oncePerWeek": true,
+    "when": {
+      "notFlags": [
+        "tantrum:1"
+      ]
+    },
+    "choices": [
+      {
+        "label": "Chase the truck. Both of you. Go.",
+        "duration": 10,
+        "minEnergy": 30,
+        "tags": [
+          "present"
+        ],
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "A block and a half in slippers, {kid} on your hip, both of you waving. The driver sees. The driver honks twice. {kid} will bring this up at their wedding.",
+            "effects": {
+              "mood": 22,
+              "energy": -12
+            },
+            "set": [
+              "tantrum:1"
+            ],
+            "count": {
+              "tantrums": 1
+            },
+            "stamp": "TWO HONKS",
+            "fx": "confetti"
+          },
+          {
+            "weight": 1,
+            "text": "The truck turns the corner as you reach the hydrant. You're on a public sidewalk in slippers, holding a sobbing child, waving at nothing. A neighbor waves back, unsure.",
+            "effects": {
+              "mood": -10,
+              "energy": -12,
+              "rep": -8
+            },
+            "set": [
+              "tantrum:1"
+            ],
+            "count": {
+              "tantrums": 1
+            }
+          }
+        ]
+      },
+      {
+        "label": "\"It comes back next Tuesday.\"",
+        "duration": 6,
+        "tags": [
+          "boundary"
+        ],
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "\"Next Tuesday\" means very little to someone who has only had 104 Tuesdays. The protest holds the step for nine minutes. Then a bird lands. Truck who?",
+            "effects": {
+              "mood": -4,
+              "energy": -4
+            },
+            "set": [
+              "tantrum:1"
+            ],
+            "count": {
+              "tantrums": 1
+            }
+          },
+          {
+            "weight": 1,
+            "text": "They accept it. Then they ask if it's next Tuesday. Then again, every twenty minutes, until bedtime. It is not next Tuesday. It is never next Tuesday.",
+            "effects": {
+              "mood": 8,
+              "energy": -10
+            },
+            "set": [
+              "tantrum:1"
+            ],
+            "count": {
+              "tantrums": 1
+            }
+          }
+        ]
+      },
+      {
+        "label": "Be the truck. Wheel the bin out, beeping.",
+        "duration": 6,
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "You wheel the bin to the curb doing the reverse beep. {kid} stops crying to supervise. You beep the whole way back. You'll be beeping on request until spring.",
+            "effects": {
+              "mood": 14,
+              "energy": -6,
+              "rep": -4
+            },
+            "set": [
+              "tantrum:1"
+            ],
+            "count": {
+              "tantrums": 1
+            }
+          },
+          {
+            "weight": 1,
+            "text": "You beep the bin to the curb. Across the street, a retired neighbor starts beeping too, unprompted. Now there are two trucks. {kid} is delighted and slightly afraid.",
+            "effects": {
+              "mood": 12,
+              "energy": -6,
+              "rep": 6
+            },
+            "set": [
+              "tantrum:1"
+            ],
+            "count": {
+              "tantrums": 1
+            },
+            "stamp": "MUTUAL AID"
+          }
+        ]
+      },
+      {
+        "label": "Garbage truck videos. One. Okay, four.",
+        "duration": 3,
+        "tags": [
+          "screen"
+        ],
+        "outcomes": [
+          {
+            "text": "Fifteen minutes of garbage trucks from around the world. {kid} is calm and has a new favorite truck, which is Belgian. The screen-off is going to be a whole thing.",
+            "effects": {
+              "mood": 16,
+              "energy": 8
+            },
+            "set": [
+              "tantrum:1",
+              "d:screen"
+            ],
+            "count": {
+              "tantrums": 1,
+              "screen": 15
+            },
+            "schedule": [
+              {
+                "event": "screen_off",
+                "in": 15
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "tantrum_2",
+    "family": "tantrum",
+    "title": "Tantrum #2: Put It Back",
+    "text": "Tally: 2. A leaf has fallen off the tree in the front yard, and {kid} saw it happen. They want it put back. Not near the tree. ON the tree. They're watching your hands.",
     "window": [
       460,
       1040
@@ -615,8 +779,11 @@
     "weight": 4,
     "oncePerWeek": true,
     "when": {
-      "notFlags": [
+      "flags": [
         "tantrum:1"
+      ],
+      "notFlags": [
+        "tantrum:2"
       ]
     },
     "choices": [
@@ -637,7 +804,7 @@
               "rep": -6
             },
             "set": [
-              "tantrum:1"
+              "tantrum:2"
             ],
             "count": {
               "tantrums": 1
@@ -651,7 +818,7 @@
               "energy": -10
             },
             "set": [
-              "tantrum:1"
+              "tantrum:2"
             ],
             "count": {
               "tantrums": 1
@@ -676,7 +843,7 @@
               "energy": -6
             },
             "set": [
-              "tantrum:1"
+              "tantrum:2"
             ],
             "count": {
               "tantrums": 1
@@ -690,7 +857,7 @@
               "energy": -8
             },
             "set": [
-              "tantrum:1"
+              "tantrum:2"
             ],
             "count": {
               "tantrums": 1
@@ -713,7 +880,7 @@
               "energy": 2
             },
             "set": [
-              "tantrum:1"
+              "tantrum:2"
             ],
             "count": {
               "tantrums": 1
@@ -726,179 +893,12 @@
               "mood": -16
             },
             "set": [
-              "tantrum:1"
+              "tantrum:2"
             ],
             "count": {
               "tantrums": 1
             },
             "stamp": "FORGERY DETECTED"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "tantrum_2",
-    "family": "tantrum",
-    "title": "Tantrum #2: Garbage Day",
-    "text": "The garbage truck came, took the garbage and left without honking. {kid} is face-down on the front step. You start a tally on the fridge. You leave room.",
-    "window": [
-      450,
-      780
-    ],
-    "weight": 4,
-    "oncePerWeek": true,
-    "when": {
-      "flags": [
-        "tantrum:1"
-      ],
-      "notFlags": [
-        "tantrum:2"
-      ]
-    },
-    "choices": [
-      {
-        "label": "Chase the truck. Both of you. Go.",
-        "duration": 10,
-        "minEnergy": 30,
-        "tags": [
-          "present"
-        ],
-        "outcomes": [
-          {
-            "weight": 2,
-            "text": "A block and a half in slippers, {kid} on your hip, both of you waving. The driver sees. The driver honks twice. {kid} will bring this up at their wedding.",
-            "effects": {
-              "mood": 22,
-              "energy": -12
-            },
-            "set": [
-              "tantrum:2"
-            ],
-            "count": {
-              "tantrums": 1
-            },
-            "stamp": "TWO HONKS",
-            "fx": "confetti"
-          },
-          {
-            "weight": 1,
-            "text": "The truck turns the corner as you reach the hydrant. You're on a public sidewalk in slippers, holding a sobbing child, waving at nothing. A neighbor waves back, unsure.",
-            "effects": {
-              "mood": -10,
-              "energy": -12,
-              "rep": -8
-            },
-            "set": [
-              "tantrum:2"
-            ],
-            "count": {
-              "tantrums": 1
-            }
-          }
-        ]
-      },
-      {
-        "label": "\"It comes back next Tuesday.\"",
-        "duration": 6,
-        "tags": [
-          "boundary"
-        ],
-        "outcomes": [
-          {
-            "weight": 1,
-            "text": "\"Next Tuesday\" means very little to someone who has only had 104 Tuesdays. The protest holds the step for nine minutes. Then a bird lands. Truck who?",
-            "effects": {
-              "mood": -4,
-              "energy": -4
-            },
-            "set": [
-              "tantrum:2"
-            ],
-            "count": {
-              "tantrums": 1
-            }
-          },
-          {
-            "weight": 1,
-            "text": "They accept it. Then they ask if it's next Tuesday. Then again, every twenty minutes, until bedtime. It is not next Tuesday. It is never next Tuesday.",
-            "effects": {
-              "mood": 8,
-              "energy": -10
-            },
-            "set": [
-              "tantrum:2"
-            ],
-            "count": {
-              "tantrums": 1
-            }
-          }
-        ]
-      },
-      {
-        "label": "Be the truck. Wheel the bin out, beeping.",
-        "duration": 6,
-        "outcomes": [
-          {
-            "weight": 2,
-            "text": "You wheel the bin to the curb doing the reverse beep. {kid} stops crying to supervise. You beep the whole way back. You'll be beeping on request until spring.",
-            "effects": {
-              "mood": 14,
-              "energy": -6,
-              "rep": -4
-            },
-            "set": [
-              "tantrum:2"
-            ],
-            "count": {
-              "tantrums": 1
-            }
-          },
-          {
-            "weight": 1,
-            "text": "You beep the bin to the curb. Across the street, a retired neighbor starts beeping too, unprompted. Now there are two trucks. {kid} is delighted and slightly afraid.",
-            "effects": {
-              "mood": 12,
-              "energy": -6,
-              "rep": 6
-            },
-            "set": [
-              "tantrum:2"
-            ],
-            "count": {
-              "tantrums": 1
-            },
-            "stamp": "MUTUAL AID"
-          }
-        ]
-      },
-      {
-        "label": "Garbage truck videos. One. Okay, four.",
-        "duration": 3,
-        "tags": [
-          "screen"
-        ],
-        "outcomes": [
-          {
-            "text": "Fifteen minutes of garbage trucks from around the world. {kid} is calm and has a new favorite truck, which is Belgian. The screen-off is going to be a whole thing.",
-            "effects": {
-              "mood": 16,
-              "energy": 8
-            },
-            "set": [
-              "tantrum:2",
-              "d:screen"
-            ],
-            "count": {
-              "tantrums": 1,
-              "screen": 15
-            },
-            "schedule": [
-              {
-                "event": "screen_off",
-                "in": 15
-              }
-            ]
           }
         ]
       }
@@ -1252,7 +1252,7 @@
           },
           {
             "weight": 1,
-            "text": "\"Un-press it?\" the man repeats, loudly, for the whole lobby. Clara makes landfall between the large-print books and a man doing his taxes.",
+            "text": "\"Un-press it?\" the man repeats, loudly, for the whole lobby. Clara makes landfall between the large-print books and a man doing taxes.",
             "effects": {
               "rep": -14,
               "mood": -12
@@ -1273,7 +1273,7 @@
         "outcomes": [
           {
             "weight": 2,
-            "text": "You lift {kid} to the panel. They press 1 through 6. The elevator stops at every floor. The man in the fleece vest rides along in silence and gets off at 6, which was not his floor.",
+            "text": "You lift {kid} to the panel. They press 1 through 6. The elevator stops at every floor. The man in the fleece vest rides along in silence, gets off at 6 and waits for the next one.",
             "effects": {
               "mood": 14,
               "rep": -10
@@ -1655,7 +1655,7 @@
     "text": "Plain pasta. No sauce, no salt, nothing. {kid} takes one bite and pushes the bowl away. \"It's spicy.\" It is not spicy. It has never been spicy. That's their testimony, and they're sticking to it.",
     "window": [
       560,
-      860
+      920
     ],
     "weight": 4,
     "oncePerWeek": true,
@@ -1758,7 +1758,7 @@
     "title": "Food #2: False Advertising",
     "text": "{kid} is holding a chicken nugget up next to the bag. The nugget on the bag has a smile and a little chef's hat. This one has neither. They allege false advertising. Honestly, they have a case.",
     "window": [
-      760,
+      700,
       1040
     ],
     "weight": 4,
@@ -1889,7 +1889,7 @@
     "text": "{kid} now eats only beige food: pasta, crackers and one specific bread. You slipped a piece of cauliflower onto the plate. It is also beige. It was identified and expelled in under a second.",
     "window": [
       560,
-      860
+      920
     ],
     "weight": 4,
     "oncePerWeek": true,
@@ -1989,10 +1989,10 @@
   {
     "id": "food_4",
     "family": "food",
-    "title": "Food #4: The Returns Desk",
-    "text": "{kid} isn't refusing their peas. They're returning them. One at a time, overhand, off the high chair, with eye contact and a small, polite \"No thank you\" for each pea.",
+    "title": "Food #4: I'm a Dog Now",
+    "text": "{kid} has become a dog. Dogs, they explain, eat off the floor, don't use forks and are not subject to the vegetable laws. The dog would like its food in a bowl, on the floor, now. The dog knows its rights.",
     "window": [
-      760,
+      700,
       1040
     ],
     "weight": 4,
@@ -2003,6 +2003,116 @@
       ],
       "notFlags": [
         "food:4"
+      ]
+    },
+    "choices": [
+      {
+        "label": "Serve the dog. Bowl, floor, clean mat.",
+        "duration": 3,
+        "tags": [
+          "negotiate"
+        ],
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "The dog eats everything, carrots included, face-first. It's the best they've eaten all week, and it was served on the floor. Draw your own conclusions.",
+            "effects": {
+              "mood": 14,
+              "home": -8
+            },
+            "set": [
+              "food:4"
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "The dog eats three bites, barks at a leaf, then asks for \"dog water\" in a cup. A cup. With a straw. Dogs aren't consistent either.",
+            "effects": {
+              "mood": 8,
+              "home": -10
+            },
+            "set": [
+              "food:4"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Become a dog too. Eat beside them.",
+        "duration": 12,
+        "minEnergy": 30,
+        "tags": [
+          "present"
+        ],
+        "outcomes": [
+          {
+            "text": "You get on all fours and eat cold noodles from a bowl next to theirs. The dog finishes everything just to keep up. Through the window, the mail carrier makes eye contact and decides not to knock.",
+            "effects": {
+              "mood": 20,
+              "energy": -12,
+              "rep": -6
+            },
+            "set": [
+              "food:4"
+            ],
+            "stamp": "PACK LEADER"
+          }
+        ]
+      },
+      {
+        "label": "\"Good dogs sit at the table.\"",
+        "duration": 4,
+        "tags": [
+          "bribe"
+        ],
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "Accepted. Good dogs sit at the table and use a fork. Good dogs, it turns out, also get a treat, and this dog knows exactly which cabinet.",
+            "effects": {
+              "mood": 12,
+              "energy": -2
+            },
+            "set": [
+              "food:4"
+            ],
+            "count": {
+              "snacks": 1
+            }
+          },
+          {
+            "weight": 1,
+            "text": "\"I'm a BAD dog,\" they inform you, and eat their noodles off the floor with their whole face, holding your gaze.",
+            "effects": {
+              "mood": -8,
+              "home": -10
+            },
+            "set": [
+              "food:4"
+            ],
+            "stamp": "COUNTERSUIT FILED"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "food_5",
+    "family": "food",
+    "title": "Food #5: The Returns Desk",
+    "text": "{kid} isn't refusing their peas. They're returning them. One at a time, overhand, off the high chair, with eye contact and a small, polite \"No thank you\" for each pea.",
+    "window": [
+      560,
+      920
+    ],
+    "weight": 4,
+    "oncePerWeek": true,
+    "when": {
+      "flags": [
+        "food:4"
+      ],
+      "notFlags": [
+        "food:5"
       ]
     },
     "choices": [
@@ -2022,7 +2132,7 @@
               "home": -6
             },
             "set": [
-              "food:4"
+              "food:5"
             ]
           },
           {
@@ -2033,7 +2143,7 @@
               "energy": -4
             },
             "set": [
-              "food:4"
+              "food:5"
             ],
             "stamp": "TREATY OF PEAS"
           }
@@ -2056,7 +2166,7 @@
               "energy": -6
             },
             "set": [
-              "food:4"
+              "food:5"
             ],
             "stamp": "RETURNS PROCESSED"
           },
@@ -2069,7 +2179,7 @@
               "energy": -6
             },
             "set": [
-              "food:4"
+              "food:5"
             ]
           }
         ]
@@ -2085,118 +2195,8 @@
               "energy": 6
             },
             "set": [
-              "food:4"
-            ]
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "food_5",
-    "family": "food",
-    "title": "Food #5: I'm a Dog Now",
-    "text": "{kid} has become a dog. Dogs, they explain, eat off the floor, don't use forks and are not subject to the vegetable laws. The dog would like its food in a bowl, on the floor, now. The dog knows its rights.",
-    "window": [
-      560,
-      860
-    ],
-    "weight": 4,
-    "oncePerWeek": true,
-    "when": {
-      "flags": [
-        "food:4"
-      ],
-      "notFlags": [
-        "food:5"
-      ]
-    },
-    "choices": [
-      {
-        "label": "Serve the dog. Bowl, floor, clean mat.",
-        "duration": 3,
-        "tags": [
-          "negotiate"
-        ],
-        "outcomes": [
-          {
-            "weight": 2,
-            "text": "The dog eats everything, carrots included, face-first. It's the best they've eaten all week, and it was served on the floor. Draw your own conclusions.",
-            "effects": {
-              "mood": 14,
-              "home": -8
-            },
-            "set": [
               "food:5"
             ]
-          },
-          {
-            "weight": 1,
-            "text": "The dog eats three bites, barks at a leaf, then asks for \"dog water\" in a cup. A cup. With a straw. Dogs aren't consistent either.",
-            "effects": {
-              "mood": 8,
-              "home": -10
-            },
-            "set": [
-              "food:5"
-            ]
-          }
-        ]
-      },
-      {
-        "label": "Become a dog too. Eat beside them.",
-        "duration": 12,
-        "minEnergy": 30,
-        "tags": [
-          "present"
-        ],
-        "outcomes": [
-          {
-            "text": "You get on all fours and eat cold noodles from a bowl next to theirs. The dog finishes everything just to keep up. Through the window, the mail carrier makes eye contact and decides not to knock.",
-            "effects": {
-              "mood": 20,
-              "energy": -12,
-              "rep": -6
-            },
-            "set": [
-              "food:5"
-            ],
-            "stamp": "PACK LEADER"
-          }
-        ]
-      },
-      {
-        "label": "\"Good dogs sit at the table.\"",
-        "duration": 4,
-        "tags": [
-          "bribe"
-        ],
-        "outcomes": [
-          {
-            "weight": 2,
-            "text": "Accepted. Good dogs sit at the table and use a fork. Good dogs, it turns out, also get a treat, and this dog knows exactly which cabinet.",
-            "effects": {
-              "mood": 12,
-              "energy": -2
-            },
-            "set": [
-              "food:5"
-            ],
-            "count": {
-              "snacks": 1
-            }
-          },
-          {
-            "weight": 1,
-            "text": "\"I'm a BAD dog,\" they inform you, and eat their noodles off the floor with their whole face, holding your gaze.",
-            "effects": {
-              "mood": -8,
-              "home": -10
-            },
-            "set": [
-              "food:5"
-            ],
-            "stamp": "COUNTERSUIT FILED"
           }
         ]
       }
@@ -2208,7 +2208,7 @@
     "title": "Food #6: Yesterday Food",
     "text": "Leftovers: the pasta {kid} begged for yesterday, by name, eleven times. Today it's been ruled \"yesterday food.\" They'll only eat what you're eating, off your plate. You're eating the same pasta.",
     "window": [
-      760,
+      700,
       1040
     ],
     "weight": 4,
@@ -2491,7 +2491,7 @@
         "outcomes": [
           {
             "weight": 1,
-            "text": "\"YES.\" They're in the car. The car is in the driveway. You go out in socks, in the drizzle, for puffs. Worth it.",
+            "text": "\"YES.\" They're in the car. The car is in the driveway. You both go out in socks, in the drizzle, for puffs. Worth it.",
             "effects": {
               "mood": 14,
               "energy": -8
@@ -2598,7 +2598,7 @@
         ]
       },
       {
-        "label": "\"That's {me}'s emergency bar.\"",
+        "label": "\"That's my emergency bar.\"",
         "duration": 3,
         "tags": [
           "boundary"
@@ -2607,7 +2607,7 @@
         "outcomes": [
           {
             "weight": 1,
-            "text": "\"Oh,\" they say gravely, and put it back in your bag. They pat the bag twice. You eat it at 4 PM, in the car, in the garage, with the engine off, like a fugitive.",
+            "text": "\"Oh,\" they say gravely, and put it back in your bag. They pat the bag twice. You eat it later at a red light, in two bites, like a fugitive.",
             "effects": {
               "energy": 10,
               "mood": -4
@@ -2689,7 +2689,7 @@
           },
           {
             "weight": 1,
-            "text": "\"Thank you for the update.\" Nobody laughs. A woman in a blazer moves one place further away. \"MORE POOPING,\" {kid} adds.",
+            "text": "\"Thank you for the update.\" Nobody laughs. Someone in a blazer moves one place further away. \"MORE POOPING,\" {kid} adds.",
             "effects": {
               "rep": -12,
               "mood": 6
@@ -2740,7 +2740,7 @@
         ],
         "outcomes": [
           {
-            "text": "You change them on the back seat and come back to a line twelve deep. The teller waves you straight to the front. \"For the updates,\" the teller says.",
+            "text": "You change them on the back seat and come back to a line twelve deep. The teller waves you straight to the front: \"For the updates.\"",
             "effects": {
               "rep": 10,
               "energy": -10,
@@ -3069,7 +3069,7 @@
             "text": "One more stomp. The lid closes. Then, slowly, on its own, it opens again, as if it has something to say.",
             "effects": {
               "home": -10,
-              "energy": 2
+              "energy": 4
             },
             "set": [
               "diaper:4"
@@ -3318,7 +3318,7 @@
         ]
       },
       {
-        "label": "Orbits. Flashlight. An orange and a grape.",
+        "label": "Orbits. Flashlight. An orange and a cracker.",
         "duration": 15,
         "minEnergy": 25,
         "tags": [
@@ -3326,7 +3326,7 @@
         ],
         "outcomes": [
           {
-            "text": "The full lesson: orange for Earth, grape for moon, flashlight for sun. {kid} watches the moon go around twice, gravely. Then eats the moon. Lesson over.",
+            "text": "The full lesson: orange for Earth, cracker for moon, flashlight for sun. {kid} watches the moon go around twice, gravely. Then eats the moon. Lesson over.",
             "effects": {
               "mood": 14,
               "energy": -10
@@ -3420,7 +3420,7 @@
         "outcomes": [
           {
             "weight": 2,
-            "text": "They think about it. It's the first silence in four days. Then: \"Because you love me.\" Then: \"Why?\" You'll take it.",
+            "text": "They think about it. It's the first silence of the why phase. Then: \"Because you love me.\" Then: \"Why?\" You'll take it.",
             "effects": {
               "mood": 12,
               "energy": 4
