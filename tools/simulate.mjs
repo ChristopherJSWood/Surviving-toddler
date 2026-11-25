@@ -33,6 +33,9 @@ function run(name, { shock = false } = {}) {
   let dateReached = 0;
   let dateFailed = 0;
   let dayCount = 0;
+  let repeats = 0;
+  let timeouts = 0;
+  const family = {};
   const badMon = { n: 0, wins: 0 };
   for (let w = 0; w < WEEKS; w++) {
     const seed = (w * 2654435761) >>> 0;
@@ -41,6 +44,7 @@ function run(name, { shock = false } = {}) {
     let guard = 0;
     let badMonday = null;
     let shocked = false;
+    const thisWeek = new Set();
     while (!g.isOver) {
       // Stress test: a terrible first night (as if the toddler was up for hours).
       if (shock && !shocked && g.state.day === 1) {
@@ -51,11 +55,19 @@ function run(name, { shock = false } = {}) {
       if (++guard > 900) throw new Error(`runaway week: seed ${seed}`);
       const ev = g.currentEvent;
       seen[ev.id] = (seen[ev.id] ?? 0) + 1;
+      if (thisWeek.has(ev.id) && !ev.repeatable && !ev.filler) repeats++;
+      thisWeek.add(ev.id);
+      if (ev.family) family[ev.family] = (family[ev.family] ?? 0) + 1;
       if (ev.filler) fillers++;
       if (ev.id === "date_check") dateReached++;
       const vis = g.visibleChoices();
-      const avail = vis.map((c, i) => ({ c, i })).filter(({ c }) => !g.isLocked(c));
-      const pick = policy(g, avail, rand);
+      // The timeout choice isn't a button: it only happens when a panic timer
+      // runs out. The random player freezes on 15% of panic cards.
+      const avail = vis.map((c, i) => ({ c, i })).filter(({ c }) => !g.isLocked(c) && !c.timeout);
+      const timeoutAt = vis.findIndex((c) => c.timeout);
+      const freeze = ev.timer !== undefined && timeoutAt >= 0 && name === "random" && rand() < 0.15;
+      if (freeze) timeouts++;
+      const pick = freeze ? { c: vis[timeoutAt], i: timeoutAt } : policy(g, avail, rand);
       const key = `${ev.id}#${ev.choices.indexOf(pick.c)}`;
       picks[key] = (picks[key] ?? 0) + 1;
       g.choose(pick.i);
@@ -83,6 +95,10 @@ function run(name, { shock = false } = {}) {
     endings: Object.fromEntries(Object.entries(endings).sort((a, b) => b[1] - a[1]).map(([k, v]) => [k, +(v / WEEKS).toFixed(3)])),
     maxLossShare: lossTotal ? Math.max(...losses.map(([, n]) => n / lossTotal)) : 0,
     stepsPerDay: +(steps / dayCount).toFixed(1),
+    cardsPerWeek: +(steps / WEEKS).toFixed(1),
+    repeatShare: +(repeats / steps).toFixed(4),
+    familyPerWeek: Object.fromEntries(Object.entries(family).sort().map(([k, v]) => [k, +(v / WEEKS).toFixed(2)])),
+    timeoutsPerWeek: +(timeouts / WEEKS).toFixed(2),
     fillerShare: +(fillers / steps).toFixed(4),
     lifelinesPerWeek: +(lifelines / WEEKS).toFixed(2),
     momentWeeks: momentsWeeks / WEEKS,
@@ -128,6 +144,15 @@ const shocked = run("careful", { shock: true });
 const dom = dominated();
 const randomNever = content.events.filter((e) => !(by.random.seen[e.id] > 0) && !(by.careful.seen[e.id] > 0)).map((e) => e.id);
 
+// Static shape of the writing (docs/VOICE.md): outcome variety and stamps.
+const allChoices = content.events.flatMap((e) => e.choices.filter((c) => !c.timeout));
+const allOutcomes = content.events.flatMap((e) => e.choices.flatMap((c) => c.outcomes));
+const style = {
+  multiOutcomeShare: allChoices.filter((c) => c.outcomes.length > 1).length / allChoices.length,
+  stampShare: allOutcomes.filter((o) => o.stamp).length / allOutcomes.length,
+  shakeShare: allOutcomes.filter((o) => o.fx === "shake").length / allOutcomes.length,
+};
+
 const TARGETS = {
   "careful finishes the week 60-85%": () => by.careful.winRate >= 0.6 && by.careful.winRate <= 0.85,
   "random finishes the week 10-25%": () => by.random.winRate >= 0.1 && by.random.winRate <= 0.25,
@@ -139,21 +164,30 @@ const TARGETS = {
   "no loss cause above 40% of losses (random)": () => by.random.maxLossShare <= 0.4,
   "a small moment in >= 90% of careful weeks": () => by.careful.momentWeeks >= 0.9,
   "filler under 3% of cards (random)": () => by.random.fillerShare < 0.03,
-  "20-35 cards per day (random)": () => by.random.stepsPerDay >= 20 && by.random.stepsPerDay <= 35,
+  // Pacing and freshness: the first playtest found ~170 cards a week, half of
+  // them repeats, "almost boring".
+  "16-22 cards per day (random)": () => by.random.stepsPerDay >= 16 && by.random.stepsPerDay <= 22,
+  "85-115 cards per week (careful)": () => by.careful.cardsPerWeek >= 85 && by.careful.cardsPerWeek <= 115,
+  "under 5% of cards are repeats within a week (careful)": () => by.careful.repeatShare < 0.05,
+  "tantrums and food fights recur: each 2+ times a week (careful)": () => (by.careful.familyPerWeek.tantrum ?? 0) >= 2 && (by.careful.familyPerWeek.food ?? 0) >= 2,
+  "at least half of choices have 2+ possible outcomes": () => style.multiOutcomeShare >= 0.5,
+  "stamps on 15-40% of outcomes": () => style.stampShare >= 0.15 && style.stampShare <= 0.4,
   "no strictly dominated choices": () => dom.length === 0,
 };
 const checks = Object.entries(TARGETS).map(([name, f]) => ({ name, pass: f() }));
 
 if (args.includes("--json")) {
-  console.log(JSON.stringify({ weeks: WEEKS, results: results.map(({ seen, picks, ...r }) => r), dominated: dom, never: randomNever, checks }, null, 2));
+  console.log(JSON.stringify({ weeks: WEEKS, results: results.map(({ seen, picks, ...r }) => r), style, dominated: dom, never: randomNever, checks }, null, 2));
 } else {
   console.log(`Simulated ${WEEKS} weeks per player\n`);
   for (const r of results) {
     console.log(`${r.policy.padEnd(8)} win ${(100 * r.winRate).toFixed(1)}%  cards/day ${r.stepsPerDay}  filler ${(100 * r.fillerShare).toFixed(1)}%  lifelines ${r.lifelinesPerWeek}  date-fail ${(100 * r.dateFailRate).toFixed(0)}%  moments ${(100 * r.momentWeeks).toFixed(0)}%  bad-Monday win ${r.badMondayWinRate == null ? "-" : (100 * r.badMondayWinRate).toFixed(0) + "% (" + r.badMondayWeeks + ")"}`);
     console.log(`         ${JSON.stringify(r.endings)}`);
+    console.log(`         ${r.cardsPerWeek} cards/week, repeats ${(100 * r.repeatShare).toFixed(1)}%, families/week ${JSON.stringify(r.familyPerWeek)}${r.timeoutsPerWeek ? `, panic timeouts ${r.timeoutsPerWeek}/week` : ""}`);
   }
   console.log(`\ncareful with a forced terrible Monday night: win ${(100 * shocked.winRate).toFixed(1)}%  ${JSON.stringify(shocked.endings)}`);
   console.log(`\nNever seen (random + careful): ${randomNever.length ? randomNever.join(", ") : "none"}`);
+  console.log(`Writing shape: ${(100 * style.multiOutcomeShare).toFixed(0)}% of choices have 2+ outcomes, stamps on ${(100 * style.stampShare).toFixed(0)}% of outcomes, shake on ${(100 * style.shakeShare).toFixed(0)}%`);
   console.log(`Dominated choices: ${dom.length ? "\n  " + dom.join("\n  ") : "none"}`);
   console.log("\nBalance targets:");
   for (const c of checks) console.log(`  ${c.pass ? "PASS" : "FAIL"}  ${c.name}`);

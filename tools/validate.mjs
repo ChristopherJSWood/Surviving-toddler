@@ -13,6 +13,11 @@ const LIMITS = { title: 44, text: 300, label: 64, outcome: 300, message: 160, st
 // the toddler calls you (Mama, Dada, ...). Upper-case forms are for shouting.
 const PLACEHOLDERS = new Set(["{kid}", "{KID}", "{partner}", "{me}", "{ME}"]);
 const FX = new Set(["shake", "flash", "confetti"]);
+// Worn-out phrases (docs/VOICE.md). The first playtest found the game boring;
+// these were part of why.
+const BANNED = /\b(small mob boss|hostage|war hero|crime scene|boneless|the forums|a single tear|peak living|briefly human|adulting|mommy juice|wine o'clock|we've all been there|it's giving|no thoughts)\b/i;
+// "like a sleepy accountant" -> the simile, for spotting reuse across cards.
+const SIMILE = /\blike (?:a|an|the) ([a-z'-]+(?: [a-z'-]+){0,2})/gi;
 const COND_VARS = new Set([...METERS, "day", "ledger"]);
 const RANGES = { day: [0, 4], ledger: [-200, 200] };
 const STRONG_PROFANITY = /\b(fuck\w*|shit\w*|cunt\w*|motherf\w*|bitch\w*)\b/i;
@@ -57,6 +62,8 @@ export function validate(content) {
     if (s.length > LIMITS[kind]) warn(`${where}: ${kind} is ${s.length} chars (limit ${LIMITS[kind]})`);
     if (STRONG_PROFANITY.test(s)) err(`${where}: strong profanity must be bleeped ("[BLEEP]")`);
     if (GENDERED_PARTNER.test(s)) warn(`${where}: the partner is never gendered ("your partner")`);
+    const banned = s.match(BANNED);
+    if (banned) err(`${where}: "${banned[0]}" is on the banned list (docs/VOICE.md)`);
     for (const tok of s.match(/\{[^{}]*\}/g) ?? []) if (!PLACEHOLDERS.has(tok)) err(`${where}: unknown placeholder ${tok} (use {kid} {KID} {partner} {me} {ME})`);
   };
   const messages = (where, list, max) => {
@@ -223,6 +230,17 @@ export function validate(content) {
     else if (v && typeof v === "object") for (const [k, x] of Object.entries(v)) if (k !== "events") walk(x, where ? `${where}.${k}` : k);
   };
   walk(content, "");
+  // The same simile on two different cards reads as a rerun.
+  const similes = new Map();
+  for (const e of events) {
+    const texts = [e.text, ...(e.choices ?? []).flatMap((c) => [c.label, ...(c.outcomes ?? []).map((o) => o.text)])];
+    for (const t of texts) for (const m of (t ?? "").matchAll(SIMILE)) {
+      const key = m[1].toLowerCase();
+      if (!similes.has(key)) similes.set(key, new Set());
+      similes.get(key).add(e.id);
+    }
+  }
+  for (const [simile, ids] of similes) if (ids.size > 1) warn(`simile "like a ${simile}" is used on ${ids.size} cards (${[...ids].join(", ")}): keep one`);
   if (fillers !== 1) err(`exactly one filler event required (found ${fillers})`);
   if (!events.some((e) => e.endsDay)) err("need an endsDay (bedtime) event");
   if (!events.some((e) => e.endsWeek)) err("need an endsWeek (date night) event");
