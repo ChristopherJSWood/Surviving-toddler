@@ -44,13 +44,18 @@ export function makePolicies(content) {
 
   // Each policy gets the game, the unlocked visible choices as [{c, i}] and a
   // random stream, and returns one entry of `avail`.
-  return {
+  const policies = {
     random: (g, avail, rand) => avail[Math.floor(rand() * avail.length)],
     careful: (g, avail) => avail.reduce((b, c) => (utility(g, c.c) > utility(g, b.c) ? c : b)),
     shortcut: (g, avail) => avail.reduce((b, c) => (energyNow(g, c.c) > energyNow(g, b.c) ? c : b)),
     right: (g, avail) => avail.reduce((b, c) => (effort(c.c) > effort(b.c) ? c : b)),
     worst: (g, avail) => avail.reduce((b, c) => (utility(g, c.c) < utility(g, b.c) ? c : b)),
   };
+  // A decent human: plays carefully most of the time, but can't see the hidden
+  // odds, so 30% of the time picks blind. "careful" reads the hidden outcome
+  // weights, so it's an upper bound, not a typical player.
+  policies.human = (g, avail, rand) => (rand() < 0.3 ? policies.random : policies.careful)(g, avail, rand);
+  return policies;
 }
 
 export function lcg(seed) {

@@ -154,8 +154,12 @@ const style = {
 };
 
 const TARGETS = {
-  "careful finishes the week 60-85%": () => by.careful.winRate >= 0.6 && by.careful.winRate <= 0.85,
+  // "careful" reads the hidden outcome odds: an upper bound. "human" plays
+  // carefully but picks blind 30% of the time: the main difficulty target.
+  "a decent human finishes the week 65-85%": () => by.human.winRate >= 0.65 && by.human.winRate <= 0.85,
+  "careful (sees hidden odds) finishes 85-97%": () => by.careful.winRate >= 0.85 && by.careful.winRate <= 0.97,
   "random finishes the week 10-25%": () => by.random.winRate >= 0.1 && by.random.winRate <= 0.25,
+  "the top grade stays rare: legend in at most 30% of human weeks": () => (by.human.endings.legend ?? 0) <= 0.3,
   "always-shortcut finishes <= 15%": () => by.shortcut.winRate <= 0.15,
   // The plan's thesis: perfect parenting at any cost can't be a winning strategy.
   // (Originally "fails date night >= 40%", but this player burns out before Friday.)

@@ -1,7 +1,7 @@
 {
   "version": 2,
   "config": {
-    "eventGap": 15,
+    "eventGap": 40,
     "bedtimeClock": 1170,
     "wake": [
       358,
@@ -87,6 +87,11 @@
             "debt": 60
           }
         }
+      },
+      {
+        "meter": "rel",
+        "every": 120,
+        "delta": -1
       }
     ],
     "bedtime": {
@@ -119,7 +124,7 @@
       "partnerTaskMinRel": 60
     },
     "hazard": {
-      "base": 13,
+      "base": 20,
       "bandBonus": [
         0,
         8,
@@ -172,15 +177,15 @@
     },
     "grades": [
       {
-        "min": 420,
+        "min": 485,
         "id": "legend"
       },
       {
-        "min": 330,
+        "min": 440,
         "id": "solid"
       },
       {
-        "min": 240,
+        "min": 380,
         "id": "survived"
       },
       {
