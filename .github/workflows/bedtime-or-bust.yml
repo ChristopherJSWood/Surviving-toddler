@@ -51,12 +51,13 @@ jobs:
         run: swift test --package-path Core
       - name: App logic compiles against the public API
         # The tests use @testable import, which can see internal symbols; the
-        # app can't. GameStore.swift needs no UI framework, so type-check it
-        # here against the built module exactly as the app imports it.
+        # app can't. GameStore.swift and Household.swift need no UI framework,
+        # so type-check them here against the built module as the app imports it.
         run: |
           BIN="$(swift build --package-path Core --show-bin-path)"
-          swiftc -typecheck -I "$BIN/Modules" -I "$BIN" App/GameStore.swift
-          echo "App/GameStore.swift type-checks against BedtimeCore's public API"
+          # GameStore uses Household and Reaction (App/Household.swift, Foundation only).
+          swiftc -typecheck -I "$BIN/Modules" -I "$BIN" App/GameStore.swift App/Household.swift
+          echo "App/GameStore.swift and App/Household.swift type-check against BedtimeCore's public API"
 
   ios:
     name: Swift tests and iOS build (Xcode)
