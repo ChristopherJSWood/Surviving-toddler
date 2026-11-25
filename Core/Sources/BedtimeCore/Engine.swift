@@ -231,7 +231,9 @@ public struct GameEngine: Sendable {
         if state.phase == .day, choice.snapRisk, state.meters.energy < snap.belowEnergy {
             if state.rng.next() * 100 < Double(snap.chancePct) {
                 snapped = true
-                outcome = Outcome(text: snap.text, effects: snap.effects, setFlags: snap.setFlags)
+                // The story keeps going: the original's week-long flags still apply.
+                let keep = outcome.setFlags.filter { !$0.hasPrefix("d:") }
+                outcome = Outcome(text: snap.text, effects: snap.effects, setFlags: snap.setFlags + keep)
             }
         }
         apply(outcome, nowBefore: nowBefore)
@@ -396,6 +398,7 @@ public struct GameEngine: Sendable {
         let pool = content.events.filter { event in
             event.hazard == severity
                 && !state.seenToday.contains(event.id)
+                && !(event.oncePerWeek && state.seenWeek.contains(event.id))
                 && meets(event.condition)
                 && !state.queue.contains { $0.event == event.id }
         }
@@ -468,7 +471,10 @@ public struct GameEngine: Sendable {
     }
 
     private mutating func pickNight() {
-        let pool = content.events.filter { $0.phase == .night && !state.seenToday.contains($0.id) && meets($0.condition) }
+        let pool = content.events.filter {
+            $0.phase == .night && !state.seenToday.contains($0.id)
+                && !($0.oncePerWeek && state.seenWeek.contains($0.id)) && meets($0.condition)
+        }
         if pool.isEmpty {
             morning()
             return

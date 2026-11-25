@@ -40,7 +40,7 @@ mulberry32 over a `UInt32` state. One draw per weighted pick (`r*total`, first i
 `i` indexes the **visible** choices (those whose `when` passes). A visible choice with `minEnergy > energy` is **locked**; choosing it is an error.
 
 1. **Outcome:** keep outcomes whose `when` passes; pick by weight if there are several.
-2. **Snap:** in the day phase, if the choice has `snapRisk` and `energy < snap.belowEnergy`, draw; if `r*100 < snap.chancePct`, the outcome is replaced by `config.snap` (its text, effects and flags).
+2. **Snap:** in the day phase, if the choice has `snapRisk` and `energy < snap.belowEnergy`, draw; if `r*100 < snap.chancePct`, the outcome is replaced by `config.snap` (its text, effects and flags). The original outcome's week-long flags (those not starting `d:`) are still set, after the snap's, so escalation chains and callbacks continue.
 3. **Apply:** effects (each clamped), `set`, `clear`, `count`, `ledger` (each `cat: who` adds 1; in the night phase `night` also adds to `nightYou`/`nightPartner`), choice `tags` (`style.<tag>` += 1), `schedule` (queue `{event, at: now + in}`, using `now` before time advances), `cancel` (remove queued entries for those events), `completeTask` (an id or `oldest`: mark done, `ledger.you.errands` += 1).
 4. **Time** (day phase only): `minutes = duration + eventGap`. For each drift rule in order, if its `when` passes now: `meter += delta × (⌊t1/every⌋ − ⌊t0/every⌋)`, where `t0 = clock − dayStart`, `t1 = t0 + minutes`. Then `clock += minutes`.
 5. Record `seenToday`, `seenWeek`, `lastEventId`; `step += 1`.
@@ -53,7 +53,7 @@ mulberry32 over a `UInt32` state. One draw per weighted pick (`r*total`, first i
 
 ## Hazards
 
-Chance in percent = `base + bandBonus[band] + (clock ≥ lateDayClock ? lateDayBonus : 0)`. On a hit, the severity is a catastrophe if `catastrophesToday < maxCatastrophesPerDay` and the severity draw is `< catastropheShare[band]` (percent), otherwise a sting. Eligible hazards: that severity, `when` passes, not seen today, not already queued. If the hazard has a `tell`, queue the tell then the hazard (both now), otherwise just the hazard. A catastrophe adds 1 to `catastrophesToday` when queued.
+Chance in percent = `base + bandBonus[band] + (clock ≥ lateDayClock ? lateDayBonus : 0)`. On a hit, the severity is a catastrophe if `catastrophesToday < maxCatastrophesPerDay` and the severity draw is `< catastropheShare[band]` (percent), otherwise a sting. Eligible hazards: that severity, `when` passes, not seen today (nor this week if `oncePerWeek`), not already queued. If the hazard has a `tell`, queue the tell then the hazard (both now), otherwise just the hazard. A catastrophe adds 1 to `catastrophesToday` when queued.
 
 ## Picking the next day event
 
@@ -61,7 +61,7 @@ Chance in percent = `base + bandBonus[band] + (clock ≥ lateDayClock ? lateDayB
 2. **Otherwise random:** events with no priority (`priority` absent or ≤ 0), `phase: day`, no `hazard`, not `forced`, not `filler`, `repeatable` or not seen today, not seen this week if `oncePerWeek`, not the last event, clock inside `window`, `when` passes, its `task` (if any) open, at least one visible choice. Weight = `weight + ⌊counters[weightBy.counter] / weightBy.every⌋`.
 3. **Otherwise** the filler event.
 
-Night cards: events with `phase: night`, `when` passes, not seen today; weighted pick.
+Night cards: events with `phase: night`, `when` passes, not seen today (nor this week if `oncePerWeek`); weighted pick.
 
 ## Going to night and the morning
 

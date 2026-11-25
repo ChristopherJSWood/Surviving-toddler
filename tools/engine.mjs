@@ -159,7 +159,10 @@ export class Game {
     if (s.phase === "day" && choice.snapRisk && s.meters.energy < sn.belowEnergy) {
       if (this.rng() * 100 < sn.chancePct) {
         snapped = true;
-        out = { text: sn.text, effects: sn.effects, set: sn.set };
+        // The snap replaces the outcome, but the story keeps going: week-long
+        // flags (escalation chains, callbacks) from the original still apply.
+        const keep = (out.set ?? []).filter((f) => !f.startsWith("d:"));
+        out = { text: sn.text, effects: sn.effects, set: [...(sn.set ?? []), ...keep] };
       }
     }
     this.#applyOutcome(out, nowBefore);
@@ -324,7 +327,8 @@ export class Game {
       if (this.rng() * 100 < h.catastropheShare[band]) severity = "catastrophe";
     }
     const pool = this.content.events.filter(
-      (e) => e.hazard === severity && !s.seenToday.has(e.id) && this.meets(e.when) && !s.queue.some((q) => q.event === e.id),
+      (e) => e.hazard === severity && !s.seenToday.has(e.id) && !(e.oncePerWeek && s.seenWeek.has(e.id))
+        && this.meets(e.when) && !s.queue.some((q) => q.event === e.id),
     );
     if (pool.length === 0) return;
     const hz = pool.length === 1 ? pool[0] : pool[weightedPick(pool, (e) => e.weight ?? 1, this.rng)];
@@ -398,7 +402,9 @@ export class Game {
 
   #pickNight() {
     const s = this.state;
-    const pool = this.content.events.filter((e) => e.phase === "night" && !s.seenToday.has(e.id) && this.meets(e.when));
+    const pool = this.content.events.filter(
+      (e) => e.phase === "night" && !s.seenToday.has(e.id) && !(e.oncePerWeek && s.seenWeek.has(e.id)) && this.meets(e.when),
+    );
     if (pool.length === 0) {
       this.#morning();
       return;
