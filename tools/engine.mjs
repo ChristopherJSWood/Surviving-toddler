@@ -227,6 +227,10 @@ export class Game {
       outcomeIndex,
       snapped,
       text: out.text,
+      // Presentation only (the UI's verdict badge, screen effect, reply bubbles).
+      stamp: out.stamp ?? null,
+      fx: out.fx ?? null,
+      chat: out.chat ?? [],
       deltas,
       minutes,
       dayEnded: dayEnded ?? (s.day !== dayBefore ? "morning" : null),

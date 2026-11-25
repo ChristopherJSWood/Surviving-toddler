@@ -4,22 +4,21 @@ import SwiftUI
 /// The weekly performance review.
 struct EndView: View {
     @Environment(GameStore.self) private var store
+    @State private var fx = ScreenFX()
 
     var body: some View {
         if let engine = store.engine, let ending = engine.ending {
             let content = engine.content
             ScrollView {
                 VStack(spacing: 16) {
-                    Text(ending.kind == .win ? "Week complete" : "Week over")
-                        .font(.subheadline.weight(.semibold))
-                        .textCase(.uppercase)
-                        .foregroundStyle(ending.kind == .win ? Color.green : Color.red)
-                        .padding(.top, 24)
-                    Text(ending.title)
+                    StampView(text: ending.kind == .win ? "WEEK: SURVIVED" : "WEEK: OVER",
+                              color: ending.kind == .win ? .green : .red, delay: 0.5)
+                        .padding(.top, 28)
+                    Text(store.say(ending.title))
                         .font(.largeTitle.bold())
                         .multilineTextAlignment(.center)
                     Card {
-                        Text(ending.text)
+                        Text(store.say(ending.text))
                         if ending.kind == .win {
                             Text("Score: \(engine.score)").font(.headline.monospacedDigit())
                         }
@@ -30,19 +29,19 @@ struct EndView: View {
                     if let style = engine.style {
                         Card {
                             Text("Your parenting style").font(.caption.weight(.semibold)).textCase(.uppercase).foregroundStyle(.secondary)
-                            Text(style.title).font(.title2.bold())
-                            Text(style.text)
+                            Text(store.say(style.title)).font(.title2.bold())
+                            Text(store.say(style.text))
                         }
                     }
                     Card {
                         Text("Weekly performance review").font(.headline)
                         ForEach(content.counters) { counter in
-                            ReviewRow(label: counter.label, value: "\(engine.state.counters[counter.id] ?? 0)")
+                            ReviewRow(label: store.say(counter.label), value: "\(engine.state.counters[counter.id] ?? 0)")
                         }
                         Divider()
-                        ReviewRow(label: "Night wake-ups (you · partner)",
+                        ReviewRow(label: store.say("Night wake-ups (you · {partner})"),
                                   value: "\(engine.state.ledgerYou["night"] ?? 0) · \(engine.state.ledgerPartner["night"] ?? 0)")
-                        ReviewRow(label: "Chores (you · partner)",
+                        ReviewRow(label: store.say("Chores (you · {partner})"),
                                   value: "\(engine.state.ledgerYou.values.reduce(0, +)) · \(engine.state.ledgerPartner.values.reduce(0, +))")
                         ReviewRow(label: "Days Grandma saved", value: "\(engine.state.lostDays)")
                     }
@@ -69,6 +68,16 @@ struct EndView: View {
                     .padding(.bottom, 24)
                 }
                 .padding(.horizontal)
+            }
+            .screenFX(fx)
+            .task { @MainActor in
+                try? await Task.sleep(for: .seconds(0.6))
+                if ending.kind == .win {
+                    fx.confetti += 1
+                } else {
+                    fx.shakes += 1
+                    fx.flashes += 1
+                }
             }
         }
     }

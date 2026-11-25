@@ -37,10 +37,22 @@ final class GameStore {
     private(set) var screen: Screen = .title
     private(set) var stats: PlayerStats
     private(set) var hasSavedGame: Bool
+    /// Names filled into the text. Set on the title screen before the first week.
+    private(set) var household: Household
+    /// Panic cards count down unless this is off (VoiceOver also turns them off).
+    private(set) var timersEnabled: Bool
+    /// Playtest: show the 😂/😴 buttons on outcomes and log the taps.
+    private(set) var reactionsEnabled: Bool
+    private(set) var reactions: [Reaction]
 
     private let defaults: UserDefaults
     private static let saveKey = "bedtime.savedWeek.v2"
     private static let statsKey = "bedtime.stats.v2"
+    private static let householdKey = "bedtime.household.v1"
+    private static let timersKey = "bedtime.timers.v1"
+    private static let reactionsEnabledKey = "bedtime.reactionsEnabled.v1"
+    private static let reactionsKey = "bedtime.reactions.v1"
+    private static let maxReactions = 5000
 
     init(defaults: UserDefaults = .standard) {
         self.defaults = defaults
@@ -58,6 +70,69 @@ final class GameStore {
             stats = PlayerStats()
         }
         hasSavedGame = defaults.data(forKey: Self.saveKey) != nil
+        household = defaults.data(forKey: Self.householdKey)
+            .flatMap { try? JSONDecoder().decode(Household.self, from: $0) } ?? Household()
+        timersEnabled = defaults.object(forKey: Self.timersKey) as? Bool ?? true
+        reactionsEnabled = defaults.object(forKey: Self.reactionsEnabledKey) as? Bool ?? true
+        reactions = defaults.data(forKey: Self.reactionsKey)
+            .flatMap { try? JSONDecoder().decode([Reaction].self, from: $0) } ?? []
+    }
+
+    // MARK: - Names and settings
+
+    /// Content text with the household's names filled in.
+    func say(_ text: String) -> String { household.fill(text) }
+
+    func setHousehold(_ newValue: Household) {
+        household = newValue.cleaned()
+        if let data = try? JSONEncoder().encode(household) { defaults.set(data, forKey: Self.householdKey) }
+    }
+
+    func setTimersEnabled(_ on: Bool) {
+        timersEnabled = on
+        defaults.set(on, forKey: Self.timersKey)
+    }
+
+    func setReactionsEnabled(_ on: Bool) {
+        reactionsEnabled = on
+        defaults.set(on, forKey: Self.reactionsEnabledKey)
+    }
+
+    // MARK: - Playtest reactions
+
+    /// The reaction already given to this outcome, if any.
+    func reaction(forStep step: Int) -> Reaction.Kind? {
+        reactions.last(where: { $0.step == step })?.kind
+    }
+
+    /// Tapping the same reaction again removes it; the other one replaces it.
+    func react(_ kind: Reaction.Kind, to result: StepResult) {
+        guard let engine else { return }
+        let step = engine.state.step
+        let previous = reaction(forStep: step)
+        reactions.removeAll { $0.step == step }
+        if previous != kind {
+            let title = engine.event(withID: result.eventID).map { say($0.title) } ?? result.eventID
+            reactions.append(Reaction(at: Date(), day: engine.state.day, step: step, card: result.eventID, title: title,
+                                      choice: result.choiceIndex, outcome: result.outcomeIndex, kind: kind))
+            if reactions.count > Self.maxReactions { reactions.removeFirst(reactions.count - Self.maxReactions) }
+        }
+        if let data = try? JSONEncoder().encode(reactions) { defaults.set(data, forKey: Self.reactionsKey) }
+    }
+
+    func clearReactions() {
+        reactions = []
+        defaults.removeObject(forKey: Self.reactionsKey)
+    }
+
+    /// One row per tap, for the playtest: which cards landed and which dragged.
+    func reactionsCSV() -> String {
+        let iso = ISO8601DateFormatter()
+        let rows = reactions.map { r in
+            [iso.string(from: r.at), "\(r.day)", r.card.csvCell, r.title.csvCell, "\(r.choice)", "\(r.outcome)", r.kind.rawValue]
+                .joined(separator: ",")
+        }
+        return (["time,day,card,title,choice,outcome,reaction"] + rows).joined(separator: "\n")
     }
 
     // MARK: - Flow
@@ -131,7 +206,7 @@ final class GameStore {
         let verdict = ending.kind == .win ? "made it to date night" : "didn't make it to date night"
         let style = engine.style?.title ?? ""
         return """
-        I \(verdict) in Bedtime or Bust: "\(ending.title)". My style: \(style).
+        I \(verdict) in Bedtime or Bust: "\(say(ending.title))". My style: \(say(style)).
         Energy \(m.energy) · Relationship \(m.rel) · House \(m.home) · Reputation \(m.rep)
         """
     }

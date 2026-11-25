@@ -2,7 +2,15 @@ import SwiftUI
 
 struct TitleView: View {
     @Environment(GameStore.self) private var store
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var showingHelp = false
+    @State private var household: HouseholdPrompt?
+
+    /// Why the names sheet is open: to start a week, or just to edit.
+    private enum HouseholdPrompt: Identifiable {
+        case startWeek, edit
+        var id: Self { self }
+    }
 
     var body: some View {
         VStack(spacing: 20) {
@@ -10,10 +18,17 @@ struct TitleView: View {
             Image(systemName: "moon.zzz.fill")
                 .font(.system(size: 64))
                 .foregroundStyle(.indigo)
+                .phaseAnimator([false, true]) { moon, up in
+                    moon
+                        .offset(y: up && !reduceMotion ? -8 : 0)
+                        .rotationEffect(.degrees(up && !reduceMotion ? -6 : 4))
+                } animation: { _ in
+                    .easeInOut(duration: 1.6)
+                }
                 .accessibilityHidden(true)
             Text("Bedtime or Bust")
                 .font(.largeTitle.bold())
-            Text("Five days. One toddler. One partner.\nMake it to date night.")
+            Text(subtitle)
                 .font(.title3)
                 .multilineTextAlignment(.center)
                 .foregroundStyle(.secondary)
@@ -29,21 +44,30 @@ struct TitleView: View {
                     .buttonStyle(.borderedProminent)
 
                     Button {
-                        store.newWeek()
+                        start()
                     } label: {
                         Text("Start a new week").frame(maxWidth: .infinity)
                     }
                     .buttonStyle(.bordered)
                 } else {
                     Button {
-                        store.newWeek()
+                        start()
                     } label: {
                         Text("Start Monday").frame(maxWidth: .infinity)
                     }
                     .buttonStyle(.borderedProminent)
                 }
-                Button("How to play") { showingHelp = true }
-                    .padding(.top, 4)
+                HStack(spacing: 20) {
+                    Button("How to play") { showingHelp = true }
+                    Button("Names & settings") { household = .edit }
+                }
+                .padding(.top, 4)
+                if !store.reactions.isEmpty {
+                    ShareLink(item: store.reactionsCSV(), preview: SharePreview("Bedtime or Bust playtest log")) {
+                        Label("Export playtest log (\(store.reactions.count))", systemImage: "square.and.arrow.up")
+                            .font(.footnote)
+                    }
+                }
             }
             .controlSize(.large)
 
@@ -55,6 +79,23 @@ struct TitleView: View {
         }
         .padding(24)
         .sheet(isPresented: $showingHelp) { HowToPlayView() }
+        .sheet(item: $household) { prompt in
+            HouseholdSheet(startsWeek: prompt == .startWeek)
+        }
+    }
+
+    private var subtitle: String {
+        guard store.household.isComplete else { return "Five days. One toddler. One partner.\nMake it to date night." }
+        return store.say("Five days. {kid}. {partner}.\nMake it to date night.")
+    }
+
+    /// The first week asks who's in the house; after that, straight to Monday.
+    private func start() {
+        if store.household.isComplete {
+            store.newWeek()
+        } else {
+            household = .startWeek
+        }
     }
 }
 

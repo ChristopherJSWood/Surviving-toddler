@@ -87,6 +87,10 @@ public struct StepResult: Equatable, Sendable {
     public let minutes: Int
     public let transition: DayTransition?
     public let endingID: String?
+    /// Presentation only, from the applied outcome (none when you snapped).
+    public let stamp: String?
+    public let fx: OutcomeFX?
+    public let chat: [ChatMessage]
 }
 
 public enum GameError: Error, Equatable {
@@ -291,7 +295,7 @@ public struct GameEngine: Sendable {
         return StepResult(
             eventID: event.id, choiceIndex: index, outcomeIndex: outcomeIndex, snapped: snapped,
             text: outcome.text, deltas: deltas, minutes: minutes, transition: transition,
-            endingID: state.endingID
+            endingID: state.endingID, stamp: outcome.stamp, fx: outcome.fx, chat: outcome.chat
         )
     }
 
