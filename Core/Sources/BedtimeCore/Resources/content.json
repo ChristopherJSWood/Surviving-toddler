@@ -2006,10 +2006,12 @@
      ],
      "outcomes": [
       {
-       "text": "Episode three. The man in corduroy is singing about bedtime now, which feels targeted. You're both pretending this is a choice.",
+       "text": "Episode three. The man in corduroy is singing about bedtime now, which feels targeted. You're both pretending this is a choice. Bedtime is now a negotiation.",
        "effects": {
         "energy": 6,
-        "mood": 10
+        "mood": 8,
+        "sleepy": -12,
+        "debt": 6
        },
        "set": [
         "d:screen"
@@ -2017,13 +2019,7 @@
        "count": {
         "screen": 22,
         "paybacks": 1
-       },
-       "schedule": [
-        {
-         "event": "screen_off_2",
-         "in": 22
-        }
-       ]
+       }
       }
      ]
     },
