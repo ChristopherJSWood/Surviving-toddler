@@ -47,9 +47,12 @@ struct ScreenFXModifier: ViewModifier {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     func body(content: Content) -> some View {
-        content
+        // Copied out of the environment: the keyframe closure is @Sendable in
+        // the iOS 18 SDK and can't read main-actor state directly.
+        let still = reduceMotion
+        return content
             .keyframeAnimator(initialValue: CGFloat(0), trigger: fx.shakes) { view, offset in
-                view.offset(x: reduceMotion ? 0 : offset)
+                view.offset(x: still ? 0 : offset)
             } keyframes: { _ in
                 KeyframeTrack {
                     LinearKeyframe(-16, duration: 0.05)
