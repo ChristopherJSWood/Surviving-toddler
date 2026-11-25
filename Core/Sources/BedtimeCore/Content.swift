@@ -376,12 +376,6 @@ public struct GameConfig: Decodable, Sendable {
     }
 
     public struct Night: Decodable, Sendable {
-        public struct HomeTidy: Decodable, Sendable {
-            public var minRel: Int
-            public var high: Int
-            public var low: Int
-        }
-
         public var cards: Int
         public var base: Int
         public var perWake: Int
@@ -393,7 +387,6 @@ public struct GameConfig: Decodable, Sendable {
         public var moodBase: Int
         public var moodDebtDiv: Int
         public var sleepyStart: Int
-        public var homeTidy: HomeTidy
         public var partnerTaskMinRel: Int
     }
 

@@ -492,7 +492,6 @@ public struct GameEngine: Sendable {
         state.meters[.debt] += night.debtPerWake * (state.nightYou + state.nightPartner) - night.recovery
         state.meters[.mood] = night.moodBase - state.meters.debt / night.moodDebtDiv
         state.meters[.sleepy] = night.sleepyStart
-        state.meters[.home] += state.meters.rel >= night.homeTidy.minRel ? night.homeTidy.high : night.homeTidy.low
         state.flags = state.flags.filter { !$0.hasPrefix("d:") }
         var partnerDid: String?
         if state.meters.rel >= night.partnerTaskMinRel, let index = state.tasks.firstIndex(where: { $0.status == .open }) {

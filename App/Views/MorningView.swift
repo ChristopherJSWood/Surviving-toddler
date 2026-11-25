@@ -33,8 +33,8 @@ struct MorningView: View {
                             Text("Last night").font(.headline)
                             ReportRow(label: "You got up", value: "\(report.nightYou)×")
                             ReportRow(label: store.say("{partner} got up"), value: "\(report.nightPartner)×")
-                            ReportRow(label: "Energy refill", value: "+\(report.refill)")
-                            ReportRow(label: "Sleep debt", value: "\(report.debtBefore) → \(report.debtAfter)")
+                            ReportRow(label: "Bandwidth refill", value: "+\(report.refill)")
+                            ReportRow(label: store.say("{kid}'s sleep"), value: "\(100 - report.debtBefore) → \(100 - report.debtAfter)")
                             if let did = report.partnerDid, let task = content.task(withID: did) {
                                 Text(store.say("{partner} handled \"\(task.label)\" before work."))
                                     .font(.footnote)

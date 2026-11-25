@@ -18,8 +18,6 @@ extension Meter { // Theme.swift: exhaustive switch from outside the module
         case .mood: return "m"
         case .sleepy: return "s"
         case .debt: return "d"
-        case .home: return "h"
-        case .rep: return "p"
         }
     }
 }
@@ -52,8 +50,8 @@ final class PublicAPITests: XCTestCase {
         needsHashable(Meter.self)
         needsCodable(GameState.self)
         let zero: [Meter: Int] = Dictionary(uniqueKeysWithValues: Meter.allCases.map { ($0, 0) })
-        XCTAssertEqual(zero.count, 7)
-        XCTAssertEqual(Meter.allCases.map(\.probeSymbol).count, 7)
+        XCTAssertEqual(zero.count, 5)
+        XCTAssertEqual(Meter.allCases.map(\.probeSymbol).count, 5)
 
         let content = try GameContent.bundled()
         _ = (content.version, content.config.bedtime.threshold, content.name(of: .energy))
@@ -75,7 +73,7 @@ final class PublicAPITests: XCTestCase {
 
         let s = engine.state
         let m = s.meters
-        _ = (m.energy, m.rel, m.mood, m.sleepy, m.debt, m.home, m.rep, m[.energy])
+        _ = (m.energy, m.rel, m.mood, m.sleepy, m.debt, m.rested, m[.energy])
         _ = (Clock.format(s.clock), s.step, s.lostDays, s.endingID, s.phase == .night)
         _ = (s.counters["x"] ?? 0, s.ledgerYou["night"] ?? 0, s.ledgerPartner.values.reduce(0, +))
         for t in s.tasks { _ = (t.id, t.due % 1440, t.status == .open, t.status == .done, t.status == .expired) }

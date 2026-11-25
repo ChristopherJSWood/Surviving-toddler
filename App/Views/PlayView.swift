@@ -92,13 +92,10 @@ struct HUDView: View {
                 }
                 GridRow {
                     MeterBar(meter: .mood, value: engine.state.meters.mood, name: content.name(of: .mood))
-                    SleepWidget(engine: engine)
-                }
-                GridRow {
-                    MeterBar(meter: .home, value: engine.state.meters.home, name: content.name(of: .home))
-                    MeterBar(meter: .rep, value: engine.state.meters.rep, name: content.name(of: .rep))
+                    MeterBar(meter: .debt, value: engine.state.meters.rested, name: "Sleep", asRested: true)
                 }
             }
+            BedtimeChip(engine: engine)
             let upcoming = Array(engine.upcoming.prefix(2))
             if !upcoming.isEmpty {
                 HStack(spacing: 6) {
@@ -122,12 +119,16 @@ struct MeterBar: View {
     let meter: Meter
     let value: Int
     let name: String
+    /// The Sleep bar: shows 100 - debt, so higher is better.
+    var asRested = false
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var change: Int?
     @State private var changeID = 0
 
-    private var isDanger: Bool { meter.dangerAt.map { value <= $0 } ?? false }
+    private var higherIsBetter: Bool? { asRested ? true : meter.higherIsBetter }
+    private var dangerAt: Int? { asRested ? 25 : meter.dangerAt }
+    private var isDanger: Bool { dangerAt.map { value <= $0 } ?? false }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
@@ -181,43 +182,31 @@ struct MeterBar: View {
     }
 
     private func changeColor(_ delta: Int) -> Color {
-        guard let better = meter.higherIsBetter else { return .indigo }
+        guard let better = higherIsBetter else { return .indigo }
         return (delta > 0) == better ? .green : .red
     }
 }
 
-/// Today's sleepiness (with the bedtime line) and the week's sleep debt.
-struct SleepWidget: View {
+/// Today's sleepiness as a word against tonight's bedtime bar.
+struct BedtimeChip: View {
     let engine: GameEngine
 
     var body: some View {
-        let sleepy = engine.state.meters.sleepy
-        let debt = engine.state.meters.debt
-        let threshold = engine.content.config.bedtime.threshold
-        VStack(alignment: .leading, spacing: 4) {
-            HStack(spacing: 6) {
-                Image(systemName: Meter.sleepy.symbol).foregroundStyle(Meter.sleepy.tint).frame(width: 18)
-                Text("Sleep").font(.caption.weight(.semibold))
-                Spacer(minLength: 0)
-                Text("\(sleepy) · debt \(debt)")
-                    .font(.caption.monospacedDigit().weight(.semibold))
-                    .foregroundStyle(.secondary)
-            }
-            GeometryReader { proxy in
-                ZStack(alignment: .leading) {
-                    Capsule().fill(Color.secondary.opacity(0.15))
-                    Capsule().fill(Meter.sleepy.tint).frame(width: proxy.size.width * CGFloat(sleepy) / 100)
-                    Rectangle().fill(Color.primary.opacity(0.7))
-                        .frame(width: 2)
-                        .offset(x: proxy.size.width * CGFloat(threshold) / 100)
-                }
-            }
-            .frame(height: 4)
-            ProgressView(value: Double(debt), total: 100).tint(Meter.debt.tint)
+        let night = engine.state.phase == .night
+        let readiness = BedtimeReadiness(sleepy: engine.state.meters.sleepy, bar: engine.content.bedtimeBar(day: engine.state.day))
+        HStack(spacing: 6) {
+            Image(systemName: night ? "moon.stars.fill" : readiness.symbol)
+            Text(night ? "Asleep (allegedly)" : "Bedtime: \(readiness.label)")
+                .contentTransition(.opacity)
+            Spacer(minLength: 0)
         }
-        .accessibilityElement(children: .ignore)
-        .accessibilityLabel("Toddler sleep")
-        .accessibilityValue("Sleepiness \(sleepy), needs \(threshold) at bedtime. Sleep debt \(debt).")
+        .font(.caption.weight(.semibold))
+        .foregroundStyle(night ? Color.indigo : readiness.tint)
+        .padding(.horizontal, 10)
+        .padding(.vertical, 5)
+        .background(Capsule().fill((night ? Color.indigo : readiness.tint).opacity(0.12)))
+        .animation(.snappy, value: readiness.label)
+        .accessibilityElement(children: .combine)
     }
 }
 
@@ -313,7 +302,7 @@ struct EventCard: View {
         }
         .buttonStyle(ChoiceButtonStyle(locked: locked))
         .disabled(locked || !choicesShown)
-        .accessibilityHint(locked ? "Too tired. Needs \(choice.minEnergy) Energy." : "Takes about \(choice.duration) minutes")
+        .accessibilityHint(locked ? "Too tired. Needs \(choice.minEnergy) Bandwidth." : "Takes about \(choice.duration) minutes")
     }
 
     @MainActor
@@ -481,7 +470,7 @@ struct ReactionRow: View {
     }
 }
 
-/// "+6 Toddler Mood  −3 Energy" chips.
+/// "+6 Mood  −3 Bandwidth  +10 Sleep" chips.
 struct DeltaRow: View {
     let deltas: [Meter: Int]
     let content: GameContent
@@ -492,10 +481,12 @@ struct DeltaRow: View {
     var body: some View {
         FlowLayout(spacing: 8) {
             ForEach(Array(Meter.allCases.filter { deltas[$0] != nil }.enumerated()), id: \.element) { order, meter in
-                let delta = deltas[meter] ?? 0
-                let good: Bool? = meter.higherIsBetter.map { $0 == (delta > 0) }
+                let raw = deltas[meter] ?? 0
+                // Sleep is shown as how rested the toddler is: debt down = Sleep up.
+                let delta = meter == .debt ? -raw : raw
+                let good: Bool? = meter == .debt ? delta > 0 : meter.higherIsBetter.map { $0 == (delta > 0) }
                 Label {
-                    Text("\(delta > 0 ? "+" : "−")\(abs(delta)) \(content.name(of: meter))")
+                    Text(chipText(meter, delta))
                 } icon: {
                     Image(systemName: meter.symbol)
                 }
@@ -510,6 +501,14 @@ struct DeltaRow: View {
             }
         }
         .onAppear { shown = true }
+    }
+
+    private func chipText(_ meter: Meter, _ delta: Int) -> String {
+        switch meter {
+        case .sleepy: return delta > 0 ? "Sleepier" : "Livelier"
+        case .debt: return "\(delta > 0 ? "+" : "−")\(abs(delta)) Sleep"
+        default: return "\(delta > 0 ? "+" : "−")\(abs(delta)) \(content.name(of: meter))"
+        }
     }
 
     private func chipColor(_ good: Bool?) -> Color {

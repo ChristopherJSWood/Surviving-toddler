@@ -47,9 +47,10 @@ struct EndView: View {
                     }
                     Card {
                         Text("Final meters").font(.headline)
-                        ForEach([Meter.energy, .rel, .mood, .home, .rep], id: \.self) { meter in
+                        ForEach([Meter.energy, .rel, .mood], id: \.self) { meter in
                             MeterBar(meter: meter, value: engine.state.meters[meter], name: content.name(of: meter))
                         }
+                        MeterBar(meter: .debt, value: engine.state.meters.rested, name: "Sleep", asRested: true)
                     }
                     VStack(spacing: 12) {
                         ShareLink(item: store.shareText()) {

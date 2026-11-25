@@ -10,8 +10,6 @@ extension Meter {
         case .mood: return "face.smiling"
         case .sleepy: return "moon.zzz.fill"
         case .debt: return "bed.double.fill"
-        case .home: return "house.fill"
-        case .rep: return "bubble.left.and.bubble.right.fill"
         }
     }
 
@@ -22,8 +20,6 @@ extension Meter {
         case .mood: return .yellow
         case .sleepy: return .indigo
         case .debt: return .purple
-        case .home: return .teal
-        case .rep: return .mint
         }
     }
 
@@ -40,7 +36,7 @@ extension Meter {
     /// At or below this the bar turns red (nil: never).
     var dangerAt: Int? {
         switch self {
-        case .energy, .rel, .home, .rep: return 20
+        case .energy, .rel: return 20
         case .mood: return 10
         case .sleepy, .debt: return nil
         }
@@ -103,5 +99,57 @@ extension GameContent {
         if tasks.contains(where: { $0.expire == event.id }) { return ("From your list", .orange) }
         if event.forced, !event.endsWeek { return ("Payback", .orange) }
         return nil
+    }
+}
+
+/// Today's sleepiness as a word: bedtime is a goal you time, not a meter.
+enum BedtimeReadiness {
+    case wired, drowsy, ready, overtired
+
+    init(sleepy: Int, bar: Int) {
+        if sleepy >= 80 { self = .overtired }
+        else if sleepy >= bar { self = .ready }
+        else if sleepy >= bar - 20 { self = .drowsy }
+        else { self = .wired }
+    }
+
+    var label: String {
+        switch self {
+        case .wired: return "Wired"
+        case .drowsy: return "Drowsy"
+        case .ready: return "Ready for bed"
+        case .overtired: return "Overtired"
+        }
+    }
+
+    var tint: Color {
+        switch self {
+        case .wired: return .orange
+        case .drowsy: return .indigo
+        case .ready: return .green
+        case .overtired: return .red
+        }
+    }
+
+    var symbol: String {
+        switch self {
+        case .wired: return "bolt.horizontal.fill"
+        case .drowsy: return "moon.fill"
+        case .ready: return "moon.zzz.fill"
+        case .overtired: return "exclamationmark.triangle.fill"
+        }
+    }
+}
+
+extension GameContent {
+    /// Tonight's bedtime bar: Friday's date night asks for more (read from the
+    /// date_check card's failure check), other nights use config.bedtime.
+    func bedtimeBar(day: Int) -> Int {
+        if day == days.count - 1,
+           let check = events.first(where: { $0.id == "date_check" })?.checks
+               .compactMap({ $0.condition?.maximum["sleepy"] }).first {
+            return check + 1
+        }
+        return config.bedtime.threshold
     }
 }

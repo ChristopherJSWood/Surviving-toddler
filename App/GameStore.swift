@@ -213,7 +213,7 @@ final class GameStore {
         let style = engine.style?.title ?? ""
         return """
         I \(verdict) in Bedtime or Bust: "\(say(ending.title))". My style: \(say(style)).
-        Energy \(m.energy) · Relationship \(m.rel) · House \(m.home) · Reputation \(m.rep)
+        Bandwidth \(m.energy) · Relationship \(m.rel) · Mood \(m.mood) · Sleep \(m.rested)
         """
     }
 

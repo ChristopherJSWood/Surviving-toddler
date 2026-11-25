@@ -109,21 +109,19 @@ struct HowToPlayView: View {
         NavigationStack {
             List {
                 Section("The goal") {
-                    Text("Get from Monday morning to Friday's date night. At 7:00 PM on Friday the toddler must be asleep (Sleepiness 67+) and you need at least 35 Energy, or the date is off.")
+                    Text("Get from Monday morning to Friday's date night. At 7:00 PM on Friday the toddler must be Ready for bed and you need at least 35 Bandwidth, or the date is off.")
                 }
                 Section("You") {
-                    Label("Energy is how much parent you have left. Good parenting costs it. Below a choice's minimum it's greyed out: too tired. At zero you collapse.", systemImage: "bolt.fill")
-                    Label("Relationship drains when you're running on empty. A healthy one means your partner helps more. At zero the week ends.", systemImage: "heart.fill")
-                }
-                Section("Shortcuts") {
-                    Label("TV, candy and late coffee give Energy now and send a bill later. A ticking chip shows when it's due.", systemImage: "hourglass")
+                    Label("Bandwidth is how much parent you have left. Good parenting costs it. Below a choice's minimum it's greyed out: too tired. At zero you collapse (Grandma rescues you once a week).", systemImage: "bolt.fill")
+                    Label("Relationship slowly drifts unless you tend it, and drains fast when you're running on empty. At zero the week ends.", systemImage: "heart.fill")
                 }
                 Section("Your toddler") {
-                    Label("Sleepiness must be 50+ at bedtime. Naps lower it.", systemImage: "moon.zzz.fill")
-                    Label("Sleep Debt carries across the week. High debt means earlier mornings, more chaos, faster meltdowns.", systemImage: "bed.double.fill")
+                    Label("Mood: at zero, a full meltdown.", systemImage: "face.smiling")
+                    Label("Sleep is how rested they are this week. Bad nights and skipped naps cost it: earlier mornings, more chaos, faster meltdowns.", systemImage: "bed.double.fill")
+                    Label("Bedtime: Wired, Drowsy, Ready for bed, or Overtired. Time the nap so they're Ready at bedtime.", systemImage: "moon.zzz.fill")
                 }
-                Section("The household") {
-                    Label("House and Reputation at zero end the day. Once a week, Grandma rescues you.", systemImage: "house.fill")
+                Section("Shortcuts and the list") {
+                    Label("TV, snacks and late coffee buy Bandwidth now and send a bill later. A ticking chip shows when it's due.", systemImage: "hourglass")
                     Label("Your list holds the invisible jobs. Forget one and it bites later.", systemImage: "list.bullet.clipboard")
                 }
             }

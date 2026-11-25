@@ -32,13 +32,14 @@ final class EngineTests: XCTestCase {
     }
 
     func testMetersClampOnEveryWrite() {
-        var meters = Meters(energy: 150, rel: -20, mood: 50, sleepy: 0, debt: 0, home: 50, rep: 50)
+        var meters = Meters(energy: 150, rel: -20, mood: 50, sleepy: 0, debt: 0)
         XCTAssertEqual(meters.energy, 100)
         XCTAssertEqual(meters.rel, 0)
-        meters[.home] += 500
-        meters[.rep] -= 500
-        XCTAssertEqual(meters.home, 100)
-        XCTAssertEqual(meters.rep, 0)
+        meters[.mood] += 500
+        meters[.debt] -= 500
+        XCTAssertEqual(meters.mood, 100)
+        XCTAssertEqual(meters.debt, 0)
+        XCTAssertEqual(meters.rested, 100)
     }
 
     func testWeekStartsMondayMorning() {
