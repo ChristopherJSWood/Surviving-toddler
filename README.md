@@ -27,12 +27,23 @@ Also in play:
 - **Friday's date night.** At 7:00 the toddler must be asleep (Sleepiness 67+) and you need 35+ Energy.
 - **Endings.** The week closes with your parenting style and a weekly performance review.
 
+The week is about 100 cards long. Recurring situations (tantrums, food fights, bad naps, coffee) keep coming back, and each time it's a new card that knows it's a repeat. Other cards appear at most once a week.
+
+- **Your household.** Before the first week, you name your toddler and your partner and pick what the toddler calls you. The game uses those names throughout.
+- **Texts and the group chat.** Some cards play out as text threads with your partner or the daycare parents' group chat.
+- **Running storylines.** Some gags build across the week and pay off later.
+- **Panic cards.** You get a few seconds to decide, or the toddler decides for you. You can turn timers off; they're always off with VoiceOver.
+- **Drama.** Verdict stamps slam onto outcomes, the screen shakes, flashes red or throws confetti, and meters float their changes. Every effect respects Reduce Motion.
+- **Playtest log.** Tap 😂 or 😴 on any outcome; the title screen exports the taps as a CSV, so you can see which cards land and which drag. "Send to <partner>" shares a card.
+
+How the game should sound, and how to be funny, is in [docs/VOICE.md](docs/VOICE.md).
+
 ## Run it on a Mac (Xcode 15 or later)
 
 One command checks your tools, runs the engine tests, builds the app and launches it in the iOS Simulator:
 
 ```sh
-tools/mac-build.sh         # or: tools/mac-build.sh --no-launch
+tools/mac-build.sh         # or: --no-launch, or --playtest (plays a whole week, saves screenshots)
 ```
 
 Each step stops with the command that fixes it. The full output is in `build/mac-build.log`. If XcodeGen isn't installed, the script downloads the official release into `build/tools` and checks its checksum. Homebrew can't install XcodeGen on macOS 14 with Xcode older than 15.3.
@@ -78,7 +89,9 @@ tools/                Node scripts (Node 18+, no npm install)
   mac-build.sh        Mac: check tools, test, build, launch in the Simulator
 prototype/            single-file browser build
 docs/RULES.md         the rules, including the order of random draws
-docs/CONTENT_GUIDE.md how to write cards
+docs/CONTENT_GUIDE.md how to write cards (fields)
+docs/VOICE.md         how the game sounds and how to be funny
+UITests/              automated full-week playthrough on the simulator
 docs/DESIGN.md        design rationale, research, balance data, risks
 ```
 
