@@ -1,0 +1,1316 @@
+[
+  {
+    "id": "w_pt_whiteboard",
+    "title": "Column Three: Invisible Stuff",
+    "text": "The chore whiteboard on the fridge has always had two columns, one each. This morning there's a third, in {partner}'s handwriting: INVISIBLE STUFF. It has eleven checkmarks.",
+    "window": [
+      380,
+      560
+    ],
+    "weight": 2,
+    "oncePerWeek": true,
+    "choices": [
+      {
+        "label": "\"Walk me through the eleven.\"",
+        "duration": 10,
+        "minEnergy": 25,
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "They do. Renewed the car seat registration. Knew the pediatrician's fax number. Thought about the gutters (×3). It's mostly real. You add two checkmarks yourself.",
+            "effects": {
+              "rel": 14,
+              "energy": -8
+            },
+            "stamp": "MARKS VERIFIED"
+          },
+          {
+            "weight": 1,
+            "text": "Checkmark four: \"Remembered your mom's birthday.\" You remembered it. You told them. They wrote it down, which is remembering, which is a checkmark.",
+            "effects": {
+              "rel": -8,
+              "energy": -8
+            },
+            "count": {
+              "blames": 1
+            },
+            "set": [
+              "pt:sniped"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Add column four: STUFF I DID WHILE YOU SLEPT",
+        "duration": 3,
+        "outcomes": [
+          {
+            "text": "It fills up fast. By breakfast the fridge is a spreadsheet. Then {kid} adds a fifth column in purple marker, directly on the fridge. It has more checkmarks than both of yours.",
+            "effects": {
+              "energy": 6,
+              "rel": -12
+            },
+            "count": {
+              "blames": 1
+            },
+            "set": [
+              "pt:sniped"
+            ],
+            "fx": "shake"
+          }
+        ]
+      },
+      {
+        "label": "Wipe the board. Declare amnesty.",
+        "duration": 2,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "Clean slate. {partner} exhales like someone let out of a meeting early. For one whole day, nobody counts anything out loud.",
+            "effects": {
+              "rel": 10,
+              "energy": 2
+            }
+          },
+          {
+            "weight": 1,
+            "text": "You wipe it clean. {partner} watches, uncaps the marker and adds one checkmark under nothing. \"That's for wiping it.\"",
+            "effects": {
+              "rel": -6,
+              "energy": 4
+            },
+            "count": {
+              "blames": 1
+            },
+            "set": [
+              "pt:sniped"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "w_pt_opening_statement",
+    "title": "Opening Statement",
+    "text": "The bath is running. {partner}, unprompted, from the hallway: \"I did bath yesterday.\" Nobody asked. It wasn't information. It was an opening statement.",
+    "window": [
+      1110,
+      1165
+    ],
+    "weight": 2,
+    "oncePerWeek": true,
+    "when": {
+      "max": {
+        "day": 3
+      },
+      "min": {
+        "day": 1
+      }
+    },
+    "choices": [
+      {
+        "label": "\"And I did the four before that.\"",
+        "duration": 3,
+        "outcomes": [
+          {
+            "when": {
+              "min": {
+                "ledger": 3
+              }
+            },
+            "text": "They count on their fingers. They run out of fingers. They roll up their sleeves without a word. You were right, and now you get to stand in a hallway being right.",
+            "effects": {
+              "energy": 10,
+              "rel": -8
+            },
+            "ledger": {
+              "bath": "partner"
+            },
+            "count": {
+              "blames": 1
+            },
+            "set": [
+              "pt:sniped"
+            ]
+          },
+          {
+            "when": {
+              "max": {
+                "ledger": 2
+              }
+            },
+            "text": "\"Four? Name them.\" You name three. One of them was Grandma. The tub overflows while you both scroll your phones for proof.",
+            "effects": {
+              "energy": -6,
+              "rel": -12
+            },
+            "ledger": {
+              "bath": "you"
+            },
+            "count": {
+              "blames": 1
+            },
+            "set": [
+              "pt:sniped"
+            ],
+            "stamp": "INSUFFICIENT EVIDENCE",
+            "fx": "shake"
+          }
+        ]
+      },
+      {
+        "label": "\"Rock, paper, scissors. Best of three.\"",
+        "duration": 3,
+        "tags": [
+          "tagteam"
+        ],
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "Rock. Rock. Rock. Rock. You know each other too well to win anything. {kid} wanders in naked and picks {partner}, who does the good splashing.",
+            "effects": {
+              "rel": 10,
+              "energy": 8
+            },
+            "ledger": {
+              "bath": "partner"
+            }
+          },
+          {
+            "weight": 1,
+            "text": "You lose on paper. Best of five: you lose on paper. You do bath, and {partner} sits on the closed toilet the whole time keeping you company, which is what you wanted.",
+            "effects": {
+              "rel": 12,
+              "energy": -8
+            },
+            "ledger": {
+              "bath": "you"
+            }
+          }
+        ]
+      },
+      {
+        "label": "\"You did. It was beautiful.\" Take bath.",
+        "duration": 3,
+        "minEnergy": 25,
+        "tags": [
+          "martyr"
+        ],
+        "outcomes": [
+          {
+            "text": "You take bath. They hover, fold one towel, then set a phone alarm for tomorrow at 6:45 called BATH (ME). It's either love or litigation.",
+            "effects": {
+              "rel": 12,
+              "energy": -10
+            },
+            "ledger": {
+              "bath": "you"
+            }
+          }
+        ]
+      }
+    ],
+    "priority": 31
+  },
+  {
+    "id": "w_pt_dishwasher",
+    "title": "The Dishwasher Doctrine",
+    "text": "{partner} is reloading the dishwasher you just loaded. Silently. One bowl at a time. Every bowl they move is a small essay about you. You'd be angrier if you hadn't reloaded theirs at 11:40 last night.",
+    "window": [
+      400,
+      560
+    ],
+    "weight": 2,
+    "oncePerWeek": true,
+    "choices": [
+      {
+        "label": "\"Teach me your system.\"",
+        "duration": 10,
+        "minEnergy": 20,
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "There's a system. It has a philosophy. Bowls face the center, \"like a congregation.\" You nod at all of it. You'll never use it. They know, and they're thrilled anyway.",
+            "effects": {
+              "rel": 12,
+              "energy": -8
+            }
+          },
+          {
+            "weight": 1,
+            "text": "They start explaining, stop, and admit there's no system. They just like moving the bowls. It calms them. You hand them a bowl. They move it.",
+            "effects": {
+              "rel": 16,
+              "energy": -8
+            },
+            "stamp": "IT'S JUST VIBES"
+          }
+        ]
+      },
+      {
+        "label": "Confess: \"I reload yours too.\"",
+        "duration": 3,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "A long silence. \"Since when?\" Since {kid} was born. For two years nothing in this house has been washed the way it was loaded. You laugh until {kid} joins in without knowing why.",
+            "effects": {
+              "rel": 12,
+              "energy": 4,
+              "mood": 6
+            }
+          },
+          {
+            "weight": 1,
+            "text": "\"I KNEW the forks were moving.\" An inquiry follows. You agree to alternate weeks. By Thursday you're both reloading again, quietly, at night.",
+            "effects": {
+              "rel": -6,
+              "energy": -4
+            },
+            "count": {
+              "blames": 1
+            },
+            "set": [
+              "pt:sniped"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Wait till they leave. Put it all back.",
+        "duration": 5,
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "You restore every bowl the second their car turns the corner. The dishwasher has now been loaded three times and run zero. The pans have started to form opinions.",
+            "effects": {
+              "energy": 6
+            }
+          },
+          {
+            "weight": 1,
+            "text": "They come back for their keys and catch you holding a bowl. Nobody speaks. You both know exactly what this is.",
+            "effects": {
+              "energy": 4,
+              "rel": -12
+            },
+            "count": {
+              "blames": 1
+            },
+            "set": [
+              "pt:sniped"
+            ],
+            "stamp": "CAUGHT BOWL-HANDED"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "w_pt_tablespoon",
+    "title": "Technically Not Empty",
+    "text": "The milk carton is back in the fridge with one tablespoon of milk in it. Somebody believes, in their heart, that this carton is not empty. There are two suspects. One can't reach the fridge.",
+    "window": [
+      380,
+      620
+    ],
+    "weight": 2,
+    "oncePerWeek": true,
+    "choices": [
+      {
+        "label": "Photograph it. Send to {partner}. No caption.",
+        "duration": 2,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "A full confession in three texts, and a gallon on the counter by 6. The system works.",
+            "effects": {
+              "energy": 6,
+              "rel": -4
+            },
+            "count": {
+              "blames": 1
+            },
+            "set": [
+              "pt:sniped"
+            ],
+            "chat": [
+              {
+                "from": "{partner}",
+                "text": "lol not me"
+              },
+              {
+                "from": "{partner}",
+                "text": "ok me"
+              },
+              {
+                "from": "{partner}",
+                "text": "getting milk"
+              }
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "There's another carton? There's another carton. It was you. It was always you.",
+            "effects": {
+              "energy": -4,
+              "rel": -10
+            },
+            "count": {
+              "blames": 1
+            },
+            "set": [
+              "pt:sniped"
+            ],
+            "chat": [
+              {
+                "from": "{partner}",
+                "text": "that's YOURS"
+              },
+              {
+                "from": "{partner}",
+                "text": "i finished the other one and threw it out like an adult"
+              }
+            ],
+            "stamp": "IT WAS YOU"
+          }
+        ]
+      },
+      {
+        "label": "Put it back. Two can play this game.",
+        "duration": 1,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "You put it back, tablespoon intact. It isn't a carton anymore. It's a statement, and nobody throws away a statement.",
+            "effects": {
+              "energy": 4,
+              "rel": -6
+            }
+          },
+          {
+            "weight": 1,
+            "text": "By evening there's a second carton next to it, also holding one tablespoon. Nobody says anything. The fridge is a standoff now.",
+            "effects": {
+              "energy": 4,
+              "rel": -8
+            },
+            "stamp": "COLD WAR, LITERALLY"
+          }
+        ]
+      },
+      {
+        "label": "Black coffee. Rise above it.",
+        "duration": 2,
+        "minEnergy": 20,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "You drink it black and say nothing. You are, at most, 15% bitter about it. The coffee is the other 85%.",
+            "effects": {
+              "energy": -6,
+              "rel": 8
+            }
+          },
+          {
+            "weight": 1,
+            "text": "You rise above it. {partner} notices the black coffee, then the carton, and quietly writes MILK on the whiteboard in letters a foot tall.",
+            "effects": {
+              "energy": -6,
+              "rel": 12
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "w_pt_natural",
+    "title": "Such a Natural",
+    "text": "{partner} took {kid} to the grocery store alone. Forty-one minutes. They come home, sit down on the entryway floor in their coat and say, \"The cashier said I'm a natural.\"",
+    "window": [
+      930,
+      1160
+    ],
+    "weight": 2,
+    "oncePerWeek": true,
+    "choices": [
+      {
+        "label": "\"Nobody has ever called me a natural.\"",
+        "duration": 2,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "\"What do they call you?\" \"Tired.\" They go quiet, then say \"you look great,\" which is what people say to tired people.",
+            "effects": {
+              "rel": -8,
+              "energy": 6
+            },
+            "count": {
+              "blames": 1
+            },
+            "set": [
+              "pt:sniped"
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "\"The cashier was wrong. I cried in the cereal aisle.\" {kid} took a photo of it on {partner}'s phone. You make it your lock screen.",
+            "effects": {
+              "rel": 14,
+              "energy": 4
+            },
+            "stamp": "NATURAL: RETRACTED"
+          }
+        ]
+      },
+      {
+        "label": "Check the bags for what they forgot",
+        "duration": 5,
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "Bread. The one thing. Instead: a $14 cheese \"for us,\" a bag of limes and a toy truck {kid} \"picked out,\" which means seized.",
+            "effects": {
+              "rel": -6,
+              "energy": -6,
+              "mood": 8
+            }
+          },
+          {
+            "weight": 1,
+            "text": "Nothing. Everything on the list, plus the wipes you forgot to add. You read the receipt twice, slowly, the way other people read poetry.",
+            "effects": {
+              "rel": 12,
+              "energy": 8
+            },
+            "stamp": "FULL MARKS"
+          }
+        ]
+      },
+      {
+        "label": "Slow clap. A full minute.",
+        "duration": 2,
+        "outcomes": [
+          {
+            "text": "You slow-clap for a full minute. {kid} joins in and won't stop. {partner} stands, bows, and accepts all of it, with no shame whatsoever.",
+            "effects": {
+              "rel": 10,
+              "mood": 8,
+              "energy": -2
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "w_pt_slept_through",
+    "title": "\"Great Night, Huh?\"",
+    "text": "\"Great night, huh?\" {partner} says, stretching, rested and wrong. {kid} was up at 2:11, 3:40 and 4:55. You heard every one. They heard none. They're not lying. That's the worst part.",
+    "window": [
+      370,
+      500
+    ],
+    "weight": 2,
+    "oncePerWeek": true,
+    "when": {
+      "min": {
+        "day": 1
+      }
+    },
+    "choices": [
+      {
+        "label": "Read them the timestamps. Slowly.",
+        "duration": 3,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "2:11. 3:40. 4:55. Their face moves through disbelief, then guilt, and lands, unforgivably, on \"Huh. I slept great.\"",
+            "effects": {
+              "rel": -12,
+              "energy": 4
+            },
+            "count": {
+              "blames": 1
+            },
+            "set": [
+              "pt:sniped"
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "They go pale and swear tonight is theirs. They set three alarms. They'll sleep through all three, but they set them, and you watched them do it.",
+            "effects": {
+              "rel": -2,
+              "energy": 8
+            },
+            "ledger": {
+              "night": "partner"
+            },
+            "count": {
+              "blames": 1
+            }
+          }
+        ]
+      },
+      {
+        "label": "\"Yep. Great night.\" Let them have it.",
+        "duration": 2,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "You let them have it. They're so rested they do breakfast, drop-off and the dishes, humming. Their good night becomes your good morning.",
+            "effects": {
+              "energy": 10,
+              "rel": 4
+            }
+          },
+          {
+            "weight": 1,
+            "text": "You let them have it. Then you seethe through breakfast at 2x speed. By 7:40 you've had the whole argument alone, and lost.",
+            "effects": {
+              "energy": -8,
+              "rel": -6
+            }
+          }
+        ]
+      },
+      {
+        "label": "Propose odds and evens. You get odds.",
+        "duration": 10,
+        "minEnergy": 20,
+        "tags": [
+          "tagteam"
+        ],
+        "outcomes": [
+          {
+            "text": "Talks open over cold toast. They want weekends separate. You want 4:55 to count as two. A treaty is signed on a napkin and stuck to the fridge.",
+            "effects": {
+              "rel": 10,
+              "energy": -6
+            },
+            "ledger": {
+              "night": "partner"
+            },
+            "stamp": "NAPKIN ACCORDS"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "w_pt_bag",
+    "title": "Packed by {partner}",
+    "text": "{partner} packed the daycare bag this morning. Contents: one diaper, a whole uncut cucumber, a single sock, zero wipes and {partner}'s work badge.",
+    "window": [
+      400,
+      520
+    ],
+    "weight": 2,
+    "oncePerWeek": true,
+    "when": {
+      "notFlags": [
+        "d:home"
+      ]
+    },
+    "choices": [
+      {
+        "label": "Repack it. Silently. Perfectly.",
+        "duration": 10,
+        "minEnergy": 20,
+        "tags": [
+          "martyr"
+        ],
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "Diapers, wipes, a spare outfit, a snack that doesn't need a knife. You hand {partner} their badge without comment, which is a comment.",
+            "effects": {
+              "energy": -8,
+              "rel": -4,
+              "mood": 6
+            }
+          },
+          {
+            "weight": 1,
+            "text": "In the side pocket: the bag you packed last Tuesday. Two left shoes and a yogurt that is now mostly cheese. You both have a style.",
+            "effects": {
+              "energy": -8,
+              "rel": 8,
+              "mood": 6
+            }
+          }
+        ]
+      },
+      {
+        "label": "Send it as is. Let daycare see.",
+        "duration": 1,
+        "outcomes": [
+          {
+            "text": "Off it goes, cucumber and all. Daycare will see. Daycare sees everything. You feel a deep calm that will last until around lunch.",
+            "effects": {
+              "energy": 10
+            },
+            "schedule": [
+              {
+                "event": "w_pt_bag_report",
+                "in": 300
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Text {partner}: \"cucumber??\"",
+        "duration": 2,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "You can't argue with that. You could, but you'd lose. You add wipes and let the cucumber ride.",
+            "effects": {
+              "energy": 2,
+              "rel": 4
+            },
+            "chat": [
+              {
+                "from": "{partner}",
+                "text": "they like cucumber"
+              }
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "They've been standing outside the office door for twelve minutes. Security is involved. You drive the badge over. They drive the cucumber home.",
+            "effects": {
+              "energy": -8,
+              "rel": 10
+            },
+            "chat": [
+              {
+                "from": "{partner}",
+                "text": "WAIT is my badge in there"
+              }
+            ],
+            "stamp": "BADGE RECOVERED"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "w_pt_bag_report",
+    "title": "A Gentle Note",
+    "text": "A notification from the daycare app. Ms. Patty has a gentle note, and gentle notes are the worst kind.",
+    "forced": true,
+    "oncePerWeek": true,
+    "chat": {
+      "with": "Ms. Patty 🐛 Caterpillar Room",
+      "messages": [
+        {
+          "from": "Ms. Patty",
+          "text": "{kid} had a great morning! 🌟"
+        },
+        {
+          "from": "Ms. Patty",
+          "text": "We used our spare diapers and wipes 🙂 {kid} enjoyed the cucumber (whole) 🥒"
+        },
+        {
+          "from": "Ms. Patty",
+          "text": "Also we found a work badge? 🙂"
+        }
+      ]
+    },
+    "choices": [
+      {
+        "label": "\"{partner} packed it 🙂\"",
+        "duration": 1,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "Ms. Patty replies \"Ha! 🙂\" and has told the other teachers by lunch. In the staff room, {partner} is now known as Cucumber.",
+            "effects": {
+              "rel": -10,
+              "energy": 4
+            },
+            "count": {
+              "blames": 1
+            },
+            "set": [
+              "pt:sniped"
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "There was a pumpkin in October. Nobody told you about the pumpkin.",
+            "effects": {
+              "rel": -4
+            },
+            "chat": [
+              {
+                "from": "Ms. Patty",
+                "text": "Ha! 🙂 like the pumpkin in October"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "label": "\"Thank you!! Restocking tomorrow!\"",
+        "duration": 2,
+        "outcomes": [
+          {
+            "text": "Tomorrow you send 40 diapers, two packs of wipes and an apology granola bar. The badge goes home in a sandwich bag, labeled BADGE.",
+            "effects": {
+              "energy": -8
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "w_pt_your_side",
+    "title": "Your Side of the Family",
+    "text": "{kid} has thrown a shoe at the wall because the wall was there. {partner} watches it land and says, quietly, \"That's your side.\" Your side has a cousin who bit a mall Santa in 1994.",
+    "window": [
+      930,
+      1160
+    ],
+    "weight": 2,
+    "oncePerWeek": true,
+    "choices": [
+      {
+        "label": "\"Your side has Uncle Ray.\"",
+        "duration": 2,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "Neither of you says what Uncle Ray did at the wedding. Nobody has to. {kid} throws the other shoe. Both sides, represented.",
+            "effects": {
+              "rel": -10,
+              "energy": 6
+            },
+            "count": {
+              "blames": 1
+            },
+            "set": [
+              "pt:sniped"
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "\"...The fountain,\" they whisper. You both lose it. You laugh until {kid} stops throwing things to stare at you, which is the first time that's ever worked.",
+            "effects": {
+              "rel": 12,
+              "mood": 6,
+              "energy": 4
+            }
+          }
+        ]
+      },
+      {
+        "label": "Say nothing. Wait for the sigh.",
+        "duration": 3,
+        "outcomes": [
+          {
+            "text": "{kid} puts both hands on their hips and lets out a long, wounded sigh. It's {partner}'s sigh, note for note, eye roll included. {partner} hears it. \"Okay,\" they say. \"Okay.\"",
+            "effects": {
+              "rel": 6,
+              "energy": 4,
+              "mood": -4
+            },
+            "stamp": "DNA RESULTS ARE IN"
+          }
+        ]
+      },
+      {
+        "label": "Hand back the shoe: \"Shoes are for feet.\"",
+        "duration": 8,
+        "minEnergy": 20,
+        "tags": [
+          "boundary"
+        ],
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "{kid} considers this, then puts the shoe on the wrong foot, defiantly. It counts. {partner} gives you the nod of someone watching a professional.",
+            "effects": {
+              "mood": 10,
+              "rel": 6,
+              "energy": -8
+            }
+          },
+          {
+            "weight": 1,
+            "text": "\"Shoes are for WALLS,\" {kid} corrects you, and demonstrates. Your side. Definitely your side.",
+            "effects": {
+              "mood": -8,
+              "energy": -8
+            },
+            "fx": "shake"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "w_pt_repair",
+    "title": "The Sticky Note",
+    "text": "A sticky note on the coffee maker, in {partner}'s handwriting: \"sorry for being a jerk. i was tired and you were right. (about most of it)\"",
+    "window": [
+      370,
+      560
+    ],
+    "weight": 3,
+    "oncePerWeek": true,
+    "when": {
+      "flags": [
+        "pt:sniped"
+      ],
+      "min": {
+        "day": 1
+      }
+    },
+    "choices": [
+      {
+        "label": "Write one back.",
+        "duration": 5,
+        "minEnergy": 20,
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "You write \"me too\" and stick it on their phone. They find it in a meeting. Their face does something that makes a coworker ask if they're okay. They are.",
+            "effects": {
+              "rel": 16,
+              "energy": -6
+            }
+          },
+          {
+            "weight": 1,
+            "text": "You write \"me too\" and leave it on their keys. That evening there's a third note on the coffee maker: \"ok but the dishwasher thing stands.\"",
+            "effects": {
+              "rel": 10,
+              "energy": -6
+            }
+          }
+        ]
+      },
+      {
+        "label": "Fold it into your wallet. Evidence.",
+        "duration": 1,
+        "outcomes": [
+          {
+            "text": "It goes behind your license, next to the other one, from 2019, which just says \"sorry about the tent.\"",
+            "effects": {
+              "rel": 8,
+              "energy": 6
+            }
+          }
+        ]
+      },
+      {
+        "label": "Cross out \"most of\" and stick it back",
+        "duration": 2,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "An hour later the note has a reply: \"nice try.\" Under that, a heart. Under that, \"(most of).\"",
+            "effects": {
+              "rel": 6,
+              "energy": 4
+            }
+          },
+          {
+            "weight": 1,
+            "text": "They find the edit and laugh out loud at a red light.",
+            "effects": {
+              "rel": 12,
+              "energy": 2
+            },
+            "chat": [
+              {
+                "from": "{partner}",
+                "text": "FINE. all of it."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "w_handoff_fumes",
+    "title": "The Handoff: Running on Fumes",
+    "text": "{partner} walks in and finds you face-down on the kitchen floor while {kid} drives a dump truck up and down your spine. \"Hi,\" you tell the floor.",
+    "window": [
+      1035,
+      1100
+    ],
+    "priority": 45,
+    "oncePerWeek": true,
+    "when": {
+      "max": {
+        "day": 3,
+        "energy": 25
+      },
+      "notFlags": [
+        "d:handoff"
+      ]
+    },
+    "choices": [
+      {
+        "label": "Tag out. Now. No eye contact.",
+        "duration": 10,
+        "tags": [
+          "tagteam"
+        ],
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "They take {kid}. You take the stairs one at a time and lie face-down on the bed. Ten minutes. You dream about a different floor.",
+            "effects": {
+              "energy": 16,
+              "rel": -4
+            },
+            "set": [
+              "d:handoff"
+            ],
+            "ledger": {
+              "evening": "partner"
+            }
+          },
+          {
+            "weight": 1,
+            "text": "{kid} follows you upstairs, climbs onto your back and says \"TRUCK.\" You've been promoted from floor to road. It's still lying down.",
+            "effects": {
+              "energy": 8,
+              "mood": 10,
+              "rel": -2
+            },
+            "set": [
+              "d:handoff"
+            ],
+            "ledger": {
+              "evening": "partner"
+            }
+          }
+        ]
+      },
+      {
+        "label": "\"I'm fine.\" Stand up. Start dinner.",
+        "duration": 10,
+        "minEnergy": 5,
+        "tags": [
+          "martyr"
+        ],
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "You are not fine. You make pasta anyway. They watch you salt the water three times and say nothing, which is its own kindness.",
+            "effects": {
+              "energy": -6,
+              "rel": 6
+            },
+            "set": [
+              "d:handoff"
+            ],
+            "ledger": {
+              "dinner": "you"
+            }
+          },
+          {
+            "weight": 1,
+            "text": "You salt the water a third time. They take the spoon out of your hand. \"Sit.\" You sit back down on the floor, which isn't what they meant.",
+            "effects": {
+              "energy": 6,
+              "rel": 10
+            },
+            "set": [
+              "d:handoff"
+            ],
+            "ledger": {
+              "dinner": "partner"
+            }
+          }
+        ]
+      },
+      {
+        "label": "Say it into the floor: \"I'm running on fumes.\"",
+        "duration": 10,
+        "outcomes": [
+          {
+            "text": "They lie down on the floor next to you. {kid} drives the truck over both of you. Nobody gets up for a while.",
+            "effects": {
+              "energy": 8,
+              "rel": 10,
+              "debt": 4
+            },
+            "set": [
+              "d:handoff"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "w_handoff_scorekeeper",
+    "title": "The Handoff: \"I'm Wrecked.\"",
+    "text": "{partner} walks in, drops their bag and says, \"I'm wrecked.\" By your count you've done four more things than them this week. You've counted. The count is a note on your phone. It has a title.",
+    "window": [
+      1035,
+      1100
+    ],
+    "priority": 45,
+    "oncePerWeek": true,
+    "when": {
+      "max": {
+        "day": 3
+      },
+      "min": {
+        "ledger": 4
+      },
+      "notFlags": [
+        "d:handoff"
+      ]
+    },
+    "choices": [
+      {
+        "label": "\"Sit. I've got dinner.\" Let the count go.",
+        "duration": 10,
+        "minEnergy": 20,
+        "tags": [
+          "martyr"
+        ],
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "You let it go, for tonight. They sit. They say \"thank you\" twice: once to you, and once, quietly, to the ceiling.",
+            "effects": {
+              "energy": -8,
+              "rel": 12
+            },
+            "set": [
+              "d:handoff"
+            ],
+            "ledger": {
+              "dinner": "you"
+            }
+          },
+          {
+            "weight": 1,
+            "text": "They sit for exactly 90 seconds, then get up and do the dishes without being asked. They know the count too. Everyone knows the count.",
+            "effects": {
+              "energy": -4,
+              "rel": 14
+            },
+            "set": [
+              "d:handoff"
+            ],
+            "ledger": {
+              "dinner": "you",
+              "dishes": "partner"
+            }
+          }
+        ]
+      },
+      {
+        "label": "Read them the count. Out loud. With dates.",
+        "duration": 5,
+        "outcomes": [
+          {
+            "text": "Mornings, dishes, the form, the snack bag, the car seat thing. They listen. They say \"okay.\" The okay has a temperature, and it's cold.",
+            "effects": {
+              "energy": 6,
+              "rel": -14
+            },
+            "set": [
+              "d:handoff",
+              "pt:sniped"
+            ],
+            "count": {
+              "blames": 1
+            },
+            "stamp": "READ INTO THE RECORD"
+          }
+        ]
+      },
+      {
+        "label": "Tag out. They owe you.",
+        "duration": 10,
+        "tags": [
+          "tagteam"
+        ],
+        "outcomes": [
+          {
+            "when": {
+              "min": {
+                "rel": 50
+              }
+            },
+            "text": "They know the count too. They take {kid} without a word. You take a shower long enough to legally count as a bath.",
+            "effects": {
+              "energy": 14,
+              "rel": -2
+            },
+            "set": [
+              "d:handoff"
+            ],
+            "ledger": {
+              "evening": "partner"
+            }
+          },
+          {
+            "when": {
+              "max": {
+                "rel": 49
+              }
+            },
+            "text": "They take {kid} with a sigh you'll hear in your dreams. You take the ten minutes anyway. They were owed. You think.",
+            "effects": {
+              "energy": 12,
+              "rel": -8
+            },
+            "set": [
+              "d:handoff",
+              "pt:sniped"
+            ],
+            "ledger": {
+              "evening": "partner"
+            },
+            "count": {
+              "blames": 1
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "w_handoff_deficit",
+    "title": "The Handoff: The Ledger Leans",
+    "text": "{partner} walks in carrying groceries, the mail and {kid}'s missing shoe. By any honest count they've done three more things than you this week. They haven't said it. They won't. That's worse.",
+    "window": [
+      1035,
+      1100
+    ],
+    "priority": 45,
+    "oncePerWeek": true,
+    "when": {
+      "max": {
+        "day": 3,
+        "ledger": -3
+      },
+      "notFlags": [
+        "d:handoff"
+      ]
+    },
+    "choices": [
+      {
+        "label": "\"I owe you. Sit down.\" Take dinner.",
+        "duration": 10,
+        "minEnergy": 20,
+        "tags": [
+          "martyr"
+        ],
+        "outcomes": [
+          {
+            "text": "You cook. They sit. Halfway through the onions you hear them exhale, really exhale, for the first time since Monday.",
+            "effects": {
+              "energy": -10,
+              "rel": 14
+            },
+            "set": [
+              "d:handoff"
+            ],
+            "ledger": {
+              "dinner": "you"
+            }
+          }
+        ]
+      },
+      {
+        "label": "\"So I've been, um. Busy?\"",
+        "duration": 3,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "\"Mm-hm.\" They set the shoe on the counter like an exhibit. {kid} points at you and says, \"BUSY,\" accurately.",
+            "effects": {
+              "energy": 8,
+              "rel": -8
+            },
+            "set": [
+              "d:handoff"
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "They laugh. \"You were busy. I've seen the kitchen.\" They hand you the mail. It's all bills. It's all yours now.",
+            "effects": {
+              "energy": -2,
+              "rel": 6
+            },
+            "set": [
+              "d:handoff"
+            ],
+            "ledger": {
+              "errands": "you"
+            }
+          }
+        ]
+      },
+      {
+        "label": "Tag out anyway. Bold.",
+        "duration": 10,
+        "tags": [
+          "tagteam"
+        ],
+        "outcomes": [
+          {
+            "when": {
+              "min": {
+                "rel": 50
+              }
+            },
+            "text": "They take {kid}. They also take a long look at you. You spend all ten minutes feeling it.",
+            "effects": {
+              "energy": 10,
+              "rel": -6
+            },
+            "set": [
+              "d:handoff"
+            ],
+            "ledger": {
+              "evening": "partner"
+            }
+          },
+          {
+            "when": {
+              "max": {
+                "rel": 49
+              }
+            },
+            "text": "\"Seriously?\" They take {kid}. You take ten minutes and the full weight of the ledger, which is heavier than {kid}.",
+            "effects": {
+              "energy": 8,
+              "rel": -14
+            },
+            "set": [
+              "d:handoff",
+              "pt:sniped"
+            ],
+            "ledger": {
+              "evening": "partner"
+            },
+            "count": {
+              "blames": 1
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

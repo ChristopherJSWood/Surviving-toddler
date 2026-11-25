@@ -8,3 +8,5 @@ xcuserdata/
 .swiftpm/
 *.xcresult
 .DS_Store
+# tools/mac-build.sh output
+build/

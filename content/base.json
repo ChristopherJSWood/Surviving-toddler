@@ -1,0 +1,468 @@
+{
+  "version": 2,
+  "config": {
+    "eventGap": 40,
+    "bedtimeClock": 1170,
+    "wake": [
+      358,
+      331,
+      304
+    ],
+    "startMeters": {
+      "energy": 75,
+      "rel": 70,
+      "mood": 60,
+      "sleepy": 10,
+      "debt": 20
+    },
+    "drift": [
+      {
+        "meter": "sleepy",
+        "every": 12,
+        "delta": 1
+      },
+      {
+        "meter": "energy",
+        "every": 30,
+        "delta": -1
+      },
+      {
+        "meter": "rel",
+        "every": 30,
+        "delta": -1,
+        "when": {
+          "max": {
+            "energy": 29
+          }
+        }
+      },
+      {
+        "meter": "rel",
+        "every": 30,
+        "delta": -1,
+        "when": {
+          "max": {
+            "energy": 14
+          }
+        }
+      },
+      {
+        "meter": "mood",
+        "every": 10,
+        "delta": -1,
+        "when": {
+          "min": {
+            "sleepy": 80
+          }
+        }
+      },
+      {
+        "meter": "mood",
+        "every": 30,
+        "delta": -1,
+        "when": {
+          "min": {
+            "debt": 30
+          }
+        }
+      },
+      {
+        "meter": "mood",
+        "every": 30,
+        "delta": -1,
+        "when": {
+          "min": {
+            "debt": 60
+          }
+        }
+      },
+      {
+        "meter": "rel",
+        "every": 180,
+        "delta": -1
+      }
+    ],
+    "bedtime": {
+      "threshold": 50,
+      "asleep": {
+        "debt": -10
+      },
+      "awake": {
+        "debt": 20
+      },
+      "awakeFlag": "d:secondWind"
+    },
+    "night": {
+      "cards": 2,
+      "base": 55,
+      "perWake": 12,
+      "minRefill": 25,
+      "lateCoffeeFlag": "d:lateCoffee",
+      "lateCoffeePenalty": 15,
+      "debtPerWake": 5,
+      "recovery": 10,
+      "moodBase": 65,
+      "moodDebtDiv": 4,
+      "sleepyStart": 10,
+      "partnerTaskMinRel": 60
+    },
+    "hazard": {
+      "base": 20,
+      "bandBonus": [
+        0,
+        8,
+        16
+      ],
+      "lateDayClock": 960,
+      "lateDayBonus": 5,
+      "catastropheShare": [
+        10,
+        15,
+        25
+      ],
+      "maxCatastrophesPerDay": 1
+    },
+    "snap": {
+      "belowEnergy": 20,
+      "chancePct": 30,
+      "text": "You meant to say it calmly. It came out at a volume that set off a car alarm. Their lip wobbles. Yours does too.",
+      "effects": {
+        "mood": -10,
+        "rel": -8
+      },
+      "set": [
+        "d:snapped"
+      ]
+    },
+    "lossOrder": [
+      "energy",
+      "rel"
+    ],
+    "losses": {
+      "energy": "collapse",
+      "rel": "talk"
+    },
+    "lifelineMeters": [
+      "energy"
+    ],
+    "weekScore": {
+      "rel": 2,
+      "energy": 1,
+      "mood": 1,
+      "debt": -1
+    },
+    "grades": [
+      {
+        "min": 340,
+        "id": "legend"
+      },
+      {
+        "min": 314,
+        "id": "solid"
+      },
+      {
+        "min": 270,
+        "id": "survived"
+      },
+      {
+        "min": 0,
+        "id": "barely"
+      }
+    ]
+  },
+  "meters": {
+    "energy": "Bandwidth",
+    "rel": "Relationship",
+    "mood": "Mood",
+    "sleepy": "Sleepiness",
+    "debt": "Sleep debt"
+  },
+  "counters": [
+    {
+      "id": "coffee",
+      "label": "Coffees reheated"
+    },
+    {
+      "id": "screen",
+      "label": "Minutes of screen time"
+    },
+    {
+      "id": "snacks",
+      "label": "Snacks surrendered"
+    },
+    {
+      "id": "tantrums",
+      "label": "Meltdowns weathered"
+    },
+    {
+      "id": "paybacks",
+      "label": "Screen-off meltdowns"
+    },
+    {
+      "id": "blames",
+      "label": "Blame exchanged"
+    },
+    {
+      "id": "moments",
+      "label": "Small moments"
+    },
+    {
+      "id": "bleeps",
+      "label": "Words bleeped"
+    }
+  ],
+  "styles": [
+    {
+      "id": "tagteam",
+      "title": "The Tag-Teamer",
+      "text": "You passed the baton. Sometimes it was a relay. Sometimes it was a hot potato. Either way, two of you ran the race."
+    },
+    {
+      "id": "negotiate",
+      "title": "The Negotiator",
+      "text": "Every snack was a treaty. Every shoe was a summit. You'd be terrifying at a car dealership."
+    },
+    {
+      "id": "screen",
+      "title": "The Screen Diplomat",
+      "text": "A man in corduroy did a lot of your parenting this week. He did it well. You'll deal with the screen-off meltdowns later. You always do."
+    },
+    {
+      "id": "martyr",
+      "title": "The Martyr",
+      "text": "You did everything yourself, perfectly, and told no one. Your partner is still not sure what you did all week. Neither is your spine."
+    },
+    {
+      "id": "bribe",
+      "title": "The Bribe Economist",
+      "text": "Crackers, stickers, one more episode. The toddler has learned the value of a deal, and the deal has gotten expensive."
+    },
+    {
+      "id": "boundary",
+      "title": "The Drill Sergeant",
+      "text": "No meant no. No meant no forty times. The tantrums were loud, but they were short, and they knew where they stood."
+    }
+  ],
+  "days": [
+    {
+      "id": "mon",
+      "name": "Monday",
+      "modifier": "monday",
+      "tasks": [
+        "diapers",
+        "rsvp"
+      ]
+    },
+    {
+      "id": "tue",
+      "name": "Tuesday",
+      "modifier": "deadline",
+      "tasks": [
+        "form"
+      ]
+    },
+    {
+      "id": "wed",
+      "name": "Wednesday",
+      "modifier": "pinkeye",
+      "tasks": [
+        "pediatrician"
+      ]
+    },
+    {
+      "id": "thu",
+      "name": "Thursday",
+      "modifier": "random",
+      "tasks": [
+        "library"
+      ]
+    },
+    {
+      "id": "fri",
+      "name": "Friday",
+      "modifier": "datenight",
+      "tasks": []
+    }
+  ],
+  "modifiers": [
+    {
+      "id": "monday",
+      "title": "Monday",
+      "text": "Back to it. The weekend was a beautiful lie.",
+      "effects": {}
+    },
+    {
+      "id": "deadline",
+      "title": "Work Deadline",
+      "text": "The report is due at 5. Your toddler is due at everything else.",
+      "effects": {
+        "energy": -5
+      },
+      "set": [
+        "d:deadline"
+      ]
+    },
+    {
+      "id": "pinkeye",
+      "title": "Daycare Closed: Pink Eye",
+      "text": "Pink eye at daycare. Your toddler is fine. Your toddler is also home all day, touching every surface in the house with intent.",
+      "effects": {
+        "energy": -5
+      },
+      "set": [
+        "d:home"
+      ]
+    },
+    {
+      "id": "datenight",
+      "title": "Date Night",
+      "text": "The sitter arrives at 7:00. The reservation is at 7:30. All you have to do is get through the day with enough left to put on real pants.",
+      "effects": {},
+      "set": [
+        "d:friday"
+      ]
+    },
+    {
+      "id": "teething",
+      "pool": true,
+      "weight": 2,
+      "title": "Teething",
+      "text": "A molar is coming in. Your toddler is chewing everything, including grudges.",
+      "effects": {
+        "mood": -10
+      },
+      "set": [
+        "d:teething"
+      ]
+    },
+    {
+      "id": "grandma",
+      "pool": true,
+      "weight": 2,
+      "title": "Grandma Is Visiting",
+      "text": "Free childcare! Also opinions. So many opinions.",
+      "effects": {
+        "energy": 10,
+        "rel": -6
+      },
+      "set": [
+        "d:grandma"
+      ]
+    },
+    {
+      "id": "potty",
+      "pool": true,
+      "weight": 2,
+      "title": "Potty Training: Day 3",
+      "text": "The internet said it would take three days. It is day 3. The internet lied.",
+      "effects": {
+        "energy": -6
+      },
+      "set": [
+        "d:potty"
+      ]
+    },
+    {
+      "id": "regression",
+      "pool": true,
+      "weight": 2,
+      "title": "Sleep Regression",
+      "text": "Your toddler did stand-up comedy from 2 to 4 AM. You slept in installments.",
+      "effects": {
+        "energy": -12,
+        "debt": 10
+      }
+    }
+  ],
+  "tasks": [
+    {
+      "id": "diapers",
+      "label": "Buy diapers",
+      "dueDay": 2,
+      "dueClock": 720,
+      "expire": "no_diapers"
+    },
+    {
+      "id": "rsvp",
+      "label": "RSVP to Juniper's party",
+      "dueDay": 3,
+      "dueClock": 1020,
+      "expire": "rsvp_missed"
+    },
+    {
+      "id": "form",
+      "label": "Sign the daycare form",
+      "dueDay": 2,
+      "dueClock": 540,
+      "expire": "form_missed"
+    },
+    {
+      "id": "pediatrician",
+      "label": "Call the pediatrician about the rash",
+      "dueDay": 3,
+      "dueClock": 1020,
+      "expire": "rash_missed"
+    },
+    {
+      "id": "library",
+      "label": "Return the library books",
+      "dueDay": 4,
+      "dueClock": 1020,
+      "expire": "library_missed"
+    }
+  ],
+  "lifeline": {
+    "title": "Grandma to the Rescue",
+    "text": "You call your mother. She arrives in eleven minutes with a casserole, a bag of cookies and a list of observations. She sends you to bed at 4 PM. You don't argue.",
+    "effects": {
+      "energy": 40,
+      "mood": 20
+    },
+    "set": [
+      "grandmaUsed"
+    ]
+  },
+  "endings": {
+    "collapse": {
+      "kind": "loss",
+      "title": "Parent.exe Has Stopped Responding",
+      "text": "You sat down on the kitchen floor to tie a shoe and simply did not get up again. Your toddler covers you with a dish towel and says, \"Night night.\" Your partner finds you like that at 6."
+    },
+    "talk": {
+      "kind": "loss",
+      "title": "We Need to Talk",
+      "text": "Not a fight, exactly. Two people at the kitchen counter, too tired to finish their sentences. The monitor hisses. Neither of you moves. Next week, you'll try the ledger thing."
+    },
+    "sitter_quits": {
+      "kind": "loss",
+      "title": "The Sitter Quits at the Door",
+      "text": "The sitter rings the bell at 7:00. Your toddler answers it, naked, holding a spatula, wide awake. The sitter looks at you, looks at the spatula, and leaves. You eat cereal in your going-out shirt."
+    },
+    "couch": {
+      "kind": "loss",
+      "title": "Asleep in Your Going-Out Shirt",
+      "text": "You sat down on the couch for one minute to put on your shoes. It is now 9:40 PM. Your partner is asleep next to you, also in a going-out shirt. The reservation called twice."
+    },
+    "legend": {
+      "kind": "win",
+      "title": "You Remembered You Like Each Other",
+      "text": "Dessert. A walk. A whole conversation that wasn't about poop. You get home and the toddler is asleep and the sitter says they were \"an angel,\" which is a lie, but a kind one."
+    },
+    "solid": {
+      "kind": "win",
+      "title": "A Good Week, Actually",
+      "text": "Dinner was good. You talked about the toddler for forty-one minutes and each other for twenty. That counts. That absolutely counts."
+    },
+    "survived": {
+      "kind": "win",
+      "title": "You Made It to Friday",
+      "text": "You made it to the restaurant, mostly awake. You split an appetizer and a yawn. It wasn't magic. It was a table for two, and that's more than last month."
+    },
+    "barely": {
+      "kind": "win",
+      "title": "Barely, Together",
+      "text": "You were home by 8:45 and asleep by 8:50, holding hands, fully dressed. The sitter got paid for three hours. Worth it."
+    }
+  },
+  "events": []
+}

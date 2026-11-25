@@ -1,0 +1,569 @@
+[
+  {
+    "id": "moment_long_arms",
+    "title": "The Family Portrait",
+    "text": "{kid} hands you a drawing. \"This is {partner}. This is me. This is you.\" You're a circle with two arms that go all the way to the edges of the paper.",
+    "window": [
+      540,
+      1110
+    ],
+    "weight": 1,
+    "weightBy": {
+      "counter": "style.present",
+      "every": 3
+    },
+    "oncePerWeek": true,
+    "moment": true,
+    "choices": [
+      {
+        "label": "\"Why are my arms so long?\"",
+        "duration": 3,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "\"For carrying me,\" they say. Like it's obvious. It goes on the fridge, at their height, under the good magnet.",
+            "effects": {
+              "energy": 14,
+              "mood": 10
+            },
+            "count": {
+              "moments": 1
+            }
+          },
+          {
+            "weight": 1,
+            "text": "\"So you can reach me,\" they say, \"from anywhere.\" It goes on the fridge, at their height, under the good magnet.",
+            "effects": {
+              "energy": 14,
+              "mood": 10
+            },
+            "count": {
+              "moments": 1
+            }
+          }
+        ]
+      },
+      {
+        "label": "Send a photo of it to {partner}",
+        "duration": 2,
+        "outcomes": [
+          {
+            "text": "{partner} calls from work just to hear about it. You describe the arms. There's a long pause on the line. \"Yeah,\" they say. \"That's right.\"",
+            "effects": {
+              "rel": 10,
+              "energy": 8
+            },
+            "count": {
+              "moments": 1
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "moment_my_me",
+    "title": "Pickup",
+    "text": "Daycare pickup. {kid} spots you across the room, drops a whole tambourine and runs at you, telling everyone, \"THAT'S MY {ME}! THAT'S MY {ME}!\"",
+    "window": [
+      930,
+      1080
+    ],
+    "weight": 1,
+    "weightBy": {
+      "counter": "style.present",
+      "every": 3
+    },
+    "oncePerWeek": true,
+    "moment": true,
+    "when": {
+      "notFlags": [
+        "d:home"
+      ]
+    },
+    "choices": [
+      {
+        "label": "Crouch down. Catch them.",
+        "duration": 3,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "They hit you at full speed. Two other kids stop and stare at you like you're somebody. Today, you are.",
+            "effects": {
+              "energy": 18,
+              "mood": 10
+            },
+            "count": {
+              "moments": 1
+            },
+            "fx": "confetti"
+          },
+          {
+            "weight": 1,
+            "text": "They hit you at full speed and don't let go. Their teacher says, \"They've been watching the door since three.\" You hold on a little longer than they do.",
+            "effects": {
+              "energy": 16,
+              "mood": 12
+            },
+            "count": {
+              "moments": 1
+            }
+          }
+        ]
+      },
+      {
+        "label": "Let them give you the tour",
+        "duration": 8,
+        "outcomes": [
+          {
+            "text": "They pull you around by one finger to meet the class fish, their cubby and a boy named Mateo. \"This is my {ME},\" they tell each one.",
+            "effects": {
+              "mood": 12,
+              "energy": 8
+            },
+            "count": {
+              "moments": 1
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "moment_your_voice",
+    "title": "Your Voice, Coming Back",
+    "text": "You sit down on the stairs with a work email and a long sigh. {kid} climbs up, rubs your back in small circles and says, in your exact 2 AM voice, \"Shhh. I'm here. I'm right here.\"",
+    "window": [
+      600,
+      1140
+    ],
+    "weight": 1,
+    "weightBy": {
+      "counter": "style.present",
+      "every": 3
+    },
+    "oncePerWeek": true,
+    "moment": true,
+    "choices": [
+      {
+        "label": "Let them take care of you",
+        "duration": 5,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "You let them. Small circles, a little too hard. They keep going until you laugh, and then a little longer, to be sure.",
+            "effects": {
+              "energy": 16,
+              "mood": 6
+            },
+            "count": {
+              "moments": 1
+            }
+          },
+          {
+            "weight": 1,
+            "text": "You let them. The circles turn into pats, and the pats turn into the song you sing at 2 AM, half the words wrong, perfectly on time. You don't move until it's over.",
+            "effects": {
+              "energy": 16,
+              "mood": 6
+            },
+            "count": {
+              "moments": 1
+            }
+          }
+        ]
+      },
+      {
+        "label": "\"Where did you learn that?\"",
+        "duration": 2,
+        "outcomes": [
+          {
+            "text": "\"From you,\" they say. Every night you thought nobody was watching, somebody was.",
+            "effects": {
+              "energy": 12
+            },
+            "count": {
+              "moments": 1
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "moment_mid_protest",
+    "title": "\"I'm Not Ti—\"",
+    "text": "\"I'm not tired,\" {kid} explains, lying face down on your chest. \"I'm not tired. I'm not ti—\" Out. Mid-word. One fist still holding your shirt.",
+    "window": [
+      780,
+      1100
+    ],
+    "weight": 1,
+    "weightBy": {
+      "counter": "style.present",
+      "every": 3
+    },
+    "oncePerWeek": true,
+    "moment": true,
+    "choices": [
+      {
+        "label": "Don't move. Not for anything.",
+        "duration": 30,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "Your phone buzzes on the counter, out of reach. Let it. You don't move for thirty minutes. The fist never lets go of your shirt.",
+            "effects": {
+              "energy": 18,
+              "mood": 8,
+              "sleepy": -12
+            },
+            "count": {
+              "moments": 1
+            }
+          },
+          {
+            "weight": 1,
+            "text": "Thirty minutes. Once, they say \"no\" very firmly to something in a dream, then go heavy again. You don't move. You'd forgotten you could be this still.",
+            "effects": {
+              "energy": 18,
+              "mood": 8,
+              "sleepy": -12
+            },
+            "count": {
+              "moments": 1
+            }
+          }
+        ]
+      },
+      {
+        "label": "Ease them onto the couch, inch by inch",
+        "duration": 8,
+        "outcomes": [
+          {
+            "text": "Eleven inches in four minutes. They don't wake. The fist lets go of your shirt last, and only to take a fistful of blanket.",
+            "effects": {
+              "energy": 10,
+              "mood": 4,
+              "sleepy": -12
+            },
+            "count": {
+              "moments": 1
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "moment_future",
+    "title": "Future Plans",
+    "text": "From the back seat, {kid} produces their longest sentence ever: \"When I'm big, I'm going to drive, and you can sit in the back and have a snack.\" Eighteen words. You count them at a red light.",
+    "window": [
+      900,
+      1110
+    ],
+    "weight": 1,
+    "weightBy": {
+      "counter": "style.present",
+      "every": 3
+    },
+    "oncePerWeek": true,
+    "moment": true,
+    "choices": [
+      {
+        "label": "\"Deal.\"",
+        "duration": 2,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "They nod, satisfied, and spend the rest of the drive practicing on the back of your seat. Left turn. Right turn. A very careful stop.",
+            "effects": {
+              "energy": 14,
+              "mood": 8
+            },
+            "count": {
+              "moments": 1
+            }
+          },
+          {
+            "weight": 1,
+            "text": "\"And I'll do the music,\" they add. \"And I'll say 'almost there.'\" They've been listening from back there the whole time. Every drive.",
+            "effects": {
+              "energy": 14,
+              "mood": 8
+            },
+            "count": {
+              "moments": 1
+            }
+          }
+        ]
+      },
+      {
+        "label": "\"What snack do I get?\"",
+        "duration": 5,
+        "outcomes": [
+          {
+            "text": "They think about it for two whole blocks. \"The good one,\" they decide. \"The one I like.\" From them, there is no higher honor.",
+            "effects": {
+              "energy": 10,
+              "mood": 12
+            },
+            "count": {
+              "moments": 1
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "moment_three_hearts",
+    "title": "Three Hearts",
+    "text": "\"{ME}. Did you know an octopus has three hearts?\" You did. You told them in August, at the aquarium, holding them up to the glass.",
+    "window": [
+      480,
+      1140
+    ],
+    "weight": 1,
+    "weightBy": {
+      "counter": "style.present",
+      "every": 3
+    },
+    "oncePerWeek": true,
+    "moment": true,
+    "choices": [
+      {
+        "label": "\"No! Really?\"",
+        "duration": 3,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "Their face when they get to teach you something. They hold up three fingers, then four, then three, to be sure you've got it. You've got it.",
+            "effects": {
+              "energy": 12,
+              "mood": 12
+            },
+            "count": {
+              "moments": 1
+            }
+          },
+          {
+            "weight": 1,
+            "text": "\"Three,\" they say. Then they put a hand flat on your chest to count yours. They count to one and leave the hand there.",
+            "effects": {
+              "energy": 12,
+              "mood": 12
+            },
+            "count": {
+              "moments": 1
+            }
+          }
+        ]
+      },
+      {
+        "label": "\"I told you that.\"",
+        "duration": 2,
+        "outcomes": [
+          {
+            "text": "\"I know,\" they say, patiently. \"I'm telling you back.\"",
+            "effects": {
+              "energy": 16,
+              "mood": 4
+            },
+            "count": {
+              "moments": 1
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "moment_too",
+    "title": "\"Too.\"",
+    "text": "Nap time. You're halfway out the door when a small voice from the dark says, \"I love you too, {me}.\" You hadn't said it yet. They were answering something you say every day.",
+    "window": [
+      720,
+      900
+    ],
+    "weight": 1,
+    "weightBy": {
+      "counter": "style.present",
+      "every": 3
+    },
+    "oncePerWeek": true,
+    "moment": true,
+    "choices": [
+      {
+        "label": "Go back in and say it properly",
+        "duration": 3,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "You say it into their hair. \"Too,\" they say again, mostly asleep. They don't need the first part anymore. They have it.",
+            "effects": {
+              "energy": 12,
+              "mood": 8
+            },
+            "count": {
+              "moments": 1
+            }
+          },
+          {
+            "weight": 1,
+            "text": "\"Love you,\" you say into their hair. \"Too,\" they say. \"Too,\" you say. You go back and forth like that, quieter each time, until one of you is asleep. It's them. Barely.",
+            "effects": {
+              "energy": 12,
+              "mood": 8
+            },
+            "count": {
+              "moments": 1
+            }
+          }
+        ]
+      },
+      {
+        "label": "Stand in the doorway until they're out",
+        "duration": 10,
+        "outcomes": [
+          {
+            "text": "Ten minutes in the dark, listening to them breathe. You've said it a thousand times. You never once wondered if it was landing.",
+            "effects": {
+              "energy": 18
+            },
+            "count": {
+              "moments": 1
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "moment_how_you_met",
+    "title": "How You Met",
+    "text": "From the hallway you hear {partner} telling {kid} how you met: the wrong train, the shared umbrella, two coffees gone cold. They skip the parking ticket. {kid} keeps asking, \"Then what?\"",
+    "window": [
+      1020,
+      1165
+    ],
+    "weight": 1,
+    "weightBy": {
+      "counter": "style.present",
+      "every": 3
+    },
+    "oncePerWeek": true,
+    "moment": true,
+    "choices": [
+      {
+        "label": "Walk in and tell the parts they skipped",
+        "duration": 10,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "You tell the parking ticket. {partner} tells how long you argued with the meter. {kid} laughs at all of it without understanding any of it, because you're both laughing.",
+            "effects": {
+              "rel": 12,
+              "mood": 8,
+              "energy": 4
+            },
+            "count": {
+              "moments": 1
+            }
+          },
+          {
+            "weight": 1,
+            "text": "You tell the parking ticket part. \"Then what?\" {kid} asks, and you both realize you've reached the part where they come in. You just look at them for a second too long.",
+            "effects": {
+              "rel": 12,
+              "mood": 8,
+              "energy": 4
+            },
+            "count": {
+              "moments": 1
+            }
+          }
+        ]
+      },
+      {
+        "label": "Stay in the hallway and listen",
+        "duration": 5,
+        "outcomes": [
+          {
+            "text": "\"Then what?\" \"Then we got you.\" You stay out of sight. Some things you only get to hear from the hallway.",
+            "effects": {
+              "rel": 8,
+              "energy": 12
+            },
+            "count": {
+              "moments": 1
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "moment_forecast",
+    "title": "The Forecast",
+    "text": "{kid} climbs into your lap and reads your face out loud. \"You happy.\" A long look. \"Now you thinking.\" A longer look. \"Now you tired.\" Three for three.",
+    "window": [
+      480,
+      1140
+    ],
+    "weight": 1,
+    "weightBy": {
+      "counter": "style.present",
+      "every": 3
+    },
+    "oncePerWeek": true,
+    "moment": true,
+    "choices": [
+      {
+        "label": "\"I am tired. How did you know?\"",
+        "duration": 3,
+        "outcomes": [
+          {
+            "text": "They pat your cheek twice and announce, \"Now you happy.\" Then they wait, very seriously, for it to come true. It does.",
+            "effects": {
+              "energy": 16,
+              "mood": 4
+            },
+            "count": {
+              "moments": 1
+            }
+          }
+        ]
+      },
+      {
+        "label": "Make faces and let them call it",
+        "duration": 8,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "Surprised. Silly. Grumpy. A sneeze. They call every one, thrilled to be right. Then they put their forehead on yours and just look for a while.",
+            "effects": {
+              "energy": 10,
+              "mood": 14
+            },
+            "count": {
+              "moments": 1
+            }
+          },
+          {
+            "weight": 1,
+            "text": "They call every one, then demand a turn: their surprised face, their silly face, and their tired face, which is your tired face, exactly.",
+            "effects": {
+              "energy": 10,
+              "mood": 14
+            },
+            "count": {
+              "moments": 1
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

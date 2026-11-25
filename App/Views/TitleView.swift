@@ -1,8 +1,17 @@
 import SwiftUI
 
+@MainActor
 struct TitleView: View {
     @Environment(GameStore.self) private var store
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var showingHelp = false
+    @State private var household: HouseholdPrompt?
+
+    /// Why the names sheet is open: to start a week, or just to edit.
+    private enum HouseholdPrompt: Identifiable {
+        case startWeek, edit
+        var id: Self { self }
+    }
 
     var body: some View {
         VStack(spacing: 20) {
@@ -10,10 +19,17 @@ struct TitleView: View {
             Image(systemName: "moon.zzz.fill")
                 .font(.system(size: 64))
                 .foregroundStyle(.indigo)
+                .phaseAnimator([false, true]) { moon, up in
+                    moon
+                        .offset(y: up && !reduceMotion ? -8 : 0)
+                        .rotationEffect(.degrees(up && !reduceMotion ? -6 : 4))
+                } animation: { _ in
+                    .easeInOut(duration: 1.6)
+                }
                 .accessibilityHidden(true)
             Text("Bedtime or Bust")
                 .font(.largeTitle.bold())
-            Text("One day. One toddler. One goal:\nmake it to 7:30 PM.")
+            Text(subtitle)
                 .font(.title3)
                 .multilineTextAlignment(.center)
                 .foregroundStyle(.secondary)
@@ -24,37 +40,65 @@ struct TitleView: View {
                     Button {
                         store.resume()
                     } label: {
-                        Text("Continue today").frame(maxWidth: .infinity)
+                        Text("Continue this week").frame(maxWidth: .infinity)
                     }
                     .buttonStyle(.borderedProminent)
+                    .accessibilityIdentifier("resume")
 
                     Button {
-                        store.newDay()
+                        start()
                     } label: {
-                        Text("Start a new day").frame(maxWidth: .infinity)
+                        Text("Start a new week").frame(maxWidth: .infinity)
                     }
                     .buttonStyle(.bordered)
                 } else {
                     Button {
-                        store.newDay()
+                        start()
                     } label: {
-                        Text("Start the day").frame(maxWidth: .infinity)
+                        Text("Start Monday").frame(maxWidth: .infinity)
                     }
                     .buttonStyle(.borderedProminent)
+                    .accessibilityIdentifier("start")
                 }
-                Button("How to play") { showingHelp = true }
-                    .padding(.top, 4)
+                HStack(spacing: 20) {
+                    Button("How to play") { showingHelp = true }
+                    Button("Names & settings") { household = .edit }
+                }
+                .padding(.top, 4)
+                if !store.reactions.isEmpty {
+                    ShareLink(item: store.reactionsCSV(), preview: SharePreview("Bedtime or Bust playtest log")) {
+                        Label("Export playtest log (\(store.reactions.count))", systemImage: "square.and.arrow.up")
+                            .font(.footnote)
+                    }
+                }
             }
             .controlSize(.large)
 
-            if store.stats.daysPlayed > 0 {
-                Text("Days survived: \(store.stats.daysWon) of \(store.stats.daysPlayed) · Best score: \(store.stats.bestScore)")
+            if store.stats.weeksPlayed > 0 {
+                Text("Weeks survived: \(store.stats.weeksWon) of \(store.stats.weeksPlayed) · Best score: \(store.stats.bestScore)")
                     .font(.footnote)
                     .foregroundStyle(.secondary)
             }
         }
         .padding(24)
         .sheet(isPresented: $showingHelp) { HowToPlayView() }
+        .sheet(item: $household) { prompt in
+            HouseholdSheet(startsWeek: prompt == .startWeek)
+        }
+    }
+
+    private var subtitle: String {
+        guard store.household.isComplete else { return "Five days. One toddler. One partner.\nMake it to date night." }
+        return store.say("Five days. {kid}. {partner}.\nMake it to date night.")
+    }
+
+    /// The first week asks who's in the house; after that, straight to Monday.
+    private func start() {
+        if store.household.isComplete {
+            store.newWeek()
+        } else {
+            household = .startWeek
+        }
     }
 }
 
@@ -65,19 +109,20 @@ struct HowToPlayView: View {
         NavigationStack {
             List {
                 Section("The goal") {
-                    Text("Get from 6:00 AM to bedtime at 7:30 PM. Each card is a moment of your day; every choice costs time and moves your meters.")
+                    Text("Get from Monday morning to Friday's date night. At 7:00 PM on Friday the toddler must be Ready for bed and you need at least 35 Bandwidth, or the date is off.")
                 }
-                Section("Your meters") {
-                    Label("Sanity: yours. Hits zero, you hide in the pantry. Game over.", systemImage: "brain.head.profile")
-                    Label("Toddler Mood: hits zero, a meltdown. Survivable, but costly.", systemImage: "face.smiling")
-                    Label("House: hits zero, the house is condemned. Game over.", systemImage: "house.fill")
-                    Label("Reputation: what the other parents think. Hits zero, you're removed from the group chat. Game over.", systemImage: "bubble.left.and.bubble.right.fill")
+                Section("You") {
+                    Label("Bandwidth is how much parent you have left. Good parenting costs it. Below a choice's minimum it's greyed out: too tired. At zero you collapse (Grandma rescues you once a week).", systemImage: "bolt.fill")
+                    Label("Relationship slowly drifts unless you tend it, and drains fast when you're running on empty. At zero the week ends.", systemImage: "heart.fill")
                 }
-                Section("Bedtime") {
-                    Label("Sleepiness rises all day. Naps lower it. At bedtime it must be 50 or more, or your toddler gets a second wind. Above 80 they're overtired, and their mood drops fast.", systemImage: "moon.zzz.fill")
+                Section("Your toddler") {
+                    Label("Mood: at zero, a full meltdown.", systemImage: "face.smiling")
+                    Label("Sleep is how rested they are this week. Bad nights and skipped naps cost it: earlier mornings, more chaos, faster meltdowns.", systemImage: "bed.double.fill")
+                    Label("Bedtime: Wired, Drowsy, Ready for bed, or Overtired. Time the nap so they're Ready at bedtime.", systemImage: "moon.zzz.fill")
                 }
-                Section("Grading") {
-                    Text("If they're asleep at bedtime, your day is graded by the total of Sanity, Mood, House and Reputation.")
+                Section("Shortcuts and the list") {
+                    Label("TV, snacks and late coffee buy Bandwidth now and send a bill later. A ticking chip shows when it's due.", systemImage: "hourglass")
+                    Label("Your list holds the invisible jobs. Forget one and it bites later.", systemImage: "list.bullet.clipboard")
                 }
             }
             .navigationTitle("How to play")

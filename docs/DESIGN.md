@@ -96,3 +96,40 @@ content.json ──► BedtimeCore (Swift) ──► SwiftUI app
 4. **A week mode:** Monday to Friday, meters carry over partially, Friday "date night" as the boss. This is the main retention mechanic.
 5. **Accessibility pass:** VoiceOver order on the HUD, Dynamic Type at the largest sizes, haptics toggle.
 6. **Localization:** satire is culturally specific (the group chat, daycare norms), so adapt the writing rather than translating it.
+
+---
+
+# v2: The Week (supersedes the one-day balance numbers above)
+
+Monday to Friday. **Energy** replaces Sanity and decides which responses you can afford. Engaged choices carry a `minEnergy`; shortcuts borrow Energy and schedule a payback. **Relationship** is a daily system with a ledger, blame cards and the mental-load list. Friday's date night needs the toddler asleep (Sleepiness 67+) and 35+ Energy at 7:00 PM. Full rules: `docs/RULES.md`.
+
+## Balance (2,000 simulated weeks per player, `tools/simulate.mjs`)
+
+| Player | Finishes the week | Main losses |
+|---|---|---|
+| Careful (sees hidden numbers, cautious) | 83% | the sitter quits at the door (13%) |
+| Careful, with a forced terrible Monday night | 75% | same, more often |
+| Random choices | 11.5% | group chat 33%, House 18%, couch 13% |
+| Always the shortcut | 0% | Reputation and the paybacks |
+| Always the most effortful option | 0% | Energy collapse (~77%), "We need to talk" |
+
+Both extremes lose; the middle path wins. That is the design's thesis: perfect parenting at any cost burns you out, and pure shortcuts send the bill. One target was restated during tuning. "Always the right thing fails date night 40%+" became "finishes at most 40%", because that player collapses before Friday.
+
+## How tuning went
+
+- **First full run:** random 0%, careful 32%. Reputation drained 1 point per 40 minutes with no overnight recovery: a death clock over five days. **Fix:** Reputation drains 1 per 240 minutes and starts at 85. House drains 1 per 90 minutes, starts at 85, and gets an overnight tidy of +18 (+8 if Relationship is under 50).
+- **The "always right thing" player collapsed 70% of the time.** **Fix:** Energy drains 1 per 30 minutes instead of 1 per 20.
+- **The careful/random gap was too wide** (92% vs 7%). **Fix:** raise uncontrollable pressure (hazard base 10 → 13%) and Friday's bar (Sleepiness 67, Energy 35).
+- **Relationship losses hit random play.** **Fix:** the passive drain starts below 30 Energy instead of 40.
+
+## Content (150 cards)
+
+- 38 rewritten originals
+- 29 anchors and examples
+- 12 shortcut/payback cards
+- 24 hazards (6 with warnings, 6 catastrophes)
+- 12 partner and blame cards
+- 4 list tasks
+- 6 small moments
+- 13 night cards
+- 15 day-specific cards
