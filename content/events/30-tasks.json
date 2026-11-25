@@ -1,30 +1,43 @@
 [
   {
-    "id": "buy_diapers",
+    "id": "task_diapers",
     "title": "Diaper Math",
-    "text": "You open the box. There are four diapers left. You do the math. The math is bad.",
+    "text": "Four diapers left. {kid} goes through six a day. You do the math, and the math says Wednesday at noon.",
     "window": [
       420,
-      1100
+      1140
     ],
     "task": "diapers",
-    "weight": 3,
+    "weight": 4,
+    "oncePerWeek": true,
     "choices": [
       {
-        "label": "Order them now",
-        "duration": 5,
+        "label": "Order now. Survive the size chart.",
+        "duration": 8,
+        "minEnergy": 20,
         "outcomes": [
           {
-            "text": "Subscribe and save. Arriving tomorrow. You are an adult who handles things.",
+            "weight": 2,
+            "text": "Size 4 is \"22–37 lbs.\" Size 5 is \"27+ lbs.\" {kid} is 31 pounds and therefore both. You buy the box marked \"Overnight\" because you'd like some of that too.",
             "effects": {
-              "energy": -2
+              "energy": -8
             },
             "completeTask": "diapers"
+          },
+          {
+            "weight": 1,
+            "text": "Done in four taps. Three days later you learn you've subscribed to a box every nine days, forever, with no visible way out. The diapers have you now.",
+            "effects": {
+              "energy": -4,
+              "home": -8
+            },
+            "completeTask": "diapers",
+            "stamp": "SUBSCRIBED FOREVER"
           }
         ]
       },
       {
-        "label": "Text your partner to grab some",
+        "label": "Text {partner}: \"diapers. size 4. NOT pull-ups\"",
         "duration": 2,
         "tags": [
           "tagteam"
@@ -36,9 +49,9 @@
                 "rel": 55
               }
             },
-            "text": "\"On it 👍\" They will absolutely forget. Wait, no. They send a photo of the receipt. Who is this person?",
+            "text": "\"on it 👍\" You brace for pull-ups. At 6:12 PM a photo arrives: right size, right box, receipt. Who is this person?",
             "effects": {
-              "rel": 2
+              "rel": 6
             },
             "completeTask": "diapers",
             "ledger": {
@@ -51,176 +64,93 @@
                 "rel": 54
               }
             },
-            "text": "Read at 2:14 PM. No reply. The diapers remain theoretical.",
+            "text": "Read 2:14 PM. No reply. At dinner {partner} asks, \"Did you get diapers?\" The diapers remain theoretical.",
             "effects": {
-              "rel": -2
+              "rel": -8
             }
           }
         ]
       },
       {
-        "label": "Later. There are four.",
+        "label": "Later. Four is a number.",
         "duration": 1,
         "outcomes": [
           {
             "text": "Four is plenty. Four is a number. Nothing bad has ever happened with four.",
-            "effects": {}
+            "effects": {
+              "energy": 4
+            },
+            "set": [
+              "tasks_later"
+            ]
           }
         ]
       }
     ]
   },
   {
-    "id": "no_diapers",
-    "title": "There Are No Diapers",
-    "text": "\"Buy diapers\" expired. It's evening. There is one diaper left and the toddler has plans for it.",
-    "forced": true,
-    "priority": 85,
+    "id": "task_rsvp",
+    "title": "Fourteen Questions",
+    "text": "Brynn's RSVP form for Juniper's party has 14 questions. Number 6 is allergies. Number 9 is your child's \"party energy, 1 to 5.\" Number 14 says, \"Tell us about your family!\"",
+    "window": [
+      420,
+      1140
+    ],
+    "task": "rsvp",
+    "weight": 4,
+    "oncePerWeek": true,
     "choices": [
       {
-        "label": "Drive to the 24-hour pharmacy",
-        "duration": 40,
+        "label": "Answer all 14. Honestly.",
+        "duration": 15,
+        "minEnergy": 20,
         "outcomes": [
           {
-            "text": "You buy diapers in slippers under fluorescent lights. The cashier has seen this before. The cashier has seen everything.",
+            "weight": 2,
+            "text": "Allergies: none. Party energy: 5, unfortunately. Number 14 takes eleven minutes and a second draft. Brynn replies at once: \"LOVE this 💛\"",
             "effects": {
-              "energy": -12
-            }
+              "energy": -8,
+              "rep": 10
+            },
+            "completeTask": "rsvp"
+          },
+          {
+            "weight": 1,
+            "text": "You hit submit. A second form arrives: \"Volunteer Sign-Up (optional!!).\" It is not optional. You're on cupcakes.",
+            "effects": {
+              "energy": -12,
+              "rep": 14
+            },
+            "completeTask": "rsvp",
+            "stamp": "VOLUNTEERED"
           }
         ]
       },
       {
-        "label": "\"Whose turn was it to buy them?\"",
-        "duration": 10,
+        "label": "Answer every question \"no\"",
+        "duration": 2,
         "outcomes": [
           {
-            "text": "It was yours. It was on your list. You both know it. The argument is about something else, as they always are.",
-            "effects": {
-              "rel": -10,
-              "energy": -4
-            },
-            "count": {
-              "blames": 1
-            }
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "rsvp_missed",
-    "title": "\"Did You RSVP?\"",
-    "text": "Theo's mom texts the group chat: \"Still waiting on a few RSVPs 🙂\". The smiley face is doing a lot of work.",
-    "forced": true,
-    "priority": 85,
-    "choices": [
-      {
-        "label": "Apologize profusely",
-        "duration": 5,
-        "outcomes": [
-          {
-            "text": "\"So sorry!! Crazy week!!\" Two exclamation points. The universal sign of a parent drowning politely.",
-            "effects": {
-              "rep": -10
-            }
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "form_missed",
-    "title": "The Form",
-    "text": "Daycare calls. The form was due this morning. Your child cannot go on the field trip to the pumpkin patch without it, and will be told why.",
-    "forced": true,
-    "priority": 85,
-    "choices": [
-      {
-        "label": "Drive it over now",
-        "duration": 30,
-        "outcomes": [
-          {
-            "text": "You hand-deliver a form like it's a subpoena. The teacher's smile is very patient.",
-            "effects": {
-              "energy": -8,
-              "rep": -4
-            }
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "rash_missed",
-    "title": "The Rash, Revisited",
-    "text": "You never called about the rash. The rash has opinions now.",
-    "forced": true,
-    "priority": 85,
-    "choices": [
-      {
-        "label": "Call the after-hours nurse line",
-        "duration": 25,
-        "outcomes": [
-          {
-            "text": "The nurse is calm and kind and says it's probably eczema. You feel a rush of gratitude so big it's embarrassing.",
-            "effects": {
-              "energy": -8,
-              "mood": 4
-            }
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "library_missed",
-    "title": "Overdue",
-    "text": "The library emails. The books are overdue. One of them is now partially eaten.",
-    "forced": true,
-    "priority": 85,
-    "choices": [
-      {
-        "label": "Pay the fine. Accept your shame.",
-        "duration": 5,
-        "outcomes": [
-          {
-            "text": "$11.40 for a book about a bear who is also tired. You get it, bear.",
-            "effects": {
-              "rep": -4,
-              "energy": -2
-            }
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "w_rsvp_now",
-    "title": "Theo's Party: Yes / No / Maybe",
-    "text": "The invite for Theo's party has been open in a browser tab since last week. Saturday, 10 AM, a trampoline place with a cartoon kangaroo on the sign. The buttons say Yes, No and Maybe.",
-    "window": [
-      420,
-      1100
-    ],
-    "task": "rsvp",
-    "weight": 3,
-    "choices": [
-      {
-        "label": "RSVP yes. Right now.",
-        "duration": 3,
-        "outcomes": [
-          {
-            "text": "\"Yes! See you there! 🎉\" One click. You feel like an adult who handles things, at least until Saturday at 10.",
+            "weight": 1,
+            "text": "It goes through. Brynn texts: \"Just confirming!! 'No' for number of kids attending?\" You fix it. Your row has a comment on it now.",
             "effects": {
               "energy": -2,
-              "rep": 2
+              "rep": -10
+            },
+            "completeTask": "rsvp"
+          },
+          {
+            "weight": 1,
+            "text": "It goes through clean. Nobody reads number 14 anyway, except Brynn, who reads every one of them twice.",
+            "effects": {
+              "rep": -4
             },
             "completeTask": "rsvp"
           }
         ]
       },
       {
-        "label": "Ask your partner to handle it",
+        "label": "Forward it to {partner}",
         "duration": 2,
         "tags": [
           "tagteam"
@@ -232,9 +162,10 @@
                 "rel": 55
               }
             },
-            "text": "\"Done. Also bought the gift. It's a kazoo.\" A kazoo. For someone else's child. Your partner is a quiet genius.",
+            "text": "Four minutes. Under \"Tell us about your family!\" {partner} has written, \"We're very tired.\" Brynn replies: \"SAME 😭💛\"",
             "effects": {
-              "rel": 2
+              "rel": 4,
+              "rep": 6
             },
             "completeTask": "rsvp",
             "ledger": {
@@ -247,51 +178,94 @@
                 "rel": 54
               }
             },
-            "text": "\"Which Theo?\" There's only one Theo. The tab stays open, glowing at you.",
+            "text": "\"Who's Brynn?\" You explain Brynn. {partner} is quiet for a long time. \"I'm not doing that.\" Fair.",
             "effects": {
-              "rel": -2
+              "rel": -6
             }
           }
         ]
       },
       {
-        "label": "Later. Maybe is still an option.",
+        "label": "Later. Leave it on Maybe.",
         "duration": 1,
         "outcomes": [
           {
-            "text": "Maybe is always an option. Maybe is how adults say \"I haven't checked with my toddler's nap.\"",
-            "effects": {}
+            "text": "Maybe is a legal status. Maybe means you haven't checked with your toddler's nap. Maybe can last forever.",
+            "effects": {
+              "energy": 4
+            },
+            "set": [
+              "tasks_later"
+            ]
           }
         ]
       }
     ]
   },
   {
-    "id": "w_form_now",
-    "title": "The Form on the Fridge",
-    "text": "The daycare field-trip form is on the fridge, under a magnet, under a drawing of either you or a potato. It needs a signature, an emergency contact and \"any additional notes.\"",
+    "id": "task_form",
+    "title": "Three Pages",
+    "text": "The fire station field-trip form is due tomorrow at 9. It's three pages. It wants a signature, two emergency contacts, and your child's \"comfort item and backup comfort item.\"",
     "window": [
       420,
-      1100
+      1140
     ],
     "task": "form",
-    "weight": 3,
+    "weight": 5,
+    "oncePerWeek": true,
     "choices": [
       {
-        "label": "Sign it now",
-        "duration": 5,
+        "label": "Fill in all three pages properly",
+        "duration": 15,
+        "minEnergy": 20,
         "outcomes": [
           {
-            "text": "Signature, phone number, and under \"additional notes\" you write \"bites when bored\" and then cross it out. Into the backpack. Done.",
+            "weight": 2,
+            "text": "Emergency contact #2 can't live with the child. You write down your neighbor Dale, whose last name you have never known. \"Dale (next door).\" It's a legal document now.",
             "effects": {
-              "energy": -3
+              "energy": -8,
+              "rep": 6
+            },
+            "completeTask": "form",
+            "stamp": "DALE (NEXT DOOR)"
+          },
+          {
+            "weight": 1,
+            "text": "Comfort item: Bun-Bun. Backup comfort item: you look around the room for a while and write \"also Bun-Bun.\" Signed. It's the most honest document you've ever filed.",
+            "effects": {
+              "energy": -6,
+              "rep": 4
             },
             "completeTask": "form"
           }
         ]
       },
       {
-        "label": "Text your partner to sign it at drop-off",
+        "label": "Sign with the closest pen",
+        "duration": 3,
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "The closest pen is a purple crayon. The second closest is the TV remote. You sign a three-page legal document in purple crayon. Daycare doesn't even blink.",
+            "effects": {
+              "energy": -2,
+              "rep": -6
+            },
+            "completeTask": "form"
+          },
+          {
+            "weight": 1,
+            "text": "The closest pen is a pen. You can't believe it either. Signed, folded and in the backpack in ninety seconds. It will never happen again.",
+            "effects": {
+              "energy": -2,
+              "rep": 2
+            },
+            "completeTask": "form"
+          }
+        ]
+      },
+      {
+        "label": "Leave it on {partner}'s keyboard",
         "duration": 2,
         "tags": [
           "tagteam"
@@ -303,9 +277,10 @@
                 "rel": 55
               }
             },
-            "text": "A photo arrives: the form, signed, being handed to a teacher. Your partner has never looked more attractive.",
+            "text": "{partner} reads all three pages and catches that you listed the vet as your pediatrician. You don't have a pet. Signed, fixed, in the backpack.",
             "effects": {
-              "rel": 2
+              "rel": 4,
+              "rep": 4
             },
             "completeTask": "form",
             "ledger": {
@@ -318,52 +293,92 @@
                 "rel": 54
               }
             },
-            "text": "\"What form?\" The one on the fridge. The one with the potato. It stays on the fridge.",
+            "text": "\"Can't it wait?\" It can't. It does anyway. The form goes back on the fridge, gaining power.",
             "effects": {
-              "rel": -2
+              "rel": -6
             }
           }
         ]
       },
       {
-        "label": "Later. It's a form. Forms keep.",
+        "label": "Later. Forms keep.",
         "duration": 1,
         "outcomes": [
           {
-            "text": "Forms keep. Pumpkin patches, it turns out, do not.",
-            "effects": {}
+            "text": "That's the whole point of a form. It goes back on the fridge, under a drawing of either you or a potato.",
+            "effects": {
+              "energy": 4
+            },
+            "set": [
+              "tasks_later"
+            ]
           }
         ]
       }
     ]
   },
   {
-    "id": "w_pediatrician_now",
+    "id": "task_pediatrician",
     "title": "Press 9 for More Options",
-    "text": "The rash is still there. The pediatrician's phone tree has nine options, none of which is \"rash,\" and hold music that is a pan flute cover of a song you used to love.",
+    "text": "The pediatrician's phone tree. Press 1 for appointments. Press 2 for prescriptions. Press 7 to hear these options again, slower, as if you're the problem. Nothing for \"rash.\"",
     "window": [
       480,
       1020
     ],
     "task": "pediatrician",
-    "weight": 3,
+    "weight": 4,
+    "oncePerWeek": true,
     "choices": [
       {
         "label": "Call. Survive the phone tree.",
-        "duration": 20,
+        "duration": 25,
+        "minEnergy": 20,
         "outcomes": [
           {
-            "text": "Option 4, then 2, then a nurse named Pat who says, kindly, \"send a photo, it sounds like eczema.\" Fragrance-free cream twice a day. You could cry.",
+            "weight": 2,
+            "text": "You are caller number 6. Then caller number 7. Someone has cut in line on a phone. At minute 22, Nurse Pat: \"Send a photo. Sounds like eczema. Fragrance-free cream twice a day.\" You could cry.",
             "effects": {
-              "energy": -5,
-              "mood": 2
+              "energy": -10,
+              "mood": 4
             },
             "completeTask": "pediatrician"
+          },
+          {
+            "weight": 1,
+            "text": "The second a human answers, {kid} yells \"I'M NAKED\" from the next room. Accurate. Nurse Pat makes a note, says \"eczema, cream twice a day,\" and never brings it up.",
+            "effects": {
+              "energy": -8,
+              "rep": -4
+            },
+            "completeTask": "pediatrician",
+            "stamp": "NOTED IN CHART"
           }
         ]
       },
       {
-        "label": "Ask your partner to call on their break",
+        "label": "Try the patient portal",
+        "duration": 10,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "Password reset. A code, sent to an email you made in 2009. A second code. A photo upload. Two hours later: \"Looks like eczema. Cream twice daily.\" Served by a portal. Who knew.",
+            "effects": {
+              "energy": -6
+            },
+            "completeTask": "pediatrician"
+          },
+          {
+            "weight": 1,
+            "text": "The portal wants a new password with a symbol, a number and a capital letter, not one of your last twelve. You've used every password there is. The portal wins.",
+            "effects": {
+              "energy": -6
+            },
+            "stamp": "PORTAL: SEALED"
+          }
+        ]
+      },
+      {
+        "label": "Ask {partner} to call on their break",
         "duration": 2,
         "tags": [
           "tagteam"
@@ -375,9 +390,9 @@
                 "rel": 55
               }
             },
-            "text": "They call from a stairwell at work. \"Eczema. Cream twice a day. Nurse Pat says hi.\" You don't know a Nurse Pat. You love Nurse Pat.",
+            "text": "They call from a stairwell at work. \"Eczema. Cream twice a day. Nurse Pat says hi.\" You've never met Nurse Pat. You love Nurse Pat.",
             "effects": {
-              "rel": 2
+              "rel": 4
             },
             "completeTask": "pediatrician",
             "ledger": {
@@ -390,9 +405,9 @@
                 "rel": 54
               }
             },
-            "text": "\"Can't, back-to-backs all day.\" The rash and the phone tree are both still yours.",
+            "text": "\"Can't, back-to-backs all day.\" The rash and the phone tree are still yours. So, somehow, is the pan-flute hold music, in your head.",
             "effects": {
-              "rel": -2
+              "rel": -6
             }
           }
         ]
@@ -402,44 +417,83 @@
         "duration": 1,
         "outcomes": [
           {
-            "text": "It's probably fine. You look at it every eleven minutes for the rest of the day, just to check that it's fine.",
-            "effects": {}
+            "text": "It's probably fine. You check it every eleven minutes for the rest of the day, just to make sure it's still fine.",
+            "effects": {
+              "energy": 4
+            },
+            "set": [
+              "tasks_later"
+            ]
           }
         ]
       }
     ]
   },
   {
-    "id": "w_library_now",
-    "title": "The Books by the Door",
-    "text": "The library books are stacked by the door, where they've been since Monday, becoming furniture. The library closes at 6. One of them is about a bear who is also tired.",
+    "id": "task_library",
+    "title": "Possession Is Nine-Tenths",
+    "text": "The library books are due tomorrow. {kid} has seen you looking at them and is now lying face down on the stack, saying \"MY books\" into the carpet.",
     "window": [
       540,
-      1020
+      1050
     ],
     "task": "library",
-    "weight": 3,
+    "weight": 4,
+    "oncePerWeek": true,
     "choices": [
       {
-        "label": "Return them now. Make it an outing.",
+        "label": "Make it an outing. They get to work the slot.",
         "duration": 30,
-        "minEnergy": 15,
+        "minEnergy": 25,
         "tags": [
           "present"
         ],
         "outcomes": [
           {
-            "text": "The drop slot eats the books one at a time while your toddler waves goodbye to each. They pick out three new ones. The cycle continues.",
+            "weight": 2,
+            "text": "The drop slot takes the books one at a time while {kid} says \"bye, book\" to each one. They check out four new ones. The cycle of ownership continues.",
             "effects": {
-              "energy": -5,
-              "mood": 4
+              "energy": -10,
+              "mood": 12
+            },
+            "completeTask": "library"
+          },
+          {
+            "weight": 1,
+            "text": "At the slot, {kid} won't let go of the last one. A librarian kneels and explains due dates, very seriously, one professional to another. They hand it over.",
+            "effects": {
+              "energy": -10,
+              "mood": 6,
+              "rep": 6
             },
             "completeTask": "library"
           }
         ]
       },
       {
-        "label": "Ask your partner to drop them on the way home",
+        "label": "Renew them online",
+        "duration": 5,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "Renewed. New due date: next Friday. You've bought a week, which is the most anyone can buy.",
+            "effects": {
+              "energy": -2
+            },
+            "completeTask": "library"
+          },
+          {
+            "weight": 1,
+            "text": "The site asks you to select every square with a bus. You fail. It asks for crosswalks. You fail. The library has decided you're a robot. It isn't wrong.",
+            "effects": {
+              "energy": -4
+            },
+            "stamp": "ROBOT: CONFIRMED"
+          }
+        ]
+      },
+      {
+        "label": "Hide them in {partner}'s work bag",
         "duration": 2,
         "tags": [
           "tagteam"
@@ -451,9 +505,9 @@
                 "rel": 55
               }
             },
-            "text": "They take the bag without a sigh. That evening: \"Returned. The librarian says the bear book is very popular.\"",
+            "text": "At 12:40 PM: a photo of the drop slot, captioned \"you sneak.\" Returned. Respected.",
             "effects": {
-              "rel": 2
+              "rel": 4
             },
             "completeTask": "library",
             "ledger": {
@@ -466,20 +520,416 @@
                 "rel": 54
               }
             },
-            "text": "They forget the bag by the door. The books remain furniture. The bear remains tired.",
+            "text": "{partner} finds them at the office and, as a courtesy, brings them home again. The books have now commuted.",
             "effects": {
-              "rel": -2
+              "rel": -6
             }
           }
         ]
       },
       {
-        "label": "Later. They're not going anywhere.",
+        "label": "Later. Squatter's rights.",
         "duration": 1,
         "outcomes": [
           {
-            "text": "That's exactly the problem, but you don't think about it that way.",
-            "effects": {}
+            "text": "{kid} wins the property dispute by lying on it. The books stay. You'll deal with it tomorrow, which is also the deadline.",
+            "effects": {
+              "energy": 4
+            },
+            "set": [
+              "tasks_later"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "no_diapers",
+    "title": "There Are No Diapers",
+    "text": "Your hand reaches into the diaper box and touches cardboard. The worst texture in the world. {kid} is wearing the last diaper, and the last diaper is on a clock.",
+    "forced": true,
+    "priority": 85,
+    "choices": [
+      {
+        "label": "Drive to the store. With {kid}. In pajama pants.",
+        "duration": 45,
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "They have every size but yours. You buy the next one up. {kid} rides in the cart announcing \"DIAPERS\" to strangers, who agree: diapers.",
+            "effects": {
+              "energy": -22,
+              "rep": -8
+            },
+            "ledger": {
+              "errands": "you"
+            }
+          },
+          {
+            "weight": 1,
+            "text": "In, out and home in 31 minutes, a personal record, set in pajama pants. {kid} falls asleep in the car seat on the way back. You'll pay for that nap at bedtime.",
+            "effects": {
+              "energy": -18,
+              "sleepy": -14
+            },
+            "ledger": {
+              "errands": "you"
+            },
+            "stamp": "PERSONAL BEST"
+          }
+        ]
+      },
+      {
+        "label": "Knock on Dale's door. Dale has grandkids.",
+        "duration": 5,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "Dale has diapers. Dale's grandkid is four months old. You walk home with six size 1s, each the size of a sandwich. On {kid}, they're more of a suggestion.",
+            "effects": {
+              "home": -20,
+              "energy": -4,
+              "rep": -4
+            },
+            "stamp": "SIZE 1",
+            "fx": "shake"
+          },
+          {
+            "weight": 1,
+            "text": "Dale comes back with one cloth diaper from 1987 and two safety pins. Neither of you knows how it works. You figure it out together, on Dale's porch, in silence.",
+            "effects": {
+              "home": -6,
+              "energy": -8,
+              "rep": 6
+            },
+            "stamp": "DALE PROVIDES"
+          }
+        ]
+      },
+      {
+        "label": "Call {partner}: \"Where are you, geographically?\"",
+        "duration": 3,
+        "tags": [
+          "tagteam"
+        ],
+        "outcomes": [
+          {
+            "text": "{partner} walks out of a meeting, says \"family thing\" in a voice that ends questions, and shows up 40 minutes later with diapers and a coffee you needed.",
+            "effects": {
+              "energy": 8,
+              "rel": -6
+            },
+            "when": {
+              "min": {
+                "rel": 50
+              }
+            },
+            "ledger": {
+              "errands": "partner"
+            }
+          },
+          {
+            "text": "\"In a meeting till 4.\" It's 12:10. You do the math again. It's worse the second time.",
+            "effects": {
+              "home": -18,
+              "rel": -10
+            },
+            "when": {
+              "max": {
+                "rel": 49
+              }
+            },
+            "fx": "flash"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "form_missed",
+    "title": "No Form, No Truck",
+    "text": "Daycare is closed for pink eye. Daycare's email is not. Subject: \"FIRE STATION TRIP: FINAL CALL.\" The trip is tomorrow. The form is still on your fridge.",
+    "forced": true,
+    "priority": 85,
+    "choices": [
+      {
+        "label": "Grovel by email. Use the word \"unprecedented.\"",
+        "duration": 10,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "You write 340 words. You use \"unprecedented\" once and \"so sorry\" four times. The reply: \"This once.\" You will owe this person forever.",
+            "effects": {
+              "energy": -8,
+              "rep": -12
+            }
+          },
+          {
+            "weight": 1,
+            "text": "\"Rules are rules,\" the director replies, in a font that feels personal. Tomorrow, {kid} stays behind with the assistant director and a bin of puzzles.",
+            "effects": {
+              "energy": -8,
+              "rep": -14,
+              "mood": -12
+            },
+            "stamp": "NO FORM, NO TRUCK",
+            "fx": "flash"
+          }
+        ]
+      },
+      {
+        "label": "Chaperone: eleven toddlers, four hours",
+        "duration": 5,
+        "tags": [
+          "martyr"
+        ],
+        "outcomes": [
+          {
+            "text": "A parent who comes along doesn't need a form. So tomorrow you'll spend four hours with eleven toddlers in plastic fire hats. That's the price of one signature.",
+            "effects": {
+              "energy": -22,
+              "rep": 10
+            },
+            "stamp": "CHAPERONE: DRAFTED"
+          }
+        ]
+      },
+      {
+        "label": "Let it go. It's just a truck.",
+        "duration": 2,
+        "outcomes": [
+          {
+            "text": "It isn't just a truck. Tomorrow the group chat will post 23 photos of other people's toddlers in fire hats. You'll scroll through every one, slowly, as penance.",
+            "effects": {
+              "rep": -22,
+              "energy": 4
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "rsvp_missed",
+    "title": "Brynn Is Following Up",
+    "text": "The RSVP for Juniper's party was due at 5. It is no longer before 5.",
+    "chat": {
+      "with": "Brynn",
+      "messages": [
+        {
+          "from": "Brynn",
+          "text": "hiiii!! finalizing the headcount for Juniper's party 🎈"
+        },
+        {
+          "from": "Brynn",
+          "text": "still need yours! it was due at 5 🙂"
+        },
+        {
+          "from": "Brynn",
+          "text": "it's 5:04 🙂"
+        }
+      ]
+    },
+    "forced": true,
+    "priority": 85,
+    "choices": [
+      {
+        "label": "\"SO sorry!! YES!! We'd love to!! 🎉🎉🎉\"",
+        "duration": 3,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "Late RSVPs bring the ice. Nobody told you this rule. It's the oldest rule there is.",
+            "effects": {
+              "energy": -10,
+              "rep": -6
+            },
+            "chat": [
+              {
+                "from": "Brynn",
+                "text": "yay!! you're on ice 🧊 (30 lbs)"
+              }
+            ],
+            "stamp": "ICE DUTY"
+          },
+          {
+            "weight": 1,
+            "text": "Brynn will not see what Brynn can do. You can tell from the smiley, which has been through a lot today.",
+            "effects": {
+              "rep": -16
+            },
+            "chat": [
+              {
+                "from": "Brynn",
+                "text": "headcount already went in 🙂 i'll see what i can do 🙂"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Blame tech: \"it went to spam!!\"",
+        "duration": 2,
+        "outcomes": [
+          {
+            "text": "Three smileys, each one a little colder than the last.",
+            "effects": {
+              "rep": -24
+            },
+            "chat": [
+              {
+                "from": "Brynn",
+                "text": "oh weird! it was paper 🙂 in the cubby 🙂 with a ribbon 🙂"
+              }
+            ],
+            "stamp": "BUSTED"
+          }
+        ]
+      },
+      {
+        "label": "Leave it on read. Brynn might forget.",
+        "duration": 1,
+        "outcomes": [
+          {
+            "text": "Brynn does not forget. Brynn has a spreadsheet with conditional formatting. Your row is red. Somehow, at the party, your row will still be red.",
+            "effects": {
+              "rep": -26,
+              "energy": 4
+            },
+            "stamp": "ROW: RED",
+            "fx": "flash"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "rash_missed",
+    "title": "After Hours",
+    "text": "The pediatrician's office closed at 5. The rash did not. It's on both elbows now, plus the back of one knee, and you have 31 browser tabs open about it.",
+    "forced": true,
+    "priority": 85,
+    "choices": [
+      {
+        "label": "Call the after-hours line. Settle in.",
+        "duration": 50,
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "Forty-six minutes on hold. Then a nurse with a voice like a warm blanket says eczema, fragrance-free cream, call Monday. You say thank you four times and mean every one.",
+            "effects": {
+              "energy": -20,
+              "mood": 4
+            }
+          },
+          {
+            "weight": 1,
+            "text": "The nurse wants them seen tonight, to be safe. Urgent care: eleven people ahead of you, nine of them coughing. A doctor looks for forty seconds. \"Eczema.\" Copay: $75.",
+            "effects": {
+              "energy": -30,
+              "mood": -8
+            },
+            "stamp": "$75 FOR ECZEMA",
+            "fx": "flash"
+          }
+        ]
+      },
+      {
+        "label": "Post a photo in the group chat",
+        "duration": 5,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "Dev's mom is a pediatric nurse. \"Eczema. Fragrance-free cream. Call Monday if it spreads.\" Right, kind, fast. And now 22 parents have seen your child's knee.",
+            "effects": {
+              "energy": -4,
+              "rep": -10
+            }
+          },
+          {
+            "weight": 1,
+            "text": "Forty replies in nine minutes: eczema, allergies, \"have you tried celery juice,\" a photo of somebody else's rash. You call the nurse line anyway, an hour behind.",
+            "effects": {
+              "energy": -22,
+              "rep": -10
+            }
+          }
+        ]
+      },
+      {
+        "label": "\"{partner}. Did YOU call?\"",
+        "duration": 3,
+        "outcomes": [
+          {
+            "text": "They didn't. You didn't. You both look at the rash like it's a third parent who was supposed to handle this. Then you call the nurse line, not speaking.",
+            "effects": {
+              "rel": -12,
+              "energy": -16
+            },
+            "count": {
+              "blames": 1
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "library_missed",
+    "title": "Final Overdue Notice (Final)",
+    "text": "Friday, 5 PM. The library has frozen your card until the books come back. Story time is tomorrow. Story time is the one hour a week {kid} sits still.",
+    "forced": true,
+    "priority": 85,
+    "choices": [
+      {
+        "label": "Race them over before the 6 PM close",
+        "duration": 40,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "5:52 PM. You slide the books across the desk, panting. {kid} says \"thank you, library.\" The librarian waives the fine and unfreezes the card. Worth every step.",
+            "effects": {
+              "energy": -14,
+              "rep": 6
+            }
+          },
+          {
+            "weight": 1,
+            "text": "5:59 PM. The door locks as your hand touches it. Through the glass, a librarian points at the hours sign and mouths, \"Monday.\"",
+            "effects": {
+              "energy": -20,
+              "rep": -8
+            },
+            "stamp": "SEE YOU MONDAY"
+          }
+        ]
+      },
+      {
+        "label": "Pay the fine online and call it even",
+        "duration": 5,
+        "outcomes": [
+          {
+            "text": "$16.80, plus a $2 fee for the convenience of paying it. The card stays frozen until the books come back, which they won't, because they're furniture now.",
+            "effects": {
+              "energy": -4,
+              "rep": -12
+            }
+          }
+        ]
+      },
+      {
+        "label": "Keep them. Start a home library.",
+        "duration": 1,
+        "outcomes": [
+          {
+            "text": "You declare the books part of the household's permanent collection. The library sends a $68 replacement bill. Your account has gone to collections, in both senses.",
+            "effects": {
+              "rep": -24,
+              "energy": 4
+            },
+            "stamp": "COLLECTIONS",
+            "fx": "flash"
           }
         ]
       }

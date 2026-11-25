@@ -1,163 +1,756 @@
 [
   {
-    "id": "night_whisper",
-    "title": "The Crib Whisper",
-    "text": "2:47 AM. A small figure is standing in the crib whispering your name at the wall. You're about 70% sure this isn't a ghost.",
+    "id": "night_need",
+    "title": "Unspecified Need",
+    "text": "2:14 AM. \"{ME}. I need you.\" You're there in eleven seconds. \"What do you need?\" A long pause in the dark. \"...I don't know.\"",
     "phase": "night",
     "weight": 3,
-    "choices": [
-      {
-        "label": "Go in. Shush. Pat. Leave.",
-        "duration": 20,
-        "outcomes": [
-          {
-            "text": "Twenty minutes of the shush-pat. They go down. You lie awake for forty more, because your body thinks it's a job now.",
-            "effects": {
-              "energy": -4
-            },
-            "ledger": {
-              "night": "you"
-            }
-          }
-        ]
-      },
-      {
-        "label": "Nudge your partner",
-        "duration": 5,
-        "outcomes": [
-          {
-            "when": {
-              "min": {
-                "ledger": 2
-              }
-            },
-            "text": "Your partner gets up without a word. The ledger is a powerful document.",
-            "effects": {},
-            "ledger": {
-              "night": "partner"
-            }
-          },
-          {
-            "when": {
-              "max": {
-                "ledger": 1
-              }
-            },
-            "text": "\"I got the last two,\" they whisper. They did. You get up.",
-            "effects": {
-              "rel": -3
-            },
-            "ledger": {
-              "night": "you"
-            }
-          }
-        ]
-      },
-      {
-        "label": "Wait it out from bed",
-        "duration": 5,
-        "outcomes": [
-          {
-            "weight": 1,
-            "text": "The whispering stops. You listen to the silence like it's a symphony.",
-            "effects": {}
-          },
-          {
-            "weight": 1,
-            "text": "The whispering becomes yelling. You both get up. Nobody wins.",
-            "effects": {
-              "rel": -2
-            },
-            "ledger": {
-              "night": "you"
-            }
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "night_regret",
-    "title": "You Replay It. Again.",
-    "text": "3:12 AM. You're replaying the moment you snapped today. In the replay you are calm and wise. In real life you were not.",
-    "phase": "night",
-    "weight": 5,
+    "oncePerWeek": true,
     "when": {
-      "flags": [
-        "d:snapped"
+      "notFlags": [
+        "night:need"
       ]
     },
     "choices": [
       {
-        "label": "Wake your partner to talk about it",
+        "label": "Go through every need, alphabetically",
+        "duration": 15,
+        "tags": [
+          "negotiate"
+        ],
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "Blanket? No. Bun-Bun? No. Cup? No. Door open? No. \"Elbow?\" An elbow comes out from under the blanket. You hold the elbow until 2:40.",
+            "effects": {
+              "energy": -6,
+              "debt": -2
+            },
+            "ledger": {
+              "night": "you"
+            },
+            "stamp": "NEED: ELBOW",
+            "set": [
+              "night:need"
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "You get as far as \"water\" before they're asleep. It might have been water. You finish the alphabet in your head out of spite. There's nothing for Q.",
+            "effects": {
+              "energy": -8,
+              "debt": -2
+            },
+            "ledger": {
+              "night": "you"
+            },
+            "set": [
+              "night:need"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Lie on the floor until they figure it out",
+        "duration": 30,
+        "tags": [
+          "martyr"
+        ],
+        "outcomes": [
+          {
+            "text": "You wake at 4:10 on the rug with a puzzle piece stuck to your cheek. They're asleep. Whatever they needed, it was you, horizontal.",
+            "effects": {
+              "energy": -10,
+              "debt": -4
+            },
+            "ledger": {
+              "night": "you"
+            },
+            "set": [
+              "night:need"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "\"Ask {partner}. {partner} knows.\"",
+        "duration": 3,
+        "tags": [
+          "tagteam"
+        ],
+        "outcomes": [
+          {
+            "when": {
+              "min": {
+                "ledger": 2
+              }
+            },
+            "text": "{partner} goes in. Twenty minutes later they lie back down without a word. \"What did they need?\" \"I don't know,\" they say. \"But I gave it to them.\"",
+            "effects": {
+              "energy": 4
+            },
+            "ledger": {
+              "night": "partner"
+            },
+            "set": [
+              "night:need"
+            ]
+          },
+          {
+            "when": {
+              "max": {
+                "ledger": 1
+              }
+            },
+            "text": "\"They said {me},\" {partner} says, without opening their eyes. \"I heard it.\" Correct, and unbearable. You go back in.",
+            "effects": {
+              "rel": -6
+            },
+            "ledger": {
+              "night": "you"
+            },
+            "set": [
+              "night:need"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "night_fake_sleep",
+    "title": "The Performance",
+    "text": "3:03 AM. Crying. Beside you, {partner}'s breathing switches from asleep to performing asleep. You know the difference. You've given that performance.",
+    "phase": "night",
+    "weight": 3,
+    "oncePerWeek": true,
+    "when": {
+      "notFlags": [
+        "night:fakesleep"
+      ]
+    },
+    "choices": [
+      {
+        "label": "Out-sleep them. Commit fully.",
+        "duration": 8,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "Nine minutes of competitive sleeping. {partner} cracks first, lets out a sigh with paragraphs in it and gets up. You stay limp until the door closes, to sell it.",
+            "effects": {
+              "rel": -4
+            },
+            "ledger": {
+              "night": "partner"
+            },
+            "stamp": "OUT-SLEPT",
+            "set": [
+              "night:fakesleep"
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "Neither of you breaks. The crying stops on its own at 3:12. You both lie there in the dark, knowing exactly what the other one did.",
+            "effects": {
+              "rel": -6,
+              "debt": 3
+            },
+            "set": [
+              "night:fakesleep"
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "\"Nobody breathes that evenly,\" {partner} whispers. \"Not even asleep.\" Betrayed by your own lungs. You go.",
+            "effects": {
+              "rel": -4
+            },
+            "ledger": {
+              "night": "you"
+            },
+            "stamp": "PERFORMANCE: REVIEWED",
+            "set": [
+              "night:fakesleep"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Whisper, \"I know you're awake.\"",
+        "duration": 2,
+        "tags": [
+          "tagteam"
+        ],
+        "outcomes": [
+          {
+            "when": {
+              "min": {
+                "ledger": 2
+              }
+            },
+            "text": "\"I know you know,\" {partner} whispers. A long pause. \"...Fine.\" They go. The ledger remains undefeated.",
+            "effects": {
+              "energy": 4
+            },
+            "ledger": {
+              "night": "partner"
+            },
+            "set": [
+              "night:fakesleep"
+            ]
+          },
+          {
+            "when": {
+              "max": {
+                "ledger": 1
+              }
+            },
+            "text": "\"And I know what the ledger says,\" {partner} whispers back. So do you. You go.",
+            "effects": {
+              "rel": -4
+            },
+            "ledger": {
+              "night": "you"
+            },
+            "set": [
+              "night:fakesleep"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Get up. Sigh loud enough to go on the record.",
+        "duration": 15,
+        "tags": [
+          "martyr"
+        ],
+        "outcomes": [
+          {
+            "text": "You sigh at a volume that will come up in future arguments. {partner} says, \"Thank you,\" which ruins it, because now you can't be mad.",
+            "effects": {
+              "rel": 6
+            },
+            "ledger": {
+              "night": "you"
+            },
+            "stamp": "ON THE RECORD",
+            "set": [
+              "night:fakesleep"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "night_at_one",
+    "title": "Was There a One?",
+    "text": "3:31 AM. Crying again. \"I got up at one,\" {partner} whispers. You have no memory of one. You're not sure one happened. You're not sure this is happening.",
+    "phase": "night",
+    "weight": 3,
+    "oncePerWeek": true,
+    "when": {
+      "notFlags": [
+        "night:atone"
+      ]
+    },
+    "choices": [
+      {
+        "label": "\"Prove it.\"",
+        "duration": 4,
+        "tags": [
+          "negotiate"
+        ],
+        "outcomes": [
+          {
+            "when": {
+              "min": {
+                "ledger": 2
+              }
+            },
+            "text": "{partner} thinks about it for a long time. \"...I might have dreamed one.\" They get up. Somewhere, one o'clock is laughing at both of you.",
+            "effects": {
+              "energy": 4
+            },
+            "ledger": {
+              "night": "partner"
+            },
+            "stamp": "ONE: UNPROVEN",
+            "set": [
+              "night:atone"
+            ]
+          },
+          {
+            "when": {
+              "max": {
+                "ledger": 1
+              }
+            },
+            "text": "They describe one in detail: the rabbit, the wet sock, you snoring through all of it. One happened. You go.",
+            "effects": {
+              "rel": -6
+            },
+            "ledger": {
+              "night": "you"
+            },
+            "stamp": "ONE: CONFIRMED",
+            "set": [
+              "night:atone"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "\"I ALSO got up at one.\"",
+        "duration": 2,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "\"...Oh,\" says {partner}, thrown. You both lie there wondering if one o'clock had two of you in it. They get up, just in case.",
+            "effects": {
+              "energy": 4
+            },
+            "ledger": {
+              "night": "partner"
+            },
+            "set": [
+              "night:atone"
+            ]
+          },
+          {
+            "weight": 2,
+            "text": "\"At one you were asleep with your mouth open,\" {partner} whispers. \"I took a photo.\" They have a photo. You go.",
+            "effects": {
+              "rel": -8
+            },
+            "ledger": {
+              "night": "you"
+            },
+            "stamp": "EXHIBIT A",
+            "set": [
+              "night:atone"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Just go. Nobody can be trusted at 3:31.",
         "duration": 15,
         "outcomes": [
           {
-            "text": "They listen, half asleep. \"You're a good parent,\" they mumble. \"Everyone yells.\" It helps more than it should. Now you're both awake.",
+            "text": "You go. They're asleep before you get there. You stand in the hallway at 3:40 trying to remember one. You remember a sock.",
             "effects": {
-              "rel": 4,
-              "energy": -7
+              "rel": 4
+            },
+            "ledger": {
+              "night": "you"
+            },
+            "set": [
+              "night:atone"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "night_phantom",
+    "title": "Phantom Cry",
+    "text": "You're standing next to the crib. {kid} is asleep. You don't remember getting up. You don't know if they called, or if your body just went without you.",
+    "phase": "night",
+    "weight": 1,
+    "oncePerWeek": true,
+    "choices": [
+      {
+        "label": "Check the monitor app for evidence",
+        "duration": 3,
+        "outcomes": [
+          {
+            "text": "Last sound detected: 11:42 PM. Nobody called. Your body is volunteering now, like an intern who really wants the job.",
+            "effects": {
+              "energy": -5
             }
           }
         ]
       },
       {
-        "label": "Look up how to repair it",
-        "duration": 20,
-        "outcomes": [
-          {
-            "text": "The article says repair matters more than perfection. Tomorrow you'll say sorry. They'll say \"OK\" and ask for a snack.",
-            "effects": {
-              "energy": -3
-            }
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "night_quiet",
-    "title": "Nothing",
-    "text": "2 AM, 3 AM, 4 AM. Nothing. The monitor is silent. You wake up every hour anyway, to check that the nothing is still happening.",
-    "phase": "night",
-    "weight": 2,
-    "choices": [
-      {
-        "label": "Sleep like a person",
-        "duration": 1,
-        "outcomes": [
-          {
-            "text": "You almost don't trust it. Almost.",
-            "effects": {}
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "m_night_cup",
-    "title": "The Blue Cup",
-    "text": "1:58 AM. \"Wa-wa.\" Not water in general. Water in the blue cup. The blue cup is in the dishwasher, which is running, which was your idea.",
-    "phase": "night",
-    "choices": [
-      {
-        "label": "Bring water in the green cup. Sell it.",
+        "label": "Stay a minute. Watch them breathe.",
         "duration": 10,
         "outcomes": [
           {
-            "text": "You hand over the green cup like it was always the plan. They sip, study it like a wine they didn't order, and accept. Confidence is most of parenting.",
+            "weight": 1,
+            "text": "One hand on the rail. Their back goes up and down, up and down. You stay ten minutes for no reason, and it's the best reason you've had all week.",
+            "effects": {
+              "energy": 6
+            }
+          },
+          {
+            "weight": 1,
+            "text": "Their eyes open. They look at you, say \"Hi\" at a normal volume, and are asleep again before you can answer. You'll never know if that counted.",
+            "effects": {
+              "energy": 4
+            }
+          }
+        ]
+      },
+      {
+        "label": "Claim it on the ledger anyway",
+        "duration": 2,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "\"Thanks for getting it,\" {partner} mumbles. You accept the credit. You did get up. Technically, for someone.",
+            "effects": {
+              "rel": 6
+            },
+            "ledger": {
+              "night": "you"
+            },
+            "stamp": "CREDIT TAKEN"
+          },
+          {
+            "weight": 1,
+            "text": "\"The monitor didn't go off,\" {partner} mumbles. \"I'd have heard it.\" They wouldn't have. But they're right.",
+            "effects": {
+              "rel": -6
+            },
+            "stamp": "AUDITED"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "night_sleeptalk",
+    "title": "The Dream Report",
+    "text": "1:50 AM. On the monitor, {kid} says, clearly, fast asleep: \"No. That's not how you do it.\" A pause. Then, deeply disappointed in someone: \"Watch me.\"",
+    "phase": "night",
+    "weight": 3,
+    "oncePerWeek": true,
+    "when": {
+      "notFlags": [
+        "night:sleeptalk"
+      ]
+    },
+    "choices": [
+      {
+        "label": "Lie there and listen. Best show you get.",
+        "duration": 10,
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "\"...and then the bus,\" they explain to someone. \"NO. The BIG bus.\" Then snoring. You'll think about the big bus all day.",
+            "effects": {
+              "energy": 6
+            },
+            "set": [
+              "night:sleeptalk"
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "The dream turns into an argument, and the argument turns into a scream. You lose the show and get the encore.",
+            "effects": {
+              "energy": -4,
+              "debt": 3
+            },
+            "ledger": {
+              "night": "you"
+            },
+            "set": [
+              "night:sleeptalk"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Wake {partner} so they can hear it too",
+        "duration": 3,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "\"Watch me,\" says the monitor, again. {partner} laughs into the pillow so hard the bed shakes. You haven't laughed together at 2 AM since before. You should do this more.",
+            "effects": {
+              "rel": 10
+            },
+            "set": [
+              "night:sleeptalk"
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "\"Why,\" {partner} says, flatly, at 1:52 AM. The monitor has gone silent. You have woken an adult to listen to nothing.",
+            "effects": {
+              "rel": -6
+            },
+            "stamp": "WRONG CALL",
+            "set": [
+              "night:sleeptalk"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Go in and see who they're mad at",
+        "duration": 10,
+        "outcomes": [
+          {
+            "text": "The door creaks. {kid} sits straight up, wide awake and furious. Whoever they were mad at in the dream, it's you now.",
+            "effects": {
+              "energy": -4,
+              "debt": 4
+            },
+            "ledger": {
+              "night": "you"
+            },
+            "stamp": "IT'S YOU NOW",
+            "fx": "shake",
+            "set": [
+              "night:sleeptalk"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "night_fourteen_inches",
+    "title": "Fourteen Inches",
+    "text": "{kid} is asleep between you. Nobody can move. Nobody can speak. {partner} texts you from fourteen inches away.",
+    "chat": {
+      "with": "{partner}",
+      "messages": [
+        {
+          "from": "{partner}",
+          "text": "dont move"
+        },
+        {
+          "from": "you",
+          "text": "im not moving"
+        },
+        {
+          "from": "{partner}",
+          "text": "something is moving"
+        },
+        {
+          "from": "you",
+          "text": "thats their foot. its in my ribs"
+        },
+        {
+          "from": "{partner}",
+          "text": "who's carrying them back"
+        }
+      ]
+    },
+    "phase": "night",
+    "weight": 3,
+    "oncePerWeek": true,
+    "when": {
+      "notFlags": [
+        "night:fourteen"
+      ]
+    },
+    "choices": [
+      {
+        "label": "\"rock paper scissors. in the dark. go\"",
+        "duration": 3,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "You throw rock. They throw something you can't see and claim it was paper. You can't prove it. You carry {kid} back.",
+            "effects": {
+              "rel": -4
+            },
+            "ledger": {
+              "night": "you"
+            },
+            "chat": [
+              {
+                "from": "{partner}",
+                "text": "paper 📄"
+              }
+            ],
+            "set": [
+              "night:fourteen"
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "You throw paper and whisper \"paper.\" They concede. The mattress shifts as they lift {kid} like a cake with the candles already lit.",
+            "effects": {
+              "energy": 4
+            },
+            "ledger": {
+              "night": "partner"
+            },
+            "chat": [
+              {
+                "from": "{partner}",
+                "text": "fine"
+              }
+            ],
+            "set": [
+              "night:fourteen"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "\"leave them. we live like this now\"",
+        "duration": 2,
+        "outcomes": [
+          {
+            "text": "You sleep on nine inches of mattress. You wake at 5 with a heel in your ear and a hand on your face. You'll be sore all day. You won't mind.",
+            "effects": {
+              "energy": -8,
+              "debt": -4,
+              "rel": 4
+            },
+            "chat": [
+              {
+                "from": "{partner}",
+                "text": "goodnight from the edge"
+              }
+            ],
+            "set": [
+              "night:fourteen"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "carry them back yourself. no notes.",
+        "duration": 10,
+        "minEnergy": 20,
+        "tags": [
+          "martyr"
+        ],
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "A flawless transfer. They don't stir. You get back into a bed that is suddenly enormous.",
+            "effects": {
+              "rel": 6,
+              "debt": -2
+            },
+            "ledger": {
+              "night": "you"
+            },
+            "chat": [
+              {
+                "from": "{partner}",
+                "text": "legend"
+              }
+            ],
+            "set": [
+              "night:fourteen"
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "Halfway down the hall they open their eyes, see the hallway and understand everything. The scream wakes the neighbor's dog.",
+            "effects": {
+              "energy": -6,
+              "debt": 4
+            },
+            "ledger": {
+              "night": "you"
+            },
+            "fx": "shake",
+            "set": [
+              "night:fourteen"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "night_ocean",
+    "title": "The Ocean Stops",
+    "text": "3:10 AM. The sound machine's ocean cuts out. The silence is so loud that {kid} sits up to find out what happened to the ocean.",
+    "phase": "night",
+    "weight": 3,
+    "oncePerWeek": true,
+    "when": {
+      "notFlags": [
+        "night:ocean"
+      ]
+    },
+    "choices": [
+      {
+        "label": "Be the ocean. \"Shhhhhhhhhhhhh.\"",
+        "duration": 20,
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "You shush for nineteen straight minutes. They lie back down. You're lightheaded and slightly blue, but you're a coastline now.",
+            "effects": {
+              "energy": -6,
+              "debt": -2
+            },
+            "ledger": {
+              "night": "you"
+            },
+            "set": [
+              "night:ocean"
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "{kid} listens to your ocean, unimpressed. \"No. The REAL ocean.\" Your ocean has been reviewed.",
+            "effects": {
+              "energy": -6,
+              "debt": 3
+            },
+            "ledger": {
+              "night": "you"
+            },
+            "stamp": "OCEAN: REJECTED",
+            "set": [
+              "night:ocean"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Find the plug in the dark by feel",
+        "duration": 5,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "You find a plug. You push it in. The ocean comes back mid-wave, like it never left. Nobody will ever know you did that.",
             "effects": {
               "debt": -2
             },
             "ledger": {
               "night": "you"
-            }
+            },
+            "set": [
+              "night:ocean"
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "You find a plug. You push it in. It's the lamp. Sixty watts, straight into the face of a toddler who was 80% asleep.",
+            "effects": {
+              "energy": -6,
+              "debt": 5
+            },
+            "ledger": {
+              "night": "you"
+            },
+            "stamp": "WRONG PLUG",
+            "fx": "flash",
+            "set": [
+              "night:ocean"
+            ]
           }
         ]
       },
       {
-        "label": "Nudge your partner",
-        "duration": 5,
+        "label": "Nudge {partner}: \"The ocean's down.\"",
+        "duration": 2,
         "tags": [
           "tagteam"
         ],
@@ -168,11 +761,16 @@
                 "ledger": 2
               }
             },
-            "text": "Your partner gets up, fishes the blue cup out of a running dishwasher by feel and rinses it in the dark. You hear all of it. A quiet hero. You'll say thank you at 7.",
-            "effects": {},
+            "text": "\"On it,\" {partner} mumbles, as if the ocean were a server. It's back up in ninety seconds. Nobody files a ticket.",
+            "effects": {
+              "energy": 4
+            },
             "ledger": {
               "night": "partner"
-            }
+            },
+            "set": [
+              "night:ocean"
+            ]
           },
           {
             "when": {
@@ -180,305 +778,64 @@
                 "ledger": 1
               }
             },
-            "text": "\"You're closer,\" they mumble. You are not closer. You are both exactly the same distance from the door. You go anyway, because one of you has to.",
+            "text": "\"You bought it,\" {partner} says into the pillow. \"You support it.\" Brutal, but that's the policy. You go.",
             "effects": {
-              "rel": -2
+              "rel": -4
             },
             "ledger": {
               "night": "you"
-            }
-          }
-        ]
-      },
-      {
-        "label": "Lie very still and hope",
-        "duration": 5,
-        "outcomes": [
-          {
-            "weight": 1,
-            "text": "\"Wa-wa\" four more times, each one quieter. Then a long sigh, like a landlord giving up. Silence. You won by doing nothing, which never happens.",
-            "effects": {}
-          },
-          {
-            "weight": 1,
-            "text": "\"Wa-wa\" becomes \"WA-WA\" becomes a song about wa-wa. You get up and stand at the sink at 2:09 AM, rinsing a cup out of a dishwasher mid-cycle.",
-            "effects": {
-              "debt": 2
             },
-            "ledger": {
-              "night": "you"
-            }
+            "set": [
+              "night:ocean"
+            ]
           }
         ]
       }
     ]
   },
   {
-    "id": "m_night_camera",
-    "title": "Night Vision",
-    "text": "2:31 AM. On the monitor, in grainy green, your toddler is sitting bolt upright and staring directly into the camera. Not crying. Not moving. Waiting.",
-    "phase": "night",
-    "choices": [
-      {
-        "label": "Go in and see what they want",
-        "duration": 10,
-        "outcomes": [
-          {
-            "text": "They need to tell you, urgently, that they have a foot. You confirm the foot. They lie down, satisfied. You lie awake for an hour, less satisfied.",
-            "effects": {
-              "debt": -2,
-              "energy": -1
-            },
-            "ledger": {
-              "night": "you"
-            }
-          }
-        ]
-      },
-      {
-        "label": "Show your partner the monitor",
-        "duration": 5,
-        "tags": [
-          "tagteam"
-        ],
-        "outcomes": [
-          {
-            "when": {
-              "min": {
-                "ledger": 2
-              }
-            },
-            "text": "Your partner looks at the screen, says \"Nope,\" and then goes anyway, because they can count. The ledger has spoken, and it speaks for you tonight.",
-            "effects": {},
-            "ledger": {
-              "night": "partner"
-            }
-          },
-          {
-            "when": {
-              "max": {
-                "ledger": 1
-              }
-            },
-            "text": "Your partner opens one eye, runs the ledger in their head and closes the eye again. Fair. You go, muttering, which is also fair.",
-            "effects": {
-              "rel": -2
-            },
-            "ledger": {
-              "night": "you"
-            }
-          }
-        ]
-      },
-      {
-        "label": "Turn the monitor face-down",
-        "duration": 3,
-        "outcomes": [
-          {
-            "weight": 1,
-            "text": "You flip it back over ten minutes later. They're asleep, sitting up, chin on chest, like a commuter. Good enough.",
-            "effects": {}
-          },
-          {
-            "weight": 1,
-            "text": "Face-down, it can still hear. \"HELLO?\" it says, in a very small voice. Then louder. You go in, and they wave like you're late for a meeting.",
-            "effects": {
-              "debt": 2
-            },
-            "ledger": {
-              "night": "you"
-            }
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "m_night_overboard",
-    "title": "Rabbit Overboard",
-    "text": "3:20 AM. The stuffed rabbit has gone over the side of the crib. It is eight inches from their hand. It might as well be on the moon. The wailing is operatic.",
-    "phase": "night",
-    "choices": [
-      {
-        "label": "Return the rabbit. No eye contact.",
-        "duration": 3,
-        "outcomes": [
-          {
-            "text": "In and out in 40 seconds, like a pit crew. They grab the rabbit, sigh and are asleep before you reach the door. A personal best nobody saw.",
-            "effects": {
-              "debt": -2
-            },
-            "ledger": {
-              "night": "you"
-            }
-          }
-        ]
-      },
-      {
-        "label": "Nudge your partner",
-        "duration": 5,
-        "tags": [
-          "tagteam"
-        ],
-        "outcomes": [
-          {
-            "when": {
-              "min": {
-                "ledger": 1
-              }
-            },
-            "text": "Your partner goes. Through the wall: a creak, a whispered \"here's Bun,\" a door. They're back and asleep in nine seconds. You'll find that annoying tomorrow.",
-            "effects": {},
-            "ledger": {
-              "night": "partner"
-            }
-          },
-          {
-            "when": {
-              "max": {
-                "ledger": 0
-              }
-            },
-            "text": "\"Rabbit,\" you whisper. \"Rabbit,\" they whisper back, and don't move. A standoff. You lose the standoff. You always lose the standoff.",
-            "effects": {
-              "rel": -2
-            },
-            "ledger": {
-              "night": "you"
-            }
-          }
-        ]
-      },
-      {
-        "label": "Wait. They'll find something.",
-        "duration": 5,
-        "outcomes": [
-          {
-            "weight": 1,
-            "text": "They don't find the rabbit. They find their own foot, decide it will do, and fall asleep holding it.",
-            "effects": {}
-          },
-          {
-            "weight": 1,
-            "text": "The opera enters a second act. You get up at intermission, return the rabbit and receive a look of profound betrayal.",
-            "effects": {
-              "debt": 2
-            },
-            "ledger": {
-              "night": "you"
-            }
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "m_night_dream",
-    "title": "The Duck Was Too Big",
-    "text": "2:12 AM. A real scream, then sobbing: \"The duck was too big.\" You don't know which duck. You will never know which duck.",
-    "phase": "night",
-    "choices": [
-      {
-        "label": "Go in and hold them until it passes",
-        "duration": 20,
-        "tags": [
-          "present"
-        ],
-        "outcomes": [
-          {
-            "text": "You hold them in the dark and say \"no ducks, no ducks\" until their breathing slows. You have never been so sure what you're for.",
-            "effects": {
-              "debt": -2,
-              "energy": -2
-            },
-            "ledger": {
-              "night": "you"
-            }
-          }
-        ]
-      },
-      {
-        "label": "Bring them into your bed",
-        "duration": 5,
-        "outcomes": [
-          {
-            "text": "They fall asleep instantly, in the shape of a starfish with knees. Your partner takes a heel to the kidney at 4. You take one to the ear at 5.",
-            "effects": {
-              "debt": -3,
-              "rel": -2,
-              "energy": -2
-            },
-            "ledger": {
-              "night": "you"
-            }
-          }
-        ]
-      },
-      {
-        "label": "Nudge your partner",
-        "duration": 5,
-        "tags": [
-          "tagteam"
-        ],
-        "outcomes": [
-          {
-            "when": {
-              "min": {
-                "ledger": 2
-              }
-            },
-            "text": "Your partner is up before you finish nudging. Through the wall: \"I'll talk to the duck.\" Nobody has ever been braver.",
-            "effects": {},
-            "ledger": {
-              "night": "partner"
-            }
-          },
-          {
-            "when": {
-              "max": {
-                "ledger": 1
-              }
-            },
-            "text": "Your partner nudges you back. You nudge harder. This is how wars start. You go, because the crying is louder than the principle.",
-            "effects": {
-              "rel": -2
-            },
-            "ledger": {
-              "night": "you"
-            }
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "m_night_morning",
+    "id": "night_is_it_morning",
     "title": "\"Is It Morning?\"",
-    "text": "4:52 AM. A small, bright voice: \"Is it morning?\" It is not morning. It is a number that should not exist. They are standing up, holding a shoe. Where did they get a shoe?",
+    "text": "4:52 AM. A bright little voice: \"Is it morning?\" It is not morning. It's a number. They're standing in the crib holding one of your shoes. You don't know how they got a shoe.",
     "phase": "night",
+    "weight": 1,
+    "oncePerWeek": true,
     "choices": [
       {
-        "label": "\"It's still night. Lie down.\"",
+        "label": "\"It's still night.\" Repeat until true.",
         "duration": 15,
         "tags": [
           "boundary"
         ],
         "outcomes": [
           {
-            "text": "You say it nine times in the same flat voice, like a very patient airline. On the tenth, they lie down. You don't, because your body has decided it's a workday.",
+            "weight": 2,
+            "text": "You say it nine times in the same flat voice, like a gate agent. On the tenth, they lie down. You don't. Your body has clocked in.",
             "effects": {
-              "debt": -2,
-              "energy": -2
+              "energy": -6,
+              "debt": -2
             },
             "ledger": {
               "night": "you"
             }
+          },
+          {
+            "weight": 1,
+            "text": "On the eleventh \"it's still night,\" a bird starts singing. {kid} points at the window, triumphant. The bird has testified against you.",
+            "effects": {
+              "energy": -6,
+              "debt": 3
+            },
+            "ledger": {
+              "night": "you"
+            },
+            "stamp": "THE BIRD TESTIFIED"
           }
         ]
       },
       {
-        "label": "Nudge your partner",
-        "duration": 5,
+        "label": "Say \"your turn\" into the pillow",
+        "duration": 3,
         "tags": [
           "tagteam"
         ],
@@ -489,8 +846,10 @@
                 "ledger": 3
               }
             },
-            "text": "Your partner takes the early shift without a word. At 5:01 you hear them downstairs, whispering a book about diggers. You love them very much right now.",
-            "effects": {},
+            "text": "{partner} goes without a word. At 5:01 you hear them downstairs, whispering a book about diggers. You have never loved anyone more.",
+            "effects": {
+              "energy": 6
+            },
             "ledger": {
               "night": "partner"
             }
@@ -501,9 +860,9 @@
                 "ledger": 2
               }
             },
-            "text": "\"Your turn for mornings,\" they murmur, and roll over. Is it? You can't remember. Neither can they. You go, holding the shoe.",
+            "text": "\"Your turn for mornings,\" {partner} says into their pillow. Is it? Neither of you can remember who has mornings. You go. You come back holding the shoe.",
             "effects": {
-              "rel": -2
+              "rel": -4
             },
             "ledger": {
               "night": "you"
@@ -512,56 +871,100 @@
         ]
       },
       {
-        "label": "Pretend to be asleep. Commit.",
+        "label": "Pretend to be asleep. Commit fully.",
         "duration": 5,
         "outcomes": [
           {
             "weight": 1,
-            "text": "Somehow it works. They talk quietly to the shoe for twenty minutes and fall back asleep holding it. You will never know why.",
-            "effects": {}
+            "text": "It works. They talk quietly to the shoe for twenty minutes and fall back asleep holding it. Some questions answer themselves.",
+            "effects": {
+              "energy": 6
+            }
           },
           {
             "weight": 2,
-            "text": "\"Is it morning?\" becomes \"IT'S MORNING,\" which is not a question. You get up. It is, technically, morning now.",
+            "text": "\"Is it morning?\" becomes \"IT'S MORNING,\" which is not a question. It is now, technically, morning.",
             "effects": {
-              "debt": 2,
-              "rel": -1
+              "rel": -2,
+              "debt": 3
             },
             "ledger": {
               "night": "you"
-            }
+            },
+            "fx": "shake"
           }
         ]
       }
     ]
   },
   {
-    "id": "m_night_false_alarm",
-    "title": "False Alarm",
-    "text": "1:40 AM. The monitor crackles. A sigh, a rustle, one small cough. You're upright with one foot on the cold floor. Then nothing. Then more nothing.",
+    "id": "night_trained",
+    "title": "Trained",
+    "text": "4:02 AM. Nothing has happened all night. You and {partner} wake up at the exact same second anyway, both grab for the monitor, and stare at a sleeping child. You've both been trained.",
     "phase": "night",
-    "weight": 2,
+    "weight": 1,
+    "oncePerWeek": true,
     "choices": [
       {
-        "label": "Lie back down. Trust it.",
+        "label": "Put it down. Don't jinx it.",
         "duration": 1,
         "outcomes": [
           {
-            "text": "You lie back down. You trust it. It turns out to be trustworthy. It's the best thing that will happen to you all day.",
+            "weight": 2,
+            "text": "You both lie back down without a word. Neither of you says \"we got a whole night\" out loud, because you're not amateurs.",
             "effects": {
-              "energy": 2
+              "energy": 8,
+              "rel": 4
+            }
+          },
+          {
+            "weight": 1,
+            "text": "You lie back down. {partner} whispers, \"We did it. A whole night.\" From the monitor, very small: \"{ME}?\"",
+            "effects": {
+              "rel": -4,
+              "debt": 3
+            },
+            "ledger": {
+              "night": "you"
+            },
+            "stamp": "JINXED"
+          }
+        ]
+      },
+      {
+        "label": "Watch them sleep for a minute. Together.",
+        "duration": 5,
+        "outcomes": [
+          {
+            "text": "Two adults and one glowing screen, watching someone 34 inches long breathe. Nobody says anything. Nobody has to.",
+            "effects": {
+              "rel": 8,
+              "energy": 4
             }
           }
         ]
       },
       {
-        "label": "Whisper, \"Did you hear that?\"",
-        "duration": 2,
+        "label": "Go check in person. Just to be sure.",
+        "duration": 3,
         "outcomes": [
           {
-            "text": "\"Hear what?\" your partner whispers. \"Exactly,\" you say. You both lie there grinning in the dark, like you got away with something.",
+            "weight": 1,
+            "text": "The floorboard outside their door has one job. It does it. {kid} sits up and says, \"Is it breakfast?\"",
             "effects": {
-              "rel": 2
+              "energy": -4,
+              "debt": 3
+            },
+            "ledger": {
+              "night": "you"
+            },
+            "stamp": "FLOORBOARD: 1"
+          },
+          {
+            "weight": 1,
+            "text": "You make it to the door, look in and make it back without a creak. You've never been so quiet in your life. Nobody will ever know.",
+            "effects": {
+              "energy": 6
             }
           }
         ]
@@ -569,36 +972,95 @@
     ]
   },
   {
-    "id": "m_night_concert",
-    "title": "The Midnight Concert",
-    "text": "11:48 PM. The toddler who wasn't sleepy at bedtime is still not sleepy. They're giving a concert in the crib. Song 9 is called \"Truck.\" So was song 4.",
+    "id": "night_regret",
+    "title": "The Replay",
+    "text": "3:12 AM. You're replaying the moment you lost it today. In the replay you're calm. In the replay you crouch down to their level. In real life, you didn't.",
     "phase": "night",
-    "weight": 4,
+    "weight": 5,
+    "oncePerWeek": true,
     "when": {
       "flags": [
-        "d:secondWind"
+        "d:snapped"
       ]
     },
     "choices": [
       {
-        "label": "Go in and be the most boring person alive",
-        "duration": 25,
+        "label": "Wake {partner} and say it out loud",
+        "duration": 15,
         "outcomes": [
           {
-            "text": "You sit in the dark and describe your tax return in a monotone. By the deductions, they're out. You've never been so proud of being dull.",
+            "text": "They listen with their eyes closed. \"You're a good parent having a hard week,\" they mumble. \"Those aren't opposites.\" It helps more than it should.",
             "effects": {
-              "debt": -3,
-              "energy": -2
-            },
-            "ledger": {
-              "night": "you"
+              "rel": 8,
+              "energy": -6
             }
           }
         ]
       },
       {
-        "label": "Nudge your partner",
+        "label": "Plan tomorrow's sorry",
+        "duration": 10,
+        "outcomes": [
+          {
+            "text": "Get down to their level. Say what happened. Say it wasn't okay. Say you love them. You run it three times and fall asleep on the second \"I love you.\"",
+            "effects": {
+              "energy": 10
+            }
+          }
+        ]
+      },
+      {
+        "label": "Go stand in their doorway",
         "duration": 5,
+        "outcomes": [
+          {
+            "text": "They're asleep on their back, arms flung up, the way they sleep when they feel safe. Tomorrow you'll say sorry. They'll say \"okay\" and ask for a snack. That's what repair looks like at two.",
+            "effects": {
+              "energy": 6
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "night_late_show",
+    "title": "Live From the Crib",
+    "text": "11:48 PM. The toddler who wasn't sleepy at bedtime is now hosting a late-night show from the crib. Tonight's guests: Bun-Bun and a sock. The monologue is the word \"BUS.\"",
+    "phase": "night",
+    "weight": 5,
+    "oncePerWeek": true,
+    "when": {
+      "flags": [
+        "d:secondWind"
+      ],
+      "notFlags": [
+        "night:lateshow"
+      ]
+    },
+    "choices": [
+      {
+        "label": "Be the dullest guest in TV history",
+        "duration": 25,
+        "outcomes": [
+          {
+            "text": "You sit in the dark and read the sound machine's warranty aloud, in a monotone. By \"limitation of liability,\" the show is over. Your best set ever, and nobody laughed.",
+            "effects": {
+              "energy": -6,
+              "debt": -4
+            },
+            "ledger": {
+              "night": "you"
+            },
+            "set": [
+              "night:lateshow"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Book {partner} as the closing act",
+        "duration": 3,
         "tags": [
           "tagteam"
         ],
@@ -609,11 +1071,17 @@
                 "ledger": 2
               }
             },
-            "text": "Your partner goes in and does the slow-blink-and-hum thing they're weirdly good at. Silence in six minutes. You'd be jealous if you weren't already asleep.",
-            "effects": {},
+            "text": "{partner} goes in and does the slow-blink-and-hum thing they're weirdly good at. The show is cancelled in six minutes. Network decision.",
+            "effects": {
+              "energy": 4
+            },
             "ledger": {
               "night": "partner"
-            }
+            },
+            "stamp": "CANCELLED",
+            "set": [
+              "night:lateshow"
+            ]
           },
           {
             "when": {
@@ -621,106 +1089,141 @@
                 "ledger": 1
               }
             },
-            "text": "\"You did bedtime,\" your partner whispers. \"This is your encore.\" Harsh, but accurate. You go in to a standing ovation from one.",
+            "text": "\"You did bedtime,\" {partner} whispers. \"This is your encore.\" Harsh. Accurate. You go in to a standing ovation from one.",
             "effects": {
-              "rel": -2
+              "rel": -4
             },
             "ledger": {
               "night": "you"
-            }
+            },
+            "set": [
+              "night:lateshow"
+            ]
           }
         ]
       },
       {
-        "label": "Let the concert run its course",
+        "label": "Let the show run long",
         "duration": 5,
         "outcomes": [
           {
             "weight": 1,
-            "text": "Song 14 trails off in the middle of \"Truck.\" They fell asleep singing, which is how you'd like to go too.",
+            "text": "The show runs until 12:31 and ends in the middle of \"BUS.\" They fell asleep on air.",
             "effects": {
-              "debt": 2
-            }
+              "debt": 4
+            },
+            "set": [
+              "night:lateshow"
+            ]
           },
           {
             "weight": 1,
-            "text": "The second wind gets a second wind. At 12:40 you go in, defeated, and they greet you like a fan who got backstage.",
+            "text": "The show gets picked up for a second season. At 1:05 you go in, and they greet you like a superfan who got backstage.",
             "effects": {
-              "debt": 3
+              "energy": -4,
+              "debt": 5
             },
             "ledger": {
               "night": "you"
-            }
+            },
+            "stamp": "RENEWED",
+            "set": [
+              "night:lateshow"
+            ]
           }
         ]
       }
     ]
   },
   {
-    "id": "m_night_wired",
-    "title": "Wired",
-    "text": "1:30 AM. The toddler is asleep. Your partner is asleep. You are lying perfectly still, vibrating at the exact frequency of a 4 PM coffee.",
+    "id": "night_wired",
+    "title": "The Fridge Is Thinking",
+    "text": "1:30 AM. Everyone in the house is asleep but you. You can hear the fridge thinking. You can hear your own eyelids. The 4 PM coffee is still at work.",
     "phase": "night",
     "weight": 4,
+    "oncePerWeek": true,
     "when": {
       "flags": [
         "d:lateCoffee"
+      ],
+      "notFlags": [
+        "night:wired"
       ]
     },
     "choices": [
       {
-        "label": "You're up anyway. Take the next wake-up.",
+        "label": "You're up anyway. Take the next shift.",
         "duration": 15,
         "outcomes": [
           {
-            "text": "At 2:10 the monitor crackles and you're there in nine seconds, like a firefighter who was already at the fire. Your partner wakes up suspiciously rested.",
+            "text": "At 2:10 the monitor crackles and you're there in nine seconds, because you were already standing at the door. {partner} wakes up suspiciously rested.",
             "effects": {
-              "rel": 4,
-              "debt": -1
+              "rel": 8,
+              "debt": -2
             },
             "ledger": {
               "night": "you"
-            }
-          }
-        ]
-      },
-      {
-        "label": "Empty the dishwasher in the dark",
-        "duration": 20,
-        "outcomes": [
-          {
-            "text": "You put away 31 things by feel. Two go in the wrong drawer and will confuse your partner for weeks. The kitchen is clean. You are still awake.",
-            "effects": {
-              "home": 5,
-              "energy": -2
             },
-            "ledger": {
-              "dishes": "you"
-            }
+            "stamp": "SHIFT COVERED",
+            "set": [
+              "night:wired"
+            ]
           }
         ]
       },
       {
-        "label": "Catch up on the group chat",
+        "label": "Reorganize the snack drawer by feel",
         "duration": 20,
         "outcomes": [
           {
-            "text": "You vote in the pajama-day poll, answer a six-day-old bake sale question and send a thumbs-up at 1:34 AM. Someone replies, \"are you ok?\"",
+            "text": "You sort 31 snacks by crunch, in total darkness. In the morning, {partner} opens the drawer, looks at it for a while and quietly closes it again.",
             "effects": {
-              "rep": 3,
-              "energy": -2
-            }
+              "home": 10,
+              "energy": -4
+            },
+            "set": [
+              "night:wired"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Catch up on the group chat at 1% brightness",
+        "duration": 20,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "You vote in the pajama-day poll and answer a six-day-old bake sale question. At 1:34 AM someone replies, \"are you ok?\"",
+            "effects": {
+              "rep": 10,
+              "energy": -4
+            },
+            "set": [
+              "night:wired"
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "You scroll so far back you accidentally heart a photo from 2022. Everyone gets the notification. At 1:36 AM, Brynn hearts your heart.",
+            "effects": {
+              "rep": -6,
+              "energy": -4
+            },
+            "set": [
+              "night:wired"
+            ]
           }
         ]
       }
     ]
   },
   {
-    "id": "m_night_molar",
+    "id": "night_molar",
     "title": "The Molar, Live",
-    "text": "1:15 AM. The molar is still coming in, and it wants everyone to know. Your toddler is gnawing the crib rail and crying in a key you didn't know existed.",
+    "text": "1:15 AM. The molar is still coming in, and it wants everyone to know. {kid} is gnawing the crib rail and crying in a key you didn't know existed.",
     "phase": "night",
-    "weight": 4,
+    "weight": 5,
+    "oncePerWeek": true,
     "when": {
       "flags": [
         "d:teething"
@@ -736,10 +1239,22 @@
         ],
         "outcomes": [
           {
+            "weight": 1,
             "text": "Forty minutes in the chair. They chew the washcloth, then your sleeve, then fall asleep mid-chew. Your arm is dead. Your heart is weirdly full.",
             "effects": {
-              "debt": -4,
-              "energy": -3
+              "energy": -6,
+              "debt": -5
+            },
+            "ledger": {
+              "night": "you"
+            }
+          },
+          {
+            "weight": 1,
+            "text": "Twenty minutes in, they fall asleep on your shoulder with their mouth open, slowly soaking your shirt. You stay another twenty anyway.",
+            "effects": {
+              "energy": -6,
+              "debt": -5
             },
             "ledger": {
               "night": "you"
@@ -754,8 +1269,8 @@
           {
             "text": "Kitchen light on. You read the chart twice and measure with the syringe, not a spoon. Twenty minutes later the crying winds down to a hum.",
             "effects": {
-              "debt": -2,
-              "energy": -1
+              "energy": -3,
+              "debt": -3
             },
             "ledger": {
               "night": "you"
@@ -764,8 +1279,8 @@
         ]
       },
       {
-        "label": "Nudge your partner",
-        "duration": 5,
+        "label": "Tag {partner} in for the tooth shift",
+        "duration": 3,
         "tags": [
           "tagteam"
         ],
@@ -776,8 +1291,10 @@
                 "ledger": 2
               }
             },
-            "text": "Your partner takes the shift. Through the wall you hear them humming a song about a tooth that they are clearly making up as they go. Verse three is ambitious.",
-            "effects": {},
+            "text": "{partner} takes it. Through the wall you hear them make up a song about the tooth. Verse three rhymes \"molar\" with \"polar bear.\" It's working.",
+            "effects": {
+              "energy": 4
+            },
             "ledger": {
               "night": "partner"
             }
@@ -788,9 +1305,9 @@
                 "ledger": 1
               }
             },
-            "text": "\"I did the last molar,\" your partner whispers. There have been four molars. You decide not to audit this at 1 AM. You go.",
+            "text": "\"I did the last molar,\" {partner} whispers. There have been four molars. You decide not to audit this at 1 AM. You go.",
             "effects": {
-              "rel": -2
+              "rel": -4
             },
             "ledger": {
               "night": "you"
@@ -801,81 +1318,235 @@
     ]
   },
   {
-    "id": "m_night_corduroy",
-    "title": "\"Corduroy Man?\"",
-    "text": "3:02 AM. \"Corduroy man?\" your toddler asks the dark. The man in corduroy is not available. He is, presumably, asleep somewhere in a lot of corduroy.",
+    "id": "night_earworm",
+    "title": "3 AM: Key Change",
+    "text": "3:02 AM. Nobody is crying. Nobody needs anything. You're awake because the theme song from this afternoon's TV is playing in your head at full volume, key change and all.",
     "phase": "night",
-    "weight": 3,
+    "weight": 4,
+    "oncePerWeek": true,
     "when": {
       "flags": [
         "d:screen"
+      ],
+      "notFlags": [
+        "night:earworm"
       ]
     },
     "choices": [
       {
-        "label": "Go in and sing his song yourself",
+        "label": "Hum it once, quietly, to get it out",
+        "duration": 5,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "You hum one bar. Still asleep, {partner} hums the harmony. You lie there in the dark, a duet nobody asked for.",
+            "effects": {
+              "rel": 6,
+              "energy": -4
+            },
+            "set": [
+              "night:earworm"
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "You hum one bar. Through the monitor, a small voice picks up the next one. Now it's a concert, and you're the opening act.",
+            "effects": {
+              "energy": -4,
+              "debt": 3
+            },
+            "ledger": {
+              "night": "you"
+            },
+            "set": [
+              "night:earworm"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Put in one earbud. Rain sounds.",
         "duration": 10,
         "outcomes": [
           {
-            "text": "You whisper the whole theme song. You know every word. You know the key change. You never chose this knowledge. They sigh, satisfied, and sleep.",
+            "weight": 1,
+            "text": "Real rain, recorded somewhere with weather. You're asleep by 3:15, smiling.",
             "effects": {
+              "energy": 10
+            },
+            "set": [
+              "night:earworm"
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "The rain video opens with an ad. The ad is for the show. The theme song plays, directly into your ear, at 3:05 AM.",
+            "effects": {
+              "energy": -8
+            },
+            "stamp": "SPONSORED",
+            "set": [
+              "night:earworm"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Wake {partner}: \"Do you have it too?\"",
+        "duration": 2,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "\"I've had it since last week,\" they whisper. \"I didn't want to give it to you.\" The most romantic thing anyone has ever said to you.",
+            "effects": {
+              "rel": 6
+            },
+            "set": [
+              "night:earworm"
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "\"I do now,\" {partner} says, bitterly, at 3:04 AM. You've passed it on. You fall asleep in a minute, free.",
+            "effects": {
+              "rel": -10,
+              "energy": 6
+            },
+            "stamp": "TRANSMITTED",
+            "set": [
+              "night:earworm"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "night_agenda",
+    "title": "The 3 AM Agenda",
+    "text": "3:07 AM. Your brain has called a meeting. Attendance is mandatory. The agenda is everything you said \"later\" to this week, read aloud, in order.",
+    "phase": "night",
+    "weight": 4,
+    "oncePerWeek": true,
+    "when": {
+      "flags": [
+        "tasks_later"
+      ],
+      "notFlags": [
+        "night:agenda"
+      ]
+    },
+    "choices": [
+      {
+        "label": "Do the oldest thing on the list. Now. One thumb.",
+        "duration": 15,
+        "outcomes": [
+          {
+            "text": "You do it in the dark at 4% brightness, with one thumb. Confirmation email: 3:22 AM. The meeting is adjourned. You are now, unfortunately, awake.",
+            "effects": {
+              "energy": -6
+            },
+            "completeTask": "oldest",
+            "stamp": "MOTION CARRIED",
+            "set": [
+              "night:agenda"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Write it on your hand in the dark",
+        "duration": 2,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "In the morning your hand says \"THE THING\" in ballpoint. It works. You do the thing before breakfast, still a little proud of the handwriting.",
+            "effects": {
+              "energy": -2
+            },
+            "completeTask": "oldest",
+            "set": [
+              "night:agenda"
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "In the morning your hand says \"THE THING\" in ballpoint. You stare at it on and off all day, like a riddle you left yourself.",
+            "effects": {
+              "energy": 2
+            },
+            "set": [
+              "night:agenda"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Table it. Future you can handle it.",
+        "duration": 1,
+        "outcomes": [
+          {
+            "text": "Future you has been handling everything since March. Future you is so tired of you. You fall asleep anyway.",
+            "effects": {
+              "energy": 6
+            },
+            "stamp": "TABLED",
+            "set": [
+              "night:agenda"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "night_grandma",
+    "title": "Grandma Has It",
+    "text": "2:20 AM. Crying. Before either of you moves, the guest-room door opens. Slippers in the hall. Then Grandma, in the nursery, singing a song you haven't heard since you were four.",
+    "phase": "night",
+    "weight": 5,
+    "oncePerWeek": true,
+    "when": {
+      "flags": [
+        "d:grandma"
+      ]
+    },
+    "choices": [
+      {
+        "label": "Let Grandma have this one",
+        "duration": 2,
+        "outcomes": [
+          {
+            "text": "The crying stops in three minutes. At breakfast Grandma says, \"They sleep fine for me,\" butters toast like someone who has won an argument, and posts about it by 8.",
+            "effects": {
+              "energy": 12,
+              "rep": -6
+            },
+            "stamp": "GRANDMA: 1"
+          }
+        ]
+      },
+      {
+        "label": "Stand outside the door and listen",
+        "duration": 10,
+        "outcomes": [
+          {
+            "text": "It's the song about the little boat. You forgot you knew it. You hum the second verse in the dark hallway, very quietly, so nobody hears.",
+            "effects": {
+              "energy": 8
+            }
+          }
+        ]
+      },
+      {
+        "label": "Go in. Your kid, your shift.",
+        "duration": 15,
+        "outcomes": [
+          {
+            "text": "\"I've got it,\" Grandma whispers. \"I've got it,\" you whisper back. Two grown adults whisper \"I've got it\" over a crib until {kid} falls asleep out of boredom.",
+            "effects": {
+              "energy": -4,
               "debt": -2
-            },
-            "ledger": {
-              "night": "you"
-            }
-          }
-        ]
-      },
-      {
-        "label": "Nudge your partner",
-        "duration": 5,
-        "tags": [
-          "tagteam"
-        ],
-        "outcomes": [
-          {
-            "when": {
-              "min": {
-                "ledger": 2
-              }
-            },
-            "text": "Your partner goes in and does the corduroy man's voice, perfectly. You didn't know they could do that. You'll be thinking about it for days.",
-            "effects": {},
-            "ledger": {
-              "night": "partner"
-            }
-          },
-          {
-            "when": {
-              "max": {
-                "ledger": 1
-              }
-            },
-            "text": "\"Your show, your shift,\" your partner mumbles. You did put it on at 4 PM. You go.",
-            "effects": {
-              "rel": -2
-            },
-            "ledger": {
-              "night": "you"
-            }
-          }
-        ]
-      },
-      {
-        "label": "\"He's sleeping. Everyone's sleeping.\"",
-        "duration": 5,
-        "outcomes": [
-          {
-            "weight": 1,
-            "text": "A long pause. \"Corduroy man sleeping,\" they repeat, gravely, and lie down out of professional courtesy.",
-            "effects": {}
-          },
-          {
-            "weight": 1,
-            "text": "\"CORDUROY MAN WAKE UP,\" they announce, which wakes everyone except the corduroy man. You go in.",
-            "effects": {
-              "debt": 2
             },
             "ledger": {
               "night": "you"

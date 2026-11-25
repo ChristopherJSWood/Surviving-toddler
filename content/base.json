@@ -405,7 +405,7 @@
     },
     {
       "id": "rsvp",
-      "label": "RSVP to Theo's party",
+      "label": "RSVP to Juniper's party",
       "dueDay": 3,
       "dueClock": 1020,
       "expire": "rsvp_missed"
