@@ -1,0 +1,672 @@
+[
+  {
+    "id": "panic_checkout",
+    "title": "Lane 4",
+    "text": "Checkout lane 4. The cashier is moving at the speed of a glacier with a pension. In the car, you said something about this lane. {kid} remembers. {kid} is inhaling.",
+    "window": [
+      540,
+      1080
+    ],
+    "oncePerWeek": true,
+    "timer": 5,
+    "when": {
+      "notFlags": [
+        "d:home"
+      ]
+    },
+    "choices": [
+      {
+        "label": "Plug their mouth with a granola bar",
+        "duration": 1,
+        "tags": [
+          "bribe"
+        ],
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "Mouth: plugged. They chew, glaring, holding the sentence in reserve. You've only moved it to the parking lot.",
+            "effects": {
+              "mood": 4,
+              "rep": 2
+            },
+            "count": {
+              "snacks": 1
+            }
+          },
+          {
+            "text": "They take the bar, hold it up like a microphone and say it anyway, now with crumbs and a new verse.",
+            "effects": {
+              "rep": -16,
+              "mood": 4
+            },
+            "count": {
+              "snacks": 1
+            },
+            "fx": "shake"
+          }
+        ]
+      },
+      {
+        "label": "Confess first: \"I said a mean thing about this lane!\"",
+        "duration": 1,
+        "outcomes": [
+          {
+            "text": "The cashier looks up. \"This lane IS slow,\" says Doreen. \"Thirty-one years. I like it slow.\" Doreen bags your eggs like they're grandchildren.",
+            "effects": {
+              "rep": 10,
+              "energy": -2
+            },
+            "stamp": "DOREEN APPROVES"
+          },
+          {
+            "text": "The whole line turns to look at you. {kid} closes their mouth, satisfied. They didn't have to say anything. You did it for them.",
+            "effects": {
+              "rep": -8,
+              "mood": 6
+            }
+          }
+        ]
+      },
+      {
+        "label": "Freeze",
+        "duration": 1,
+        "timeout": true,
+        "outcomes": [
+          {
+            "text": "\"{ME} SAYS THIS LANE IS WHERE TIME GOES TO DIE.\" The cashier, 31 years in, stops, looks at you, then resumes scanning. Slower. Out of principle.",
+            "effects": {
+              "rep": -16,
+              "energy": -4
+            },
+            "stamp": "SLOWER, ON PURPOSE",
+            "fx": "shake"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "panic_buy_now",
+    "title": "Buy Now",
+    "text": "{kid} has your phone. On the screen: a ride-on electric tractor, $899.99, under a big yellow BUY NOW button. Their thumb is descending.",
+    "window": [
+      480,
+      1140
+    ],
+    "oncePerWeek": true,
+    "timer": 5,
+    "choices": [
+      {
+        "label": "Lunge for the phone",
+        "duration": 1,
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "You snatch it with a centimeter to spare. The tractor stays in your cart, where it will follow you around the internet for a month.",
+            "effects": {
+              "mood": -10,
+              "energy": -2
+            }
+          },
+          {
+            "text": "You snatch it, but in the struggle a thumb taps \"Add protection plan: $129.\" You now own a warranty for a tractor you don't have.",
+            "effects": {
+              "mood": -8,
+              "rel": -8
+            }
+          }
+        ]
+      },
+      {
+        "label": "\"Ooh! Let's add it to the WISH LIST!\"",
+        "duration": 1,
+        "tags": [
+          "negotiate"
+        ],
+        "outcomes": [
+          {
+            "text": "\"WISH LIST,\" they whisper, and tap the little heart. The tractor is safe in the future, where all expensive things belong.",
+            "effects": {
+              "mood": 6
+            },
+            "stamp": "DEFERRED"
+          },
+          {
+            "text": "They tap the heart. Then, to be safe, BUY NOW. They're a planner.",
+            "effects": {
+              "rel": -16,
+              "mood": 12
+            },
+            "stamp": "ORDER CONFIRMED",
+            "fx": "flash"
+          }
+        ]
+      },
+      {
+        "label": "Freeze",
+        "duration": 1,
+        "timeout": true,
+        "outcomes": [
+          {
+            "text": "Tap. {kid} explains, patiently, that you said they could \"have anything\" if they ate their peas. They ate two peas. The tractor arrives Thursday.",
+            "effects": {
+              "rel": -18,
+              "mood": 14,
+              "energy": -4
+            },
+            "stamp": "ARRIVING THURSDAY",
+            "fx": "flash"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "panic_flush_keys",
+    "title": "Bye-Bye, Keys",
+    "text": "{kid} is at the open toilet, dangling your car keys over the water by one finger. Their other hand is on the handle. \"Bye-bye, keys,\" they say, gently.",
+    "window": [
+      420,
+      1100
+    ],
+    "oncePerWeek": true,
+    "timer": 5,
+    "choices": [
+      {
+        "label": "Dive.",
+        "duration": 1,
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "You cross the bathroom in a single step you didn't know you had. Keys: caught. Knee: tile. {kid} applauds the catch. Only you heard the knee.",
+            "effects": {
+              "energy": -8,
+              "mood": 4
+            },
+            "stamp": "WHAT A CATCH"
+          },
+          {
+            "text": "You catch the keys. You also catch the bath mat, and finish the move sitting in the tub, fully clothed. {kid} flushes anyway, for closure.",
+            "effects": {
+              "energy": -6,
+              "mood": 10,
+              "rep": -2
+            }
+          }
+        ]
+      },
+      {
+        "label": "\"Keys are SCARED of water!\"",
+        "duration": 1,
+        "tags": [
+          "negotiate"
+        ],
+        "outcomes": [
+          {
+            "text": "{kid} gasps, hugs the keys and carries them out to \"keep them safe.\" You find them tonight, tucked into bed beside the stuffed rabbit.",
+            "effects": {
+              "mood": 4,
+              "energy": 2
+            }
+          },
+          {
+            "text": "\"Keys are BRAVE,\" {kid} corrects you, and lets go.",
+            "effects": {
+              "energy": -10,
+              "home": -12
+            },
+            "fx": "shake"
+          }
+        ]
+      },
+      {
+        "label": "\"REMEMBER WHAT HAPPENED TO REX.\"",
+        "duration": 1,
+        "when": {
+          "flags": [
+            "rex:flushed"
+          ]
+        },
+        "outcomes": [
+          {
+            "text": "{kid} goes very still. Rex's sacrifice will not be forgotten. They hand you the keys, then salute the toilet.",
+            "effects": {
+              "mood": -2,
+              "energy": 4
+            },
+            "stamp": "NEVER FORGET"
+          }
+        ]
+      },
+      {
+        "label": "Freeze",
+        "duration": 1,
+        "timeout": true,
+        "outcomes": [
+          {
+            "text": "Plunk. Flush. The keys don't go all the way. Somewhere in the pipe the fob gets squeezed, and out in the driveway your car honks. It honks every time anyone flushes, until Friday.",
+            "effects": {
+              "energy": -10,
+              "home": -12,
+              "rep": -8
+            },
+            "stamp": "THE CAR KNOWS",
+            "fx": "shake"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "panic_dropoff",
+    "title": "Morning Announcements",
+    "text": "Daycare drop-off. Eight parents, two teachers, one rare moment of quiet. {kid} turns to face the room and takes a big breath. They have news. It's about you.",
+    "window": [
+      420,
+      570
+    ],
+    "oncePerWeek": true,
+    "timer": 5,
+    "when": {
+      "notFlags": [
+        "d:home"
+      ]
+    },
+    "choices": [
+      {
+        "label": "Scoop them up: \"BIG HUG! BYE!\"",
+        "duration": 1,
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "They say it straight into your neck, muffled past recognition. One teacher catches the word \"closet\" and nods slowly. It could be anything. It isn't anything.",
+            "effects": {
+              "rep": -4,
+              "mood": 4
+            }
+          },
+          {
+            "text": "They wriggle free, climb the cubbies for elevation and deliver it to the back row.",
+            "effects": {
+              "rep": -16,
+              "energy": -4
+            },
+            "fx": "shake"
+          }
+        ]
+      },
+      {
+        "label": "\"WHO WANTS TO SEE THE FISH?!\"",
+        "duration": 1,
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "Nine toddlers sprint to the fish tank, yours first, news forgotten. The teachers look at you with deep gratitude. The fish look at you with fear.",
+            "effects": {
+              "rep": 8,
+              "energy": -4
+            },
+            "stamp": "FISH DEPLOYED"
+          },
+          {
+            "text": "Nobody moves. {kid} waits politely for you to finish, then begins.",
+            "effects": {
+              "rep": -14
+            }
+          }
+        ]
+      },
+      {
+        "label": "Freeze",
+        "duration": 1,
+        "timeout": true,
+        "outcomes": [
+          {
+            "text": "\"{ME} EATS COOKIES IN THE CLOSET SO I CAN'T SEE.\" Eight parents nod slowly. Three of them also have a closet.",
+            "effects": {
+              "rep": -12,
+              "energy": -2
+            },
+            "stamp": "PUBLIC RECORD"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "panic_cart_lick",
+    "title": "The Handle",
+    "text": "Grocery store. {kid} is in the cart seat, mouth open, face lowering slowly toward the handle, which has been touched today by 400 strangers and one man who coughed into his fist.",
+    "window": [
+      540,
+      1080
+    ],
+    "oncePerWeek": true,
+    "timer": 4,
+    "when": {
+      "notFlags": [
+        "d:home"
+      ]
+    },
+    "choices": [
+      {
+        "label": "Hand on the handle. Take the lick yourself.",
+        "duration": 1,
+        "tags": [
+          "martyr"
+        ],
+        "outcomes": [
+          {
+            "text": "They lick your hand, end to end, thoroughly, with eye contact. \"Salty,\" they report. You'll be thinking about the 400 strangers anyway.",
+            "effects": {
+              "mood": 6,
+              "energy": -4
+            },
+            "stamp": "HUMAN SHIELD"
+          }
+        ]
+      },
+      {
+        "label": "\"Don't lick that!\"",
+        "duration": 1,
+        "tags": [
+          "boundary"
+        ],
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "They hadn't been going to lick it. They'd been going to rest their cheek on it. Now they've heard about licking.",
+            "effects": {
+              "rep": -8,
+              "mood": 6
+            }
+          },
+          {
+            "text": "\"Okay,\" they say, and don't. You stare at each other. It worked. You don't trust it.",
+            "effects": {
+              "mood": -4,
+              "energy": 2
+            }
+          }
+        ]
+      },
+      {
+        "label": "Freeze",
+        "duration": 1,
+        "timeout": true,
+        "outcomes": [
+          {
+            "text": "One long, slow, thorough lick, end to end. \"It tastes like coins,\" {kid} reports, delighted, to the man who coughed.",
+            "effects": {
+              "rep": -12,
+              "mood": 8
+            },
+            "stamp": "TASTES LIKE COINS"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "panic_eggs",
+    "title": "Twelve Eggs, Two Small Arms",
+    "text": "The fridge is open. {kid} has the egg carton down from the top shelf and is holding it over their head with both arms, like a championship belt. They aren't looking at the eggs. They're looking at you.",
+    "window": [
+      420,
+      1100
+    ],
+    "oncePerWeek": true,
+    "timer": 5,
+    "choices": [
+      {
+        "label": "Lunge for the eggs",
+        "duration": 1,
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "You get both hands under the carton as it drops. Eleven eggs saved. One cracks quietly, in sympathy. You scramble it and eat it standing up, as a toast to yourself.",
+            "effects": {
+              "energy": -4,
+              "mood": -6
+            },
+            "stamp": "11 OF 12"
+          },
+          {
+            "text": "You lunge. They flinch. You catch the carton upside down and open. Catching it, it turns out, was not the problem.",
+            "effects": {
+              "energy": -6,
+              "home": -12,
+              "mood": 4
+            },
+            "fx": "shake"
+          }
+        ]
+      },
+      {
+        "label": "\"Want to help me make breakfast with those?\"",
+        "duration": 15,
+        "minEnergy": 25,
+        "tags": [
+          "present"
+        ],
+        "outcomes": [
+          {
+            "text": "They lower the carton like a sacred object and carry it to the counter, one step at a time. They crack two, mostly into the bowl. Best eggs you've ever eaten. Crunchy.",
+            "effects": {
+              "mood": 12,
+              "energy": -8,
+              "home": -4
+            }
+          }
+        ]
+      },
+      {
+        "label": "Freeze",
+        "duration": 1,
+        "timeout": true,
+        "outcomes": [
+          {
+            "text": "They keep eye contact the whole way down. Twelve eggs, one floor. \"Uh oh,\" they say, which is a lie. This was planned.",
+            "effects": {
+              "home": -16,
+              "energy": -6
+            },
+            "stamp": "PREMEDITATED",
+            "fx": "shake"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "panic_bleep_grandma",
+    "title": "Grandma, Meet the Word",
+    "text": "Grandma is at the table. {kid} has a new word, from the car, from you. They're looking right at Grandma. They're warming up the first letter.",
+    "window": [
+      600,
+      1140
+    ],
+    "oncePerWeek": true,
+    "timer": 5,
+    "when": {
+      "flags": [
+        "d:grandma"
+      ]
+    },
+    "choices": [
+      {
+        "label": "\"Mom! How's your knee?\"",
+        "duration": 2,
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "Grandma's knee is a 20-minute topic, with diagrams. {kid} says the word twice, but nobody can hear it over the meniscus.",
+            "effects": {
+              "rep": 6,
+              "energy": -8
+            },
+            "stamp": "MENISCUS DEFENSE"
+          },
+          {
+            "text": "\"My knee's FINE.\" She turns back to {kid}, just in time.",
+            "effects": {
+              "rep": -14
+            },
+            "count": {
+              "bleeps": 1
+            },
+            "fx": "shake"
+          }
+        ]
+      },
+      {
+        "label": "\"Can you say TRUCK?\"",
+        "duration": 1,
+        "outcomes": [
+          {
+            "text": "\"TRUCK!\" they announce, crisply. Grandma claps. Crisis averted by a vehicle.",
+            "effects": {
+              "mood": 4,
+              "rep": 6
+            }
+          },
+          {
+            "text": "\"[BLEEP],\" they announce, which rhymes with truck, but isn't truck.",
+            "effects": {
+              "rep": -16,
+              "mood": 4
+            },
+            "count": {
+              "bleeps": 1
+            },
+            "fx": "shake"
+          }
+        ]
+      },
+      {
+        "label": "Freeze",
+        "duration": 1,
+        "timeout": true,
+        "outcomes": [
+          {
+            "text": "\"[BLEEP],\" {kid} tells Grandma, crisply, in your exact voice. Grandma sets down her fork and looks at you, not them. She has waited 30 years for this.",
+            "effects": {
+              "rep": -16,
+              "energy": -4
+            },
+            "count": {
+              "bleeps": 1
+            },
+            "stamp": "SOURCE IDENTIFIED",
+            "fx": "shake"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "panic_bleep_brynn",
+    "title": "Brynn Is Right There",
+    "text": "Pickup. Brynn, who once asked the group chat whether the microwave clock counts as screen time, is telling you about a violin recital. {kid} remembers the word. {kid} is smiling.",
+    "window": [
+      960,
+      1080
+    ],
+    "oncePerWeek": true,
+    "timer": 5,
+    "when": {
+      "flags": [
+        "bleep:taught"
+      ],
+      "notFlags": [
+        "d:home"
+      ]
+    },
+    "choices": [
+      {
+        "label": "\"Sorry, Brynn, we're double-parked!\"",
+        "duration": 1,
+        "outcomes": [
+          {
+            "text": "You sprint for the car. {kid} says the word to the parking lot, which has heard worse.",
+            "effects": {
+              "rep": 2,
+              "energy": -6
+            },
+            "count": {
+              "bleeps": 1
+            }
+          },
+          {
+            "text": "You aren't double-parked. You walked. Brynn knows you walked. Brynn watched you walk.",
+            "effects": {
+              "rep": -10,
+              "energy": -2
+            }
+          }
+        ]
+      },
+      {
+        "label": "Hug them. Hand over the mouth. Casually.",
+        "duration": 1,
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "The word goes into your palm, where it belongs. Brynn talks on about the violin. You hear none of it. You've never been so happy to hear none of something.",
+            "effects": {
+              "rep": 4,
+              "mood": -6
+            }
+          },
+          {
+            "text": "It comes out muffled: \"mmmBLEEP.\" Brynn hears \"mmmBLEEP.\" Brynn's eyebrows go up and stay up.",
+            "effects": {
+              "rep": -12,
+              "mood": -4
+            },
+            "count": {
+              "bleeps": 1
+            }
+          }
+        ]
+      },
+      {
+        "label": "Bring up the group chat thing yourself",
+        "duration": 3,
+        "when": {
+          "flags": [
+            "chat:brynn"
+          ]
+        },
+        "outcomes": [
+          {
+            "text": "\"About the walking-into-the-sea message—\" Brynn lights up. Brynn has waited days for this. In the long, delicious conversation that follows, {kid}'s word goes unheard.",
+            "effects": {
+              "rep": -6,
+              "energy": -10
+            },
+            "stamp": "BIGGER FIRE"
+          }
+        ]
+      },
+      {
+        "label": "Freeze",
+        "duration": 1,
+        "timeout": true,
+        "outcomes": [
+          {
+            "text": "\"[BLEEP],\" {kid} tells Brynn, warmly. Brynn smiles the smile of someone who will mention this at the next three bake sales. \"Wherever did they hear THAT?\"",
+            "effects": {
+              "rep": -18
+            },
+            "count": {
+              "bleeps": 1
+            },
+            "stamp": "BAKE SALE MATERIAL",
+            "fx": "shake"
+          }
+        ]
+      }
+    ]
+  }
+]

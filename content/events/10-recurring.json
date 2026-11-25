@@ -1,24 +1,87 @@
 [
   {
     "id": "coffee",
-    "title": "Coffee, Attempt #3",
-    "text": "You've reheated this coffee so many times it's legally a soup.",
+    "family": "coffee",
+    "title": "Coffee: Attempt #1",
+    "text": "You pour a coffee into the CRUSH IT mug from a 2018 sales offsite. You lift it. From the floor: \"{ME}. Hold my hand. No. The coffee hand.\"",
     "window": [
-      380,
-      1080
+      365,
+      600
     ],
     "weight": 3,
-    "repeatable": true,
+    "oncePerWeek": true,
+    "when": {
+      "notFlags": [
+        "coffee:1"
+      ]
+    },
     "choices": [
       {
-        "label": "Reheat it again",
-        "duration": 5,
+        "label": "Switch hands. Become ambidextrous.",
+        "duration": 4,
         "outcomes": [
           {
-            "text": "You drink it hot. A single tear rolls down your cheek.",
+            "weight": 2,
+            "text": "You move the mug to your left hand. They grab your left hand. You switch back. They switch with you. On lap five you drain it in one gulp. Hand: available.",
             "effects": {
-              "energy": 8
+              "energy": 12,
+              "mood": 8
             },
+            "set": [
+              "coffee:1"
+            ],
+            "count": {
+              "coffee": 1
+            }
+          },
+          {
+            "weight": 1,
+            "text": "Four laps of hand-switching. On lap five, {kid} wins. The coffee goes on the rug. The mug lands upright, unharmed, still saying CRUSH IT. The mug always survives.",
+            "effects": {
+              "home": -12,
+              "mood": 8,
+              "energy": -2
+            },
+            "set": [
+              "coffee:1"
+            ],
+            "stamp": "MUG: UNHARMED",
+            "fx": "shake"
+          }
+        ]
+      },
+      {
+        "label": "\"One second, sweetheart.\" Set it down.",
+        "duration": 12,
+        "minEnergy": 20,
+        "tags": [
+          "present"
+        ],
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "One second becomes eleven minutes and four books. The coffee is cold when you get back, with a single puff floating in the middle. You drink around it.",
+            "effects": {
+              "mood": 16,
+              "energy": -4
+            },
+            "set": [
+              "coffee:1"
+            ],
+            "count": {
+              "coffee": 1
+            }
+          },
+          {
+            "weight": 1,
+            "text": "One second becomes eleven minutes. {kid} has made you a fresh one: the cold coffee, plus a raisin, plus a toy block. They're watching. You sip. \"Mmm.\" You've never loved anyone more or a drink less.",
+            "effects": {
+              "mood": 18,
+              "energy": -6
+            },
+            "set": [
+              "coffee:1"
+            ],
             "count": {
               "coffee": 1
             }
@@ -26,15 +89,340 @@
         ]
       },
       {
-        "label": "Fresh pot",
-        "duration": 10,
+        "label": "Drink it scalding. Like it owes you money.",
+        "duration": 2,
         "outcomes": [
           {
-            "text": "A fresh pot. You smell it. You feel briefly human.",
+            "weight": 2,
+            "text": "You drink it at the temperature of a car hood in July. You can no longer taste. You can, however, hear colors.",
+            "effects": {
+              "energy": 16,
+              "mood": -8
+            },
+            "set": [
+              "coffee:1"
+            ],
+            "count": {
+              "coffee": 1
+            }
+          },
+          {
+            "weight": 1,
+            "text": "Too hot. You burn the roof of your mouth and make a face {kid} learns instantly. By lunch they're doing it at daycare. They call it \"the coffee face.\"",
+            "effects": {
+              "energy": 10,
+              "rep": -8
+            },
+            "set": [
+              "coffee:1"
+            ],
+            "count": {
+              "coffee": 1
+            },
+            "stamp": "THE COFFEE FACE"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "coffee_reheat",
+    "family": "coffee",
+    "title": "Coffee: Reheat #4",
+    "text": "The CRUSH IT mug has been microwaved four times since 7 AM and drunk zero times. It has a skin now. The microwave beeps. It beeps again. It is beeping at you, specifically.",
+    "window": [
+      480,
+      780
+    ],
+    "weight": 3,
+    "oncePerWeek": true,
+    "when": {
+      "flags": [
+        "coffee:1"
+      ],
+      "notFlags": [
+        "coffee:2"
+      ]
+    },
+    "choices": [
+      {
+        "label": "Reheat #5. Stand guard this time.",
+        "duration": 3,
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "You stand at the microwave for the full 90 seconds, arms crossed, like a nightclub bouncer. Beep. You drink it hot, in front of a witness. The witness asks for some.",
             "effects": {
               "energy": 12
             },
             "set": [
+              "coffee:2"
+            ],
+            "count": {
+              "coffee": 1
+            }
+          },
+          {
+            "weight": 1,
+            "text": "At 0:04, from the living room: \"{ME}! COME SEE!\" You go see. It's a crumb. A good crumb, to be fair. Reheat #6 is scheduled for later.",
+            "effects": {
+              "mood": 10,
+              "energy": -4
+            },
+            "set": [
+              "coffee:2"
+            ],
+            "stamp": "REHEAT #6 PENDING"
+          }
+        ]
+      },
+      {
+        "label": "Drink it cold. Call it cold brew.",
+        "duration": 1,
+        "outcomes": [
+          {
+            "text": "Cold brew is $6.50 at the place with the reclaimed-wood counter. Yours has a skin and was free. You're basically making money.",
+            "effects": {
+              "energy": 8
+            },
+            "set": [
+              "coffee:2"
+            ],
+            "count": {
+              "coffee": 1
+            }
+          }
+        ]
+      },
+      {
+        "label": "Fresh pot. Start over as a new person.",
+        "duration": 10,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "Eight minutes of brewing. In that time {kid} takes every magnet off the fridge and lines them up on the floor, by size. You drink a hot, fresh coffee and admire the exhibit.",
+            "effects": {
+              "energy": 16,
+              "home": -6
+            },
+            "set": [
+              "coffee:2"
+            ],
+            "count": {
+              "coffee": 1
+            }
+          },
+          {
+            "weight": 1,
+            "text": "While the pot gurgles, {kid} takes the old mug and waters the fern with it. The fern looks more alert than it has in years. Twenty minutes later, so do you.",
+            "effects": {
+              "energy": 14,
+              "home": -10
+            },
+            "set": [
+              "coffee:2"
+            ],
+            "count": {
+              "coffee": 1
+            },
+            "stamp": "FERN: CAFFEINATED"
+          }
+        ]
+      },
+      {
+        "label": "Tea party. Serve it in the tiny cups.",
+        "duration": 12,
+        "minEnergy": 25,
+        "tags": [
+          "present"
+        ],
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "{kid} serves your coffee back to you in a teacup the size of a thimble, eleven times, in eleven accents. \"Your grown-up soup.\" You get about a tablespoon in total. Five stars.",
+            "effects": {
+              "mood": 18,
+              "energy": -6
+            },
+            "set": [
+              "coffee:2"
+            ],
+            "count": {
+              "coffee": 1
+            }
+          },
+          {
+            "weight": 1,
+            "text": "The party ends when the guest of honor, a stuffed giraffe, is accused of drinking it all. The giraffe goes in time-out. You're still thirsty, but justice was done.",
+            "effects": {
+              "mood": 12,
+              "energy": -8
+            },
+            "set": [
+              "coffee:2"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "coffee_lost",
+    "family": "coffee",
+    "title": "Coffee: Have You Seen This Mug?",
+    "text": "The CRUSH IT mug was in your hand four minutes ago. Full. Hot. Now it's not anywhere. You've checked the fridge. You've checked your other hand. {kid} is humming.",
+    "window": [
+      560,
+      900
+    ],
+    "weight": 3,
+    "oncePerWeek": true,
+    "when": {
+      "flags": [
+        "coffee:2"
+      ],
+      "notFlags": [
+        "coffee:3"
+      ]
+    },
+    "choices": [
+      {
+        "label": "Search the house. Every room. Twice.",
+        "duration": 15,
+        "minEnergy": 25,
+        "tags": [
+          "martyr"
+        ],
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "You find three socks, the remote, a crayon in the butter and a banana peel in a rain boot. No mug. The house gives you everything except what you asked for.",
+            "effects": {
+              "home": 12,
+              "energy": -10
+            },
+            "set": [
+              "coffee:3",
+              "d:coffeeLost"
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "Two full sweeps, and all you find is the mug's coaster. Just the coaster, on the bathroom floor, with nothing on it. Somehow that's worse.",
+            "effects": {
+              "home": 6,
+              "energy": -12
+            },
+            "set": [
+              "coffee:3",
+              "d:coffeeLost"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Interrogate the witness.",
+        "duration": 5,
+        "tags": [
+          "negotiate"
+        ],
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "\"Where's {me}'s coffee?\" \"It's sleeping.\" \"Where?\" \"In its house.\" \"Where's its house?\" A finger goes to their lips. The witness has been advised not to answer.",
+            "effects": {
+              "mood": 6,
+              "energy": -4
+            },
+            "set": [
+              "coffee:3",
+              "d:coffeeLost"
+            ],
+            "stamp": "NO COMMENT"
+          },
+          {
+            "weight": 1,
+            "text": "{kid} leads you, very seriously, to the toy kitchen and serves you a plastic cup of bathwater. \"Coffee.\" You fake a long sip. They refill it. Best café in town. No coffee.",
+            "effects": {
+              "mood": 14,
+              "energy": -4
+            },
+            "set": [
+              "coffee:3",
+              "d:coffeeLost"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Make another. Let the first one go.",
+        "duration": 8,
+        "outcomes": [
+          {
+            "text": "You make a second coffee in the backup mug, the free one from the dentist. It works fine. It just doesn't believe in you the way CRUSH IT did.",
+            "effects": {
+              "energy": 12
+            },
+            "set": [
+              "coffee:3",
+              "d:coffeeLost"
+            ],
+            "count": {
+              "coffee": 1
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "coffee_late",
+    "family": "coffee",
+    "title": "Coffee: The Point of No Return",
+    "text": "It's after 3. You have about forty minutes of person left and four hours of day. A coffee now gets you to bedtime. It also gets you to 1:30 AM, awake, re-planning the kitchen.",
+    "window": [
+      900,
+      1080
+    ],
+    "weight": 3,
+    "oncePerWeek": true,
+    "when": {
+      "flags": [
+        "coffee:3"
+      ],
+      "notFlags": [
+        "coffee:4"
+      ]
+    },
+    "choices": [
+      {
+        "label": "Double espresso. Tonight is a rumor.",
+        "duration": 3,
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "It hits in six minutes. Within twelve, you've emptied the dishwasher, reloaded it better and alphabetized the spices. Twice.",
+            "effects": {
+              "energy": 20,
+              "home": 6
+            },
+            "set": [
+              "coffee:4",
+              "d:lateCoffee"
+            ],
+            "count": {
+              "coffee": 1
+            }
+          },
+          {
+            "weight": 1,
+            "text": "It works too well. You talk at 1.5x speed until dinner, and {kid} starts talking at 1.5x back. Nobody in this house is calmer.",
+            "effects": {
+              "energy": 16,
+              "mood": -10
+            },
+            "set": [
+              "coffee:4",
               "d:lateCoffee"
             ],
             "count": {
@@ -44,14 +432,3035 @@
         ]
       },
       {
-        "label": "Skip it. Hydrate like an adult.",
+        "label": "Half-caf. A coward's compromise.",
+        "duration": 3,
+        "outcomes": [
+          {
+            "text": "Half the caffeine. Half the guilt. All of the 1:30 AM. Your body doesn't do fractions.",
+            "effects": {
+              "energy": 10
+            },
+            "set": [
+              "coffee:4",
+              "d:lateCoffee"
+            ],
+            "count": {
+              "coffee": 1
+            },
+            "stamp": "NO PARTIAL CREDIT"
+          }
+        ]
+      },
+      {
+        "label": "Lie face-down on the rug. Four minutes.",
+        "duration": 5,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "{kid} uses you as a rug, then a horse, then a bed, then a rug again. It isn't caffeine. But it's horizontal.",
+            "effects": {
+              "energy": 8,
+              "mood": 8
+            },
+            "set": [
+              "coffee:4"
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "Ninety seconds in, {kid} sits on your back and announces, \"I'm the boss of you.\" You don't argue. You can't. They're sitting on your lungs.",
+            "effects": {
+              "energy": 4,
+              "mood": 12
+            },
+            "set": [
+              "coffee:4"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Just smell the coffee bag. Deeply.",
+        "duration": 1,
+        "outcomes": [
+          {
+            "text": "You put your face in the bag of beans and inhale. It does nothing. It does something. It does nothing.",
+            "effects": {
+              "energy": 4
+            },
+            "set": [
+              "coffee:4"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "coffee_found",
+    "family": "coffee",
+    "title": "Coffee: Cold Case",
+    "text": "You open the microwave to heat a pouch. Inside, in the dark: the CRUSH IT mug, full, cold, missing for days. {kid} can't reach the microwave. There is only one suspect.",
+    "window": [
+      420,
+      1080
+    ],
+    "weight": 3,
+    "oncePerWeek": true,
+    "when": {
+      "flags": [
+        "coffee:4"
+      ],
+      "notFlags": [
+        "coffee:5"
+      ]
+    },
+    "choices": [
+      {
+        "label": "Reheat it. One last time. For closure.",
+        "duration": 3,
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "Ninety seconds. You drink it. It tastes like a version of you who still had plans for this coffee. It's not bad, which is the worst part.",
+            "effects": {
+              "energy": 10
+            },
+            "set": [
+              "coffee:5"
+            ],
+            "count": {
+              "coffee": 1
+            },
+            "stamp": "COLD CASE: SOLVED"
+          },
+          {
+            "weight": 1,
+            "text": "Thirty seconds in, the microwave starts sparking. CRUSH IT has a gold rim. It was a nice offsite. You yank the plug. The mug is fine. The mug is always fine.",
+            "effects": {
+              "home": -8,
+              "energy": -4
+            },
+            "set": [
+              "coffee:5"
+            ],
+            "fx": "flash"
+          }
+        ]
+      },
+      {
+        "label": "Hold a small funeral. {kid} officiates.",
+        "duration": 8,
+        "minEnergy": 20,
+        "tags": [
+          "present"
+        ],
+        "outcomes": [
+          {
+            "text": "{kid} says a few words: \"Bye, coffee. You was hot.\" You pour it on the flower bed together, and {kid} pats the dirt. It's the most moving service you've been to in years.",
+            "effects": {
+              "mood": 16,
+              "energy": -6
+            },
+            "set": [
+              "coffee:5"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Pour it out. Fresh cup. Tell no one.",
+        "duration": 6,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "Down the sink. Fresh cup. You stick a note on the microwave: \"CHECK FOR COFFEE.\" By Friday you've stopped seeing the note. That's how it starts.",
+            "effects": {
+              "energy": 12
+            },
+            "set": [
+              "coffee:5"
+            ],
+            "count": {
+              "coffee": 1
+            }
+          },
+          {
+            "weight": 1,
+            "text": "Rinsed, refilled, back in service: CRUSH IT, hot again. You lift it. From the floor: \"{ME}. Hold my hand. The coffee hand.\" It's Monday again, spiritually.",
+            "effects": {
+              "energy": 8,
+              "mood": 6
+            },
+            "set": [
+              "coffee:5"
+            ],
+            "count": {
+              "coffee": 1
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "tantrum_1",
+    "family": "tantrum",
+    "title": "Tantrum #1: Put It Back",
+    "text": "A leaf fell off the tree in the front yard. {kid} saw it happen. They want it put back. Not near the tree. ON the tree. They are watching your hands.",
+    "window": [
+      460,
+      1040
+    ],
+    "weight": 4,
+    "oncePerWeek": true,
+    "when": {
+      "notFlags": [
+        "tantrum:1"
+      ]
+    },
+    "choices": [
+      {
+        "label": "Tape it back on. Packing tape. Commit.",
+        "duration": 8,
+        "minEnergy": 25,
+        "tags": [
+          "present"
+        ],
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "You tape the leaf to the branch while a neighbor walks a dog past. Slowly. Twice. {kid} inspects the repair and approves it. In a month you'll have to explain autumn.",
+            "effects": {
+              "mood": 16,
+              "energy": -10,
+              "rep": -6
+            },
+            "set": [
+              "tantrum:1"
+            ],
+            "count": {
+              "tantrums": 1
+            }
+          },
+          {
+            "weight": 1,
+            "text": "You tape it on. Another leaf falls. Then two more. The tree is fighting back. {kid} looks at you like a contractor who blew the deadline.",
+            "effects": {
+              "mood": -14,
+              "energy": -10
+            },
+            "set": [
+              "tantrum:1"
+            ],
+            "count": {
+              "tantrums": 1
+            },
+            "stamp": "TREE 3, YOU 0",
+            "fx": "shake"
+          }
+        ]
+      },
+      {
+        "label": "Explain the seasons. All four.",
+        "duration": 10,
+        "tags": [
+          "boundary"
+        ],
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "You cover autumn, chlorophyll and the life cycle of deciduous trees. {kid} listens to all of it, then says, \"Put it BACK.\" You were never in a conversation.",
+            "effects": {
+              "mood": -10,
+              "energy": -6
+            },
+            "set": [
+              "tantrum:1"
+            ],
+            "count": {
+              "tantrums": 1
+            }
+          },
+          {
+            "weight": 1,
+            "text": "Halfway through photosynthesis, the crying stops so they can ask what photosynthesis is. Then why. Then why. You've traded a tantrum for a seminar.",
+            "effects": {
+              "mood": 12,
+              "energy": -8
+            },
+            "set": [
+              "tantrum:1"
+            ],
+            "count": {
+              "tantrums": 1
+            }
+          }
+        ]
+      },
+      {
+        "label": "Hand them an identical leaf. Say nothing.",
+        "duration": 2,
+        "tags": [
+          "negotiate"
+        ],
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "You present a matching leaf with total confidence. They accept it, put it in their pocket and say, \"Now the other one.\" There is always another one.",
+            "effects": {
+              "mood": 8,
+              "energy": 2
+            },
+            "set": [
+              "tantrum:1"
+            ],
+            "count": {
+              "tantrums": 1
+            }
+          },
+          {
+            "weight": 1,
+            "text": "\"That's a DIFFERENT leaf.\" It is. They can tell. They will always be able to tell. The crying resumes at a higher altitude.",
+            "effects": {
+              "mood": -16
+            },
+            "set": [
+              "tantrum:1"
+            ],
+            "count": {
+              "tantrums": 1
+            },
+            "stamp": "FORGERY DETECTED"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "tantrum_2",
+    "family": "tantrum",
+    "title": "Tantrum #2: Garbage Day",
+    "text": "The garbage truck came, took the garbage and left without honking. {kid} is face-down on the front step. You start a tally on the fridge. You leave room.",
+    "window": [
+      450,
+      780
+    ],
+    "weight": 4,
+    "oncePerWeek": true,
+    "when": {
+      "flags": [
+        "tantrum:1"
+      ],
+      "notFlags": [
+        "tantrum:2"
+      ]
+    },
+    "choices": [
+      {
+        "label": "Chase the truck. Both of you. Go.",
+        "duration": 10,
+        "minEnergy": 30,
+        "tags": [
+          "present"
+        ],
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "A block and a half in slippers, {kid} on your hip, both of you waving. The driver sees. The driver honks twice. {kid} will bring this up at their wedding.",
+            "effects": {
+              "mood": 22,
+              "energy": -12
+            },
+            "set": [
+              "tantrum:2"
+            ],
+            "count": {
+              "tantrums": 1
+            },
+            "stamp": "TWO HONKS",
+            "fx": "confetti"
+          },
+          {
+            "weight": 1,
+            "text": "The truck turns the corner as you reach the hydrant. You're on a public sidewalk in slippers, holding a sobbing child, waving at nothing. A neighbor waves back, unsure.",
+            "effects": {
+              "mood": -10,
+              "energy": -12,
+              "rep": -8
+            },
+            "set": [
+              "tantrum:2"
+            ],
+            "count": {
+              "tantrums": 1
+            }
+          }
+        ]
+      },
+      {
+        "label": "\"It comes back next Tuesday.\"",
+        "duration": 6,
+        "tags": [
+          "boundary"
+        ],
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "\"Next Tuesday\" means very little to someone who has only had 104 Tuesdays. The protest holds the step for nine minutes. Then a bird lands. Truck who?",
+            "effects": {
+              "mood": -4,
+              "energy": -4
+            },
+            "set": [
+              "tantrum:2"
+            ],
+            "count": {
+              "tantrums": 1
+            }
+          },
+          {
+            "weight": 1,
+            "text": "They accept it. Then they ask if it's next Tuesday. Then again, every twenty minutes, until bedtime. It is not next Tuesday. It is never next Tuesday.",
+            "effects": {
+              "mood": 8,
+              "energy": -10
+            },
+            "set": [
+              "tantrum:2"
+            ],
+            "count": {
+              "tantrums": 1
+            }
+          }
+        ]
+      },
+      {
+        "label": "Be the truck. Wheel the bin out, beeping.",
+        "duration": 6,
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "You wheel the bin to the curb doing the reverse beep. {kid} stops crying to supervise. You beep the whole way back. You'll be beeping on request until spring.",
+            "effects": {
+              "mood": 14,
+              "energy": -6,
+              "rep": -4
+            },
+            "set": [
+              "tantrum:2"
+            ],
+            "count": {
+              "tantrums": 1
+            }
+          },
+          {
+            "weight": 1,
+            "text": "You beep the bin to the curb. Across the street, a retired neighbor starts beeping too, unprompted. Now there are two trucks. {kid} is delighted and slightly afraid.",
+            "effects": {
+              "mood": 12,
+              "energy": -6,
+              "rep": 6
+            },
+            "set": [
+              "tantrum:2"
+            ],
+            "count": {
+              "tantrums": 1
+            },
+            "stamp": "MUTUAL AID"
+          }
+        ]
+      },
+      {
+        "label": "Garbage truck videos. One. Okay, four.",
+        "duration": 3,
+        "tags": [
+          "screen"
+        ],
+        "outcomes": [
+          {
+            "text": "Fifteen minutes of garbage trucks from around the world. {kid} is calm and has a new favorite truck, which is Belgian. The screen-off is going to be a whole thing.",
+            "effects": {
+              "mood": 16,
+              "energy": 8
+            },
+            "set": [
+              "tantrum:2",
+              "d:screen"
+            ],
+            "count": {
+              "tantrums": 1,
+              "screen": 15
+            },
+            "schedule": [
+              {
+                "event": "screen_off",
+                "in": 15
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "tantrum_3",
+    "family": "tantrum",
+    "title": "Tantrum #3: Hurricane Agnes",
+    "text": "The fridge tally says 3. You've started naming them alphabetically, like the weather service. Hurricane Agnes has formed over the moon being out in the daytime, which nobody cleared with {kid}.",
+    "window": [
+      780,
+      1140
+    ],
+    "weight": 4,
+    "oncePerWeek": true,
+    "when": {
+      "flags": [
+        "tantrum:2"
+      ],
+      "notFlags": [
+        "tantrum:3"
+      ]
+    },
+    "choices": [
+      {
+        "label": "Yell \"GO HOME, MOON\" together.",
+        "duration": 6,
+        "minEnergy": 20,
+        "tags": [
+          "present"
+        ],
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "You stand in the driveway and yell at the moon. {kid} joins in. The moon stays put. But you're on the same side now, which was the whole trick.",
+            "effects": {
+              "mood": 16,
+              "energy": -8,
+              "rep": -6
+            },
+            "set": [
+              "tantrum:3"
+            ],
+            "count": {
+              "tantrums": 1
+            }
+          },
+          {
+            "weight": 1,
+            "text": "You yell at the moon. The neighbor's kid comes out and yells at the moon. Then the neighbor. Agnes breaks up into a block party.",
+            "effects": {
+              "mood": 14,
+              "energy": -8,
+              "rep": 8
+            },
+            "set": [
+              "tantrum:3"
+            ],
+            "count": {
+              "tantrums": 1
+            },
+            "stamp": "STORM DISSIPATED"
+          }
+        ]
+      },
+      {
+        "label": "Close the blinds on the moon.",
+        "duration": 3,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "Blinds down. Moon gone. {kid} declares victory over the moon and is extremely nice to you for an hour, the way generals are after a war.",
+            "effects": {
+              "mood": 12
+            },
+            "set": [
+              "tantrum:3"
+            ],
+            "count": {
+              "tantrums": 1
+            }
+          },
+          {
+            "weight": 1,
+            "text": "Blinds down. Agnes weakens to a tropical sulk. Then {kid} opens one slat, sees the moon and re-forms at full strength.",
+            "effects": {
+              "mood": -14,
+              "energy": -4
+            },
+            "set": [
+              "tantrum:3"
+            ],
+            "count": {
+              "tantrums": 1
+            },
+            "stamp": "AGNES RE-FORMS",
+            "fx": "shake"
+          }
+        ]
+      },
+      {
+        "label": "Sunshine Sing-Along. Corduroy man has this.",
+        "duration": 4,
+        "tags": [
+          "screen"
+        ],
+        "outcomes": [
+          {
+            "text": "The man in corduroy sings a song about the moon, by coincidence or witchcraft. Agnes is downgraded at once. The screen-off forecast is not good.",
+            "effects": {
+              "mood": 18,
+              "energy": 8
+            },
+            "set": [
+              "tantrum:3",
+              "d:screen"
+            ],
+            "count": {
+              "tantrums": 1,
+              "screen": 22
+            },
+            "schedule": [
+              {
+                "event": "screen_off",
+                "in": 22
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "tantrum_4",
+    "family": "tantrum",
+    "title": "Tantrum #4: Hurricane Bernard",
+    "text": "You've started live-texting the tantrums to {partner}, the way storm chasers do.",
+    "chat": {
+      "with": "{partner}",
+      "messages": [
+        {
+          "from": "you",
+          "text": "hurricane bernard has made landfall"
+        },
+        {
+          "from": "you",
+          "text": "cause: i said yes too fast"
+        },
+        {
+          "from": "{partner}",
+          "text": "yes to what"
+        },
+        {
+          "from": "you",
+          "text": "a banana. they wanted to ask twice"
+        },
+        {
+          "from": "{partner}",
+          "text": "category?"
+        }
+      ]
+    },
+    "window": [
+      720,
+      1030
+    ],
+    "weight": 4,
+    "oncePerWeek": true,
+    "when": {
+      "flags": [
+        "tantrum:3"
+      ],
+      "notFlags": [
+        "tantrum:4"
+      ]
+    },
+    "choices": [
+      {
+        "label": "\"Cat 4. Bring plywood and crackers.\"",
+        "duration": 2,
+        "tags": [
+          "tagteam"
+        ],
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "Twenty-five minutes later {partner} walks in with crackers and the face of a first responder. Bernard is a light drizzle by then. They take full credit.",
+            "effects": {
+              "rel": 8,
+              "energy": 10,
+              "mood": 6
+            },
+            "set": [
+              "tantrum:4"
+            ],
+            "count": {
+              "tantrums": 1
+            },
+            "chat": [
+              {
+                "from": "{partner}",
+                "text": "leaving now. hold on"
+              }
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "You laugh at the \"lol.\" Bernard sees you laughing at your phone and upgrades to a Category 5.",
+            "effects": {
+              "mood": -14,
+              "rel": -4
+            },
+            "set": [
+              "tantrum:4"
+            ],
+            "count": {
+              "tantrums": 1
+            },
+            "chat": [
+              {
+                "from": "{partner}",
+                "text": "lol"
+              }
+            ],
+            "fx": "shake"
+          }
+        ]
+      },
+      {
+        "label": "Phone down. Lie on the floor with them.",
+        "duration": 10,
+        "minEnergy": 25,
+        "tags": [
+          "present"
+        ],
+        "outcomes": [
+          {
+            "text": "You lie on the kitchen tile next to Bernard. Bernard hiccups twice, then puts their head on your arm. Storm over. You never send the all-clear.",
+            "effects": {
+              "mood": 20,
+              "energy": -10,
+              "rel": -4
+            },
+            "set": [
+              "tantrum:4"
+            ],
+            "count": {
+              "tantrums": 1
+            },
+            "chat": [
+              {
+                "from": "{partner}",
+                "text": "hello??"
+              },
+              {
+                "from": "{partner}",
+                "text": "HELLO??"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Send a video. Narrate it like the news.",
+        "duration": 3,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "\"Bernard is moving slowly west, toward the snack drawer.\" {partner} watches it in a meeting with the sound on. Four coworkers are now following the storm.",
+            "effects": {
+              "rel": 6,
+              "rep": -8,
+              "mood": -6,
+              "energy": 2
+            },
+            "set": [
+              "tantrum:4"
+            ],
+            "count": {
+              "tantrums": 1
+            }
+          },
+          {
+            "weight": 1,
+            "text": "You can't tell if it's support or a bit. It's both. It's why you married them.",
+            "effects": {
+              "rel": 12,
+              "mood": -6
+            },
+            "set": [
+              "tantrum:4"
+            ],
+            "count": {
+              "tantrums": 1
+            },
+            "chat": [
+              {
+                "from": "{partner}",
+                "text": "[satellite image of a hurricane]"
+              },
+              {
+                "from": "{partner}",
+                "text": "thinking of you all 🙏"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "tantrum_5",
+    "family": "tantrum",
+    "title": "Tantrum #5: Hurricane Clara",
+    "text": "The library elevator. A man in a fleece vest has just pressed the button. {kid}'s button. The man doesn't know yet. {kid} is drawing the longest breath of their career.",
+    "window": [
+      600,
+      1000
+    ],
+    "weight": 4,
+    "oncePerWeek": true,
+    "timer": 5,
+    "when": {
+      "flags": [
+        "tantrum:4"
+      ],
+      "notFlags": [
+        "tantrum:5",
+        "d:home"
+      ]
+    },
+    "choices": [
+      {
+        "label": "\"Sir, could you un-press it?\"",
         "duration": 2,
         "outcomes": [
           {
-            "text": "Water. How novel. Your body doesn't know what to do with it.",
+            "weight": 2,
+            "text": "The man looks at you, then at {kid}, and understands everything. A slow, solemn mime of un-pressing. A small bow. {kid} presses it. Clara dissipates. You'd follow this man into battle.",
             "effects": {
-              "energy": 2
+              "rep": 10,
+              "mood": 14
+            },
+            "set": [
+              "tantrum:5"
+            ],
+            "count": {
+              "tantrums": 1
             }
+          },
+          {
+            "weight": 1,
+            "text": "\"Un-press it?\" the man repeats, loudly, for the whole lobby. Clara makes landfall between the large-print books and a man doing his taxes.",
+            "effects": {
+              "rep": -14,
+              "mood": -12
+            },
+            "set": [
+              "tantrum:5"
+            ],
+            "count": {
+              "tantrums": 1
+            },
+            "fx": "shake"
+          }
+        ]
+      },
+      {
+        "label": "Press every button. All of them.",
+        "duration": 2,
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "You lift {kid} to the panel. They press 1 through 6. The elevator stops at every floor. The man in the fleece vest rides along in silence and gets off at 6, which was not his floor.",
+            "effects": {
+              "mood": 14,
+              "rep": -10
+            },
+            "set": [
+              "tantrum:5"
+            ],
+            "count": {
+              "tantrums": 1
+            },
+            "stamp": "ALL FLOORS"
+          },
+          {
+            "weight": 1,
+            "text": "They press 1 through 6, then the red one. The alarm is very loud and very brief. The librarian has a face for this. It has been used before.",
+            "effects": {
+              "mood": 10,
+              "rep": -18
+            },
+            "set": [
+              "tantrum:5"
+            ],
+            "count": {
+              "tantrums": 1
+            },
+            "fx": "flash"
+          }
+        ]
+      },
+      {
+        "label": "\"STAIRS! Who wants the STAIRS?\"",
+        "duration": 6,
+        "minEnergy": 30,
+        "tags": [
+          "present"
+        ],
+        "outcomes": [
+          {
+            "text": "Forty-two stairs, every one counted out loud. Clara blows out to sea around 19. By the top, you're the one who needs the elevator.",
+            "effects": {
+              "mood": 12,
+              "energy": -14
+            },
+            "set": [
+              "tantrum:5"
+            ],
+            "count": {
+              "tantrums": 1
+            }
+          }
+        ]
+      },
+      {
+        "label": "Freeze",
+        "duration": 2,
+        "timeout": true,
+        "outcomes": [
+          {
+            "text": "\"THAT MAN TOOKED MY BUTTON.\" The lobby turns around. The man says \"Sorry, buddy,\" and is now, forever, the man who tooked the button.",
+            "effects": {
+              "rep": -18,
+              "mood": -14
+            },
+            "set": [
+              "tantrum:5"
+            ],
+            "count": {
+              "tantrums": 1
+            },
+            "stamp": "LANDFALL",
+            "fx": "shake"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "tantrum_6",
+    "family": "tantrum",
+    "title": "Tantrum #6: Disaster Relief",
+    "text": "Tally: 6. Hurricane Desmond. The cause: {kid}'s shadow won't stop following them, and you are \"not doing ANYTHING about it.\" You open the disaster relief website, one-handed.",
+    "window": [
+      480,
+      1100
+    ],
+    "weight": 4,
+    "oncePerWeek": true,
+    "when": {
+      "flags": [
+        "tantrum:5"
+      ],
+      "notFlags": [
+        "tantrum:6"
+      ]
+    },
+    "choices": [
+      {
+        "label": "File the claim. Cause of disaster: \"shadow.\"",
+        "duration": 6,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "Claim #44718 submitted. Expected response: 6 to 8 weeks. Desmond blows itself out in four minutes, which you add to the claim as a note.",
+            "effects": {
+              "mood": 10,
+              "energy": -4
+            },
+            "set": [
+              "tantrum:6"
+            ],
+            "count": {
+              "tantrums": 1
+            },
+            "stamp": "CLAIM #44718"
+          },
+          {
+            "weight": 1,
+            "text": "The form asks, \"Is this an emergency?\" You look at the floor. You click yes. Desmond, sensing paperwork, intensifies.",
+            "effects": {
+              "mood": -14,
+              "energy": -4
+            },
+            "set": [
+              "tantrum:6"
+            ],
+            "count": {
+              "tantrums": 1
+            },
+            "fx": "shake"
+          }
+        ]
+      },
+      {
+        "label": "Make the shadow a friend. Flashlight. Puppets.",
+        "duration": 15,
+        "minEnergy": 25,
+        "tags": [
+          "present"
+        ],
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "Blinds down, flashlight on. The shadow becomes a dog, a bird, a very bad crab. By minute twenty the shadow is named Doug and has been invited to dinner.",
+            "effects": {
+              "mood": 20,
+              "energy": -12
+            },
+            "set": [
+              "tantrum:6"
+            ],
+            "count": {
+              "tantrums": 1
+            },
+            "fx": "confetti"
+          },
+          {
+            "weight": 1,
+            "text": "Flashlight on. The shadow is now nine feet tall, on the wall, right behind them. {kid} turns around slowly. You've made the problem bigger. Literally.",
+            "effects": {
+              "mood": -14,
+              "energy": -12
+            },
+            "set": [
+              "tantrum:6"
+            ],
+            "count": {
+              "tantrums": 1
+            }
+          }
+        ]
+      },
+      {
+        "label": "Stomp on the shadow. Show it who's boss.",
+        "duration": 3,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "You stomp the shadow. It moves. You stomp again. {kid} stops crying to watch an adult lose a fight to the sun.",
+            "effects": {
+              "mood": 10,
+              "energy": -6
+            },
+            "set": [
+              "tantrum:6"
+            ],
+            "count": {
+              "tantrums": 1
+            },
+            "stamp": "THE SUN WINS"
+          },
+          {
+            "weight": 1,
+            "text": "You stomp. They stomp. Soon you're both stomping the driveway, red-faced, yelling at a shadow. It doesn't help with the shadow. It helps with everything else.",
+            "effects": {
+              "mood": 14,
+              "energy": -8
+            },
+            "set": [
+              "tantrum:6"
+            ],
+            "count": {
+              "tantrums": 1
+            }
+          }
+        ]
+      },
+      {
+        "label": "Tablet. Accept the relief package.",
+        "duration": 3,
+        "tags": [
+          "screen"
+        ],
+        "outcomes": [
+          {
+            "text": "Relief arrives as a man in corduroy. The shadow is forgotten. You've accepted federal aid, and federal aid comes with strings.",
+            "effects": {
+              "mood": 16,
+              "energy": 8
+            },
+            "set": [
+              "tantrum:6",
+              "d:screen"
+            ],
+            "count": {
+              "tantrums": 1,
+              "screen": 22
+            },
+            "schedule": [
+              {
+                "event": "screen_off",
+                "in": 22
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "tantrum_7",
+    "family": "tantrum",
+    "title": "Tantrum #7: Hurricane {me}",
+    "text": "You step on a wooden block and say \"NNNGH\" for nine full seconds. {kid} pats your arm. \"Big feelings, {me}? Smell the flower. Blow the candle.\" Then they go to the fridge and add a tally. Under your name.",
+    "window": [
+      840,
+      1160
+    ],
+    "weight": 4,
+    "oncePerWeek": true,
+    "when": {
+      "flags": [
+        "tantrum:6"
+      ],
+      "notFlags": [
+        "tantrum:7"
+      ]
+    },
+    "choices": [
+      {
+        "label": "Smell the flower. Blow the candle.",
+        "duration": 3,
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "You smell the flower. You blow the candle. They watch, nodding, like the world's smallest yoga teacher. It works, which is humiliating. They give you a sticker.",
+            "effects": {
+              "energy": 10,
+              "mood": 12
+            },
+            "set": [
+              "tantrum:7"
+            ],
+            "count": {
+              "tantrums": 1
+            }
+          },
+          {
+            "weight": 1,
+            "text": "You blow the candle too hard. \"Gentle, {me}.\" You do it again, gently. They make you do it four more times, for practice. You've never been so calm or so supervised.",
+            "effects": {
+              "energy": 8,
+              "mood": 10
+            },
+            "set": [
+              "tantrum:7"
+            ],
+            "count": {
+              "tantrums": 1
+            }
+          }
+        ]
+      },
+      {
+        "label": "\"I am NOT having a tantrum.\"",
+        "duration": 2,
+        "tags": [
+          "boundary"
+        ],
+        "snapRisk": true,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "\"You're having a tantrum,\" they say, gently. Your voice goes up an octave explaining that you're not. They walk back to the fridge and add a second tally.",
+            "effects": {
+              "energy": -6,
+              "mood": -8
+            },
+            "set": [
+              "tantrum:7"
+            ],
+            "count": {
+              "tantrums": 1
+            },
+            "stamp": "TWO TALLIES"
+          },
+          {
+            "weight": 1,
+            "text": "\"Okay,\" they say, kindly, in your exact voice, with your exact head tilt. It's what you say to them. It's unbearable to hear.",
+            "effects": {
+              "energy": 4,
+              "mood": 6
+            },
+            "set": [
+              "tantrum:7"
+            ],
+            "count": {
+              "tantrums": 1
+            }
+          }
+        ]
+      },
+      {
+        "label": "Lie on the floor and kick. Show them how.",
+        "duration": 5,
+        "outcomes": [
+          {
+            "weight": 2,
+            "when": {
+              "flags": [
+                "d:handoff"
+              ]
+            },
+            "text": "You lie on the floor and kick. {kid} watches with professional interest, then lies down next to you and does it better. {partner} walks in, assesses the scene and lies down too.",
+            "effects": {
+              "rel": 12,
+              "mood": 16,
+              "energy": -4
+            },
+            "set": [
+              "tantrum:7"
+            ],
+            "count": {
+              "tantrums": 1
+            },
+            "fx": "shake"
+          },
+          {
+            "weight": 1,
+            "text": "You lie on the floor and kick. {kid} studies your form and gives notes: \"More legs.\" You do more legs. It feels incredible. Nobody tells you this part.",
+            "effects": {
+              "energy": 10,
+              "mood": 14
+            },
+            "set": [
+              "tantrum:7"
+            ],
+            "count": {
+              "tantrums": 1
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "food_1",
+    "family": "food",
+    "title": "Food #1: Ruled Spicy",
+    "text": "Plain pasta. No sauce, no salt, nothing. {kid} takes one bite and pushes the bowl away. \"It's spicy.\" It is not spicy. It has never been spicy. That's their testimony, and they're sticking to it.",
+    "window": [
+      560,
+      860
+    ],
+    "weight": 4,
+    "oncePerWeek": true,
+    "when": {
+      "notFlags": [
+        "food:1"
+      ]
+    },
+    "choices": [
+      {
+        "label": "Take a bite. Testify: not spicy.",
+        "duration": 3,
+        "tags": [
+          "negotiate"
+        ],
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "You eat a forkful. \"Mmm. Not spicy.\" {kid} watches you swallow, then rules: \"Spicy for you too.\" The court has expanded its ruling.",
+            "effects": {
+              "mood": -10,
+              "energy": 4
+            },
+            "set": [
+              "food:1"
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "\"See? Not spicy.\" {kid} takes a cautious bite, chews for a long time and announces, \"You fixed it.\" You did nothing. Nobody needs to know.",
+            "effects": {
+              "mood": 12,
+              "energy": 2
+            },
+            "set": [
+              "food:1"
+            ],
+            "stamp": "CHARGES DROPPED"
+          }
+        ]
+      },
+      {
+        "label": "Agree. \"Whoa. SO spicy.\" Fan your mouth.",
+        "duration": 4,
+        "minEnergy": 20,
+        "tags": [
+          "present"
+        ],
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "You gasp and fan your mouth. {kid} is thrilled. They eat the whole bowl, gasping between bites, the bravest person who ever lived.",
+            "effects": {
+              "mood": 16,
+              "energy": -6
+            },
+            "set": [
+              "food:1"
+            ],
+            "stamp": "BRAVERY NOTED",
+            "fx": "confetti"
+          },
+          {
+            "weight": 1,
+            "text": "\"SO spicy,\" you gasp. {kid} nods, vindicated, and pushes the bowl even further away. You've just entered their testimony into the record.",
+            "effects": {
+              "mood": -8,
+              "energy": -6
+            },
+            "set": [
+              "food:1"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "\"Then you're done.\" Clear the plate.",
+        "duration": 2,
+        "tags": [
+          "boundary"
+        ],
+        "outcomes": [
+          {
+            "text": "You clear it without a word. Forty minutes later: \"I'm HUNGRY. I want the pasta.\" The pasta has been ruled delicious, retroactively, from the bin.",
+            "effects": {
+              "mood": -12,
+              "energy": 4
+            },
+            "set": [
+              "food:1"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "food_2",
+    "family": "food",
+    "title": "Food #2: False Advertising",
+    "text": "{kid} is holding a chicken nugget up next to the bag. The nugget on the bag has a smile and a little chef's hat. This one has neither. They allege false advertising. Honestly, they have a case.",
+    "window": [
+      760,
+      1040
+    ],
+    "weight": 4,
+    "oncePerWeek": true,
+    "when": {
+      "flags": [
+        "food:1"
+      ],
+      "notFlags": [
+        "food:2"
+      ]
+    },
+    "choices": [
+      {
+        "label": "Ketchup face. Napkin hat. Full restoration.",
+        "duration": 6,
+        "minEnergy": 20,
+        "tags": [
+          "present"
+        ],
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "Two dots, a smile and a tiny napkin hat. The nugget is now a client. {kid} talks to it for six minutes, apologizes and eats it head first.",
+            "effects": {
+              "mood": 16,
+              "energy": -8
+            },
+            "set": [
+              "food:2"
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "You draw the face. {kid} stares at it for a long time. \"Now he's sad, because I'm eating him.\" Lunch is cancelled out of respect.",
+            "effects": {
+              "mood": -10,
+              "energy": -8
+            },
+            "set": [
+              "food:2"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Point to the fine print: \"Serving suggestion.\"",
+        "duration": 2,
+        "tags": [
+          "negotiate"
+        ],
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "You point at the tiny words under the picture. {kid} can't read. {kid} can tell when they're being lawyered. The nuggets are thrown, one at a time, as damages.",
+            "effects": {
+              "home": -12,
+              "mood": -8
+            },
+            "set": [
+              "food:2"
+            ],
+            "stamp": "DAMAGES AWARDED",
+            "fx": "shake"
+          },
+          {
+            "weight": 1,
+            "text": "\"Serving suggestion,\" you read. {kid} considers this, then suggests serving them to you. You eat four nuggets standing up. It's the first lunch you've had this week.",
+            "effects": {
+              "energy": 10,
+              "mood": -6
+            },
+            "set": [
+              "food:2"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Help them write the nugget company a complaint.",
+        "duration": 8,
+        "minEnergy": 20,
+        "tags": [
+          "present"
+        ],
+        "outcomes": [
+          {
+            "text": "{kid} dictates: \"Dear nugget. You lied. Love, {kid}.\" You fold it into an envelope and mail it to nobody, and they eat four nuggets while waiting for a reply.",
+            "effects": {
+              "mood": 14,
+              "energy": -6
+            },
+            "set": [
+              "food:2"
+            ],
+            "stamp": "COMPLAINT FILED"
+          }
+        ]
+      },
+      {
+        "label": "Settle out of court. One cracker.",
+        "duration": 1,
+        "tags": [
+          "bribe"
+        ],
+        "outcomes": [
+          {
+            "text": "A cracker, no admission of wrongdoing. {kid} accepts the settlement and eats it. The nuggets go in the bin. Their lawyer will open with crackers next time.",
+            "effects": {
+              "mood": 10,
+              "home": -4
+            },
+            "set": [
+              "food:2"
+            ],
+            "count": {
+              "snacks": 1
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "food_3",
+    "family": "food",
+    "title": "Food #3: The Beige Doctrine",
+    "text": "{kid} now eats only beige food: pasta, crackers and one specific bread. You slipped a piece of cauliflower onto the plate. It is also beige. It was identified and expelled in under a second.",
+    "window": [
+      560,
+      860
+    ],
+    "weight": 4,
+    "oncePerWeek": true,
+    "when": {
+      "flags": [
+        "food:2"
+      ],
+      "notFlags": [
+        "food:3"
+      ]
+    },
+    "choices": [
+      {
+        "label": "Argue it's beige. Hold it next to a cracker.",
+        "duration": 4,
+        "tags": [
+          "negotiate"
+        ],
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "You hold the cauliflower next to a cracker under the kitchen light. A perfect match. {kid} studies them both, then points at the cauliflower: \"That one's lying.\"",
+            "effects": {
+              "mood": -8,
+              "energy": -4
+            },
+            "set": [
+              "food:3"
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "\"Beige,\" you say, holding it next to a cracker. {kid} squints, shrugs and eats it. Then another. You've found a loophole. Never mention it again, or it closes.",
+            "effects": {
+              "mood": 12,
+              "energy": -2
+            },
+            "set": [
+              "food:3"
+            ],
+            "stamp": "LOOPHOLE FOUND"
+          }
+        ]
+      },
+      {
+        "label": "Accept the doctrine. Serve beige until spring.",
+        "duration": 2,
+        "outcomes": [
+          {
+            "text": "Toast, rice, noodles, a pale apple slice. Everything gets eaten. The daycare form asks about \"variety in the diet.\" You write \"tan.\"",
+            "effects": {
+              "mood": 14,
+              "rep": -10
+            },
+            "set": [
+              "food:3"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Hide it in a pancake. Beige on beige.",
+        "duration": 15,
+        "minEnergy": 25,
+        "tags": [
+          "martyr"
+        ],
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "You blend the cauliflower into pancake batter. It's beige. It's a pancake. They eat three, then look at you with a quiet suspicion they'll carry into adulthood.",
+            "effects": {
+              "mood": 10,
+              "energy": -12,
+              "home": -6
+            },
+            "set": [
+              "food:3"
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "They eat the whole pancake around one tiny, intact piece of cauliflower, which they set on the edge of the plate like a hair they found in soup.",
+            "effects": {
+              "mood": -6,
+              "energy": -12,
+              "home": -6
+            },
+            "set": [
+              "food:3"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "food_4",
+    "family": "food",
+    "title": "Food #4: The Returns Desk",
+    "text": "{kid} isn't refusing their peas. They're returning them. One at a time, overhand, off the high chair, with eye contact and a small, polite \"No thank you\" for each pea.",
+    "window": [
+      760,
+      1040
+    ],
+    "weight": 4,
+    "oncePerWeek": true,
+    "when": {
+      "flags": [
+        "food:3"
+      ],
+      "notFlags": [
+        "food:4"
+      ]
+    },
+    "choices": [
+      {
+        "label": "\"Food stays on the table.\" (Say it 40 times.)",
+        "duration": 8,
+        "tags": [
+          "boundary"
+        ],
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "You say it calmly. A pea leaves the tray. You say it again. The next pea leaves more slowly, so they can watch your face. This is no longer about peas.",
+            "effects": {
+              "mood": -8,
+              "energy": -8,
+              "home": -6
+            },
+            "set": [
+              "food:4"
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "You say it once. They hold the next pea over the edge for a long time, looking at you. Then they eat it. You don't move. You don't breathe. They eat nine.",
+            "effects": {
+              "mood": 10,
+              "energy": -4
+            },
+            "set": [
+              "food:4"
+            ],
+            "stamp": "TREATY OF PEAS"
+          }
+        ]
+      },
+      {
+        "label": "Open a returns desk: a \"no thank you\" bowl.",
+        "duration": 5,
+        "minEnergy": 20,
+        "tags": [
+          "present"
+        ],
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "A small bowl where unwanted food can go, politely. It works. Peas go in the bowl, not on the floor. {kid} even eats two, as a tip.",
+            "effects": {
+              "mood": 12,
+              "home": 8,
+              "energy": -6
+            },
+            "set": [
+              "food:4"
+            ],
+            "stamp": "RETURNS PROCESSED"
+          },
+          {
+            "weight": 1,
+            "text": "They love the no-thank-you bowl. Every pea goes in it. Then the bowl goes on the floor, politely. \"No thank you, bowl.\"",
+            "effects": {
+              "mood": 8,
+              "home": -12,
+              "energy": -6
+            },
+            "set": [
+              "food:4"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Accept all returns. Mop in March.",
+        "duration": 2,
+        "outcomes": [
+          {
+            "text": "Pea after pea, each with a \"No thank you.\" You stop hearing the thank-yous around pea 40. You'll be finding peas until March.",
+            "effects": {
+              "home": -14,
+              "energy": 6
+            },
+            "set": [
+              "food:4"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "food_5",
+    "family": "food",
+    "title": "Food #5: I'm a Dog Now",
+    "text": "{kid} has become a dog. Dogs, they explain, eat off the floor, don't use forks and are not subject to the vegetable laws. The dog would like its food in a bowl, on the floor, now. The dog knows its rights.",
+    "window": [
+      560,
+      860
+    ],
+    "weight": 4,
+    "oncePerWeek": true,
+    "when": {
+      "flags": [
+        "food:4"
+      ],
+      "notFlags": [
+        "food:5"
+      ]
+    },
+    "choices": [
+      {
+        "label": "Serve the dog. Bowl, floor, clean mat.",
+        "duration": 3,
+        "tags": [
+          "negotiate"
+        ],
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "The dog eats everything, carrots included, face-first. It's the best they've eaten all week, and it was served on the floor. Draw your own conclusions.",
+            "effects": {
+              "mood": 14,
+              "home": -8
+            },
+            "set": [
+              "food:5"
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "The dog eats three bites, barks at a leaf, then asks for \"dog water\" in a cup. A cup. With a straw. Dogs aren't consistent either.",
+            "effects": {
+              "mood": 8,
+              "home": -10
+            },
+            "set": [
+              "food:5"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Become a dog too. Eat beside them.",
+        "duration": 12,
+        "minEnergy": 30,
+        "tags": [
+          "present"
+        ],
+        "outcomes": [
+          {
+            "text": "You get on all fours and eat cold noodles from a bowl next to theirs. The dog finishes everything just to keep up. Through the window, the mail carrier makes eye contact and decides not to knock.",
+            "effects": {
+              "mood": 20,
+              "energy": -12,
+              "rep": -6
+            },
+            "set": [
+              "food:5"
+            ],
+            "stamp": "PACK LEADER"
+          }
+        ]
+      },
+      {
+        "label": "\"Good dogs sit at the table.\"",
+        "duration": 4,
+        "tags": [
+          "bribe"
+        ],
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "Accepted. Good dogs sit at the table and use a fork. Good dogs, it turns out, also get a treat, and this dog knows exactly which cabinet.",
+            "effects": {
+              "mood": 12,
+              "energy": -2
+            },
+            "set": [
+              "food:5"
+            ],
+            "count": {
+              "snacks": 1
+            }
+          },
+          {
+            "weight": 1,
+            "text": "\"I'm a BAD dog,\" they inform you, and eat their noodles off the floor with their whole face, holding your gaze.",
+            "effects": {
+              "mood": -8,
+              "home": -10
+            },
+            "set": [
+              "food:5"
+            ],
+            "stamp": "COUNTERSUIT FILED"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "food_6",
+    "family": "food",
+    "title": "Food #6: Yesterday Food",
+    "text": "Leftovers: the pasta {kid} begged for yesterday, by name, eleven times. Today it's been ruled \"yesterday food.\" They'll only eat what you're eating, off your plate. You're eating the same pasta.",
+    "window": [
+      760,
+      1040
+    ],
+    "weight": 4,
+    "oncePerWeek": true,
+    "when": {
+      "flags": [
+        "food:5"
+      ],
+      "notFlags": [
+        "food:6"
+      ]
+    },
+    "choices": [
+      {
+        "label": "Swap plates. Same pasta. Same plates.",
+        "duration": 3,
+        "tags": [
+          "negotiate"
+        ],
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "You swap. They eat everything on your former plate. You eat everything on theirs. They watch you finish, then say, quietly, \"That was mine.\"",
+            "effects": {
+              "mood": 12,
+              "energy": 2
+            },
+            "set": [
+              "food:6"
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "You swap. They want to swap back. You swap back. Seven swaps. The pasta is cold and nobody has eaten, but everyone has been extremely fair.",
+            "effects": {
+              "mood": -8,
+              "energy": -8
+            },
+            "set": [
+              "food:6"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Share one plate. A bite each.",
+        "duration": 10,
+        "minEnergy": 20,
+        "tags": [
+          "present"
+        ],
+        "outcomes": [
+          {
+            "text": "Bite for bite, off one plate. They count your bites out loud and eat exactly as many. It's the most they've eaten in days. You got half a meal, a personal best.",
+            "effects": {
+              "mood": 16,
+              "energy": -6
+            },
+            "set": [
+              "food:6"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "\"You get what you get.\"",
+        "duration": 2,
+        "tags": [
+          "boundary"
+        ],
+        "snapRisk": true,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "\"You get what you get and you don't get upset,\" you say. They repeat it back, word for word, and get upset. Then they eat a roll, out of spite.",
+            "effects": {
+              "mood": -10,
+              "energy": 2
+            },
+            "set": [
+              "food:6"
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "They get what they get. They don't get upset. They eat it, every noodle, while you stand there with your mouth open, which is when they put a noodle in it.",
+            "effects": {
+              "mood": 12,
+              "energy": 2
+            },
+            "set": [
+              "food:6"
+            ],
+            "stamp": "APPEAL WITHDRAWN"
+          }
+        ]
+      },
+      {
+        "label": "Cereal. Concede the case.",
+        "duration": 2,
+        "outcomes": [
+          {
+            "text": "Cereal, poured with the dignity of a lawyer leaving through the courthouse back door. Two bowls. The pasta goes back in the fridge, to be refused again tomorrow.",
+            "effects": {
+              "mood": 12,
+              "rep": -6,
+              "energy": 4
+            },
+            "set": [
+              "food:6"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "snack_1",
+    "family": "snack",
+    "title": "Snack #1: The Wrapper",
+    "text": "You open a granola bar in the pantry with the door shut, peeling the wrapper one millimeter at a time. From two rooms away: \"WHAT'S THAT NOISE.\"",
+    "window": [
+      520,
+      1040
+    ],
+    "weight": 3,
+    "oncePerWeek": true,
+    "when": {
+      "notFlags": [
+        "snack:1"
+      ]
+    },
+    "choices": [
+      {
+        "label": "\"It's spicy.\" Use their own precedent.",
+        "duration": 1,
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "\"It's spicy,\" you call, chewing. A long pause. \"Okay.\" Footsteps go back to the blocks. You've learned their language. Use it sparingly. They're listening.",
+            "effects": {
+              "energy": 12
+            },
+            "set": [
+              "snack:1"
+            ],
+            "stamp": "PRECEDENT CITED"
+          },
+          {
+            "weight": 1,
+            "text": "\"It's spicy.\" A pause. Then footsteps, coming closer. \"I LIKE spicy now.\" A small hand appears. You've been out-lawyered by someone who can't open the pantry.",
+            "effects": {
+              "mood": 10,
+              "energy": -2
+            },
+            "set": [
+              "snack:1"
+            ],
+            "count": {
+              "snacks": 1
+            }
+          }
+        ]
+      },
+      {
+        "label": "Split it. Half each. (Mostly theirs.)",
+        "duration": 3,
+        "tags": [
+          "bribe"
+        ],
+        "outcomes": [
+          {
+            "text": "You break it in half. They take the bigger half, then the smaller half, then lick the wrapper. You eat a crumb off your own shirt. Lunch.",
+            "effects": {
+              "mood": 12,
+              "energy": -4
+            },
+            "set": [
+              "snack:1"
+            ],
+            "count": {
+              "snacks": 1
+            }
+          }
+        ]
+      },
+      {
+        "label": "Eat it in one bite. Destroy the evidence.",
+        "duration": 1,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "Gone in one bite. They arrive to an empty pantry and a parent humming with their mouth closed. \"What was that noise?\" \"Mm?\" You'll take it to your grave.",
+            "effects": {
+              "energy": 12,
+              "mood": -6
+            },
+            "set": [
+              "snack:1"
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "You get the whole bar in. They arrive. You smile with your mouth shut. They study your cheeks for a long time, then leave without a word, which means daycare will hear about it.",
+            "effects": {
+              "energy": 10,
+              "rep": -8
+            },
+            "set": [
+              "snack:1"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "snack_2",
+    "family": "snack",
+    "title": "Snack #2: Name That Snack",
+    "text": "\"I want the crunchy ones from the time.\" Which crunchy ones. Which time. {kid}'s bottom lip has started to go. You have about six seconds.",
+    "window": [
+      700,
+      1050
+    ],
+    "weight": 3,
+    "oncePerWeek": true,
+    "timer": 6,
+    "when": {
+      "flags": [
+        "snack:1"
+      ],
+      "notFlags": [
+        "snack:2"
+      ]
+    },
+    "choices": [
+      {
+        "label": "\"The fish crackers!\"",
+        "duration": 2,
+        "tags": [
+          "bribe"
+        ],
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "Correct! You hand them over with a game-show flourish. They eat them like a contestant who knew the answer all along.",
+            "effects": {
+              "mood": 14
+            },
+            "set": [
+              "snack:2"
+            ],
+            "count": {
+              "snacks": 1
+            }
+          },
+          {
+            "weight": 1,
+            "text": "\"NOT FISH.\" The lip goes all the way. They eat the fish crackers anyway, sobbing, on principle.",
+            "effects": {
+              "mood": -12
+            },
+            "set": [
+              "snack:2"
+            ],
+            "count": {
+              "snacks": 1
+            },
+            "fx": "shake"
+          }
+        ]
+      },
+      {
+        "label": "\"The puffs from the car!\"",
+        "duration": 2,
+        "tags": [
+          "bribe"
+        ],
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "\"YES.\" They're in the car. The car is in the driveway. You go out in socks, in the drizzle, for puffs. Worth it.",
+            "effects": {
+              "mood": 14,
+              "energy": -8
+            },
+            "set": [
+              "snack:2"
+            ],
+            "count": {
+              "snacks": 1
+            }
+          },
+          {
+            "weight": 1,
+            "text": "\"NO. From the OTHER car.\" You have one car. {kid} has been in a car you don't know about.",
+            "effects": {
+              "mood": -12
+            },
+            "set": [
+              "snack:2"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "\"What did they look like?\" (Stall.)",
+        "duration": 4,
+        "outcomes": [
+          {
+            "text": "\"Crunchy.\" \"What color?\" \"Crunchy.\" \"A bag or a box?\" \"CRUNCHY.\" You open every cabinet. It's the rice cakes. It was always the rice cakes.",
+            "effects": {
+              "mood": 8,
+              "energy": -8
+            },
+            "set": [
+              "snack:2"
+            ],
+            "count": {
+              "snacks": 1
+            }
+          }
+        ]
+      },
+      {
+        "label": "Freeze",
+        "duration": 2,
+        "timeout": true,
+        "outcomes": [
+          {
+            "text": "Too slow. \"YOU ATE THEM,\" {kid} announces, which, at some point in history, you did. The crunchy ones are gone. The debt is not.",
+            "effects": {
+              "mood": -14,
+              "energy": -4
+            },
+            "set": [
+              "snack:2"
+            ],
+            "stamp": "DEBT ACKNOWLEDGED",
+            "fx": "shake"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "snack_3",
+    "family": "snack",
+    "title": "Snack #3: The Audit",
+    "text": "{kid} has emptied your bag onto the floor for a snack audit. Findings: four raisins from August, a cracker from a previous administration and one granola bar you said you didn't have.",
+    "window": [
+      600,
+      1100
+    ],
+    "weight": 3,
+    "oncePerWeek": true,
+    "when": {
+      "flags": [
+        "snack:2"
+      ],
+      "notFlags": [
+        "snack:3"
+      ]
+    },
+    "choices": [
+      {
+        "label": "Surrender the bar. Cooperate fully.",
+        "duration": 2,
+        "tags": [
+          "bribe"
+        ],
+        "outcomes": [
+          {
+            "text": "You hand it over. As a goodwill gesture, they return the August raisins to you. You eat them. It's the most fruit you've had since August.",
+            "effects": {
+              "mood": 12,
+              "energy": 2
+            },
+            "set": [
+              "snack:3"
+            ],
+            "count": {
+              "snacks": 1
+            }
+          }
+        ]
+      },
+      {
+        "label": "\"That's {me}'s emergency bar.\"",
+        "duration": 3,
+        "tags": [
+          "boundary"
+        ],
+        "snapRisk": true,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "\"Oh,\" they say gravely, and put it back in your bag. They pat the bag twice. You eat it at 4 PM, in the car, in the garage, with the engine off, like a fugitive.",
+            "effects": {
+              "energy": 10,
+              "mood": -4
+            },
+            "set": [
+              "snack:3"
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "\"Emergency,\" they repeat, thoughtfully. Then they lie down on the floor and have one. They're fast. They're very fast.",
+            "effects": {
+              "mood": -14
+            },
+            "set": [
+              "snack:3"
+            ],
+            "stamp": "EMERGENCY DECLARED",
+            "fx": "shake"
+          }
+        ]
+      },
+      {
+        "label": "Clean out the bag together. Make it a game.",
+        "duration": 10,
+        "minEnergy": 20,
+        "tags": [
+          "present"
+        ],
+        "outcomes": [
+          {
+            "text": "Trash, treasure or raisin. {kid} classifies a hair tie as a snack and a receipt as treasure. At the bottom: your spare car key, which you stopped looking for in June.",
+            "effects": {
+              "home": 10,
+              "mood": 12,
+              "energy": -8
+            },
+            "set": [
+              "snack:3"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "diaper_1",
+    "family": "diaper",
+    "title": "Diaper #1: Live Coverage",
+    "text": "The bank. A silent line, nine people deep. {kid}, at full volume: \"I'M POOPING.\" Nine heads turn. A pause. \"STILL POOPING.\"",
+    "window": [
+      540,
+      1000
+    ],
+    "weight": 3,
+    "oncePerWeek": true,
+    "when": {
+      "notFlags": [
+        "diaper:1",
+        "d:home"
+      ]
+    },
+    "choices": [
+      {
+        "label": "\"Thank you for the update.\"",
+        "duration": 2,
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "\"Thank you for the update,\" you say, in the voice of a press secretary. The teller laughs. The man ahead of you laughs. \"DONE POOPING,\" {kid} announces, to applause.",
+            "effects": {
+              "rep": 8,
+              "mood": 10
+            },
+            "set": [
+              "diaper:1"
+            ],
+            "stamp": "PRESS BRIEFING"
+          },
+          {
+            "weight": 1,
+            "text": "\"Thank you for the update.\" Nobody laughs. A woman in a blazer moves one place further away. \"MORE POOPING,\" {kid} adds.",
+            "effects": {
+              "rep": -12,
+              "mood": 6
+            },
+            "set": [
+              "diaper:1"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "\"Inside voice, please.\"",
+        "duration": 2,
+        "tags": [
+          "boundary"
+        ],
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "\"Inside voice,\" you whisper. {kid} nods and whispers, \"I'm pooping,\" which is somehow worse, and carries further.",
+            "effects": {
+              "rep": -10,
+              "mood": 4
+            },
+            "set": [
+              "diaper:1"
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "\"Inside voice.\" They nod. Four minutes of perfect silence. Then, to the teller, at a normal volume: \"I pooped. For you.\"",
+            "effects": {
+              "rep": -4,
+              "mood": 8
+            },
+            "set": [
+              "diaper:1"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Give up your place. Change them in the car.",
+        "duration": 12,
+        "minEnergy": 20,
+        "tags": [
+          "present"
+        ],
+        "outcomes": [
+          {
+            "text": "You change them on the back seat and come back to a line twelve deep. The teller waves you straight to the front. \"For the updates,\" the teller says.",
+            "effects": {
+              "rep": 10,
+              "energy": -10,
+              "mood": 6
+            },
+            "set": [
+              "diaper:1"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "diaper_2",
+    "family": "diaper",
+    "title": "Diaper #2: Standing Room Only",
+    "text": "{kid} no longer lies down for diaper changes. Lying down is for babies. They will be changed standing up, walking away or, ideally, while running.",
+    "window": [
+      600,
+      1140
+    ],
+    "weight": 3,
+    "oncePerWeek": true,
+    "when": {
+      "flags": [
+        "diaper:1"
+      ],
+      "notFlags": [
+        "diaper:2"
+      ]
+    },
+    "choices": [
+      {
+        "label": "Change them standing. Learn the footwork.",
+        "duration": 6,
+        "minEnergy": 20,
+        "tags": [
+          "present"
+        ],
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "You change a moving target on your knees in 41 seconds, using techniques you didn't know you had. {kid} never breaks stride. You're a professional now. There's no certificate.",
+            "effects": {
+              "mood": 10,
+              "energy": -8
+            },
+            "set": [
+              "diaper:2"
+            ],
+            "stamp": "41 SECONDS"
+          },
+          {
+            "weight": 1,
+            "text": "Old one off. They're gone. A pantsless lap of the house follows, then a climb onto the couch, then a long look down at you from the top of it. Round two.",
+            "effects": {
+              "home": -8,
+              "energy": -10,
+              "mood": 8
+            },
+            "set": [
+              "diaper:2"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Hand over your phone. Lie down for the screen.",
+        "duration": 3,
+        "tags": [
+          "screen"
+        ],
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "They lie down instantly, entranced. Change done in 20 seconds. Getting the phone back takes nine minutes and a negotiation over a video of a goose.",
+            "effects": {
+              "energy": 6,
+              "mood": -6
+            },
+            "set": [
+              "diaper:2",
+              "d:screen"
+            ],
+            "count": {
+              "screen": 5
+            }
+          },
+          {
+            "weight": 1,
+            "text": "Perfectly still. Change done. When you get the phone back, they've ordered 40 pounds of birdseed. {partner} gets the confirmation email.",
+            "effects": {
+              "energy": 6,
+              "rel": -8
+            },
+            "set": [
+              "diaper:2",
+              "d:screen"
+            ],
+            "count": {
+              "screen": 5
+            },
+            "stamp": "ORDER CONFIRMED",
+            "fx": "flash"
+          }
+        ]
+      },
+      {
+        "label": "Let it ride. It's mostly pee.",
+        "duration": 1,
+        "outcomes": [
+          {
+            "text": "\"Mostly\" is doing a lot of work. An hour later it's doing all the work, and so is the couch cushion.",
+            "effects": {
+              "home": -14,
+              "energy": 4,
+              "mood": -6
+            },
+            "set": [
+              "diaper:2"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Potty day 3. Skip the diaper. Shark underpants.",
+        "duration": 4,
+        "minEnergy": 20,
+        "tags": [
+          "present"
+        ],
+        "when": {
+          "flags": [
+            "d:potty"
+          ]
+        },
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "They stand perfectly still for the shark underpants, which is all you've ever wanted. Two potty trips before lunch. You'd frame the underpants if that weren't strange.",
+            "effects": {
+              "mood": 14,
+              "home": 6,
+              "energy": -4
+            },
+            "set": [
+              "diaper:2"
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "They stand perfectly still for the shark underpants. Eleven minutes later, the shark is wet and so is the rug. \"The shark did it.\"",
+            "effects": {
+              "mood": 6,
+              "home": -12,
+              "energy": -4
+            },
+            "set": [
+              "diaper:2"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "diaper_3",
+    "family": "diaper",
+    "title": "Diaper #3: Size 2",
+    "text": "Public bathroom. Diaper emergency. You dig through the bag. One diaper left: size 2, from a smaller, more innocent {kid}. They're a size 5.",
+    "window": [
+      540,
+      1000
+    ],
+    "weight": 3,
+    "oncePerWeek": true,
+    "when": {
+      "flags": [
+        "diaper:2"
+      ],
+      "notFlags": [
+        "diaper:3",
+        "d:home"
+      ]
+    },
+    "choices": [
+      {
+        "label": "Make the size 2 work.",
+        "duration": 4,
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "It goes on like a swimsuit at a very expensive beach. It holds, technically, for nineteen minutes, which is all a diaper really owes you.",
+            "effects": {
+              "energy": 4,
+              "rep": -6
+            },
+            "set": [
+              "diaper:3"
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "One tab reaches. The other tab is in a different time zone. You pull. It snaps, with a sound that echoes off the tile.",
+            "effects": {
+              "rep": -10,
+              "mood": -8
+            },
+            "set": [
+              "diaper:3"
+            ],
+            "fx": "flash"
+          }
+        ]
+      },
+      {
+        "label": "Ask the parent at the sink. Beg if needed.",
+        "duration": 4,
+        "minEnergy": 20,
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "The parent at the sink hands you a size 5 without a word and walks out, like a spy who was never there. You'll think of them on your deathbed.",
+            "effects": {
+              "rep": 8,
+              "mood": 10,
+              "energy": -4
+            },
+            "set": [
+              "diaper:3"
+            ],
+            "stamp": "FOREIGN AID"
+          },
+          {
+            "weight": 1,
+            "text": "\"Oh, we're done with diapers,\" says the parent at the sink, and explains how it only took a weekend. You say \"wow\" four times and leave with nothing.",
+            "effects": {
+              "rep": -6,
+              "energy": -6
+            },
+            "set": [
+              "diaper:3"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Engineer one. Paper towels and a hair tie.",
+        "duration": 8,
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "You build a diaper from 14 paper towels and a hair tie. It holds all the way home. You could do this for a living. You'd earn more.",
+            "effects": {
+              "mood": 8,
+              "energy": -6
+            },
+            "set": [
+              "diaper:3"
+            ],
+            "stamp": "FIELD ENGINEERING"
+          },
+          {
+            "weight": 1,
+            "text": "Fourteen paper towels and a hair tie. It holds until the parking lot, then turns back into paper towels, one at a time, in a trail behind you.",
+            "effects": {
+              "rep": -10,
+              "mood": -6,
+              "energy": -6
+            },
+            "set": [
+              "diaper:3"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "diaper_4",
+    "family": "diaper",
+    "title": "Diaper #4: The Pail",
+    "text": "The diaper pail has been full for three days. You've been stomping it down with your foot. It makes a sound now when you open it. Not a smell. A sound.",
+    "window": [
+      840,
+      1160
+    ],
+    "weight": 3,
+    "oncePerWeek": true,
+    "when": {
+      "flags": [
+        "diaper:3"
+      ],
+      "notFlags": [
+        "diaper:4"
+      ]
+    },
+    "choices": [
+      {
+        "label": "Empty it. Now. Hold your breath.",
+        "duration": 6,
+        "minEnergy": 20,
+        "tags": [
+          "martyr"
+        ],
+        "outcomes": [
+          {
+            "text": "You carry the bag out at arm's length, breathing through your mouth, then somehow through your ears. A neighbor watering their plants turns off the hose and goes inside.",
+            "effects": {
+              "home": 16,
+              "energy": -8
+            },
+            "set": [
+              "diaper:4"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "One more stomp.",
+        "duration": 1,
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "One more stomp. The lid closes. Then, slowly, on its own, it opens again, as if it has something to say.",
+            "effects": {
+              "home": -10,
+              "energy": 2
+            },
+            "set": [
+              "diaper:4"
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "The bag splits. You'll be cleaning the pail at 9 PM with a hose and the last of your will.",
+            "effects": {
+              "home": -16,
+              "energy": -8
+            },
+            "set": [
+              "diaper:4"
+            ],
+            "stamp": "STRUCTURAL FAILURE",
+            "fx": "shake"
+          }
+        ]
+      },
+      {
+        "label": "Text {partner}: \"whose turn is the pail\"",
+        "duration": 2,
+        "tags": [
+          "tagteam"
+        ],
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "They do it tonight, holding their breath so long they see colors. You watch from the doorway with deep, unspoken love.",
+            "effects": {
+              "rel": 6,
+              "home": 14
+            },
+            "set": [
+              "diaper:4"
+            ],
+            "chat": [
+              {
+                "from": "{partner}",
+                "text": "mine. sorry. tonight"
+              }
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "You did. Days ago. Neither of you replies. The pail keeps the score.",
+            "effects": {
+              "rel": -8,
+              "home": -6
+            },
+            "set": [
+              "diaper:4"
+            ],
+            "chat": [
+              {
+                "from": "{partner}",
+                "text": "didn't you say you'd do it?"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Potty day 3. Throw out the pail. Burn the boats.",
+        "duration": 4,
+        "when": {
+          "flags": [
+            "d:potty"
+          ]
+        },
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "Out goes the pail, and every diaper with it. Commitment works: three trips to the potty, the last one standing on the stool, announcing it to the street.",
+            "effects": {
+              "mood": 14,
+              "home": 10
+            },
+            "set": [
+              "diaper:4"
+            ],
+            "stamp": "BOATS BURNED",
+            "fx": "confetti"
+          },
+          {
+            "weight": 1,
+            "text": "Out goes the pail and all hope of retreat. Forty minutes later there's an accident on the couch, and you're digging a diaper out of the outside bin.",
+            "effects": {
+              "home": -14,
+              "energy": -6
+            },
+            "set": [
+              "diaper:4"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "why_1",
+    "family": "why",
+    "title": "Why? (63 So Far)",
+    "text": "It's not even lunch and you've answered 63 whys. The chain began at \"Why is it raining?\" and has arrived, via clouds, Grandpa and the plumbing, at: \"Why is there a hole in your hair?\"",
+    "window": [
+      450,
+      720
+    ],
+    "weight": 2,
+    "oncePerWeek": true,
+    "when": {
+      "notFlags": [
+        "why:1"
+      ]
+    },
+    "choices": [
+      {
+        "label": "\"There isn't.\" Check the mirror.",
+        "duration": 2,
+        "outcomes": [
+          {
+            "text": "There is. A small, perfect clearing, right on top. {kid} spotted it from the couch. Why #64: \"Can I touch it?\"",
+            "effects": {
+              "energy": -6,
+              "mood": 8
+            },
+            "set": [
+              "why:1"
+            ],
+            "stamp": "NEW INFORMATION"
+          }
+        ]
+      },
+      {
+        "label": "Answer honestly. Follicles. Genetics. Grandpa.",
+        "duration": 10,
+        "minEnergy": 20,
+        "tags": [
+          "present"
+        ],
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "You explain follicles, genetics and Grandpa. They listen to all of it. Why #64: \"Why Grandpa?\" You've been here all morning. You'll be here all afternoon.",
+            "effects": {
+              "mood": 10,
+              "energy": -8
+            },
+            "set": [
+              "why:1"
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "You explain follicles and genetics. They nod slowly, then pat the hole in your hair, gently, as if it were a small pet. Why #64 never comes. You check the mirror anyway.",
+            "effects": {
+              "mood": 14,
+              "energy": -6
+            },
+            "set": [
+              "why:1"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "\"Because.\"",
+        "duration": 1,
+        "tags": [
+          "boundary"
+        ],
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "\"Because why?\" Because because. \"Because because why?\" You've built a staircase with no top floor, and they're running up it.",
+            "effects": {
+              "mood": -6,
+              "energy": -6
+            },
+            "set": [
+              "why:1"
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "\"Oh,\" they say, satisfied. It worked. You'll never know why it worked. Now you have a why of your own.",
+            "effects": {
+              "mood": 6,
+              "energy": 4
+            },
+            "set": [
+              "why:1"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "why_2",
+    "family": "why",
+    "title": "Why? (Now 211)",
+    "text": "Why #211 this week: \"Why is the moon following the car?\" You've started counting them in your phone, in the note where you used to write down ideas.",
+    "window": [
+      780,
+      1100
+    ],
+    "weight": 2,
+    "oncePerWeek": true,
+    "when": {
+      "flags": [
+        "why:1"
+      ],
+      "notFlags": [
+        "why:2"
+      ]
+    },
+    "choices": [
+      {
+        "label": "\"Because it loves you.\"",
+        "duration": 2,
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "\"The moon loves me,\" they tell the window, then the moon, then a man at a gas station. You'll be hearing about it for years.",
+            "effects": {
+              "mood": 14,
+              "energy": 2
+            },
+            "set": [
+              "why:2"
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "\"Why?\" \"It just does.\" \"Why does it just does?\" The moon doesn't have to answer questions. You do.",
+            "effects": {
+              "mood": 4,
+              "energy": -6
+            },
+            "set": [
+              "why:2"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Orbits. Flashlight. An orange and a grape.",
+        "duration": 15,
+        "minEnergy": 25,
+        "tags": [
+          "present"
+        ],
+        "outcomes": [
+          {
+            "text": "The full lesson: orange for Earth, grape for moon, flashlight for sun. {kid} watches the moon go around twice, gravely. Then eats the moon. Lesson over.",
+            "effects": {
+              "mood": 14,
+              "energy": -10
+            },
+            "set": [
+              "why:2"
+            ],
+            "stamp": "MOON: EATEN"
+          }
+        ]
+      },
+      {
+        "label": "Make something up. Confidently.",
+        "duration": 1,
+        "outcomes": [
+          {
+            "text": "\"It's nosy.\" This is accepted at once. You've installed a nosy moon in their worldview, permanently. Daycare will hear about it.",
+            "effects": {
+              "mood": 10,
+              "rep": -6
+            },
+            "set": [
+              "why:2",
+              "why:nosyMoon"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "why_3",
+    "family": "why",
+    "title": "Why #1,000",
+    "text": "Your phone note says 999. {kid} inhales. Why #1,000 of the week is coming, and you'd like it to be a good one. \"Why do you write in your phone every time I say why?\"",
+    "window": [
+      600,
+      1140
+    ],
+    "weight": 2,
+    "oncePerWeek": true,
+    "when": {
+      "flags": [
+        "why:2"
+      ],
+      "notFlags": [
+        "why:3"
+      ]
+    },
+    "choices": [
+      {
+        "label": "Tell the truth: you're counting.",
+        "duration": 2,
+        "outcomes": [
+          {
+            "text": "\"I'm counting your whys.\" A long pause. \"Why?\" That's 1,001.",
+            "effects": {
+              "mood": 8,
+              "energy": -2
+            },
+            "set": [
+              "why:3"
+            ],
+            "stamp": "1,001"
+          }
+        ]
+      },
+      {
+        "label": "\"It's a list of the best questions ever.\"",
+        "duration": 8,
+        "minEnergy": 20,
+        "tags": [
+          "present"
+        ],
+        "outcomes": [
+          {
+            "text": "They nod, proud, and spend the afternoon trying to get on the list. Why is the sky up. Why is shoes. Why is {partner}. The list grows by 140.",
+            "effects": {
+              "mood": 16,
+              "energy": -10
+            },
+            "set": [
+              "why:3"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "\"Why do YOU think?\"",
+        "duration": 3,
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": "They think about it. It's the first silence in four days. Then: \"Because you love me.\" Then: \"Why?\" You'll take it.",
+            "effects": {
+              "mood": 12,
+              "energy": 4
+            },
+            "set": [
+              "why:3"
+            ]
+          },
+          {
+            "weight": 1,
+            "text": "They think. \"Because you're old.\" They pat your hand. \"And you forget.\" You write that down too.",
+            "effects": {
+              "mood": 8,
+              "energy": -4
+            },
+            "set": [
+              "why:3"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "\"The nosy moon tells me what to write.\"",
+        "duration": 2,
+        "when": {
+          "flags": [
+            "why:nosyMoon"
+          ]
+        },
+        "outcomes": [
+          {
+            "text": "A gasp. The moon is nosy AND it texts you. The next note from daycare is a full page, double-sided.",
+            "effects": {
+              "mood": 14,
+              "rep": -10
+            },
+            "set": [
+              "why:3"
+            ],
+            "stamp": "LORE EXPANDED"
           }
         ]
       }
