@@ -279,6 +279,7 @@ struct EventCard: View {
             }
             ForEach(Array(buttons.enumerated()), id: \.offset) { order, item in
                 choiceButton(item.index, item.choice)
+                    .accessibilityIdentifier("choice-\(order)")
                     .opacity(choicesShown ? 1 : 0)
                     .offset(y: choicesShown || reduceMotion ? 0 : 18)
                     .animation(.spring(response: 0.4, dampingFraction: 0.8).delay(Double(order) * 0.07), value: choicesShown)
@@ -379,6 +380,7 @@ struct OutcomeCard: View {
             }
             .buttonStyle(.borderedProminent)
             .controlSize(.large)
+            .accessibilityIdentifier("continue")
         }
         .id("outcome-\(engine.state.step)")
     }

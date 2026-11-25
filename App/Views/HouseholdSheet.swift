@@ -17,6 +17,7 @@ struct HouseholdSheet: View {
             Form {
                 Section {
                     TextField("Bean", text: $draft.kid)
+                        .accessibilityIdentifier("kid")
                         .textInputAutocapitalization(.words)
                         .autocorrectionDisabled()
                 } header: {
@@ -24,6 +25,7 @@ struct HouseholdSheet: View {
                 }
                 Section {
                     TextField("Sam", text: $draft.partner)
+                        .accessibilityIdentifier("partner")
                         .textInputAutocapitalization(.words)
                         .autocorrectionDisabled()
                 } header: {
@@ -69,6 +71,7 @@ struct HouseholdSheet: View {
                         if startsWeek { store.newWeek() }
                     }
                     .disabled(!draft.cleaned().isComplete)
+                    .accessibilityIdentifier("saveHousehold")
                 }
             }
             .onAppear { draft = store.household }

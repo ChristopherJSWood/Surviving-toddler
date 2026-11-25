@@ -76,6 +76,7 @@ struct MorningView: View {
                         Text("Start \(engine.dayDefinition.name)").frame(maxWidth: .infinity)
                     }
                     .buttonStyle(.borderedProminent)
+                    .accessibilityIdentifier("startDay")
                     .controlSize(.large)
                     .padding(.bottom, 24)
                 }
@@ -129,6 +130,7 @@ struct LifelineView: View {
                     Text("Go to bed").frame(maxWidth: .infinity)
                 }
                 .buttonStyle(.borderedProminent)
+                .accessibilityIdentifier("goToBed")
                 .controlSize(.large)
             }
             .padding(24)

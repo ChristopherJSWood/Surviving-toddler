@@ -55,6 +55,12 @@ final class GameStore {
     private static let maxReactions = 5000
 
     init(defaults: UserDefaults = .standard) {
+        // UI tests start from a clean slate: no names, saves, stats or log.
+        if ProcessInfo.processInfo.arguments.contains("-resetForUITests") {
+            for key in [Self.saveKey, Self.statsKey, Self.householdKey, Self.timersKey, Self.reactionsEnabledKey, Self.reactionsKey] {
+                defaults.removeObject(forKey: key)
+            }
+        }
         self.defaults = defaults
         do {
             content = try GameContent.bundled()

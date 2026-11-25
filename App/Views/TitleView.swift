@@ -43,6 +43,7 @@ struct TitleView: View {
                         Text("Continue this week").frame(maxWidth: .infinity)
                     }
                     .buttonStyle(.borderedProminent)
+                    .accessibilityIdentifier("resume")
 
                     Button {
                         start()
@@ -57,6 +58,7 @@ struct TitleView: View {
                         Text("Start Monday").frame(maxWidth: .infinity)
                     }
                     .buttonStyle(.borderedProminent)
+                    .accessibilityIdentifier("start")
                 }
                 HStack(spacing: 20) {
                     Button("How to play") { showingHelp = true }

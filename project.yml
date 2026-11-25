@@ -37,4 +37,18 @@ targets:
         ENABLE_PREVIEWS: YES
         CODE_SIGN_STYLE: Automatic
     scheme:
-      testTargets: []
+      testTargets: [BedtimeOrBustUITests]
+  # Plays a whole week through the real UI on a simulator: catches crashes,
+  # saves screenshots (TEST_RUNNER_SCREENSHOT_DIR), measures the week's length.
+  BedtimeOrBustUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - path: UITests
+    dependencies:
+      - target: BedtimeOrBust
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        PRODUCT_BUNDLE_IDENTIFIER: com.example.bedtimeorbust.uitests
+        TEST_TARGET_NAME: BedtimeOrBust

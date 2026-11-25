@@ -62,6 +62,7 @@ struct EndView: View {
                             Text("Try another week").frame(maxWidth: .infinity)
                         }
                         .buttonStyle(.borderedProminent)
+                        .accessibilityIdentifier("tryAgain")
                         Button("Back to title") { store.backToTitle() }
                     }
                     .controlSize(.large)
